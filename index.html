@@ -45,10 +45,32 @@
     }]
   }
   var VRMaker = new VRMaker(vrmakerEl, options)
-  console.log(VRMaker)
-  console.log(VRMaker.panoramas)
-  console.log(VRMaker.addPanorama({ id: '2', name: 'test2' }).getPanoramas())
-  console.log(VRMaker.addPanorama({ id: '3', name: 'test3' }).setPanorama('2').getPanorama())
+
+  var sample1 = VRMaker.panoramas
+  document.write('VRMaker.panoramas')
+  document.write('<br>')
+  document.write(JSON.stringify(sample1))
+  document.write('<br>')
+  document.write('<br>')
+
+  var sample2 = VRMaker.addPanorama({ id: '2', name: 'test2' }).getPanoramas()
+  document.write('VRMaker.addPanorama({ id: \'2\', name: \'test2\' }).getPanoramas()')
+  document.write('<br>')
+  document.write(JSON.stringify(sample2))
+  document.write('<br>')
+  document.write('<br>')
+
+  var sample3 = VRMaker.addPanorama({ id: '3', name: 'test3' }).setPanorama('2').getPanorama()
+  document.write('VRMaker.addPanorama({ id: \'3\', name: \'test3\' }).setPanorama(\'2\').getPanorama()')
+  document.write('<br>')
+  document.write(JSON.stringify(sample3))
+  document.write('<br>')
+  document.write('<br>')
+
+  sample3.name = 'changed'
+  document.write('sample3.name = \'changed\'')
+  document.write('<br>')
+  document.write(JSON.stringify(sample3))
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
