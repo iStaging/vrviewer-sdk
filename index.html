@@ -37,15 +37,18 @@
   var vrmakerEl = document.getElementById('vrmaker')
   var options = {
     panoramas: [{
+      id: '0',
+      name: 'test0'
+    }, {
       id: '1',
-      name: 'test'
+      name: 'test1'
     }]
   }
   var VRMaker = new VRMaker(vrmakerEl, options)
   console.log(VRMaker)
   console.log(VRMaker.panoramas)
   console.log(VRMaker.addPanorama({ id: '2', name: 'test2' }).getPanoramas())
-  console.log(VRMaker.addPanorama({ id: '3', name: 'test3' }).getPanorama('2'))
+  console.log(VRMaker.addPanorama({ id: '3', name: 'test3' }).setPanorama('2').getPanorama())
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>

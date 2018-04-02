@@ -7,22 +7,27 @@ var VRMaker = function (element, options) {
     return JSON.parse(JSON.stringify(object))
   }
 
+  function checkPanoramaFormat (panorama) {
+    if (!panorama.id) {
+      throw new Error('panorama id is required')
+    }
+  }
+
   this.init = function (element, options) {
     _el = element
-    this.setPanoramas(options.panoramas)
+    this.initPanoramas(options.panoramas)
     _currentPanorama = (options.index !== undefined)
       ? options.index
       : options.panoramas[0]
   }
 
-  this.setPanoramas = function (panoramas) {
+  this.initPanoramas = function (panoramas) {
+    for (var i = 0; i < panoramas.length; i++) {
+      checkPanoramaFormat(panoramas[i])
+    }
     _panoramas = panoramas
-    this.setCurrentPanorama(panoramas[0])
+    this.setPanorama(panoramas[0].id)
     return this
-  }
-
-  this.getPanoramas = function () {
-    return clone(_panoramas)
   }
 
   this.addPanoramas = function (panoramas) {
@@ -35,9 +40,9 @@ var VRMaker = function (element, options) {
     return this
   }
 
-  this.setCurrentPanorama = function (id) {
+  this.setPanorama = function (id) {
     if (!id) {
-      return _currentPanorama
+      throw new Error('setPanorama id is required')
     }
     var foundPanorama = _panoramas.find(function (panorama) {
       return panorama.id === id
@@ -45,7 +50,16 @@ var VRMaker = function (element, options) {
     if (!foundPanorama) {
       throw new Error('Panorama is not found by your id')
     }
-    return clone(foundPanorama)
+    _currentPanorama = foundPanorama
+    return this
+  }
+
+  this.getPanoramas = function () {
+    return clone(_panoramas)
+  }
+
+  this.getPanorama = function () {
+    return clone(_currentPanorama)
   }
 
   this.init(element, options)
