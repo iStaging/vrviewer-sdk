@@ -1,8 +1,12 @@
 import { clone } from './utils'
 import { checkPanoramaFormat } from './helpers'
+import Krpano from './vrmaker-krpano'
+import Aframe from './vrmaker-aframe'
+import classes from 'extends-classes'
 
-class VRMaker {
+class VRMaker extends classes(Krpano, Aframe) {
   constructor () {
+    super(...arguments)
     var _el = null
     var _panoramas = []
     var _currentPanorama = {}
@@ -55,7 +59,9 @@ class VRMaker {
     this.getCurrentPanorama = function () {
       return clone(_currentPanorama)
     }
+    return this
   }
 }
 
 window.VRMaker = new VRMaker()
+export default VRMaker
