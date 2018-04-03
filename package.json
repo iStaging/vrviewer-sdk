@@ -1,5 +1,6 @@
 {
   "name": "vrmaker",
+  "keywords": "vrmaker, aframe, krpano, panorama, VR",
   "description": "vamaker help you build your 360 panorama solution more easily by aframe or krpano.",
   "version": "1.0.0",
   "author": "kevin.hu <>, jason.tseng <>",
@@ -20,6 +21,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-eslint": "^8.2.2",
     "compression": "^1.7.2",
     "connect-history-api-fallback": "^1.5.0",
     "cross-env": "^5.1.4",
@@ -28,6 +30,15 @@
     "file-loader": "^1.1.11",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.1",
+    "eslint": "^4.19.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

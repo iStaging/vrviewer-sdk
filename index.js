@@ -1,4 +1,5 @@
 import './src'
+// import 'vrmaker'
 
 VRMaker.init('el', {
   panoramas: [{ id: 'bb' }]
