@@ -8,7 +8,7 @@ const vrmaker = {
   }
 }
 
-// window.vrmaker = vrmaker
+window.vrmaker = vrmaker
 
 export {
   test1,
