@@ -63,11 +63,12 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  }
+  // webpack 4 
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //   },
+  // }
 }
 
 
@@ -80,6 +81,7 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
+    // change to webpack 4
     // new webpack.optimize.UglifyJsPlugin({
     //   sourceMap: true,
     //   compress: {
