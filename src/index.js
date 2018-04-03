@@ -1,18 +1,15 @@
-class VRMaker {
+import { clone } from './utils'
+import { checkPanoramaFormat } from './helpers'
+import Krpano from './vrmaker-krpano'
+import Aframe from './vrmaker-aframe'
+import classes from 'extends-classes'
+
+class VRMaker extends classes(Krpano, Aframe) {
   constructor () {
+    super(...arguments)
     var _el = null
     var _panoramas = []
     var _currentPanorama = {}
-
-    function clone (object) {
-      return JSON.parse(JSON.stringify(object))
-    }
-
-    function checkPanoramaFormat (panorama) {
-      if (!panorama.id) {
-        throw new Error('panorama id is required')
-      }
-    }
 
     this.init = function (element, options) {
       _el = element
@@ -23,11 +20,11 @@ class VRMaker {
     }
 
     this.initPanoramas = function (panoramas) {
-      for (var i = 0; i < panoramas.length; i++) {
-        checkPanoramaFormat(panoramas[i])
-      }
+      panoramas.forEach(panorama => {
+        checkPanoramaFormat(panorama)
+      })
       _panoramas = panoramas
-      this.setPanorama(panoramas[0].id)
+      this.selectPanorama(panoramas[0].id)
       return this
     }
 
@@ -41,7 +38,7 @@ class VRMaker {
       return this
     }
 
-    this.setPanorama = function (id) {
+    this.selectPanorama = function (id) {
       if (!id) {
         throw new Error('setPanorama id is required')
       }
@@ -52,16 +49,19 @@ class VRMaker {
         throw new Error('Panorama is not found by your id')
       }
       _currentPanorama = foundPanorama
-      return this
+      return _currentPanorama
     }
 
     this.getPanoramas = function () {
       return clone(_panoramas)
     }
 
-    this.getPanorama = function () {
+    this.getCurrentPanorama = function () {
       return clone(_currentPanorama)
     }
+    return this
   }
 }
+
 window.VRMaker = new VRMaker()
+export default VRMaker

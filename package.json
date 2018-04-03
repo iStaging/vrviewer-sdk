@@ -16,6 +16,9 @@
     "last 2 versions",
     "not ie <= 8"
   ],
+  "dependencies": {
+    "extends-classes": "^1.0.5"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
