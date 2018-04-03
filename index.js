@@ -4,4 +4,4 @@ VRMaker.init('el', {
   panoramas: [{ id: 'bb' }]
 })
 
-console.log(VRMaker.getPanorama())
+console.log(VRMaker.getCurrentPanorama())
