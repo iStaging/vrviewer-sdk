@@ -1,5 +1,7 @@
-import VRMaker from './src'
+import './src'
 
-window.VRMaker = new VRMaker()
+VRMaker.init('el', {
+  panoramas: [{ id: 'bb' }]
+})
 
-console.log(window.VRMaker)
+console.log(VRMaker.getPanorama())
