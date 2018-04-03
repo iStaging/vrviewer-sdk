@@ -1,8 +1,5 @@
 import VRMaker from './src'
 
-window.VRMaker = new VRMaker('#el', {
-  panoramas: [{ a: 'bvb' }]
-})
+window.VRMaker = new VRMaker()
 
 console.log(window.VRMaker)
-
