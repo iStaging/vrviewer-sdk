@@ -68,21 +68,17 @@
 
 class MyStack {
   constructor() {
-    let _data = [];
+    let _data = []
 
-    this.push = function (v) {
+    this.push = (v) => {
       if (_data.length === 0 || v !== _data[_data.length - 1]) {
-        _data.push(v);
+        _data.push(v)
       }
     }
 
-    this.pop = function () {
-      return _data.pop();
-    }
+    this.pop = () => _data.pop()
 
-    this.get = function () {
-      return _data;
-    }
+    this.get = () => _data
   }
 }
 
