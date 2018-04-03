@@ -18,7 +18,7 @@ const test = () => {
   console.log('in test')
 }
 
-console.log(vrmaker)
+// console.log(vrmaker)
 
 export {
   VueTest,

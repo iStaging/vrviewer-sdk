@@ -11,8 +11,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vrmaker.js',
-    library: 'Vrmaker',
+    filename: 'vrmaker-vue-aframe.js',
+    library: 'VrmakerVueAframe',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
