@@ -1,6 +1,8 @@
-console.log('in')
+import VRMaker from './src'
 
-import { test1, vrmaker } from './src'
+window.VRMaker = new VRMaker('#el', {
+  panoramas: [{ a: 'bvb' }]
+})
 
-console.log(test1())
-console.log(vrmaker)
+console.log(window.VRMaker)
+
