@@ -18,6 +18,10 @@ const test = () => {
   console.log('in test')
 }
 
+window.vrmaker = () => {
+  console.log('in')
+}
+
 // console.log(vrmaker)
 
 export {

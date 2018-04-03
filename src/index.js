@@ -2,10 +2,15 @@ const test1 = () => {
   console.log('in test1')
 }
 
-window.vrmaker = () => {
-  console.log('in')
+const vrmaker = {
+  init: () => {
+    console.log('in init')
+  }
 }
 
+// window.vrmaker = vrmaker
+
 export {
-  test1
+  test1,
+  vrmaker
 }
