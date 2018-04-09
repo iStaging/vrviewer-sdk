@@ -1,3 +1,4 @@
+// import 'aframe'
 import './src'
 // import 'vrmaker'
 // import './src/vrmaker-krpano'
