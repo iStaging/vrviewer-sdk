@@ -24,10 +24,5 @@ window.onload = function () {
     }]
   })
 
-// console.log(VRMaker)
-// console.log(VRMaker.getCurrentPanorama())
-// console.log(VRMaker.generateKrpano())
-  setTimeout(() => {
-    VRMaker.generateAframe()
-  }, 2000)
+  VRMaker.generateAframe()
 }

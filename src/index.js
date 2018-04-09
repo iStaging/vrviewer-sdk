@@ -22,7 +22,6 @@ class VRMaker extends classes(Krpano, Aframe) {
 
     this.initEl = (el) => {
       _el = el
-      console.log(_el)
       return this
     }
 
@@ -56,7 +55,7 @@ class VRMaker extends classes(Krpano, Aframe) {
       return _currentPanorama
     }
 
-    this.getEl = () => clone(_el)
+    this.getEl = () => _el
     this.getPanoramas = () => clone(_panoramas)
     this.getCurrentPanorama = () => clone(_currentPanorama)
 
