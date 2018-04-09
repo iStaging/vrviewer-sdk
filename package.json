@@ -1,9 +1,15 @@
 {
   "name": "vrmaker",
-  "keywords": "vrmaker, aframe, krpano, panorama, VR",
+  "keywords": [
+    "vrmaker",
+    "aframe",
+    "krpano",
+    "panorama",
+    "VR"
+  ],
   "description": "vamaker help you build your 360 panorama solution more easily by aframe or krpano.",
   "version": "1.0.0",
-  "author": "kevin.hu <>, jason.tseng <>",
+  "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>",
   "license": "MIT",
   "private": false,
   "main": "dist/vrmaker.js",
