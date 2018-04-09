@@ -6,6 +6,7 @@ class Aframe {
       const aSkyEl = document.createElement('a-sky')
       const aCameraContainerEl = document.createElement('a-entity')
       const aCameraEl = document.createElement('a-camera')
+      // const el = this.getEl()
       const { src } = this.getCurrentPanorama()
       const cameraRotationOffset = 100
       let cameraStartRotation
