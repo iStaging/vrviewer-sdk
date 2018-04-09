@@ -5,7 +5,6 @@ import './src'
 
 window.onload = function () {
   /* eslint-disable */
-  // VRMaker.init('el', {
   VRMaker.init({
     el: document.getElementById('vrmaker-aframe'),
     panoramas: [{

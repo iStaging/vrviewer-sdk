@@ -15,10 +15,12 @@ class Aframe {
         ? cameraStartRotation = this.getCurrentPanorama().cameraStartRotation
         : cameraStartRotation = {}
 
+      // a-sky
       aSkyEl.setAttribute('src', src)
       aSceneEl.appendChild(aSkyEl)
       el.appendChild(aSceneEl)
 
+      // a-camera
       const cameraX = cameraStartRotation.x || 0
       const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
       const cameraZ = cameraStartRotation.z || 0
@@ -28,8 +30,10 @@ class Aframe {
         `${cameraX} ${cameraY} ${cameraZ}`
       )
 
+      // a-scene
       aCameraContainerEl.appendChild(aCameraEl)
       aSceneEl.appendChild(aCameraContainerEl)
+
       return this
     }
   }
