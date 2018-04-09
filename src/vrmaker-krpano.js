@@ -1,3 +1,11 @@
+import {
+  webVRXml,
+  gyroXml,
+  threeJsXml,
+  contextMenuXml,
+  gyroMessageXml
+} from './krpano-xml'
+
 class Krpano {
   constructor () {
     let _krpanoId = ''
@@ -18,12 +26,32 @@ class Krpano {
 
       _krpanoId = 'krpano_' + Math.floor(Math.random() * (100000 - 100 + 1) + 100)
       this.setConfig(config)
+      this.generateXml()
       this.embedPano()
       return this
     }
 
     this.setConfig = function (config) {
       this.config = config
+    }
+
+    this.generateXml = function () {
+      const panoramas = this.getPanoramas()
+      if (panoramas.length <= 0) {
+        return
+      }
+      const xml = `<krpano onstart="startup();">
+      ${webVRXml}
+      ${gyroXml}
+      ${gyroMessageXml}
+      ${contextMenuXml}
+      ${(() => {
+        // if (!getIEVersion()) {
+        return threeJsXml
+        // }
+      })()}
+      </krpano>`
+      this.xml = escape(xml)
     }
 
     this.embedPano = function () {
@@ -61,10 +89,6 @@ class Krpano {
         console.log('pano removed')
         delete this.krpanoObj
       }
-    }
-
-    this.generateXml = function () {
-
     }
   }
 }

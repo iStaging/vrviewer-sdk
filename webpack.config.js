@@ -40,6 +40,14 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.(min.js)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[ext]?[hash]'
+        }
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
@@ -63,7 +71,7 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  // webpack 4 
+  // webpack 4
   // optimization: {
   //   splitChunks: {
   //     chunks: 'all',
