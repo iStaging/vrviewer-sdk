@@ -1,4 +1,3 @@
-console.log('require(\'./krpano-plugins/webvr.min\')', require('./krpano-plugins/webvr.min'))
 export const webVRXml = `<plugin name="WebVR" devices="html5" keep="true"
 url="${require('./krpano-plugins/webvr.min')}"
 onloaded="copy(webvr, plugin[WebVR]);"

@@ -8,8 +8,8 @@
   "private": false,
   "main": "dist/vrmaker.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --mode development",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --mode production"
   },
   "browserslist": [
     "> 1%",
