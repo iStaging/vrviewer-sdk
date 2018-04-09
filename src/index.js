@@ -1,4 +1,4 @@
-import { clone } from './utils'
+import { clone, push } from './utils'
 import { checkPanoramaFormat } from './helpers'
 import Krpano from './vrmaker-krpano'
 import Aframe from './vrmaker-aframe'
@@ -7,11 +7,13 @@ import classes from 'extends-classes'
 class VRMaker extends classes(Krpano, Aframe) {
   constructor () {
     super(...arguments)
-    var _el = null
-    var _panoramas = []
-    var _currentPanorama = {}
 
-    this.init = function (element, options) {
+    let _el = null
+    let _panoramas = []
+    let _currentPanorama = {}
+
+    this.init = (element, options) => {
+      this.checkVersion()
       _el = element
       this.initPanoramas(options.panoramas)
       _currentPanorama = (options.index !== undefined)
@@ -19,32 +21,29 @@ class VRMaker extends classes(Krpano, Aframe) {
         : options.panoramas[0]
     }
 
-    this.initPanoramas = function (panoramas) {
-      panoramas.forEach(panorama => {
-        checkPanoramaFormat(panorama)
-      })
+    this.initPanoramas = (panoramas) => {
+      panoramas.map(panorama => checkPanoramaFormat(panorama))
+
       _panoramas = panoramas
       this.selectPanorama(panoramas[0].id)
       return this
     }
 
-    this.addPanoramas = function (panoramas) {
+    this.addPanoramas = (panoramas) => {
       _panoramas = _panoramas.concat(panoramas)
       return this
     }
 
-    this.addPanorama = function (panorama) {
-      _panoramas.push(panorama)
+    this.addPanorama = (panorama) => {
+      push(panorama, _panoramas)
       return this
     }
 
-    this.selectPanorama = function (id) {
+    this.selectPanorama = (id) => {
       if (!id) {
         throw new Error('setPanorama id is required')
       }
-      var foundPanorama = _panoramas.find(function (panorama) {
-        return panorama.id === id
-      })
+      const foundPanorama = _panoramas.find((panorama) => panorama.id === id)
       if (!foundPanorama) {
         throw new Error('Panorama is not found by your id')
       }
@@ -52,14 +51,16 @@ class VRMaker extends classes(Krpano, Aframe) {
       return _currentPanorama
     }
 
-    this.getPanoramas = function () {
-      return clone(_panoramas)
-    }
+    this.getPanoramas = () => clone(_panoramas)
 
-    this.getCurrentPanorama = function () {
-      return clone(_currentPanorama)
-    }
-    return this
+    this.getCurrentPanorama = () => clone(_currentPanorama)
+
+    // return this
+  }
+
+  checkVersion () {
+    const version = 'v1.0.0'
+    this.version = version
   }
 }
 
