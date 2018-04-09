@@ -23,6 +23,9 @@ import {
 import {
   getActionsXml
 } from './krpano-xml/actions'
+import {
+  getHooks
+} from './krpano-hooks'
 import tripodImage from '../img/krpano-img/logo-tripod.png'
 
 class Krpano {
@@ -30,6 +33,7 @@ class Krpano {
     let _krpanoId = ''
     let _element = null
     let _xml = ''
+    let _hooks = getHooks(this)
     this.config = {}
     this.krpanoObj = {}
     this.krpanoVrModeObj = {
@@ -39,6 +43,7 @@ class Krpano {
     this.defaultFov = 120
     this.krpanoXOffset = 90
     this.vrThumbAth = 24
+    let _krpanoLookAtH = 0
 
     this.generateKrpano = function (el, config) {
       _element = document.querySelector(el)
@@ -65,6 +70,7 @@ class Krpano {
     this.generateXml = function () {
       const panoramas = this.getPanoramas()
       if (panoramas.length <= 0) {
+        _xml = ''
         return
       }
       const stylesXml = getStylesXml.call(this, panoramas, 0)
@@ -106,7 +112,8 @@ class Krpano {
         webglsettings: this.config.webglsettings,
         onready (krpanoObj) {
           this.krpanoObj = krpanoObj
-          console.log('pano created', this.krpanoObj)
+          this.krpanoObj.hooks = _hooks
+          // console.log('pano created', this.krpanoObj.hooks)
           this.krpanoObj.call(`loadxml(${escape(_xml)})`)
         },
         onerror (msg) {
@@ -131,6 +138,10 @@ class Krpano {
         this.krpanoVrModeObj.vrModeShouldShow.push(`vr_panorama_${i}`)
         this.krpanoVrModeObj.vrModeShouldShow.push(`vr_panorama_text_${i}`)
       }
+    }
+
+    this.setKrpanoLookAtH = function (h) {
+      _krpanoLookAtH = h
     }
   }
 }

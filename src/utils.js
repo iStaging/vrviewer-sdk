@@ -40,3 +40,50 @@ export const getIEVersion = () => {
   // other browser
   return false
 }
+
+export const loadImage = async (url = '', callback = () => {}, onprogress = e => {}, onerror = () => {}) => {
+  if (typeof url === 'string' || url instanceof String) {
+    try {
+      const xmlHttp = new XMLHttpRequest() // eslint-disable-line
+      xmlHttp.open('GET', url, true)
+      xmlHttp.responseType = 'arraybuffer'
+      xmlHttp.onload = () => {
+        callback()
+      }
+      xmlHttp.onprogress = e => {
+        onprogress(Math.ceil(e.loaded / e.total * 100))
+      }
+      xmlHttp.onerror = () => {
+        onerror()
+      }
+      xmlHttp.send()
+    } catch (e) {
+    }
+  } else if ((typeof url === 'object' || url instanceof Object) && url.length > 0) {
+    url = url.filter(uniUrl => uniUrl)
+    const loadAllImages = url.map(uniUrl => {
+      return new Promise((resolve, reject) => {
+        try {
+          const xmlHttp = new XMLHttpRequest() // eslint-disable-line
+          xmlHttp.open('GET', uniUrl, true)
+          xmlHttp.responseType = 'arraybuffer'
+          xmlHttp.onload = () => {
+            resolve()
+          }
+          xmlHttp.onerror = () => {
+            onerror()
+            reject(new Error('image load error'))
+          }
+          xmlHttp.send()
+        } catch (error) {
+          reject(new Error(error))
+        }
+      })
+    })
+    await Promise.all(loadAllImages).then(() => {
+      callback()
+    }).catch(error => {
+      console.error(error)
+    })
+  }
+}
