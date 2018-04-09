@@ -1,5 +1,11 @@
+import webvrMinJs from '../krpano-lib/webvr.min'
+import webvrCursorImage from '../krpano-lib/webvr_cursor_80x80_17f.png'
+import threeKrpanoPluginMinJs from '../krpano-lib/three.krpanoplugin.min'
+import gyro2MinJs from '../krpano-lib/gyro2.min'
+import gyroMessageMinJs from '../krpano-lib/gyro-message.min'
+
 export const webVRXml = `<plugin name="WebVR" devices="html5" keep="true"
-url="${require('./krpano-plugins/webvr.min')}"
+url="${webvrMinJs}"
 onloaded="copy(webvr, plugin[WebVR]);"
 mousespeed="0.00125"
 multireslock="true"
@@ -40,7 +46,7 @@ onexitvr="webvr_onexitvr();"
 </vrheadsets>
 
 <hotspot name="vr_cursor" keep="true"
-url="${require('./krpano-plugins/webvr_cursor_80x80_17f.png')}"
+url="${webvrCursorImage}"
 visible="false"
 enabled="false"
 distorted="true"
@@ -760,7 +766,7 @@ copy(layer[vr_setup_vig2].html, i_vig);
 </action>`
 
 export const gyroXml = `<plugin name="gyro" devices="html5" keep="true"
-url="${require('./krpano-plugins/gyro2.min')}"
+url="${gyro2MinJs}"
 enabled="false"
 camroll="true"
 friction="0.0"
@@ -771,6 +777,6 @@ autocalibration="false" />`
 
 export const contextMenuXml = `<contextmenu fullscreen="false" versioninfo="false" />`
 export const threeJsXml = `<!--add the custom ThreeJS plugin-->
-<plugin name="threejs" url="${require('./krpano-plugins/three.krpanoplugin.min')}" keep="true" />`
+<plugin name="threejs" url="${threeKrpanoPluginMinJs}" keep="true" />`
 export const gyroMessageXml = `<!--add the custom ThreeJS plugin-->
-<plugin name="gyroMessage" enabled="false" url="${require('./krpano-plugins/gyro-message.min')}" keep="true" />`
+<plugin name="gyroMessage" enabled="false" url="${gyroMessageMinJs}" keep="true" />`

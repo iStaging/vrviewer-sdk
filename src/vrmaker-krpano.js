@@ -4,7 +4,10 @@ import {
   threeJsXml,
   contextMenuXml,
   gyroMessageXml
-} from './krpano-xml'
+} from './krpano-xml/plugins'
+import {
+  styles
+} from './krpano-xml/styles'
 
 class Krpano {
   constructor () {
@@ -45,6 +48,7 @@ class Krpano {
       ${gyroXml}
       ${gyroMessageXml}
       ${contextMenuXml}
+      ${styles(panoramas)}
       ${(() => {
         // if (!getIEVersion()) {
         return threeJsXml
