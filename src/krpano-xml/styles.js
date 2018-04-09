@@ -56,16 +56,15 @@ width="60" height="60" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.
 width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(${next});" />`
 }
 
-let vrThumbAth = 24
 const vrThumbWidth = 160
-export const styles = function (panoramas) {
+export const getStylesXml = function (panoramas) {
   let style = basicStyles()
   panoramas.forEach((panorama, index) => {
     const verticalCount = index % 4
     const horizontalCount = Math.floor(index / 4)
     // vr mode thumbnail
     let oy = (-(vrThumbWidth / 2 + 30) * 1.5) + (vrThumbWidth / 2 + 30) * (verticalCount)
-    vrThumbAth = vrThumbAth * horizontalCount
+    let vrThumbAth = this.vrThumbAth * horizontalCount
     if (isRtl()) {
       vrThumbAth *= -1
     }

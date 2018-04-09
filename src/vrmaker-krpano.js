@@ -1,4 +1,7 @@
 import {
+  getIEVersion
+} from './utils'
+import {
   webVRXml,
   gyroXml,
   threeJsXml,
@@ -6,16 +9,36 @@ import {
   gyroMessageXml
 } from './krpano-xml/plugins'
 import {
-  styles
+  getStylesXml
 } from './krpano-xml/styles'
+import {
+  getLogoTripodXml
+} from './krpano-xml/tripod'
+import {
+  eventsXml
+} from './krpano-xml/events'
+import {
+  getScenesXml
+} from './krpano-xml/scenes'
+import {
+  getActionsXml
+} from './krpano-xml/actions'
+import tripodImage from '../img/krpano-img/logo-tripod.png'
 
 class Krpano {
   constructor () {
     let _krpanoId = ''
     let _element = null
+    let _xml = ''
     this.config = {}
     this.krpanoObj = {}
-    this.xml = ''
+    this.krpanoVrModeObj = {
+      vrModeShouldHide: [],
+      vrModeShouldShow: ['vr_menu_bg', 'vr_menu_l', 'vr_menu', 'vr_menu_r']
+    }
+    this.defaultFov = 120
+    this.krpanoXOffset = 90
+    this.vrThumbAth = 24
 
     this.generateKrpano = function (el, config) {
       _element = document.querySelector(el)
@@ -29,6 +52,7 @@ class Krpano {
 
       _krpanoId = 'krpano_' + Math.floor(Math.random() * (100000 - 100 + 1) + 100)
       this.setConfig(config)
+      this.initKrpanoVRMode()
       this.generateXml()
       this.embedPano()
       return this
@@ -43,26 +67,31 @@ class Krpano {
       if (panoramas.length <= 0) {
         return
       }
-      const xml = `<krpano onstart="startup();">
+      const stylesXml = getStylesXml.call(this, panoramas, 0)
+      const scenesXml = getScenesXml.call(this, panoramas, 0)
+      const actionsXml = getActionsXml.call(this, panoramas, 0)
+      const logoTripodXml = getLogoTripodXml(tripodImage, 100, false)
+      _xml = `<krpano onstart="startup();">
       ${webVRXml}
       ${gyroXml}
       ${gyroMessageXml}
       ${contextMenuXml}
-      ${styles(panoramas)}
-      ${(() => {
-        // if (!getIEVersion()) {
-        return threeJsXml
-        // }
-      })()}
+      ${logoTripodXml}
+      ${eventsXml}
+      ${stylesXml}
+      ${scenesXml}
+      ${actionsXml}
+      ${!getIEVersion()
+        ? threeJsXml
+        : ''}
       </krpano>`
-      this.xml = escape(xml)
     }
 
     this.embedPano = function () {
       window.embedpano({
         id: _krpanoId,
         target: _element.id,
-        xml: this.xml,
+        xml: '',
         bgcolor: this.config.bgcolor,
         wmode: this.config.wmode,
         vars: this.config.vars,
@@ -77,7 +106,8 @@ class Krpano {
         webglsettings: this.config.webglsettings,
         onready (krpanoObj) {
           this.krpanoObj = krpanoObj
-          console.log('pano created', krpanoObj)
+          console.log('pano created', this.krpanoObj)
+          this.krpanoObj.call(`loadxml(${escape(_xml)})`)
         },
         onerror (msg) {
           console.error('pano create error', msg)
@@ -92,6 +122,14 @@ class Krpano {
         removepano(_krpanoId)
         console.log('pano removed')
         delete this.krpanoObj
+      }
+    }
+
+    this.initKrpanoVRMode = function () {
+      const panoramas = this.getPanoramas()
+      for (let i = 0; i < panoramas.length; i++) {
+        this.krpanoVrModeObj.vrModeShouldShow.push(`vr_panorama_${i}`)
+        this.krpanoVrModeObj.vrModeShouldShow.push(`vr_panorama_text_${i}`)
       }
     }
   }

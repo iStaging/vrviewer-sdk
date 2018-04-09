@@ -74,7 +74,7 @@ export const lengthInUtf8Bytes = (string = '') => {
   return string.length + (m ? (m.length - 1) : 0)
 }
 
-export const setCorrectRotation = (value) => {
+export const getCorrectRotation = (value) => {
   // make rotation into -180 ~ 180
   while (value < -180 || value > 180) {
     if (value < -180) {
@@ -86,4 +86,11 @@ export const setCorrectRotation = (value) => {
   }
 
   return value
+}
+
+export const coords3dTo2d = ({ x, y, z }) => {
+  const r = Math.sqrt(x * x + y * y + z * z)
+  const ath = -Math.atan2(x, z) * 180 / Math.PI + 180
+  const atv = -Math.asin(y / r) * 180 / Math.PI
+  return { ath, atv }
 }
