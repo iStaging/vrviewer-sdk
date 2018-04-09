@@ -24,7 +24,7 @@ class VRMaker extends classes(Krpano, Aframe) {
         checkPanoramaFormat(panorama)
       })
       _panoramas = panoramas
-      this.selectPanorama(panoramas[0].id)
+      this.selectPanorama(panoramas[0].objectId)
       return this
     }
 
@@ -40,10 +40,10 @@ class VRMaker extends classes(Krpano, Aframe) {
 
     this.selectPanorama = function (id) {
       if (!id) {
-        throw new Error('setPanorama id is required')
+        throw new Error('selectPanorama id is required')
       }
       var foundPanorama = _panoramas.find(function (panorama) {
-        return panorama.id === id
+        return panorama.objectId === id
       })
       if (!foundPanorama) {
         throw new Error('Panorama is not found by your id')
