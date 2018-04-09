@@ -115,6 +115,11 @@ class Krpano {
           this.krpanoObj.hooks = _hooks
           // console.log('pano created', this.krpanoObj.hooks)
           this.krpanoObj.call(`loadxml(${escape(_xml)})`)
+
+          const isGyroEnabled = false
+          window.setTimeout(() => {
+            this.krpanoObj.call(`first_panorama_ready(${isGyroEnabled});`)
+          }, 1500)
         },
         onerror (msg) {
           console.error('pano create error', msg)
