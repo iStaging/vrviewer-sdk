@@ -7,7 +7,7 @@ import classes from 'extends-classes'
 class VRMaker extends classes(Krpano, Aframe) {
   constructor () {
     super(...arguments)
-    var _el = null
+    var _el = null //eslint-disable-line
     var _panoramas = []
     var _currentPanorama = {}
 
