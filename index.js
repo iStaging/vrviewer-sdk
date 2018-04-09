@@ -6,7 +6,18 @@ VRMaker.init('el', {
   panoramas: [{ id: 'bb' }]
 })
 
-console.log(VRMaker)
-console.log(VRMaker.getCurrentPanorama())
-console.log(VRMaker.generateKrpano())
-console.log(VRMaker.generateAframe())
+window.onload = function () {
+  VRMaker.generateKrpano('#vrmaker-krpano', {
+    html5: 'webgl+only',
+    webglsettings: { depth: true },
+    passQueryParameters: true,
+    lazyLoad: true,
+    mwheel: true,
+    focus: false
+  })
+}
+
+// console.log(VRMaker)
+// console.log(VRMaker.getCurrentPanorama())
+// console.log(VRMaker.generateKrpano())
+// console.log(VRMaker.generateAframe())
