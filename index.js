@@ -11,12 +11,15 @@ VRMaker.init('el', {
 
 window.onload = function () {
   VRMaker.generateKrpano('#vrmaker-krpano', {
-    html5: 'webgl+only',
-    webglsettings: { depth: true },
-    passQueryParameters: true,
-    lazyLoad: true,
-    mwheel: true,
-    focus: false
+    autoRotate: true,
+    krpanoSettings: {
+      html5: 'webgl+only',
+      webglsettings: { depth: true },
+      passQueryParameters: true,
+      lazyLoad: true,
+      mwheel: true,
+      focus: false
+    }
   })
 }
 

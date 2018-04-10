@@ -34,8 +34,10 @@ class Krpano {
     let _element = null
     let _xml = ''
     let _hooks = getHooks(this)
-    this.config = {}
-    this.krpanoObj = {}
+    this.config = {
+      krpanoSettings: {}
+    }
+    this.krpanoEl = {}
     this.krpanoVrModeObj = {
       vrModeShouldHide: [],
       vrModeShouldShow: ['vr_menu_bg', 'vr_menu_l', 'vr_menu', 'vr_menu_r']
@@ -44,6 +46,10 @@ class Krpano {
     this.krpanoXOffset = 90
     this.vrThumbAth = 24
     let _krpanoLookAtH = 0
+    this.krpanoCamera = {
+      isCameraRotating: false,
+      autoStartRotateTimer: null
+    }
 
     this.generateKrpano = function (el, config) {
       _element = document.querySelector(el)
@@ -98,28 +104,20 @@ class Krpano {
         id: _krpanoId,
         target: _element.id,
         xml: '',
-        bgcolor: this.config.bgcolor,
-        wmode: this.config.wmode,
-        vars: this.config.vars,
-        initvars: this.config.initvars,
-        basepath: this.config.basepath,
-        mwheel: this.config.mwheel,
-        focus: this.config.focus,
-        consolelog: this.config.consolelog,
-        mobilescale: this.config.mobilescale,
-        fakedevice: this.config.fakedevice,
-        passQueryParameters: this.config.passQueryParameters,
-        webglsettings: this.config.webglsettings,
-        onready (krpanoObj) {
-          this.krpanoObj = krpanoObj
-          this.krpanoObj.hooks = _hooks
-          // console.log('pano created', this.krpanoObj.hooks)
-          this.krpanoObj.call(`loadxml(${escape(_xml)})`)
-
-          const isGyroEnabled = false
-          window.setTimeout(() => {
-            this.krpanoObj.call(`first_panorama_ready(${isGyroEnabled});`)
-          }, 1500)
+        bgcolor: this.config.krpanoSettings.bgcolor,
+        wmode: this.config.krpanoSettings.wmode,
+        vars: this.config.krpanoSettings.vars,
+        initvars: this.config.krpanoSettings.initvars,
+        basepath: this.config.krpanoSettings.basepath,
+        mwheel: this.config.krpanoSettings.mwheel,
+        focus: this.config.krpanoSettings.focus,
+        consolelog: this.config.krpanoSettings.consolelog,
+        mobilescale: this.config.krpanoSettings.mobilescale,
+        fakedevice: this.config.krpanoSettings.fakedevice,
+        passQueryParameters: this.config.krpanoSettings.passQueryParameters,
+        webglsettings: this.config.krpanoSettings.webglsettings,
+        onready: (krpanoEl) => {
+          this.handleKrpanoReady(krpanoEl)
         },
         onerror (msg) {
           console.error('pano create error', msg)
@@ -127,13 +125,27 @@ class Krpano {
       })
     }
 
+    this.handleKrpanoReady = function (krpanoEl) {
+      this.krpanoEl = krpanoEl
+      this.krpanoEl.hooks = _hooks
+      // console.log('pano created', this.krpanoEl.hooks)
+      this.krpanoEl.call(`loadxml(${escape(_xml)})`)
+      const isGyroEnabled = false
+      window.setTimeout(() => {
+        this.krpanoEl.call(`first_panorama_ready(${isGyroEnabled});`)
+      }, 1500)
+      if (this.config.autoRotate) {
+        this.startAutoRotate()
+      }
+    }
+
     this.removePano = function () {
       const { removepano } = window
 
-      if (this.krpanoObj) {
+      if (this.krpanoEl) {
         removepano(_krpanoId)
         console.log('pano removed')
-        delete this.krpanoObj
+        delete this.krpanoEl
       }
     }
 
@@ -147,6 +159,30 @@ class Krpano {
 
     this.setKrpanoLookAtH = function (h) {
       _krpanoLookAtH = h
+    }
+
+    this.startAutoRotate = function () {
+      this.krpanoEl.call(`auto_rotate();`)
+      this.krpanoCamera.isCameraRotating = true
+    }
+
+    this.stopAutoRotate = function (shouldAutoStartRotate = false, duration = 20000) {
+      if (this.config.autoRotate) {
+        if (this.krpanoCamera.isCameraRotating === true) {
+          this.krpanoEl.call(`stop_auto_rotate();`)
+          this.krpanoCamera.isCameraRotating = false
+        }
+        if (this.krpanoCamera.autoStartRotateTimer !== null) {
+          window.clearTimeout(this.krpanoCamera.autoStartRotateTimer)
+       }
+        if (shouldAutoStartRotate) {
+          this.krpanoCamera.autoStartRotateTimer = window.setTimeout(() => {
+            this.startAutoRotate()
+          }, duration)
+        } else {
+          this.krpanoCamera.autoStartRotateTimer = null
+        }
+      }
     }
   }
 }
