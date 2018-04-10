@@ -2,14 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>vue-test</title>
-    <script type=text/javascript src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-    <!-- <script type=text/javascript src=https://livetour.istaging.com/static/three.min.js></script> -->
-    <script type=text/javascript src="https://livetour.istaging.com/static/krpano.min.js"></script>
+    <title>VRMaker SDK</title>
+    <script type="text/javascript" src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script type="text/javascript" src="https://livetour.istaging.com/static/three.min.js"></script>
+    <script type="text/javascript" src="https://livetour.istaging.com/static/krpano.min.js"></script>
     <script type="text/javascript" src="dist/vrmaker.js"></script>
+    <link rel="stylesheet" type="text/css" src="css/normalize.css">
+    <link rel="stylesheet" type="text/css" src="css/main.css">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .krpano-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #fffdfd;
+      }
+    </style>
   </head>
   <body>
-    <div id="vrmaker-krpano"></div>
+    <div id="vrmaker-krpano" class="krpano-container"></div>
     <div id="vrmaker-aframe"></div>
   </body>
 </html>
