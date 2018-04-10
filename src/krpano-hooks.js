@@ -20,7 +20,7 @@ export const getHooks = vm => {
         const oldHLookat = vm.krpanoLookAtH
         if (foundPanorama.cubemapReady) {
           vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
-           ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
+           ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.config.gyroSettings.active});`)
         } else {
           // vm.setProgressCount(0)
           // vm.setProgressMax(100)
@@ -28,7 +28,7 @@ export const getHooks = vm => {
           loadImage(foundPanorama.desktopUrl, () => {
             // vm.closeProgress()
             vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
-             ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
+             ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.config.gyroSettings.active});`)
           }, (e) => {
             // vm.setProgressCount(e * 2)
           }, () => {

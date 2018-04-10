@@ -19,6 +19,9 @@ window.onload = function () {
       rotateDuration: 200000,
       restartTime: 20000
     },
+    gyroSettings: {
+      active: false
+    },
     krpanoSettings: {
       html5: 'webgl+only',
       webglsettings: { depth: true },
@@ -30,6 +33,7 @@ window.onload = function () {
   })
 
   window.setTimeout(() => {
+    console.log('change panorama')
     VRMaker.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
   }, 3500)
 }
