@@ -23,6 +23,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "aframe": "^0.8.1",
     "extends-classes": "^1.0.5"
   },
   "devDependencies": {
