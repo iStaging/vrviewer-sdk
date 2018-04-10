@@ -88,3 +88,9 @@ export const loadImage = async (url = '', callback = () => {}, onprogress = e =>
     })
   }
 }
+
+// 計算 instr 在 string 裡出現幾次
+export const countText = (string, instr) => {
+  const re = new RegExp(instr, 'g')
+  return (string.match(re) || []).length
+}

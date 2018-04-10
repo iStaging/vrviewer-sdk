@@ -7,6 +7,15 @@ import {
 import {
   isEmpty
 } from '../utils'
+import {
+  getMarkerMemoXml
+} from './marker-memo'
+import {
+  getMarkerPointXml
+} from './marker-point'
+import {
+  getMarkerTagXml
+} from './marker-tag'
 
 // startIndex is started from 0
 export const getScenesXml = function (panoramas, startIndex) {
@@ -25,14 +34,14 @@ export const getScenesXml = function (panoramas, startIndex) {
             this.krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
             const category = nextPanoramaCategoryName(marker)
             const isMarkerPoint = true
-            hotspot += markerPoint(marker, ath, atv, category, hotspotIcon, useCustomIcon, index, isMarkerPoint, this.krpanoXOffset)
+            hotspot += getMarkerPointXml(marker, ath, atv, category, hotspotIcon, useCustomIcon, index, isMarkerPoint, this.krpanoXOffset)
             break
           case 'memo':
             this.krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
-            hotspot += markerMemo(marker, ath, atv, category, hotspotIcon, useCustomIcon, index)
+            hotspot += getMarkerMemoXml(marker, ath, atv, category, hotspotIcon, useCustomIcon, index)
             break
           case 'tag':
-            hotspot += markerTag(marker, ath, atv, category, hotspotIcon, useCustomIcon, index, this.krpanoVrModeObj)
+            hotspot += getMarkerTagXml(marker, ath, atv, category, hotspotIcon, useCustomIcon, index, this.krpanoVrModeObj)
             break
           case 'popup':
             this.krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.objectId}`)
