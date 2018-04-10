@@ -10,7 +10,7 @@ window.onload = function () {
     panoramas: [{
       id: 'YRSqB',
       // src: 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
-      src: 'img/test.png',
+      src: 'img/test.jpg',
       // cameraStartRotation: {
       //   x: 0,
       //   y: 360,
@@ -24,5 +24,13 @@ window.onload = function () {
     }]
   })
 
+  console.log(VRMaker)
   VRMaker.generateAframe()
+
+  setTimeout(() => {
+    VRMaker.selectPanorama('Hiazr')
+    VRMaker.setPanoramaSrc(VRMaker.getCurrentPanorama().src, () => {
+      console.log('loaded')
+    })
+  }, 1000)
 }

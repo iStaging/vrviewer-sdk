@@ -36,6 +36,15 @@ class Aframe {
 
       return this
     }
+
+    this.setPanoramaSrc = function (src, callback) {
+      const aSkyEl = document.getElementsByTagName('a-sky')[0]
+      const img = new Image()
+
+      aSkyEl.setAttribute('src', src)
+      img.onload = () => { if (callback) callback() }
+      img.src = src
+    }
   }
 
   checkAframe () {
