@@ -8,9 +8,6 @@ import {
 import Krpano from './vrmaker-krpano'
 import Aframe from './vrmaker-aframe'
 import classes from 'extends-classes'
-import WatchJS from 'melanke-watchjs'
-var watch = WatchJS.watch
-var unwatch = WatchJS.unwatch
 
 class VRMaker extends classes(Krpano, Aframe) {
   constructor () {
@@ -26,10 +23,6 @@ class VRMaker extends classes(Krpano, Aframe) {
       _currentPanorama = (options.index !== undefined)
         ? options.index
         : options.panoramas[0]
-
-      watch(_currentPanorama, function () {
-        console.log('some attribute of ex3 changes!');
-      });
     }
 
     this.initEl = (el) => {
@@ -74,7 +67,6 @@ class VRMaker extends classes(Krpano, Aframe) {
       if (this.currentPanoramaChanged instanceof Function) {
         this.currentPanoramaChanged(foundPanorama, _currentPanorama)
       }
-      console.log('selectPanorama', foundPanorama, _currentPanorama)
       _currentPanorama = foundPanorama
       return _currentPanorama
     }

@@ -11,7 +11,6 @@ export const getHooks = vm => {
       vm.stopAutoRotate(bool)
     },
     prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', selectedMethod = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
-      console.log('prepareChangeScene')
       const panoramas = vm.getPanoramas()
       const currentPanorama = vm.getCurrentPanorama()
       const oldIndex = panoramas.findIndex(panorama => panorama.objectId === currentPanorama.objectId)

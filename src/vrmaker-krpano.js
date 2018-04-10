@@ -27,9 +27,6 @@ import {
   getHooks
 } from './krpano-hooks'
 import tripodImage from '../img/krpano-img/logo-tripod.png'
-import WatchJS from 'melanke-watchjs'
-var watch = WatchJS.watch
-var unwatch = WatchJS.unwatch
 
 class Krpano {
   constructor () {
@@ -194,7 +191,6 @@ class Krpano {
     }
 
     this.currentPanoramaChanged = function (newPanorama = {}, oldPanorama = {}) {
-      console.log('currentPanoramaChanged', newPanorama.objectId, oldPanorama.objectId)
       if (!isEmpty(this.krpanoEl)) {
         this.krpanoEl.call(`prepare_change_scene(panorama_${newPanorama.objectId || ''}, ${newPanorama.objectId || ''});`)
       }
