@@ -1,5 +1,5 @@
 export const checkPanoramaFormat = (panorama) => {
-  if (!panorama.id) {
+  if (!panorama.objectId) {
     throw new Error('panorama id is required')
   }
 }
