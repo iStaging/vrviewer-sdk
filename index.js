@@ -14,7 +14,11 @@ window.onload = function () {
 
   // VRMaker.generateAframe()
   VRMaker.generateKrpano('#vrmaker-krpano', {
-    autoRotate: true,
+    autoRotateSettings: {
+      active: true,
+      rotateDuration: 200000,
+      restartTime: 20000
+    },
     krpanoSettings: {
       html5: 'webgl+only',
       webglsettings: { depth: true },
@@ -25,4 +29,3 @@ window.onload = function () {
     }
   })
 }
-

@@ -2,7 +2,7 @@ import { markerAlpha } from './styles'
 import { isRtl } from '../helpers'
 import { getIEVersion } from '../utils'
 
-export const getActionsXml = function (panoramas, startIndex = 0) {
+export const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
   return `<action name="startup">
   loadscene(first_panorama_${panoramas[startIndex].objectId});
   planet_view();
@@ -40,7 +40,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="auto_rotate">
 <!-- start auto rotate -->
-  tween(view.hlookat, calc(view.hlookat - 360), 200, linear, auto_rotate());
+  tween(view.hlookat, calc(view.hlookat - 360), ${autoRotateDuration / 1000}, linear, auto_rotate());
 </action>
 
 <action name="stop_auto_rotate">

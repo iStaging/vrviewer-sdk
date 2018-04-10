@@ -35,6 +35,7 @@ class Krpano {
     let _xml = ''
     let _hooks = getHooks(this)
     this.config = {
+      autoRotateSettings: {},
       krpanoSettings: {}
     }
     this.krpanoEl = {}
@@ -81,7 +82,7 @@ class Krpano {
       }
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
-      const actionsXml = getActionsXml.call(this, panoramas, 0)
+      const actionsXml = getActionsXml.call(this, panoramas, 0, this.config.autoRotateSettings.rotateDuration)
       const logoTripodXml = getLogoTripodXml(tripodImage, 100, false)
       _xml = `<krpano onstart="startup();">
       ${webVRXml}
@@ -134,8 +135,13 @@ class Krpano {
       window.setTimeout(() => {
         this.krpanoEl.call(`first_panorama_ready(${isGyroEnabled});`)
       }, 1500)
-      if (this.config.autoRotate) {
+      if (this.config.autoRotateSettings.active) {
         this.startAutoRotate()
+        const stopAutoRotateHandler = () => {
+          this.stopAutoRotate(true, this.config.autoRotateSettings.restartTime)
+        }
+        window.addEventListener('mousedown', stopAutoRotateHandler)
+        window.addEventListener('touchstart', stopAutoRotateHandler)
       }
     }
 
@@ -160,28 +166,26 @@ class Krpano {
     this.setKrpanoLookAtH = function (h) {
       _krpanoLookAtH = h
     }
-
     this.startAutoRotate = function () {
       this.krpanoEl.call(`auto_rotate();`)
       this.krpanoCamera.isCameraRotating = true
+
     }
 
     this.stopAutoRotate = function (shouldAutoStartRotate = false, duration = 20000) {
-      if (this.config.autoRotate) {
-        if (this.krpanoCamera.isCameraRotating === true) {
-          this.krpanoEl.call(`stop_auto_rotate();`)
-          this.krpanoCamera.isCameraRotating = false
-        }
-        if (this.krpanoCamera.autoStartRotateTimer !== null) {
-          window.clearTimeout(this.krpanoCamera.autoStartRotateTimer)
-       }
-        if (shouldAutoStartRotate) {
-          this.krpanoCamera.autoStartRotateTimer = window.setTimeout(() => {
-            this.startAutoRotate()
-          }, duration)
-        } else {
-          this.krpanoCamera.autoStartRotateTimer = null
-        }
+      if (this.krpanoCamera.isCameraRotating === true) {
+        this.krpanoEl.call(`stop_auto_rotate();`)
+        this.krpanoCamera.isCameraRotating = false
+      }
+      if (this.krpanoCamera.autoStartRotateTimer !== null) {
+        window.clearTimeout(this.krpanoCamera.autoStartRotateTimer)
+      }
+      if (shouldAutoStartRotate) {
+        this.krpanoCamera.autoStartRotateTimer = window.setTimeout(() => {
+          this.startAutoRotate()
+        }, duration)
+      } else {
+        this.krpanoCamera.autoStartRotateTimer = null
       }
     }
   }
