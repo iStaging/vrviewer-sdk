@@ -9,7 +9,8 @@ window.onload = function () {
     el: document.getElementById('vrmaker-aframe'),
     panoramas: [{
       id: 'YRSqB',
-      src: 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
+      // src: 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
+      src: 'img/test.png',
       // cameraStartRotation: {
       //   x: 0,
       //   y: 360,

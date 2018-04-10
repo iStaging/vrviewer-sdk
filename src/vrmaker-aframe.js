@@ -8,7 +8,7 @@ class Aframe {
       const aCameraEl = document.createElement('a-camera')
       const el = this.getEl()
       const { src } = this.getCurrentPanorama()
-      const cameraRotationOffset = 100
+      const cameraRotationOffset = 90
       let cameraStartRotation
 
       this.getCurrentPanorama().cameraStartRotation
