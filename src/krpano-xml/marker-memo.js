@@ -2,7 +2,7 @@ import {
   krpanoAutoBlank,
   krpanoEnterString,
   xmlString
-} from '~js/helpers'
+} from '../helpers'
 
 export const getMarkerMemoXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index) => {
   let memo = ''

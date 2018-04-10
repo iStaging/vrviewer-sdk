@@ -134,15 +134,15 @@ class Krpano {
       const isGyroEnabled = false
       window.setTimeout(() => {
         this.krpanoEl.call(`first_panorama_ready(${isGyroEnabled});`)
-      }, 1500)
-      if (this.config.autoRotateSettings.active) {
-        this.startAutoRotate()
-        const stopAutoRotateHandler = () => {
-          this.stopAutoRotate(true, this.config.autoRotateSettings.restartTime)
+        if (this.config.autoRotateSettings.active) {
+          this.startAutoRotate()
+          const stopAutoRotateHandler = () => {
+            this.stopAutoRotate(true, this.config.autoRotateSettings.restartTime)
+          }
+          window.addEventListener('mousedown', stopAutoRotateHandler)
+          window.addEventListener('touchstart', stopAutoRotateHandler)
         }
-        window.addEventListener('mousedown', stopAutoRotateHandler)
-        window.addEventListener('touchstart', stopAutoRotateHandler)
-      }
+      }, 1500)
     }
 
     this.removePano = function () {
