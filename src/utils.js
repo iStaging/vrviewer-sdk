@@ -42,7 +42,10 @@ export const getIEVersion = () => {
   return false
 }
 
-export const loadImage = async (url = '', callback = () => {}, onprogress = e => {}, onerror = () => {}) => {
+export const loadImage = async (url = '', callback = () => {
+}, onprogress = e => {
+}, onerror = () => {
+}) => {
   if (typeof url === 'string' || url instanceof String) {
     try {
       const xmlHttp = new XMLHttpRequest() // eslint-disable-line

@@ -1,5 +1,5 @@
 import {
-  getIEVersion
+  getIEVersion, isEmpty
 } from './utils'
 import {
   webVRXml,
@@ -27,13 +27,15 @@ import {
   getHooks
 } from './krpano-hooks'
 import tripodImage from '../img/krpano-img/logo-tripod.png'
+import WatchJS from 'melanke-watchjs'
+var watch = WatchJS.watch
+var unwatch = WatchJS.unwatch
 
 class Krpano {
   constructor () {
     let _krpanoId = ''
     let _element = null
     let _xml = ''
-    let _hooks = getHooks(this)
     this.config = {
       autoRotateSettings: {},
       krpanoSettings: {}
@@ -46,11 +48,12 @@ class Krpano {
     this.defaultFov = 120
     this.krpanoXOffset = 90
     this.vrThumbAth = 24
-    let _krpanoLookAtH = 0
+    this.krpanoLookAtH = 0
     this.krpanoCamera = {
       isCameraRotating: false,
       autoStartRotateTimer: null
     }
+    this.isGyroEnabled = false
 
     this.generateKrpano = function (el, config) {
       _element = document.querySelector(el)
@@ -128,7 +131,7 @@ class Krpano {
 
     this.handleKrpanoReady = function (krpanoEl) {
       this.krpanoEl = krpanoEl
-      this.krpanoEl.hooks = _hooks
+      this.krpanoEl.hooks = getHooks(this)
       // console.log('pano created', this.krpanoEl.hooks)
       this.krpanoEl.call(`loadxml(${escape(_xml)})`)
       const isGyroEnabled = false
@@ -164,8 +167,9 @@ class Krpano {
     }
 
     this.setKrpanoLookAtH = function (h) {
-      _krpanoLookAtH = h
+      this.krpanoLookAtH = h
     }
+
     this.startAutoRotate = function () {
       this.krpanoEl.call(`auto_rotate();`)
       this.krpanoCamera.isCameraRotating = true
@@ -186,6 +190,13 @@ class Krpano {
         }, duration)
       } else {
         this.krpanoCamera.autoStartRotateTimer = null
+      }
+    }
+
+    this.currentPanoramaChanged = function (newPanorama = {}, oldPanorama = {}) {
+      console.log('currentPanoramaChanged', newPanorama.objectId, oldPanorama.objectId)
+      if (!isEmpty(this.krpanoEl)) {
+        this.krpanoEl.call(`prepare_change_scene(panorama_${newPanorama.objectId || ''}, ${newPanorama.objectId || ''});`)
       }
     }
   }
