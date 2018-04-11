@@ -1,6 +1,7 @@
-import classes from 'extends-classes'
 import {
-  getIEVersion, isEmpty
+  clone,
+  getIEVersion,
+  isEmpty
 } from '../utils'
 import {
   webVRXml,
@@ -22,7 +23,7 @@ class Krpano {
     let _krpanoId = ''
     let _element = null
     let _xml = ''
-    this.config = {
+    let _config = {
       autoRotateSettings: {
         active: true,
         rotateDuration: 200000,
@@ -74,8 +75,12 @@ class Krpano {
 
     this.setConfig = function (config) {
       if (!isEmpty(config)) {
-        this.config = config
+        _config = config
       }
+    }
+
+    this.getConfig = function () {
+      return clone(_config)
     }
 
     function generateXml () {
@@ -87,7 +92,7 @@ class Krpano {
       // console.log('getStylesXml', getStylesXml)
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
-      const actionsXml = getActionsXml.call(this, panoramas, 0, this.config.autoRotateSettings.rotateDuration)
+      const actionsXml = getActionsXml.call(this, panoramas, 0, _config.autoRotateSettings.rotateDuration)
       const logoTripodXml = getLogoTripodXml(tripodImage, 100, false)
       _xml = `<krpano onstart="startup();">
       ${webVRXml}
@@ -110,18 +115,18 @@ class Krpano {
         id: _krpanoId,
         target: _element.id,
         xml: '',
-        bgcolor: this.config.krpanoSettings.bgcolor,
-        wmode: this.config.krpanoSettings.wmode,
-        vars: this.config.krpanoSettings.vars,
-        initvars: this.config.krpanoSettings.initvars,
-        basepath: this.config.krpanoSettings.basepath,
-        mwheel: this.config.krpanoSettings.mwheel,
-        focus: this.config.krpanoSettings.focus,
-        consolelog: this.config.krpanoSettings.consolelog,
-        mobilescale: this.config.krpanoSettings.mobilescale,
-        fakedevice: this.config.krpanoSettings.fakedevice,
-        passQueryParameters: this.config.krpanoSettings.passQueryParameters,
-        webglsettings: this.config.krpanoSettings.webglsettings,
+        bgcolor: _config.krpanoSettings.bgcolor,
+        wmode: _config.krpanoSettings.wmode,
+        vars: _config.krpanoSettings.vars,
+        initvars: _config.krpanoSettings.initvars,
+        basepath: _config.krpanoSettings.basepath,
+        mwheel: _config.krpanoSettings.mwheel,
+        focus: _config.krpanoSettings.focus,
+        consolelog: _config.krpanoSettings.consolelog,
+        mobilescale: _config.krpanoSettings.mobilescale,
+        fakedevice: _config.krpanoSettings.fakedevice,
+        passQueryParameters: _config.krpanoSettings.passQueryParameters,
+        webglsettings: _config.krpanoSettings.webglsettings,
         onready: (krpanoEl) => {
           handleKrpanoReady.call(this, krpanoEl, callback)
         },
@@ -137,11 +142,11 @@ class Krpano {
       // console.log('pano created', this.krpanoEl.hooks)
       this.krpanoEl.call(`loadxml(${escape(_xml)})`)
       window.setTimeout(() => {
-        this.krpanoEl.call(`first_panorama_ready(${this.config.gyroSettings.active || false});`)
-        if (this.config.autoRotateSettings.active) {
+        this.krpanoEl.call(`first_panorama_ready(${_config.gyroSettings.active || false});`)
+        if (_config.autoRotateSettings.active) {
           this.startAutoRotate()
           const stopAutoRotateHandler = () => {
-            this.stopAutoRotate(true, this.config.autoRotateSettings.restartTime)
+            this.stopAutoRotate(true, _config.autoRotateSettings.restartTime)
           }
           window.addEventListener('mousedown', stopAutoRotateHandler)
           window.addEventListener('touchstart', stopAutoRotateHandler)
