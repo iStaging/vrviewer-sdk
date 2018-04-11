@@ -1,13 +1,13 @@
 import {
   countText
-} from '../../common/utils'
+} from '@/common/utils'
 import {
   isRtl,
   krpanoAutoBlank,
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
-} from '../../common/helpers'
+} from '@/common/helpers'
 
 const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, addVrModeShouldShow) => {
   let tag = ''

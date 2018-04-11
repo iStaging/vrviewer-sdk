@@ -3,13 +3,13 @@ import {
   getCorrectRotation,
   xmlString,
   xmlUrlString
-} from '../../common/helpers'
+} from '@/common/helpers'
 import {
   isEmpty
-} from '../../common/utils'
-import getMarkerMemoXml from './marker-memo'
-import getMarkerPointXml from './marker-point'
-import getMarkerTagXml from './marker-tag'
+} from '@/common/utils'
+// import getMarkerMemoXml from './marker-memo'
+// import getMarkerPointXml from './marker-point'
+// import getMarkerTagXml from './marker-tag'
 
 // startIndex is started from 0
 const getScenesXml = function (panoramas, startIndex) {

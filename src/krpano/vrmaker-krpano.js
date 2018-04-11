@@ -2,7 +2,7 @@ import {
   clone,
   getIEVersion,
   isEmpty
-} from '../common/utils'
+} from '@/common/utils'
 import {
   webVRXml,
   gyroXml,

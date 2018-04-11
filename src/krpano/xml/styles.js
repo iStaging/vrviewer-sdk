@@ -4,7 +4,7 @@ import {
   xmlUrlString,
   krpanoAutoBlank,
   krpanoEnterString
-} from '../../common/helpers'
+} from '@/common/helpers'
 import {
   markerAlpha
 } from './common'

@@ -1,6 +1,6 @@
 import { markerAlpha } from './common'
-import { isRtl } from '../../common/helpers'
-import { getIEVersion } from '../../common/utils'
+import { isRtl } from '@/common/helpers'
+import { getIEVersion } from '@/common/utils'
 
 const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
   return `<action name="startup">

@@ -1,4 +1,4 @@
-import { loadImage } from '../common/utils'
+import { loadImage } from '@/common/utils'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm should be this
