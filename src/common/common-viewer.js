@@ -61,13 +61,7 @@ class CommonViewer {
     this.getEl = () => _el
     this.getPanoramas = () => clone(_panoramas)
     this.getCurrentPanorama = () => clone(_currentPanorama)
-
-    // return this
   }
-
-  // currentPanoramaChanged () {
-  //   console.log('aaaa')
-  // }
 
   checkVersion () {
     console.log('version:', version)
@@ -76,5 +70,4 @@ class CommonViewer {
   }
 }
 
-// window.VRMaker = new VRMaker()
 export default CommonViewer
