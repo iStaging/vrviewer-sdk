@@ -104,9 +104,7 @@ class Krpano extends CommonViewer {
       ${stylesXml}
       ${scenesXml}
       ${actionsXml}
-      ${!getIEVersion()
-        ? threeJsXml
-        : ''}
+      ${!getIEVersion() ? threeJsXml : ''}
       </krpano>`
     }
 
