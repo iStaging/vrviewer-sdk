@@ -4,7 +4,11 @@ import { getIEVersion } from '@/common/utils'
 
 const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
   return `<action name="startup">
-showlog();
+  ${(() => {
+    return process.env.NODE_ENV === 'development'
+      ? 'showlog();'
+      : ''
+  })()}
   loadscene(first_panorama_${panoramas[startIndex].objectId});
   planet_view();
   set(plugin[gyro].enabled, false);
