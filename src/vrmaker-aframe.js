@@ -1,41 +1,49 @@
 class Aframe {
   constructor () {
     this.checkAframe()
-    this.generateAframe = function () {
-      const aSceneEl = document.createElement('a-scene')
-      const aSkyEl = document.createElement('a-sky')
-      const aCameraContainerEl = document.createElement('a-entity')
-      const aCameraEl = document.createElement('a-camera')
-      const el = this.getEl()
-      const { src } = this.getCurrentPanorama()
-      const cameraRotationOffset = 100
-      let cameraStartRotation
 
-      this.getCurrentPanorama().cameraStartRotation
-        ? cameraStartRotation = this.getCurrentPanorama().cameraStartRotation
-        : cameraStartRotation = {}
+    this.setPanoramaSrc = function (src, callback) {
+      const aSkyEl = document.getElementsByTagName('a-sky')[0]
+      const img = new Image()
 
-      // a-sky
       aSkyEl.setAttribute('src', src)
-      aSceneEl.appendChild(aSkyEl)
-      el.appendChild(aSceneEl)
-
-      // a-camera
-      const cameraX = cameraStartRotation.x || 0
-      const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
-      const cameraZ = cameraStartRotation.z || 0
-
-      aCameraContainerEl.setAttribute(
-        'rotation',
-        `${cameraX} ${cameraY} ${cameraZ}`
-      )
-
-      // a-scene
-      aCameraContainerEl.appendChild(aCameraEl)
-      aSceneEl.appendChild(aCameraContainerEl)
-
-      return this
+      img.onload = () => { if (callback) callback() }
+      img.src = src
     }
+  }
+
+  generateAframe () {
+    const aSceneEl = document.createElement('a-scene')
+    const aSkyEl = document.createElement('a-sky')
+    const aCameraContainerEl = document.createElement('a-entity')
+    const aCameraEl = document.createElement('a-camera')
+    const el = this.getEl()
+    const { src } = this.getCurrentPanorama()
+    const cameraRotationOffset = 90
+    let cameraStartRotation
+
+    this.getCurrentPanorama().cameraStartRotation
+      ? cameraStartRotation = this.getCurrentPanorama().cameraStartRotation
+      : cameraStartRotation = {}
+
+    // a-sky
+    aSkyEl.setAttribute('src', src)
+    aSceneEl.appendChild(aSkyEl)
+    el.appendChild(aSceneEl)
+
+    // a-camera
+    const cameraX = cameraStartRotation.x || 0
+    const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
+    const cameraZ = cameraStartRotation.z || 0
+
+    aCameraContainerEl.setAttribute(
+      'rotation',
+      `${cameraX} ${cameraY} ${cameraZ}`
+    )
+
+    // a-scene
+    aCameraContainerEl.appendChild(aCameraEl)
+    aSceneEl.appendChild(aCameraContainerEl)
   }
 
   checkAframe () {
