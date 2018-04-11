@@ -3,22 +3,16 @@ import {
   getCorrectRotation,
   xmlString,
   xmlUrlString
-} from '../helpers'
+} from '../../helpers'
 import {
   isEmpty
-} from '../utils'
-import {
-  getMarkerMemoXml
-} from './marker-memo'
-import {
-  getMarkerPointXml
-} from './marker-point'
-import {
-  getMarkerTagXml
-} from './marker-tag'
+} from '../../utils'
+import getMarkerMemoXml from './marker-memo'
+import getMarkerPointXml from './marker-point'
+import getMarkerTagXml from './marker-tag'
 
 // startIndex is started from 0
-export const getScenesXml = function (panoramas, startIndex) {
+const getScenesXml = function (panoramas, startIndex) {
   let scene = ''
   let startupScene = ''
   panoramas.forEach((panorama, index) => {
@@ -104,3 +98,5 @@ function nextPanoramaCategoryName (marker = {}) {
   }
   return xmlString(foundPanorama.customCategory || foundPanorama.category)
 }
+
+export default getScenesXml

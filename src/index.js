@@ -5,7 +5,7 @@ import {
 import {
   checkPanoramaFormat
 } from './helpers'
-import Krpano from './vrmaker-krpano'
+import Krpano from './krpano/vrmaker-krpano'
 import Aframe from './vrmaker-aframe'
 import classes from 'extends-classes'
 

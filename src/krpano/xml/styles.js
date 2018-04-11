@@ -4,25 +4,27 @@ import {
   xmlUrlString,
   krpanoAutoBlank,
   krpanoEnterString
-} from '../helpers'
-import linkImage from '../../img/krpano-img/markers/link.png'
-import memoImage from '../../img/krpano-img/markers/memo.png'
-import pointImage from '../../img/krpano-img/markers/point.png'
-import tagImage from '../../img/krpano-img/markers/tag.png'
-import videoImage from '../../img/krpano-img/markers/video.png'
-import leftArrowImage from '../../img/krpano-img/markers/arrows/left-arrow.png'
-import rightArrowImage from '../../img/krpano-img/markers/arrows/right-arrow.png'
-import frontArrowImage from '../../img/krpano-img/markers/arrows/front-arrow.png'
-import leftFrontArrowImage from '../../img/krpano-img/markers/arrows/left-front-arrow.png'
-import rightFrontArrowImage from '../../img/krpano-img/markers/arrows/right-front-arrow.png'
-import prevPanoramaImage from '../../img/krpano-img/prev-panorama.png'
-import menuImage from '../../img/krpano-img/menu.png'
-import nextPanoramaImage from '../../img/krpano-img/next-panorama.png'
+} from '../../helpers'
+import {
+  markerAlpha
+} from './common'
+import linkImage from '../../../img/krpano-img/markers/link.png'
+import memoImage from '../../../img/krpano-img/markers/memo.png'
+import pointImage from '../../../img/krpano-img/markers/point.png'
+import tagImage from '../../../img/krpano-img/markers/tag.png'
+import videoImage from '../../../img/krpano-img/markers/video.png'
+import leftArrowImage from '../../../img/krpano-img/markers/arrows/left-arrow.png'
+import rightArrowImage from '../../../img/krpano-img/markers/arrows/right-arrow.png'
+import frontArrowImage from '../../../img/krpano-img/markers/arrows/front-arrow.png'
+import leftFrontArrowImage from '../../../img/krpano-img/markers/arrows/left-front-arrow.png'
+import rightFrontArrowImage from '../../../img/krpano-img/markers/arrows/right-front-arrow.png'
+import prevPanoramaImage from '../../../img/krpano-img/prev-panorama.png'
+import menuImage from '../../../img/krpano-img/menu.png'
+import nextPanoramaImage from '../../../img/krpano-img/next-panorama.png'
 const markerInfoCss = 'font-family:Arial; color:#fff;'
 const markerInfoCommonAttribute = 'scale="1" distorted="true" wordwrap="true" bgcolor="0x000000" bgalpha=".8"'
-export const markerAlpha = '.6'
-export const markerIconCommonAttribute = `zoom="true" distorted="true" scale="1" vr_timeout="700" keep="false" alpha="${markerAlpha}"`
-export const markerIconSize = 'width="51.2" height="51.2"'
+const markerIconCommonAttribute = `zoom="true" distorted="true" scale="1" vr_timeout="700" keep="false" alpha="${markerAlpha}"`
+const markerIconSize = 'width="51.2" height="51.2"'
 
 const basicStyles = () => {
   let prev = '-1'
@@ -57,7 +59,7 @@ width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alph
 }
 
 const vrThumbWidth = 160
-export const getStylesXml = function (panoramas) {
+const getStylesXml = function (panoramas) {
   let style = basicStyles()
   panoramas.forEach((panorama, index) => {
     const verticalCount = index % 4
@@ -93,3 +95,5 @@ width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${pan
   })
   return style
 }
+
+export default getStylesXml

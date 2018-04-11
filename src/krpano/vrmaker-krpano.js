@@ -1,32 +1,21 @@
+import classes from 'extends-classes'
 import {
   getIEVersion, isEmpty
-} from './utils'
+} from '../utils'
 import {
   webVRXml,
   gyroXml,
   threeJsXml,
   contextMenuXml,
   gyroMessageXml
-} from './krpano-xml/plugins'
-import {
-  getStylesXml
-} from './krpano-xml/styles'
-import {
-  getLogoTripodXml
-} from './krpano-xml/tripod'
-import {
-  eventsXml
-} from './krpano-xml/events'
-import {
-  getScenesXml
-} from './krpano-xml/scenes'
-import {
-  getActionsXml
-} from './krpano-xml/actions'
-import {
-  getHooks
-} from './krpano-hooks'
-import tripodImage from '../img/krpano-img/logo-tripod.png'
+} from './xml/plugins'
+import getStylesXml from './xml/styles'
+import getLogoTripodXml from './xml/tripod'
+import eventsXml from './xml/events'
+import getScenesXml from './xml/scenes'
+import getActionsXml from './xml/actions'
+import getHooks from './krpano-hooks'
+import tripodImage from '../../img/krpano-img/logo-tripod.png'
 
 class Krpano {
   constructor () {
@@ -95,6 +84,7 @@ class Krpano {
         _xml = ''
         return
       }
+      // console.log('getStylesXml', getStylesXml)
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
       const actionsXml = getActionsXml.call(this, panoramas, 0, this.config.autoRotateSettings.rotateDuration)

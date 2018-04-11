@@ -1,8 +1,8 @@
-import { loadImage } from './utils'
+import { loadImage } from '../utils'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm is Vue component's method
-export const getHooks = vm => {
+const getHooks = vm => {
   return {
     startAutoRotate () {
       vm.startAutoRotate()
@@ -69,3 +69,5 @@ export const getHooks = vm => {
     }
   }
 }
+
+export default getHooks
