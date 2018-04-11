@@ -1,4 +1,4 @@
-import Krpano from './krpano/vrmaker-krpano'
+import Krpano from '@/krpano/vrmaker-krpano'
 import AframeViewer from '@/aframeViewer'
 
 const VRMaker = {

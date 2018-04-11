@@ -1,4 +1,4 @@
-import './src'
+import '@'
 
 // testus: aaa9a22a-7da1-4d97-9ef2-1ecc653e512c
 /* eslint-disable */
@@ -56,7 +56,7 @@ function initKrpano () {
 
   window.setTimeout(() => {
     console.log('change panorama')
-    Krpano.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
+    Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
   }, 3500)
 }
 
