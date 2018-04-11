@@ -1,8 +1,8 @@
-import { markerAlpha } from './styles'
-import { isRtl } from '../helpers'
-import { getIEVersion } from '../utils'
+import { markerAlpha } from './common'
+import { isRtl } from '../../helpers'
+import { getIEVersion } from '../../utils'
 
-export const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
+const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
   return `<action name="startup">
 showlog();
   loadscene(first_panorama_${panoramas[startIndex].objectId});
@@ -345,3 +345,5 @@ screentosphere(mouse.x, mouse.y, m_ath, m_atv);
 jscall(calc('krpano.hooks.findClosestPointMarker(' + m_ath + ', ' + m_atv + ', krpano.hooks.enterClosestPointMarker);'));
 </action>`
 }
+
+export default getActionsXml

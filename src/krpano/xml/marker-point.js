@@ -1,4 +1,4 @@
-export const getMarkerPointXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, isMarkerPoint, krpanoXOffset) => {
+const getMarkerPointXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, isMarkerPoint, krpanoXOffset) => {
   return `<hotspot
   name="markerInfo_${marker.objectId}"
   style="markerInfo"
@@ -22,3 +22,5 @@ export const getMarkerPointXml = (marker, ath, atv, category, hotspotIcon, useCu
   onover="marker_mousein(${marker.objectId}, ${index});"
   onout="marker_mouseout(${marker.objectId}, ${index});" />`
 }
+
+export default getMarkerPointXml

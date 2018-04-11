@@ -1,8 +1,8 @@
-import { loadImage } from './utils'
+import { loadImage } from '../utils'
 
 // krpano actions use jscall, next step goes here to communicate with vue
-// vm is Vue component's method
-export const getHooks = vm => {
+// vm should be this
+const getHooks = vm => {
   return {
     startAutoRotate () {
       vm.startAutoRotate()
@@ -13,28 +13,29 @@ export const getHooks = vm => {
     prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', selectedMethod = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
       const panoramas = vm.getPanoramas()
       const currentPanorama = vm.getCurrentPanorama()
+      const config = vm.getConfig()
       const oldIndex = panoramas.findIndex(panorama => panorama.objectId === currentPanorama.objectId)
       const newIndex = panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = panoramas[newIndex]
         const oldHLookat = vm.krpanoLookAtH
-        if (foundPanorama.cubemapReady) {
-          vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
-           ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
-        } else {
+        // if (foundPanorama.cubemapReady) {
+        //   vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
+        //    ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${config.gyroSettings.active});`)
+        // } else {
           // vm.setProgressCount(0)
           // vm.setProgressMax(100)
           // vm.showProgress()
           loadImage(foundPanorama.desktopUrl, () => {
             // vm.closeProgress()
             vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
-             ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
+             ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${config.gyroSettings.active});`)
           }, (e) => {
             // vm.setProgressCount(e * 2)
           }, () => {
             // vm.closeProgress()
           })
-        }
+        // }
       }
     },
     changeImage (nextPanoramaId, selectedMethod, isMarkerPoint, isWebVr) {
@@ -66,6 +67,11 @@ export const getHooks = vm => {
     },
     exitVrMode () {
       vm.exitVrMode()
+    },
+    clickKrpanoScreen () {
+      // vm.clickKrpanoScreen()
     }
   }
 }
+
+export default getHooks

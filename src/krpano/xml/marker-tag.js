@@ -1,15 +1,15 @@
 import {
   countText
-} from '../utils'
+} from '../../utils'
 import {
   isRtl,
   krpanoAutoBlank,
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
-} from '../helpers'
+} from '../../helpers'
 
-export const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, krpanoVrModeObj) => {
+const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, krpanoVrModeObj) => {
   let tag = ''
   tag += `<hotspot
     name="marker_${marker.objectId}"
@@ -210,3 +210,5 @@ export const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCust
   }
   return tag
 }
+
+export default getMarkerTagXml

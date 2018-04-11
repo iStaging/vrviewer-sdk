@@ -2,9 +2,9 @@ import {
   krpanoAutoBlank,
   krpanoEnterString,
   xmlString
-} from '../helpers'
+} from '../../helpers'
 
-export const getMarkerMemoXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index) => {
+const getMarkerMemoXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index) => {
   let memo = ''
   if (marker.description && marker.description.length >= 120) {
     memo += `<hotspot
@@ -47,3 +47,5 @@ export const getMarkerMemoXml = (marker, ath, atv, category, hotspotIcon, useCus
     onout="marker_mouseout(${marker.objectId}, ${index});" />`
   return memo
 }
+
+export default getMarkerMemoXml

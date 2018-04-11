@@ -1,41 +1,50 @@
 import {
-  getIEVersion, isEmpty
-} from './utils'
+  clone,
+  getIEVersion,
+  isEmpty
+} from '../utils'
 import {
   webVRXml,
   gyroXml,
   threeJsXml,
   contextMenuXml,
   gyroMessageXml
-} from './krpano-xml/plugins'
-import {
-  getStylesXml
-} from './krpano-xml/styles'
-import {
-  getLogoTripodXml
-} from './krpano-xml/tripod'
-import {
-  eventsXml
-} from './krpano-xml/events'
-import {
-  getScenesXml
-} from './krpano-xml/scenes'
-import {
-  getActionsXml
-} from './krpano-xml/actions'
-import {
-  getHooks
-} from './krpano-hooks'
-import tripodImage from '../img/krpano-img/logo-tripod.png'
+} from './xml/plugins'
+import getStylesXml from './xml/styles'
+import getLogoTripodXml from './xml/tripod'
+import eventsXml from './xml/events'
+import getScenesXml from './xml/scenes'
+import getActionsXml from './xml/actions'
+import getHooks from './krpano-hooks'
+import tripodImage from '../../img/krpano-img/logo-tripod.png'
+import CommonViewer from '@/common/common-viewer'
 
-class Krpano {
+class Krpano extends CommonViewer {
   constructor () {
+    super(...arguments)
     let _krpanoId = ''
-    let _element = null
     let _xml = ''
-    this.config = {
-      autoRotateSettings: {},
-      krpanoSettings: {}
+    let _config = {
+      autoRotateSettings: {
+        active: true,
+        rotateDuration: 200000,
+        restartTime: 20000
+      },
+      gyroSettings: {
+        active: false
+      },
+      krpanoSettings: {
+        html5: 'webgl+only',
+        webglsettings: { depth: true },
+        passQueryParameters: true,
+        lazyLoad: true,
+        mwheel: true,
+        focus: false
+      },
+      tripodSettings: {
+        image: tripodImage,
+        size: 100 // 0 ~ 100
+      }
     }
     this.krpanoEl = {}
     this.krpanoVrModeObj = {
@@ -50,40 +59,41 @@ class Krpano {
       isCameraRotating: false,
       autoStartRotateTimer: null
     }
-    this.isGyroEnabled = false
 
-    this.generateKrpano = function (el, config) {
-      _element = document.querySelector(el)
-      if (!_element) {
-        throw new Error('element not found')
-      }
+    this.generateKrpano = function (config) {
       const { embedpano, removepano } = window
       if (!(embedpano && removepano)) {
         throw new Error('krpano player is required')
       }
-
       _krpanoId = 'krpano_' + Math.floor(Math.random() * (100000 - 100 + 1) + 100)
       this.setConfig(config)
-      this.initKrpanoVRMode()
-      this.generateXml()
+      initKrpanoVRMode.call(this)
+      generateXml.call(this)
       this.embedPano()
       return this
     }
 
     this.setConfig = function (config) {
-      this.config = config
+      if (!isEmpty(config)) {
+        _config = Object.assign(_config, config)
+      }
     }
 
-    this.generateXml = function () {
+    this.getConfig = function () {
+      return clone(_config)
+    }
+
+    function generateXml () {
       const panoramas = this.getPanoramas()
       if (panoramas.length <= 0) {
         _xml = ''
         return
       }
+      // console.log('getStylesXml', getStylesXml)
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
-      const actionsXml = getActionsXml.call(this, panoramas, 0, this.config.autoRotateSettings.rotateDuration)
-      const logoTripodXml = getLogoTripodXml(tripodImage, 100, false)
+      const actionsXml = getActionsXml.call(this, panoramas, 0, _config.autoRotateSettings.rotateDuration)
+      const logoTripodXml = getLogoTripodXml(_config.tripodSettings.image, _config.tripodSettings.size, panoramas[0].isTopLogo)
       _xml = `<krpano onstart="startup();">
       ${webVRXml}
       ${gyroXml}
@@ -100,25 +110,29 @@ class Krpano {
       </krpano>`
     }
 
-    this.embedPano = function () {
+    this.embedPano = function (callback) {
+      const el = this.getEl()
+      if (!el) {
+        throw new Error('element not found')
+      }
       window.embedpano({
         id: _krpanoId,
-        target: _element.id,
+        target: el.id,
         xml: '',
-        bgcolor: this.config.krpanoSettings.bgcolor,
-        wmode: this.config.krpanoSettings.wmode,
-        vars: this.config.krpanoSettings.vars,
-        initvars: this.config.krpanoSettings.initvars,
-        basepath: this.config.krpanoSettings.basepath,
-        mwheel: this.config.krpanoSettings.mwheel,
-        focus: this.config.krpanoSettings.focus,
-        consolelog: this.config.krpanoSettings.consolelog,
-        mobilescale: this.config.krpanoSettings.mobilescale,
-        fakedevice: this.config.krpanoSettings.fakedevice,
-        passQueryParameters: this.config.krpanoSettings.passQueryParameters,
-        webglsettings: this.config.krpanoSettings.webglsettings,
+        bgcolor: _config.krpanoSettings.bgcolor,
+        wmode: _config.krpanoSettings.wmode,
+        vars: _config.krpanoSettings.vars,
+        initvars: _config.krpanoSettings.initvars,
+        basepath: _config.krpanoSettings.basepath,
+        mwheel: _config.krpanoSettings.mwheel,
+        focus: _config.krpanoSettings.focus,
+        consolelog: _config.krpanoSettings.consolelog,
+        mobilescale: _config.krpanoSettings.mobilescale,
+        fakedevice: _config.krpanoSettings.fakedevice,
+        passQueryParameters: _config.krpanoSettings.passQueryParameters,
+        webglsettings: _config.krpanoSettings.webglsettings,
         onready: (krpanoEl) => {
-          this.handleKrpanoReady(krpanoEl)
+          handleKrpanoReady.call(this, krpanoEl, callback)
         },
         onerror (msg) {
           console.error('pano create error', msg)
@@ -126,21 +140,23 @@ class Krpano {
       })
     }
 
-    this.handleKrpanoReady = function (krpanoEl) {
+    function handleKrpanoReady (krpanoEl, callback) {
       this.krpanoEl = krpanoEl
       this.krpanoEl.hooks = getHooks(this)
       // console.log('pano created', this.krpanoEl.hooks)
       this.krpanoEl.call(`loadxml(${escape(_xml)})`)
-      const isGyroEnabled = false
       window.setTimeout(() => {
-        this.krpanoEl.call(`first_panorama_ready(${isGyroEnabled});`)
-        if (this.config.autoRotateSettings.active) {
+        this.krpanoEl.call(`first_panorama_ready(${_config.gyroSettings.active || false});`)
+        if (_config.autoRotateSettings.active) {
           this.startAutoRotate()
           const stopAutoRotateHandler = () => {
-            this.stopAutoRotate(true, this.config.autoRotateSettings.restartTime)
+            this.stopAutoRotate(true, _config.autoRotateSettings.restartTime)
           }
           window.addEventListener('mousedown', stopAutoRotateHandler)
           window.addEventListener('touchstart', stopAutoRotateHandler)
+        }
+        if (typeof callback === 'function' && callback instanceof Function) {
+          callback()
         }
       }, 1500)
     }
@@ -155,7 +171,7 @@ class Krpano {
       }
     }
 
-    this.initKrpanoVRMode = function () {
+    function initKrpanoVRMode () {
       const panoramas = this.getPanoramas()
       for (let i = 0; i < panoramas.length; i++) {
         this.krpanoVrModeObj.vrModeShouldShow.push(`vr_panorama_${i}`)
@@ -170,7 +186,6 @@ class Krpano {
     this.startAutoRotate = function () {
       this.krpanoEl.call(`auto_rotate();`)
       this.krpanoCamera.isCameraRotating = true
-
     }
 
     this.stopAutoRotate = function (shouldAutoStartRotate = false, duration = 20000) {
