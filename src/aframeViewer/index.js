@@ -1,5 +1,8 @@
-class Aframe {
+import CommonViewer from '../common/common-viewer.js'
+
+class AframeViewer extends CommonViewer {
   constructor () {
+    super(...arguments)
     this.checkAframe()
     this.setPanoramaSrc = function (src, callback) {
       const aSkyEl = document.getElementsByTagName('a-sky')[0]
@@ -52,8 +55,4 @@ class Aframe {
   }
 }
 
-export default Aframe
-
-// export const aframeMethod = () => {
-//   return {}
-// }
+export default AframeViewer
