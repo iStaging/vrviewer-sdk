@@ -1,7 +1,7 @@
 import {
   clone,
   getIEVersion,
-  isEmpty
+  isEmpty, isFunction
 } from '@/common/utils'
 import {
   webVRXml,
@@ -120,19 +120,19 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
   }
 
   setConfig (config = {}) {
-    if (config.autoRotateSettings && this.setAutoRotateSettings instanceof Function) {
+    if (config.autoRotateSettings && isFunction(this.setAutoRotateSettings)) {
       this.setAutoRotateSettings(config.autoRotateSettings)
     }
-    if (config.gyroSettings && this.setGyroSettings instanceof Function) {
+    if (config.gyroSettings && isFunction(this.setGyroSettings)) {
       this.setGyroSettings(config.gyroSettings)
     }
-    if (config.tripodSettings && this.setTripodSettings instanceof Function) {
+    if (config.tripodSettings && isFunction(this.setTripodSettings)) {
       this.setTripodSettings(config.tripodSettings)
     }
-    if (config.krpanoSettings && this.setKrpanoSettings instanceof Function) {
+    if (config.krpanoSettings && isFunction(this.setKrpanoSettings)) {
       this.setKrpanoSettings(config.krpanoSettings)
     }
-    if (config.loadingSettings && this.setLoadingSettings instanceof Function) {
+    if (config.loadingSettings && isFunction(this.setLoadingSettings)) {
       this.setLoadingSettings(config.loadingSettings)
     }
   }
@@ -186,7 +186,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
           window.addEventListener('mousedown', stopAutoRotateHandler)
           window.addEventListener('touchstart', stopAutoRotateHandler)
         }
-        if (typeof callback === 'function' && callback instanceof Function) {
+        if (isFunction(callback)) {
           callback()
         }
       }, 1500)
