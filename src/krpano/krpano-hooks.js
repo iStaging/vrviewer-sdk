@@ -1,7 +1,7 @@
 import { loadImage } from '../utils'
 
 // krpano actions use jscall, next step goes here to communicate with vue
-// vm is Vue component's method
+// vm should be this
 const getHooks = vm => {
   return {
     startAutoRotate () {
@@ -67,6 +67,9 @@ const getHooks = vm => {
     },
     exitVrMode () {
       vm.exitVrMode()
+    },
+    clickKrpanoScreen () {
+      // vm.clickKrpanoScreen()
     }
   }
 }

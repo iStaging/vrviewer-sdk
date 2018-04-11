@@ -39,6 +39,10 @@ class Krpano {
         lazyLoad: true,
         mwheel: true,
         focus: false
+      },
+      tripodSettings: {
+        image: tripodImage,
+        size: 100 // 0 ~ 100
       }
     }
     this.krpanoEl = {}
@@ -75,7 +79,7 @@ class Krpano {
 
     this.setConfig = function (config) {
       if (!isEmpty(config)) {
-        _config = config
+        _config = Object.assign(_config, config)
       }
     }
 
@@ -93,7 +97,7 @@ class Krpano {
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
       const actionsXml = getActionsXml.call(this, panoramas, 0, _config.autoRotateSettings.rotateDuration)
-      const logoTripodXml = getLogoTripodXml(tripodImage, 100, false)
+      const logoTripodXml = getLogoTripodXml(_config.tripodSettings.image, _config.tripodSettings.size, panoramas[0].isTopLogo)
       _xml = `<krpano onstart="startup();">
       ${webVRXml}
       ${gyroXml}

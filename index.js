@@ -29,6 +29,10 @@ window.onload = function () {
       lazyLoad: true,
       mwheel: true,
       focus: false
+    },
+    tripodSettings: {
+      image: 'http://i.imgur.com/xNNfJiP.jpg',
+      size: 60 // 0 ~ 100
     }
   })
 
