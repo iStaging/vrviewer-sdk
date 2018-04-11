@@ -1,6 +1,6 @@
 import {
   xmlUrlString
-} from '../../helpers'
+} from '../../common/helpers'
 
 function setLogoTripodSize (logoSize) {
   if (window.isNaN(logoSize) || logoSize <= 0) {

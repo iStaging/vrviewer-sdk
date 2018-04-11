@@ -1,15 +1,15 @@
 import {
   countText
-} from '../../utils'
+} from '../../common/utils'
 import {
   isRtl,
   krpanoAutoBlank,
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
-} from '../../helpers'
+} from '../../common/helpers'
 
-const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, krpanoVrModeObj) => {
+const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, addVrModeShouldShow) => {
   let tag = ''
   tag += `<hotspot
     name="marker_${marker.objectId}"
@@ -81,7 +81,7 @@ const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon,
       tagInfoPosition.description.oy = 80
       tagInfoPosition.descriptionWithoutPrice.oy = 60
     }
-    krpanoVrModeObj.vrModeShouldShow.push(`markerInfoPhoto_${marker.objectId}`)
+    addVrModeShouldShow(`markerInfoPhoto_${marker.objectId}`)
     tag += `<hotspot
       name="markerInfoPhoto_${marker.objectId}"
       style="markerInfoTagPhoto_${marker.objectId}"
@@ -122,10 +122,10 @@ const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon,
       tagInfoPosition.descriptionWithoutPrice.oy = 60
     }
   }
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoBg_${marker.objectId}`)
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoTitle_${marker.objectId}`)
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoPrice_${marker.objectId}`)
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoDescription_${marker.objectId}`)
+  addVrModeShouldShow(`markerInfoBg_${marker.objectId}`)
+  addVrModeShouldShow(`markerInfoTitle_${marker.objectId}`)
+  addVrModeShouldShow(`markerInfoPrice_${marker.objectId}`)
+  addVrModeShouldShow(`markerInfoDescription_${marker.objectId}`)
   tag += `<hotspot
     name="markerInfoBg_${marker.objectId}"
     style="markerInfoTagBg"

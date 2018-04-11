@@ -1,4 +1,4 @@
-import { loadImage } from '../utils'
+import { loadImage } from '../common/utils'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm should be this
@@ -13,12 +13,12 @@ const getHooks = vm => {
     prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', selectedMethod = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
       const panoramas = vm.getPanoramas()
       const currentPanorama = vm.getCurrentPanorama()
-      const config = vm.getConfig()
+      const gyroSettings = vm.getGyroSettings()
       const oldIndex = panoramas.findIndex(panorama => panorama.objectId === currentPanorama.objectId)
       const newIndex = panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = panoramas[newIndex]
-        const oldHLookat = vm.krpanoLookAtH
+        const oldHLookat = vm.getKrpanoLookAtH()
         // if (foundPanorama.cubemapReady) {
         //   vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
         //    ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${config.gyroSettings.active});`)
@@ -28,8 +28,8 @@ const getHooks = vm => {
           // vm.showProgress()
           loadImage(foundPanorama.desktopUrl, () => {
             // vm.closeProgress()
-            vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
-             ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${config.gyroSettings.active});`)
+            vm.getKrpanoEl().call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
+             ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${gyroSettings.active});`)
           }, (e) => {
             // vm.setProgressCount(e * 2)
           }, () => {

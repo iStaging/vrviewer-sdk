@@ -5,6 +5,7 @@ import {
 import {
   checkPanoramaFormat
 } from '@/common/helpers'
+import { version } from '../../package.json'
 
 class CommonViewer {
   constructor () {
@@ -61,6 +62,7 @@ class CommonViewer {
       if (!foundPanorama) {
         throw new Error('Panorama is not found by your id')
       }
+      console.log(this.currentPanoramaChanged)
       if (this.currentPanoramaChanged instanceof Function) {
         this.currentPanoramaChanged(foundPanorama, _currentPanorama)
       }
@@ -75,9 +77,14 @@ class CommonViewer {
     // return this
   }
 
+  // currentPanoramaChanged () {
+  //   console.log('aaaa')
+  // }
+
   checkVersion () {
-    const version = 'v1.0.0'
+    console.log('version:', version)
     this.version = version
+    return version
   }
 }
 
