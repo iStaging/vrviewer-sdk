@@ -54,7 +54,7 @@ function initKrpano () {
 
   window.setTimeout(() => {
     console.log('change panorama')
-    Krpano.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
+    Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
   }, 3500)
 }
 

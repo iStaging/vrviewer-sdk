@@ -198,11 +198,10 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     }
   }
 
-  currentPanoramaChanged (newPanorama = {}, oldPanorama = {}) {
-    // fixme
-    console.log(1)
+  changePanorama (panoramaId = '') {
+    this.selectPanorama(panoramaId)
     if (!isEmpty(this.getKrpanoEl)) {
-      this.getKrpanoEl().call(`prepare_change_scene(panorama_${newPanorama.objectId || ''}, ${newPanorama.objectId || ''});`)
+      this.getKrpanoEl().call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
     }
   }
 }
