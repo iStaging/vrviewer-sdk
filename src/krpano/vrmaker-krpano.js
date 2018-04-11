@@ -17,11 +17,12 @@ import getScenesXml from './xml/scenes'
 import getActionsXml from './xml/actions'
 import getHooks from './krpano-hooks'
 import tripodImage from '../../img/krpano-img/logo-tripod.png'
+import CommonViewer from '@/common/common-viewer'
 
-class Krpano {
+class Krpano extends CommonViewer {
   constructor () {
+    super(...arguments)
     let _krpanoId = ''
-    let _element = null
     let _xml = ''
     let _config = {
       autoRotateSettings: {
@@ -59,16 +60,11 @@ class Krpano {
       autoStartRotateTimer: null
     }
 
-    this.generateKrpano = function (el, config) {
-      _element = document.querySelector(el)
-      if (!_element) {
-        throw new Error('element not found')
-      }
+    this.generateKrpano = function (config) {
       const { embedpano, removepano } = window
       if (!(embedpano && removepano)) {
         throw new Error('krpano player is required')
       }
-
       _krpanoId = 'krpano_' + Math.floor(Math.random() * (100000 - 100 + 1) + 100)
       this.setConfig(config)
       initKrpanoVRMode.call(this)
@@ -115,9 +111,13 @@ class Krpano {
     }
 
     this.embedPano = function (callback) {
+      const el = this.getEl()
+      if (!el) {
+        throw new Error('element not found')
+      }
       window.embedpano({
         id: _krpanoId,
-        target: _element.id,
+        target: el.id,
         xml: '',
         bgcolor: _config.krpanoSettings.bgcolor,
         wmode: _config.krpanoSettings.wmode,
