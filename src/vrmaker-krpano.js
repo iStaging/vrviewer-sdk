@@ -94,9 +94,7 @@ class Krpano {
       ${stylesXml}
       ${scenesXml}
       ${actionsXml}
-      ${!getIEVersion()
-        ? threeJsXml
-        : ''}
+      ${!getIEVersion() ? threeJsXml : ''}
       </krpano>`
     }
 
@@ -170,7 +168,6 @@ class Krpano {
     this.startAutoRotate = function () {
       this.krpanoEl.call(`auto_rotate();`)
       this.krpanoCamera.isCameraRotating = true
-
     }
 
     this.stopAutoRotate = function (shouldAutoStartRotate = false, duration = 20000) {
