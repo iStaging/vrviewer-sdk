@@ -37,20 +37,12 @@ class CommonViewer {
     }
 
     this.addPanoramas = (panoramas) => {
-      const newPanoramas = _panoramas.concat(panoramas)
-      if (this.panoramasChanged instanceof Function) {
-        this.panoramasChanged(newPanoramas, _panoramas)
-      }
-      _panoramas = newPanoramas
+      _panoramas = _panoramas.concat(panoramas)
       return this
     }
 
     this.addPanorama = (panorama) => {
-      const newPanoramas = push(panorama, _panoramas)
-      if (this.panoramasChanged instanceof Function) {
-        this.panoramasChanged(newPanoramas, _panoramas)
-      }
-      _panoramas = newPanoramas
+      _panoramas = push(panorama, _panoramas)
       return this
     }
 
