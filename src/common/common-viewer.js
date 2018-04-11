@@ -28,7 +28,7 @@ class CommonViewer {
     }
 
     this.initPanoramas = (panoramas) => {
-      console.log('panoramas: ', panoramas)
+      // console.log('panoramas: ', panoramas)
       panoramas.map(panorama => checkPanoramaFormat(panorama))
 
       _panoramas = panoramas

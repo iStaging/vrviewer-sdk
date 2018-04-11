@@ -111,9 +111,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       ${stylesXml}
       ${scenesXml}
       ${actionsXml}
-      ${!getIEVersion()
-        ? threeJsXml
-        : ''}
+      ${!getIEVersion() ? threeJsXml : ''}
       </krpano>`)
     }
 

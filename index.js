@@ -58,7 +58,7 @@ function initKrpano () {
   }, 3500)
 }
 
-window.onload = function () {
-  // initAframe()
-  initKrpano()
-}
+// window.onload = function () {
+// initAframe()
+initKrpano()
+// }
