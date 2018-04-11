@@ -1,7 +1,5 @@
 import '@'
 
-console.log('dev js file')
-
 // testus: aaa9a22a-7da1-4d97-9ef2-1ecc653e512c
 const panoramas = [{
   'adjustedRawUrl': '',
@@ -115,6 +113,20 @@ function initKrpano () {
     tripodSettings: {
       image: 'http://i.imgur.com/xNNfJiP.jpg',
       size: 60 // 0 ~ 100
+    },
+    loadingSettings: {
+      onLoadingPanoramaStart () {
+        console.log('onLoadingPanoramaStart')
+      },
+      onLoadingPanoramaFinish () {
+        console.log('onLoadingPanoramaFinish')
+      },
+      onLoadingPanoramaProgress (event) {
+        console.log('onLoadingPanoramaProgress', event)
+      },
+      onLoadingPanoramaError (error) {
+        console.log('onLoadingPanoramaError', error)
+      }
     }
   })
 
@@ -124,5 +136,5 @@ function initKrpano () {
   }, 3500)
 }
 
-initAframe()
+// initAframe()
 initKrpano()

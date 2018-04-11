@@ -21,9 +21,10 @@ import KrpanoAutoRotate from './extends/auto-rotate'
 import KrpanoGyro from './extends/gyro'
 import KrpanoTripod from './extends/tripod'
 import KrpanoSettings from './extends/settings'
+import KrpanoLoadingPanorama from './extends/loading-panorama'
 import classes from 'extends-classes'
 
-class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoSettings) {
+class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoSettings, KrpanoLoadingPanorama) {
   constructor () {
     super(...arguments)
     let _krpanoId = ''
@@ -130,6 +131,9 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     }
     if (config.krpanoSettings && this.setKrpanoSettings instanceof Function) {
       this.setKrpanoSettings(config.krpanoSettings)
+    }
+    if (config.loadingSettings && this.setLoadingSettings instanceof Function) {
+      this.setLoadingSettings(config.loadingSettings)
     }
   }
 
