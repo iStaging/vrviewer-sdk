@@ -193,15 +193,15 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
 
   removePano () {
     const { removepano } = window
-
-    if (this.getKrpanoEl) {
-      removepano(_krpanoId)
+    if (this.getKrpanoId && this.getKrpanoEl) {
+      removepano(this.getKrpanoId())
       console.log('pano removed')
-      delete this.getKrpanoEl()
+      this.setKrpanoEl({})
     }
   }
 
   currentPanoramaChanged (newPanorama = {}, oldPanorama = {}) {
+    // fixme
     console.log(1)
     if (!isEmpty(this.getKrpanoEl)) {
       this.getKrpanoEl().call(`prepare_change_scene(panorama_${newPanorama.objectId || ''}, ${newPanorama.objectId || ''});`)
