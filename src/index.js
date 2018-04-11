@@ -5,8 +5,8 @@
 // import {
 //   checkPanoramaFormat
 // } from './common/helpers'
-import Krpano from './vrmaker-krpano'
-import AframeViewer from './aframeViewer'
+import Krpano from '@/vrmaker-krpano'
+import AframeViewer from '@/aframeViewer'
 // import classes from 'extends-classes'
 
 const VRMaker = {

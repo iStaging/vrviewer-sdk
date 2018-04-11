@@ -1,10 +1,10 @@
 import {
   clone,
   push
-} from './utils'
+} from '@/common/utils'
 import {
   checkPanoramaFormat
-} from './helpers'
+} from '@/common/helpers'
 
 class CommonViewer {
   constructor () {

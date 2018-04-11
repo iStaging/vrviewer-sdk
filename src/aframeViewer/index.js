@@ -1,4 +1,4 @@
-import CommonViewer from '../common/common-viewer.js'
+import CommonViewer from '@/common/common-viewer.js'
 
 class AframeViewer extends CommonViewer {
   constructor () {
