@@ -1,6 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
 
+function resolve (dir) {
+  return path.join(__dirname, '', dir)
+}
+
 module.exports = {
   entry: './index.js',
   output: {
@@ -38,7 +42,10 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['*', '.js', '.json']
+    extensions: ['*', '.js', '.json'],
+    alias: {
+      '@': resolve('src')
+    }
   },
   devServer: {
     historyApiFallback: true,
