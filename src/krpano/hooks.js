@@ -1,4 +1,7 @@
-import { loadImage } from '@/common/utils'
+import {
+  isFunction,
+  loadImage
+} from '@/common/utils'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm should be this
@@ -14,28 +17,39 @@ const getHooks = vm => {
       const panoramas = vm.getPanoramas()
       const currentPanorama = vm.getCurrentPanorama()
       const gyroSettings = vm.getGyroSettings()
+      const loadingSettings = vm.getLoadingSettings()
       const oldIndex = panoramas.findIndex(panorama => panorama.objectId === currentPanorama.objectId)
       const newIndex = panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = panoramas[newIndex]
         const oldHLookat = vm.getKrpanoLookAtH()
-        // if (foundPanorama.cubemapReady) {
-        //   vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
-        //    ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${config.gyroSettings.active});`)
-        // } else {
-          // vm.setProgressCount(0)
-          // vm.setProgressMax(100)
-          // vm.showProgress()
+        if (isFunction(loadingSettings.onLoadingPanoramaStart)) {
+          loadingSettings.onLoadingPanoramaStart()
+        }
+        const krpanoEl = vm.getKrpanoEl()
+        if (foundPanorama.cubemapReady) {
+          krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
+           ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${gyroSettings.active});`)
+          if (isFunction(loadingSettings.onLoadingPanoramaFinish)) {
+            loadingSettings.onLoadingPanoramaFinish()
+          }
+        } else {
           loadImage(foundPanorama.desktopUrl, () => {
-            // vm.closeProgress()
-            vm.getKrpanoEl().call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
+            if (isFunction(loadingSettings.onLoadingPanoramaFinish)) {
+              loadingSettings.onLoadingPanoramaFinish()
+            }
+            krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
              ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${gyroSettings.active});`)
           }, (e) => {
-            // vm.setProgressCount(e * 2)
-          }, () => {
-            // vm.closeProgress()
+            if (isFunction(loadingSettings.onLoadingPanoramaProgress)) {
+              loadingSettings.onLoadingPanoramaProgress(e)
+            }
+          }, (error) => {
+            if (isFunction(loadingSettings.onLoadingPanoramaError)) {
+              loadingSettings.onLoadingPanoramaError(error)
+            }
           })
-        // }
+        }
       }
     },
     changeImage (nextPanoramaId, selectedMethod, isMarkerPoint, isWebVr) {

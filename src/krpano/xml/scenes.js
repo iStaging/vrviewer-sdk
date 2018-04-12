@@ -13,6 +13,11 @@ import {
 
 // startIndex is started from 0
 const getScenesXml = function (panoramas, startIndex) {
+  try {
+    this.getKrpanoXOffset
+  } catch (e) {
+    throw new Error('getScenesXml must use getScenesXml.call(this, ...arg)')
+  }
   let scene = ''
   let startupScene = ''
   panoramas.forEach((panorama, index) => {
@@ -86,17 +91,17 @@ const getSceneXml = function (panorama, hotspot) {
   return sceneXml
 }
 
-function nextPanoramaCategoryName (marker = {}) {
-  if (!this.panoramas || this.panoramas.length <= 0) {
-    return
-  }
-  const foundPanorama = this.panoramas.find(panorama =>
-    panorama.objectId === marker.nextPanoramaId
-  )
-  if (isEmpty(foundPanorama)) {
-    return
-  }
-  return xmlString(foundPanorama.customCategory || foundPanorama.category)
-}
+// function nextPanoramaCategoryName (marker = {}) {
+//   if (!this.panoramas || this.panoramas.length <= 0) {
+//     return
+//   }
+//   const foundPanorama = this.panoramas.find(panorama =>
+//     panorama.objectId === marker.nextPanoramaId
+//   )
+//   if (isEmpty(foundPanorama)) {
+//     return
+//   }
+//   return xmlString(foundPanorama.customCategory || foundPanorama.category)
+// }
 
 export default getScenesXml

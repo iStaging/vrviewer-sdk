@@ -106,3 +106,7 @@ export const countText = (string, instr) => {
   const re = new RegExp(instr, 'g')
   return (string.match(re) || []).length
 }
+
+export const isFunction = (callee) => {
+  return typeof callee === 'function' && callee instanceof Function
+}
