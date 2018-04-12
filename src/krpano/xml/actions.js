@@ -1,6 +1,6 @@
 import { markerAlpha } from './common'
 import { isRtl } from '../../helpers'
-import { getIEVersion } from '../../utils'
+import { getIEVersion } from '@/common/utils'
 
 const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
   return `<action name="startup">
@@ -79,7 +79,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.vrThumb
 </action>
 
 <action name="change_scene">
-<!-- 
+<!--
 change scene in krpano, and callback to javascript (auto call it from prepare_change_scene)
 %1 ~ %6 is all same with prepare_change_scene
 %7 = newIndex
@@ -89,8 +89,8 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
 -->
   jscall(calc('krpano.hooks.stopAutoRotate()'));
   if (%10 == true, set(plugin[gyro].enabled, false);); <!-- 切換場景時 Gyro 需要先關閉，切換後設定好 h 視角，再打開 -->
-  if (webvr.isenabled AND webvr.headtracking == true, set(webvr.headtracking, false);); 
-  
+  if (webvr.isenabled AND webvr.headtracking == true, set(webvr.headtracking, false););
+
   jscall(calc('krpano.hooks.changeImage("%2", "%3", %5, ' + webvr.isenabled + ')'));
   def(prevVlookat, number, calc(view.vlookat)); <!-- 儲存當前仰角 -->
   def(prevHlookat, number, calc(view.hlookat)); <!-- 儲存當前視角 -->
@@ -104,7 +104,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
       return `jscall(calc('krpano.hooks.threeJsMoving(%4, %6, %7, %8, %9)'));
     loadscene(%1, null, MERGE, BLEND(0.3));`
     }
-  })()},  
+  })()},
   loadscene(%1, null, MERGE, BLEND(1));
   );
   <!-- 把 vr 裡的 marker 對應 info 顯示/隱藏 -->
@@ -118,7 +118,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
     })
     return result
   })()});
-  
+
   set(view.vlookat, calc(prevVlookat)); <!-- 使用前一個 camera 仰角 -->
   if (%4, set(view.hlookat, calc(%4 - (%6 - prevHlookat))));
   if (%10, set(plugin[gyro].enabled, true);); <!-- 若有啟動 Gyro，在這裡要重新打開 -->
@@ -128,22 +128,22 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   if (scene[get(xml.scene)].name == '%1' AND scene[get(xml.scene)].isTopLogo == 'true',
   set(hotspot[topLogoTripod].visible, true);,
   set(hotspot[topLogoTripod].visible, false););
-  
+
   ${(() => {
     if (!getIEVersion()) {
       return `if (%5,
-      jscall(calc('krpano.hooks.threeJsMovingStop()')); wait(LOAD);, 
+      jscall(calc('krpano.hooks.threeJsMovingStop()')); wait(LOAD);,
       wait(LOAD););`
     } else {
       return `wait(LOAD);
   wait(BLEND);`
     }
   })()}
-  
+
   <!-- 非 VR 模式時啟動自動旋轉 -->
   if ((webvr.isenabled == false AND webvr.isfake == true) OR
   (webvr.isenabled == false AND webvr.isfake == false),
-    jscall(calc('krpano.hooks.startAutoRotate()'));); 
+    jscall(calc('krpano.hooks.startAutoRotate()')););
 </action>
 
 <action name="toggle_vr_menu">
@@ -341,7 +341,7 @@ jscall(calc('krpano.hooks.clickKrpanoScreen();'));
 
 <action name="enter_closest_point_marker">
 <!-- 滑鼠點的位置 -->
-screentosphere(mouse.x, mouse.y, m_ath, m_atv); 
+screentosphere(mouse.x, mouse.y, m_ath, m_atv);
 jscall(calc('krpano.hooks.findClosestPointMarker(' + m_ath + ', ' + m_atv + ', krpano.hooks.enterClosestPointMarker);'));
 </action>`
 }

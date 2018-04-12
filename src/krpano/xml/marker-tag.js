@@ -1,6 +1,6 @@
 import {
   countText
-} from '../../utils'
+} from '@/common/utils'
 import {
   isRtl,
   krpanoAutoBlank,

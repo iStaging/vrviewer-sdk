@@ -6,7 +6,7 @@ import {
 } from '../../helpers'
 import {
   isEmpty
-} from '../../utils'
+} from '@/common/utils'
 import getMarkerMemoXml from './marker-memo'
 import getMarkerPointXml from './marker-point'
 import getMarkerTagXml from './marker-tag'
