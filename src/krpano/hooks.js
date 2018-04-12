@@ -40,9 +40,9 @@ const getHooks = vm => {
             }
             krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
              ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${gyroSettings.active});`)
-          }, (e) => {
+          }, (event) => {
             if (isFunction(loadingSettings.onLoadingPanoramaProgress)) {
-              loadingSettings.onLoadingPanoramaProgress(e)
+              loadingSettings.onLoadingPanoramaProgress(event)
             }
           }, (error) => {
             if (isFunction(loadingSettings.onLoadingPanoramaError)) {
