@@ -96,7 +96,6 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
         this.setKrpanoXml('')
         return
       }
-      // console.log('getStylesXml', getStylesXml)
       const tripodSettings = this.getTripodSettings()
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
@@ -120,23 +119,31 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
   }
 
   setConfig (config = {}) {
-    if (config.autoRotateSettings && isFunction(this.setAutoRotateSettings)) {
-      this.setAutoRotateSettings(config.autoRotateSettings)
+    const {
+      autoRotateSettings,
+      gyroSettings,
+      tripodSettings,
+      krpanoSettings,
+      loadingSettings,
+      initViewSettings
+    } = config
+    if (autoRotateSettings && isFunction(this.setAutoRotateSettings)) {
+      this.setAutoRotateSettings(autoRotateSettings)
     }
-    if (config.gyroSettings && isFunction(this.setGyroSettings)) {
-      this.setGyroSettings(config.gyroSettings)
+    if (gyroSettings && isFunction(this.setGyroSettings)) {
+      this.setGyroSettings(gyroSettings)
     }
-    if (config.tripodSettings && isFunction(this.setTripodSettings)) {
-      this.setTripodSettings(config.tripodSettings)
+    if (tripodSettings && isFunction(this.setTripodSettings)) {
+      this.setTripodSettings(tripodSettings)
     }
-    if (config.krpanoSettings && isFunction(this.setKrpanoSettings)) {
-      this.setKrpanoSettings(config.krpanoSettings)
+    if (krpanoSettings && isFunction(this.setKrpanoSettings)) {
+      this.setKrpanoSettings(krpanoSettings)
     }
-    if (config.loadingSettings && isFunction(this.setLoadingSettings)) {
-      this.setLoadingSettings(config.loadingSettings)
+    if (loadingSettings && isFunction(this.setLoadingSettings)) {
+      this.setLoadingSettings(loadingSettings)
     }
-    if (config.initViewSettings && isFunction(this.setInitViewSettings)) {
-      this.setInitViewSettings(config.initViewSettings)
+    if (initViewSettings && isFunction(this.setInitViewSettings)) {
+      this.setInitViewSettings(initViewSettings)
     }
   }
 
@@ -176,11 +183,11 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       this.setKrpanoEl(krpanoEl)
       // console.log('pano created', this.krpanoEl.hooks)
       const xml = this.getKrpanoXml()
-      this.getKrpanoEl().call(`loadxml(${escape(xml)})`)
+      krpanoEl.call(`loadxml(${escape(xml)})`)
       window.setTimeout(() => {
         const gyroSettings = this.getGyroSettings()
         const autoRotateSettings = this.getAutoRotateSettings()
-        this.getKrpanoEl().call(`first_panorama_ready(${gyroSettings.active || false});`)
+        krpanoEl.call(`first_panorama_ready(${gyroSettings.active || false});`)
         if (autoRotateSettings.active) {
           this.startAutoRotate()
           const stopAutoRotateHandler = () => {
@@ -199,7 +206,8 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
   removePano () {
     const { removepano } = window
     if (this.getKrpanoId && this.getKrpanoEl) {
-      removepano(this.getKrpanoId())
+      const krpanoId = this.getKrpanoId()
+      removepano(krpanoId)
       console.log('pano removed')
       this.setKrpanoEl({})
     }
@@ -208,7 +216,8 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
   changePanorama (panoramaId = '') {
     this.selectPanorama(panoramaId)
     if (!isEmpty(this.getKrpanoEl)) {
-      this.getKrpanoEl().call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
+      const krpanoEl = this.getKrpanoEl()
+      krpanoEl.call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
     }
   }
 }
