@@ -78,20 +78,16 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     }
     this.setKrpanoId('krpano_' + Math.floor(Math.random() * (100000 - 100 + 1) + 100))
     this.setConfig(config)
-    initKrpanoVRMode.call(this)
-    generateXml.call(this)
-    this.embedPano()
+    const panoramas = this.getPanoramas()
 
-    function initKrpanoVRMode () {
-      const panoramas = this.getPanoramas()
+    const initKrpanoVRMode = () => {
       for (let i = 0; i < panoramas.length; i++) {
         this.addVrModeShouldShow(`vr_panorama_${i}`)
         this.addVrModeShouldShow(`vr_panorama_text_${i}`)
       }
     }
 
-    function generateXml () {
-      const panoramas = this.getPanoramas()
+    const generateXml = () => {
       if (panoramas.length <= 0) {
         this.setKrpanoXml('')
         return
@@ -114,6 +110,10 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       ${!getIEVersion() ? threeJsXml : ''}
       </krpano>`)
     }
+
+    initKrpanoVRMode()
+    generateXml()
+    this.embedPano()
 
     return this
   }
@@ -154,31 +154,8 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     }
     const krpanoSettings = this.getKrpanoSettings()
     const krpanoId = this.getKrpanoId()
-    window.embedpano({
-      id: krpanoId,
-      target: el.id,
-      xml: '',
-      bgcolor: krpanoSettings.bgcolor,
-      wmode: krpanoSettings.wmode,
-      vars: krpanoSettings.vars,
-      initvars: krpanoSettings.initvars,
-      basepath: krpanoSettings.basepath,
-      mwheel: krpanoSettings.mwheel,
-      focus: krpanoSettings.focus,
-      consolelog: krpanoSettings.consolelog,
-      mobilescale: krpanoSettings.mobilescale,
-      fakedevice: krpanoSettings.fakedevice,
-      passQueryParameters: krpanoSettings.passQueryParameters,
-      webglsettings: krpanoSettings.webglsettings,
-      onready: (krpanoEl) => {
-        handleKrpanoReady.call(this, krpanoEl, callback)
-      },
-      onerror (msg) {
-        console.error('pano create error', msg)
-      }
-    })
 
-    function handleKrpanoReady (krpanoEl, callback) {
+    const handleKrpanoReady = (krpanoEl, callback) => {
       krpanoEl.hooks = getHooks(this)
       this.setKrpanoEl(krpanoEl)
       // console.log('pano created', this.krpanoEl.hooks)
@@ -201,6 +178,30 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
         }
       }, 1500)
     }
+
+    window.embedpano({
+      id: krpanoId,
+      target: el.id,
+      xml: '',
+      bgcolor: krpanoSettings.bgcolor,
+      wmode: krpanoSettings.wmode,
+      vars: krpanoSettings.vars,
+      initvars: krpanoSettings.initvars,
+      basepath: krpanoSettings.basepath,
+      mwheel: krpanoSettings.mwheel,
+      focus: krpanoSettings.focus,
+      consolelog: krpanoSettings.consolelog,
+      mobilescale: krpanoSettings.mobilescale,
+      fakedevice: krpanoSettings.fakedevice,
+      passQueryParameters: krpanoSettings.passQueryParameters,
+      webglsettings: krpanoSettings.webglsettings,
+      onready: (krpanoEl) => {
+        handleKrpanoReady(krpanoEl, callback)
+      },
+      onerror (msg) {
+        console.error('pano create error', msg)
+      }
+    })
   }
 
   removePano () {

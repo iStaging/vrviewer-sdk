@@ -3,6 +3,11 @@ import { isRtl } from '@/common/helpers'
 import { getIEVersion } from '@/common/utils'
 
 const getActionsXml = function (panoramas, startIndex = 0) {
+  try {
+    this.getAutoRotateSettings
+  } catch (e) {
+    throw new Error('getActionsXml must use getActionsXml.call(this, ...arg)')
+  }
   const autoRotateSettings = this.getAutoRotateSettings()
   const initViewSettings = this.getInitViewSettings()
   const showPlanetView = initViewSettings.active

@@ -60,6 +60,11 @@ width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alph
 
 const vrThumbWidth = 160
 const getStylesXml = function (panoramas) {
+  try {
+    this.getVrThumbAth
+  } catch (e) {
+    throw new Error('getStylesXml must use getStylesXml.call(this, ...arg)')
+  }
   let style = basicStyles()
   panoramas.forEach((panorama, index) => {
     const verticalCount = index % 4
