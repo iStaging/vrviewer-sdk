@@ -22,6 +22,15 @@ export const isEmpty = (value) => {
   }
 }
 
+export const isEqual = (a, b) => {
+  const aKeys = Object.getOwnPropertyNames(a)
+  const bKeys = Object.getOwnPropertyNames(b)
+  if (aKeys.length !== bKeys.length) {
+    return
+  }
+  return aKeys.every(key => a[key] === b[key])
+}
+
 /**
  * detect IE
  * returns version of IE or false, if browser is not Internet Explorer
