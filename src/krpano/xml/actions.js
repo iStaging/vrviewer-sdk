@@ -2,15 +2,23 @@ import { markerAlpha } from './common'
 import { isRtl } from '@/common/helpers'
 import { getIEVersion } from '@/common/utils'
 
-const getActionsXml = function (panoramas, startIndex = 0, autoRotateDuration) {
+const getActionsXml = function (panoramas, startIndex = 0) {
+  const autoRotateSettings = this.getAutoRotateSettings()
+  const initViewSettings = this.getInitViewSettings()
+  const showPlanetView = initViewSettings.active
   return `<action name="startup">
   ${(() => {
     return process.env.NODE_ENV === 'development'
       ? 'showlog();'
       : ''
   })()}
-  loadscene(first_panorama_${panoramas[startIndex].objectId});
-  planet_view();
+  ${(() => {
+    if (showPlanetView) {
+      return `loadscene(first_panorama_${panoramas[startIndex].objectId});
+      planet_view();`
+    } 
+    return `loadscene(panorama_${panoramas[startIndex].objectId});`
+  })()}
   set(plugin[gyro].enabled, false);
 </action>
 
@@ -45,7 +53,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="auto_rotate">
 <!-- start auto rotate -->
-  tween(view.hlookat, calc(view.hlookat - 360), ${autoRotateDuration / 1000}, linear, auto_rotate());
+  tween(view.hlookat, calc(view.hlookat - 360), ${autoRotateSettings.rotateDuration / 1000}, linear, auto_rotate());
 </action>
 
 <action name="stop_auto_rotate">

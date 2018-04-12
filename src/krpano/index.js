@@ -21,10 +21,11 @@ import KrpanoAutoRotate from './extends/auto-rotate'
 import KrpanoGyro from './extends/gyro'
 import KrpanoTripod from './extends/tripod'
 import KrpanoSettings from './extends/settings'
+import KrpanoInitView from './extends/init-view'
 import KrpanoLoadingPanorama from './extends/loading-panorama'
 import classes from 'extends-classes'
 
-class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoSettings, KrpanoLoadingPanorama) {
+class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoSettings, KrpanoInitView, KrpanoLoadingPanorama) {
   constructor () {
     super(...arguments)
     let _krpanoId = ''
@@ -96,11 +97,10 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
         return
       }
       // console.log('getStylesXml', getStylesXml)
-      const autoRotateSettings = this.getAutoRotateSettings()
       const tripodSettings = this.getTripodSettings()
       const stylesXml = getStylesXml.call(this, panoramas, 0)
       const scenesXml = getScenesXml.call(this, panoramas, 0)
-      const actionsXml = getActionsXml.call(this, panoramas, 0, autoRotateSettings.rotateDuration)
+      const actionsXml = getActionsXml.call(this, panoramas, 0)
       const logoTripodXml = getLogoTripodXml(tripodSettings.image, tripodSettings.size, panoramas[0].isTopLogo)
       this.setKrpanoXml(`<krpano onstart="startup();">
       ${webVRXml}
@@ -134,6 +134,9 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     }
     if (config.loadingSettings && isFunction(this.setLoadingSettings)) {
       this.setLoadingSettings(config.loadingSettings)
+    }
+    if (config.initViewSettings && isFunction(this.setInitViewSettings)) {
+      this.setInitViewSettings(config.initViewSettings)
     }
   }
 

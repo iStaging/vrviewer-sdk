@@ -127,6 +127,9 @@ function initKrpano () {
       onLoadingPanoramaError (error) {
         console.log('onLoadingPanoramaError', error)
       }
+    },
+    initViewSettings: {
+      active: true
     }
   })
 
