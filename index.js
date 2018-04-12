@@ -102,7 +102,7 @@ function initKrpano () {
     gyroSettings: {
       active: false
     },
-    krpanoSettings: {
+    basicSettings: {
       html5: 'webgl+only',
       webglsettings: { depth: true },
       passQueryParameters: true,

@@ -1,8 +1,8 @@
 import { clone } from '@/common/utils'
 
-class KrpanoSettings {
+class KrpanoBasic {
   constructor () {
-    let _krpanoSettings = {
+    let _basicSettings = {
       html5: 'webgl+only',
       webglsettings: { depth: true },
       passQueryParameters: true,
@@ -11,14 +11,14 @@ class KrpanoSettings {
       focus: false
     }
 
-    this.setKrpanoSettings = (settings) => {
-      _krpanoSettings = settings
+    this.setBasicSettings = (settings) => {
+      _basicSettings = settings
     }
 
-    this.getKrpanoSettings = () => {
-      return clone(_krpanoSettings)
+    this.getBasicSettings = () => {
+      return clone(_basicSettings)
     }
   }
 }
 
-export default KrpanoSettings
+export default KrpanoBasic

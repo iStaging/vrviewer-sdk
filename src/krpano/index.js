@@ -20,12 +20,12 @@ import CommonViewer from '@/common/common-viewer'
 import KrpanoAutoRotate from './extends/auto-rotate'
 import KrpanoGyro from './extends/gyro'
 import KrpanoTripod from './extends/tripod'
-import KrpanoSettings from './extends/settings'
+import KrpanoBasic from './extends/basic'
 import KrpanoInitView from './extends/init-view'
 import KrpanoLoadingPanorama from './extends/loading-panorama'
 import classes from 'extends-classes'
 
-class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoSettings, KrpanoInitView, KrpanoLoadingPanorama) {
+class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoBasic, KrpanoInitView, KrpanoLoadingPanorama) {
   constructor () {
     super(...arguments)
     let _krpanoId = ''
@@ -123,7 +123,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       autoRotateSettings,
       gyroSettings,
       tripodSettings,
-      krpanoSettings,
+      basicSettings,
       loadingSettings,
       initViewSettings
     } = config
@@ -136,8 +136,8 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     if (tripodSettings && isFunction(this.setTripodSettings)) {
       this.setTripodSettings(tripodSettings)
     }
-    if (krpanoSettings && isFunction(this.setKrpanoSettings)) {
-      this.setKrpanoSettings(krpanoSettings)
+    if (basicSettings && isFunction(this.setBasicSettings)) {
+      this.setBasicSettings(basicSettings)
     }
     if (loadingSettings && isFunction(this.setLoadingSettings)) {
       this.setLoadingSettings(loadingSettings)
@@ -152,7 +152,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     if (!el) {
       throw new Error('element not found')
     }
-    const krpanoSettings = this.getKrpanoSettings()
+    const basicSettings = this.getBasicSettings()
     const krpanoId = this.getKrpanoId()
 
     const handleKrpanoReady = (krpanoEl, callback) => {
@@ -183,18 +183,18 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       id: krpanoId,
       target: el.id,
       xml: '',
-      bgcolor: krpanoSettings.bgcolor,
-      wmode: krpanoSettings.wmode,
-      vars: krpanoSettings.vars,
-      initvars: krpanoSettings.initvars,
-      basepath: krpanoSettings.basepath,
-      mwheel: krpanoSettings.mwheel,
-      focus: krpanoSettings.focus,
-      consolelog: krpanoSettings.consolelog,
-      mobilescale: krpanoSettings.mobilescale,
-      fakedevice: krpanoSettings.fakedevice,
-      passQueryParameters: krpanoSettings.passQueryParameters,
-      webglsettings: krpanoSettings.webglsettings,
+      bgcolor: basicSettings.bgcolor,
+      wmode: basicSettings.wmode,
+      vars: basicSettings.vars,
+      initvars: basicSettings.initvars,
+      basepath: basicSettings.basepath,
+      mwheel: basicSettings.mwheel,
+      focus: basicSettings.focus,
+      consolelog: basicSettings.consolelog,
+      mobilescale: basicSettings.mobilescale,
+      fakedevice: basicSettings.fakedevice,
+      passQueryParameters: basicSettings.passQueryParameters,
+      webglsettings: basicSettings.webglsettings,
       onready: (krpanoEl) => {
         handleKrpanoReady(krpanoEl, callback)
       },

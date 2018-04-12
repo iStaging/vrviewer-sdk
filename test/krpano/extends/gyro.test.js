@@ -1,13 +1,13 @@
-import KrpanoGyroView from '@/krpano/extends/gyro'
+import KrpanoGyro from '@/krpano/extends/gyro'
 
-describe('krpano/extends/init-view.js', () => {
+describe('krpano/extends/gyro.js', () => {
   let gyroSettings = {
     active: false
   }
 
   it('setGyroSettings and getGyroSettings should be worked', () => {
-    const krpanoGyroView = new KrpanoGyroView()
-    krpanoGyroView.setGyroSettings(gyroSettings)
-    expect(krpanoGyroView.getGyroSettings()).toEqual(gyroSettings)
+    const krpanoGyro = new KrpanoGyro()
+    krpanoGyro.setGyroSettings(gyroSettings)
+    expect(krpanoGyro.getGyroSettings()).toEqual(gyroSettings)
   })
 })
