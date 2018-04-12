@@ -1,4 +1,4 @@
-const getMarkerPointXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, isMarkerPoint, krpanoXOffset) => {
+const getMarkerPointXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, isMarkerPoint, getKrpanoXOffset) => {
   return `<hotspot
   name="markerInfo_${marker.objectId}"
   style="markerInfo"
@@ -17,7 +17,7 @@ const getMarkerPointXml = (marker, ath, atv, category, hotspotIcon, useCustomIco
   ath="${ath}"
   atv="${atv}"
   zorder="1"
-  onclick="prepare_change_scene(panorama_${marker.nextPanoramaId}, ${marker.nextPanoramaId}, 'Hotspot', ${krpanoXOffset - (marker.nextRotation ? marker.nextRotation.y : 0)}, ${isMarkerPoint}, ${ath});"
+  onclick="prepare_change_scene(panorama_${marker.nextPanoramaId}, ${marker.nextPanoramaId}, 'Hotspot', ${getKrpanoXOffset() - (marker.nextRotation ? marker.nextRotation.y : 0)}, ${isMarkerPoint}, ${ath});"
   ondown="marker_mousein(${marker.objectId}, ${index});"
   onover="marker_mousein(${marker.objectId}, ${index});"
   onout="marker_mouseout(${marker.objectId}, ${index});" />`

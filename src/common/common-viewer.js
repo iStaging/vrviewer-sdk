@@ -5,6 +5,7 @@ import {
 import {
   checkPanoramaFormat
 } from '@/common/helpers'
+import { version } from '../../package.json'
 
 class CommonViewer {
   constructor () {
@@ -36,20 +37,12 @@ class CommonViewer {
     }
 
     this.addPanoramas = (panoramas) => {
-      const newPanoramas = _panoramas.concat(panoramas)
-      if (this.panoramasChanged instanceof Function) {
-        this.panoramasChanged(newPanoramas, _panoramas)
-      }
-      _panoramas = newPanoramas
+      _panoramas = _panoramas.concat(panoramas)
       return this
     }
 
     this.addPanorama = (panorama) => {
-      const newPanoramas = push(panorama, _panoramas)
-      if (this.panoramasChanged instanceof Function) {
-        this.panoramasChanged(newPanoramas, _panoramas)
-      }
-      _panoramas = newPanoramas
+      _panoramas = push(panorama, _panoramas)
       return this
     }
 
@@ -61,9 +54,6 @@ class CommonViewer {
       if (!foundPanorama) {
         throw new Error('Panorama is not found by your id')
       }
-      if (this.currentPanoramaChanged instanceof Function) {
-        this.currentPanoramaChanged(foundPanorama, _currentPanorama)
-      }
       _currentPanorama = foundPanorama
       return _currentPanorama
     }
@@ -71,15 +61,13 @@ class CommonViewer {
     this.getEl = () => _el
     this.getPanoramas = () => clone(_panoramas)
     this.getCurrentPanorama = () => clone(_currentPanorama)
-
-    // return this
   }
 
   checkVersion () {
-    const version = 'v1.0.0'
+    console.log('version:', version)
     this.version = version
+    return version
   }
 }
 
-// window.VRMaker = new VRMaker()
 export default CommonViewer
