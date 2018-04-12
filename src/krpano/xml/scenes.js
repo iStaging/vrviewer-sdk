@@ -3,7 +3,7 @@ import {
   getCorrectRotation,
   xmlString,
   xmlUrlString
-} from '../../helpers'
+} from '@/common/helpers'
 import {
   isEmpty
 } from '@/common/utils'

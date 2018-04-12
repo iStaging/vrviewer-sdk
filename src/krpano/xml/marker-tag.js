@@ -7,7 +7,7 @@ import {
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
-} from '../../helpers'
+} from '@/common/helpers'
 
 const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon, index, krpanoVrModeObj) => {
   let tag = ''

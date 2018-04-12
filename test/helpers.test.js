@@ -8,6 +8,6 @@ describe('checkPanoramaFormat', () => {
   it('throws error', () => {
     expect(() => {
       checkPanoramaFormat(panorama)
-    }).toThrowError('panorama id is required')
+    }).toThrowError('panorama objectId is required')
   })
 })
