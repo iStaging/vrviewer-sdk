@@ -1,8 +1,8 @@
-import webvrMinJs from '@/krpano/lib/webvr.min'
-import webvrCursorImage from '@/krpano/lib/webvr_cursor_80x80_17f.png'
-import threeKrpanoPluginMinJs from '@/krpano/lib/three.krpanoplugin.min'
-import gyro2MinJs from '@/krpano/lib/gyro2.min'
-import gyroMessageMinJs from '@/krpano/lib/gyro-message.min'
+import webvrMinJs from '../lib/webvr.min'
+import webvrCursorImage from '../lib/webvr-cursor.png'
+import threeKrpanoPluginMinJs from '../lib/three.krpanoplugin.min'
+import gyro2MinJs from '../lib/gyro2.min'
+import gyroMessageMinJs from '../lib/gyro-message.min'
 
 export const webVRXml = `<plugin name="WebVR" devices="html5" keep="true"
 url="${webvrMinJs}"
