@@ -137,7 +137,6 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       this.setTripodSettings(tripodSettings)
     }
     if (basicSettings && isFunction(this.setBasicSettings)) {
-      console.log(config, basicSettings)
       this.setBasicSettings(basicSettings)
     }
     if (loadingSettings && isFunction(this.setLoadingSettings)) {

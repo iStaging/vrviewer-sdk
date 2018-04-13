@@ -12,9 +12,10 @@ class CommonViewer {
     let _el = null
     let _panoramas = []
     let _currentPanorama = {}
+    let _version = ''
 
     this.init = (options) => {
-      this.checkVersion()
+      this.setVersion(version)
       this.initEl(options.el)
       this.initPanoramas(options.panoramas)
       _currentPanorama = (options.index !== undefined)
@@ -61,12 +62,12 @@ class CommonViewer {
     this.getEl = () => _el
     this.getPanoramas = () => clone(_panoramas)
     this.getCurrentPanorama = () => clone(_currentPanorama)
-  }
 
-  checkVersion () {
-    console.log('version:', version)
-    this.version = version
-    return version
+    this.setVersion = (version) => {
+      _version = version
+    }
+
+    this.getVersion = () => _version
   }
 }
 

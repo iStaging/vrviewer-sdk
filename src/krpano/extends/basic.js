@@ -12,7 +12,6 @@ class KrpanoBasic {
     }
 
     this.setBasicSettings = (settings) => {
-      console.log('this.setBasicSettings', settings)
       _basicSettings = settings
     }
 

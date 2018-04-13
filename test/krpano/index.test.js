@@ -61,12 +61,12 @@ describe('krpano/index.js', () => {
   })
 
   it('setConfig should', () => {
-    const autoRotateSettings = {}
-    const gyroSettings = {}
-    const tripodSettings = {}
-    const basicSettings = {}
-    const loadingSettings = {}
-    const initViewSettings = {}
+    const autoRotateSettings = { test: 'test autoRotateSettings' }
+    const gyroSettings = { test: 'test gyroSettings' }
+    const tripodSettings = { test: 'test tripodSettings' }
+    const basicSettings = { test: 'test basicSettings' }
+    const loadingSettings = { test: 'test loadingSettings' }
+    const initViewSettings = { test: 'test initViewSettings' }
     const config = {
       autoRotateSettings,
       gyroSettings,
@@ -76,23 +76,11 @@ describe('krpano/index.js', () => {
       initViewSettings
     }
     krpano.setConfig(config)
-    const setAutoRotateSettings = jest.fn(krpano.setAutoRotateSettings)
-    // setAutoRotateSettings(autoRotateSettings)
-    expect(setAutoRotateSettings.mock.calls).toHaveBeenCalled()
-    // const setGyroSettings = jest.fn(krpano.setGyroSettings)
-    // setGyroSettings(gyroSettings)
-    // expect(setGyroSettings).toHaveBeenCalled()
-    // const setTripodSettings = jest.fn(krpano.setTripodSettings)
-    // setTripodSettings(tripodSettings)
-    // expect(setTripodSettings).toHaveBeenCalled()
-    // const setBasicSettings = jest.fn(krpano.setBasicSettings)
-    // // setBasicSettings(basicSettings)
-    // expect(setBasicSettings).toHaveBeenCalled()
-    // const setLoadingSettings = jest.fn(krpano.setLoadingSettings)
-    // setLoadingSettings(loadingSettings)
-    // expect(setLoadingSettings).toHaveBeenCalled()
-    // const setInitViewSettings = jest.fn(krpano.setInitViewSettings)
-    // setInitViewSettings(initViewSettings)
-    // expect(setInitViewSettings).toHaveBeenCalled()
+    expect(krpano.getAutoRotateSettings()).toEqual(autoRotateSettings)
+    expect(krpano.getGyroSettings()).toEqual(gyroSettings)
+    expect(krpano.getTripodSettings()).toEqual(tripodSettings)
+    expect(krpano.getBasicSettings()).toEqual(basicSettings)
+    expect(krpano.getLoadingSettings()).toEqual(loadingSettings)
+    expect(krpano.getInitViewSettings()).toEqual(initViewSettings)
   })
 })
