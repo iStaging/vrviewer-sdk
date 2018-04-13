@@ -56,4 +56,43 @@ describe('krpano/index.js', () => {
   it('getVrThumbAth should be 24', () => {
     expect(krpano.getVrThumbAth()).toEqual(24)
   })
+
+  it('generateKrpano should', () => {
+  })
+
+  it('setConfig should', () => {
+    const autoRotateSettings = {}
+    const gyroSettings = {}
+    const tripodSettings = {}
+    const basicSettings = {}
+    const loadingSettings = {}
+    const initViewSettings = {}
+    const config = {
+      autoRotateSettings,
+      gyroSettings,
+      tripodSettings,
+      basicSettings,
+      loadingSettings,
+      initViewSettings
+    }
+    krpano.setConfig(config)
+    const setAutoRotateSettings = jest.fn(krpano.setAutoRotateSettings)
+    // setAutoRotateSettings(autoRotateSettings)
+    expect(setAutoRotateSettings.mock.calls).toHaveBeenCalled()
+    // const setGyroSettings = jest.fn(krpano.setGyroSettings)
+    // setGyroSettings(gyroSettings)
+    // expect(setGyroSettings).toHaveBeenCalled()
+    // const setTripodSettings = jest.fn(krpano.setTripodSettings)
+    // setTripodSettings(tripodSettings)
+    // expect(setTripodSettings).toHaveBeenCalled()
+    // const setBasicSettings = jest.fn(krpano.setBasicSettings)
+    // // setBasicSettings(basicSettings)
+    // expect(setBasicSettings).toHaveBeenCalled()
+    // const setLoadingSettings = jest.fn(krpano.setLoadingSettings)
+    // setLoadingSettings(loadingSettings)
+    // expect(setLoadingSettings).toHaveBeenCalled()
+    // const setInitViewSettings = jest.fn(krpano.setInitViewSettings)
+    // setInitViewSettings(initViewSettings)
+    // expect(setInitViewSettings).toHaveBeenCalled()
+  })
 })
