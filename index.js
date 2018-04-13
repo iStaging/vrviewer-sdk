@@ -8,7 +8,7 @@ const panoramas = [{'adjustedRawUrl':'','category':'custom','createdAt':15226377
 /* eslint-disable */
 function initAframe () {
   console.log(VRMaker)
-  const aframeViewer =  new VRMaker.AframeViewer()
+  const aframeViewer = new VRMaker.AframeViewer()
 
   aframeViewer.init({
     el: document.getElementById('vrmaker-aframe'),

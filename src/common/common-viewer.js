@@ -1,7 +1,7 @@
 import {
-  clone,
-  push
+  clone
 } from '@/common/utils'
+
 import {
   checkPanoramaFormat
 } from '@/common/helpers'
@@ -27,7 +27,6 @@ class CommonViewer {
     }
 
     this.initPanoramas = (panoramas) => {
-      // console.log('panoramas: ', panoramas)
       panoramas.map(panorama => checkPanoramaFormat(panorama))
 
       _panoramas = panoramas
@@ -37,15 +36,6 @@ class CommonViewer {
 
     this.addPanoramas = (panoramas) => {
       const newPanoramas = _panoramas.concat(panoramas)
-      if (this.panoramasChanged instanceof Function) {
-        this.panoramasChanged(newPanoramas, _panoramas)
-      }
-      _panoramas = newPanoramas
-      return this
-    }
-
-    this.addPanorama = (panorama) => {
-      const newPanoramas = push(panorama, _panoramas)
       if (this.panoramasChanged instanceof Function) {
         this.panoramasChanged(newPanoramas, _panoramas)
       }
