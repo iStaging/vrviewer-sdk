@@ -24,7 +24,7 @@ beforeEach(() => {
 
 describe('commonViewer', () => {
   it('init', () => {
-    expect(typeof aframeViewer.checkVersion).toBe('function')
+    expect(typeof aframeViewer.getVersion).toBe('function')
     expect(typeof aframeViewer.initEl).toBe('function')
     expect(typeof aframeViewer.initPanoramas).toBe('function')
     expect(aframeViewer.getCurrentPanorama()).toEqual(panoramas[0])
