@@ -3,18 +3,21 @@ import { clone } from '@/common/utils'
 import AFRAME from 'aframe'
 
 window.AFRAME = AFRAME
-let el
+let elId
+let htmlEl
 let panoramas
 let panorama
 let aframeViewer
 
 beforeEach(() => {
+  htmlEl = document.createElement('div')
   aframeViewer = new VRMaker.AframeViewer()
   panorama = { objectId: '1' }
   panoramas = [panorama]
-  el = 'vrmaker-aframe'
+  elId = 'vrmaker-aframe'
+  htmlEl.id = elId
   aframeViewer.init({
-    el: document.getElementById('vrmaker-aframe'),
+    el: htmlEl,
     panoramas
   })
 })
@@ -28,9 +31,8 @@ describe('commonViewer', () => {
   })
 
   it('initEl', () => {
-    const aframeViewer = new VRMaker.AframeViewer()
-    aframeViewer.initEl(el)
-    expect(aframeViewer.getEl()).toBe(el)
+    aframeViewer.initEl(elId)
+    expect(aframeViewer.getEl()).toBe(elId)
   })
 
   it('initPanoramas', () => {
@@ -46,15 +48,13 @@ describe('commonViewer', () => {
   })
 
   it('selectPanorama', () => {
-    const newPanorama = { objectId: '2' }
-    const foundOldPanorama = aframeViewer.getCurrentPanorama()
-    aframeViewer.selectPanorama(newPanorama.objectId)
-    const foundNewPanorama = aframeViewer.getCurrentPanorama()
-    expect(foundOldPanorama).not.toBe(foundNewPanorama)
+    panoramas.push({ objectId: '2' })
+    aframeViewer.selectPanorama(panoramas[1].objectId)
+    expect(aframeViewer.getCurrentPanorama().objectId).toBe(panoramas[1].objectId)
   })
 
   it('getEl', () => {
-    expect(aframeViewer.getEl()).toBe(el)
+    expect(aframeViewer.getEl()).toBe(htmlEl)
   })
 
   it('getPanoramas', () => {
