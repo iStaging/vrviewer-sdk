@@ -1,5 +1,5 @@
 import webvrMinJs from '../lib/webvr.min'
-import webvrCursorImage from '../lib/webvr_cursor_80x80_17f.png'
+import webvrCursorImage from '../lib/webvr-cursor.png'
 import threeKrpanoPluginMinJs from '../lib/three.krpanoplugin.min'
 import gyro2MinJs from '../lib/gyro2.min'
 import gyroMessageMinJs from '../lib/gyro-message.min'

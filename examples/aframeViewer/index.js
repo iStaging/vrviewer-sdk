@@ -1,5 +1,3 @@
-import '@'
-
 // testus: aaa9a22a-7da1-4d97-9ef2-1ecc653e512c
 const panoramas = [{
   'adjustedRawUrl': '',
@@ -66,78 +64,19 @@ const panoramas = [{
   'cubemapPreivewUrl': 'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_782949e8-c37a-4171-a004-54c76937135c.jpg',
   'cubemapUrl': 'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_782949e8-c37a-4171-a004-54c76937135c.jpg'
 }]
-
 /* eslint-disable */
-function initAframe () {
-  console.log(VRMaker)
-  const aframeViewer = new VRMaker.AframeViewer()
+console.log(VRMaker)
+const aframeViewer =  new VRMaker.AframeViewer()
 
-  aframeViewer.init({
-    el: document.getElementById('vrmaker-aframe'),
-    panoramas
+aframeViewer.init({
+  el: document.getElementById('vrmaker-aframe'),
+  panoramas
+})
+aframeViewer.generateAframe()
+
+setTimeout(() => {
+  aframeViewer.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
+  aframeViewer.setPanoramaSrc(aframeViewer.getCurrentPanorama().desktopUrl, () => {
+    console.log('loaded')
   })
-  aframeViewer.generateAframe()
-
-  setTimeout(() => {
-    aframeViewer.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
-    aframeViewer.setPanoramaSrc(aframeViewer.getCurrentPanorama().desktopUrl, () => {
-      console.log('loaded')
-    })
-  }, 1000)
-}
-
-function initKrpano () {
-  const Krpano =  new VRMaker.Krpano()
-  Krpano.init({
-    el: document.querySelector('#vrmaker-krpano'),
-    panoramas
-  })
-
-  Krpano.generateKrpano({
-    autoRotateSettings: {
-      active: true,
-      rotateDuration: 200000,
-      restartTime: 20000
-    },
-    gyroSettings: {
-      active: false
-    },
-    basicSettings: {
-      html5: 'webgl+only',
-      webglsettings: { depth: true },
-      passQueryParameters: true,
-      lazyLoad: true,
-      mwheel: true,
-      focus: false
-    },
-    tripodSettings: {
-      image: 'http://i.imgur.com/xNNfJiP.jpg',
-      size: 60 // 0 ~ 100
-    },
-    loadingSettings: {
-      onLoadingPanoramaStart () {
-        console.log('onLoadingPanoramaStart')
-      },
-      onLoadingPanoramaFinish () {
-        console.log('onLoadingPanoramaFinish')
-      },
-      onLoadingPanoramaProgress (event) {
-        console.log('onLoadingPanoramaProgress', event)
-      },
-      onLoadingPanoramaError (error) {
-        console.log('onLoadingPanoramaError', error)
-      }
-    },
-    initViewSettings: {
-      active: true
-    }
-  })
-
-  window.setTimeout(() => {
-    console.log('change panorama')
-    Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
-  }, 3500)
-}
-
-// initAframe()
-initKrpano()
+}, 1000)

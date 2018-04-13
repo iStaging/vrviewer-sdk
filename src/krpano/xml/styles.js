@@ -60,13 +60,18 @@ width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alph
 
 const vrThumbWidth = 160
 const getStylesXml = function (panoramas) {
+  try {
+    this.getVrThumbAth
+  } catch (e) {
+    throw new Error('getStylesXml must use getStylesXml.call(this, ...arg)')
+  }
   let style = basicStyles()
   panoramas.forEach((panorama, index) => {
     const verticalCount = index % 4
     const horizontalCount = Math.floor(index / 4)
     // vr mode thumbnail
     let oy = (-(vrThumbWidth / 2 + 30) * 1.5) + (vrThumbWidth / 2 + 30) * (verticalCount)
-    let vrThumbAth = this.vrThumbAth * horizontalCount
+    let vrThumbAth = this.getVrThumbAth() * horizontalCount
     if (isRtl()) {
       vrThumbAth *= -1
     }
@@ -80,18 +85,18 @@ ath="${vrThumbAth}" oy="${oy + 50}"
 width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${panorama.objectId}, ${panorama.objectId}, 'VrModeThumbnailText')" />`
 
     // load all images from markers
-    if (panorama.markers && panorama.markers.length) {
-      panorama.markers.forEach(marker => {
-        if (marker.useCustomIcon && marker.iconUrl) {
-          // add custom icon image
-          style += `<style name="markerCustomIcon_${marker.objectId}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
-        }
-        if (marker.type === 'tag' && marker.photo) {
-          // add tag photo
-          style += `<style name="markerInfoTagPhoto_${marker.objectId}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
-        }
-      })
-    }
+    // if (panorama.markers && panorama.markers.length) {
+    //   panorama.markers.forEach(marker => {
+    //     if (marker.useCustomIcon && marker.iconUrl) {
+    //       // add custom icon image
+    //       style += `<style name="markerCustomIcon_${marker.objectId}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
+    //     }
+    //     if (marker.type === 'tag' && marker.photo) {
+    //       // add tag photo
+    //       style += `<style name="markerInfoTagPhoto_${marker.objectId}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
+    //     }
+    //   })
+    // }
   })
   return style
 }
