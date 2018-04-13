@@ -13,14 +13,14 @@ beforeEach(() => {
   panorama = { objectId: '1' }
   panoramas = [panorama]
   el = 'vrmaker-aframe'
+  aframeViewer.init({
+    el: document.getElementById('vrmaker-aframe'),
+    panoramas
+  })
 })
 
 describe('commonViewer', () => {
   it('init', () => {
-    aframeViewer.init({
-      el: document.getElementById('vrmaker-aframe'),
-      panoramas
-    })
     expect(typeof aframeViewer.checkVersion).toBe('function')
     expect(typeof aframeViewer.initEl).toBe('function')
     expect(typeof aframeViewer.initPanoramas).toBe('function')
@@ -58,13 +58,10 @@ describe('commonViewer', () => {
   })
 
   it('getPanoramas', () => {
-    expect(aframeViewer.getPanoramas()).toBe(panoramas)
+    expect(aframeViewer.getPanoramas()).toEqual(panoramas)
   })
 
   it('getCurrentPanorama', () => {
-    aframeViewer.selectPanorama(panorama)
-    console.log(aframeViewer.getCurrentPanorama())
-    console.log(panorama)
-    expect(aframeViewer.getCurrentPanorama()).toBe(panorama)
+    expect(aframeViewer.getCurrentPanorama()).toEqual(panorama)
   })
 })
