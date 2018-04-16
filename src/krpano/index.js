@@ -189,8 +189,10 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       consolelog: basicSettings.consolelog,
       mobilescale: basicSettings.mobilescale,
       fakedevice: basicSettings.fakedevice,
-      passQueryParameters: basicSettings.passQueryParameters,
-      webglsettings: basicSettings.webglsettings,
+      lazyLoad: true,
+      html5: 'webgl+only',
+      webglsettings: { depth: true },
+      passQueryParameters: true,
       onready: (krpanoEl) => {
         handleKrpanoReady(krpanoEl, callback)
       },
@@ -216,6 +218,15 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     if (!isEmpty(this.getKrpanoEl)) {
       const krpanoEl = this.getKrpanoEl()
       krpanoEl.call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
+    }
+  }
+
+  toggleGyro (bool) {
+    const krpanoEl = this.getKrpanoEl()
+    if (bool) {
+      krpanoEl.krpanoEl.call('start_gyro();')
+    } else {
+      krpanoEl.krpanoEl.call('stop_gyro();')
     }
   }
 
