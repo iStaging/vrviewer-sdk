@@ -167,7 +167,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
         krpanoEl.call(`first_panorama_ready(${gyroSettings.active || false});`)
         if (autoRotateSettings.active) {
           this.startAutoRotate()
-          this.addStopAutoRotateEvent()
+          this.stopAutoRotateEvent().addEvent()
         }
         if (isFunction(callback)) {
           callback()
@@ -207,6 +207,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       removepano(krpanoId)
       console.log('pano removed')
       this.setKrpanoEl({})
+      this.stopAutoRotateEvent().removeEvent()
     }
   }
 
@@ -218,7 +219,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     }
   }
 
-  addStopAutoRotateEvent () {
+  stopAutoRotateEvent () {
     const autoRotateSettings = this.getAutoRotateSettings()
     const keydownHandler = (e) => {
       if (e.keyCode === 37 ||
@@ -231,9 +232,18 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     const stopAutoRotateHandler = () => {
       this.stopAutoRotate(true, autoRotateSettings.restartTime)
     }
-    window.addEventListener('keydown', keydownHandler)
-    window.addEventListener('mousedown', stopAutoRotateHandler)
-    window.addEventListener('touchstart', stopAutoRotateHandler)
+    return {
+      addEvent () {
+        window.addEventListener('keydown', keydownHandler)
+        window.addEventListener('mousedown', stopAutoRotateHandler)
+        window.addEventListener('touchstart', stopAutoRotateHandler)
+      },
+      removeEvent () {
+        window.removeEventListener('keydown', keydownHandler)
+        window.removeEventListener('mousedown', stopAutoRotateHandler)
+        window.removeEventListener('touchstart', stopAutoRotateHandler)
+      }
+    }
   }
 }
 
