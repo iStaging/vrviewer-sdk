@@ -83,17 +83,30 @@ Krpano.generateKrpano({
   gyroSettings: {
     active: false
   },
-  krpanoSettings: {
-    html5: 'webgl+only',
-    webglsettings: { depth: true },
-    passQueryParameters: true,
-    lazyLoad: true,
+  basicSettings: {
     mwheel: true,
     focus: false
   },
   tripodSettings: {
     image: 'http://i.imgur.com/xNNfJiP.jpg',
     size: 60 // 0 ~ 100
+  },
+  loadingSettings: {
+    onLoadingPanoramaStart () {
+      console.log('onLoadingPanoramaStart')
+    },
+    onLoadingPanoramaFinish () {
+      console.log('onLoadingPanoramaFinish')
+    },
+    onLoadingPanoramaProgress (event) {
+      console.log('onLoadingPanoramaProgress', event)
+    },
+    onLoadingPanoramaError (error) {
+      console.log('onLoadingPanoramaError', error)
+    }
+  },
+  initViewSettings: {
+    active: true
   }
 })
 

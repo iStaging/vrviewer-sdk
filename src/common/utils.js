@@ -1,3 +1,6 @@
+export const push = (array, value) => [...array, value]
+export const unshift = (array, value) => [value, ...array]
+
 export const clone = (obj) => {
   if (!obj && typeof obj !== 'object') {
     return
@@ -8,9 +11,6 @@ export const clone = (obj) => {
   }
   return newObj
 }
-export const push = (x, array) => [...array, x]
-export const unshift = (x, array) => [x, ...array]
-export const remove = (index, array) => [...array.slice(0, index), ...array.slice(index + 1)]
 
 export const isEmpty = (value) => {
   if (!value || value === undefined) {
@@ -19,6 +19,22 @@ export const isEmpty = (value) => {
     return Object.keys(value).length === 0
   } else if (value.constructor === Array) {
     return value.length === 0
+  }
+}
+
+export const isEqual = (a, b) => {
+  const aKeys = Object.getOwnPropertyNames(a)
+  const bKeys = Object.getOwnPropertyNames(b)
+  if (aKeys.length !== bKeys.length) {
+    return
+  }
+  return aKeys.every(key => a[key] === b[key])
+}
+
+export const updateObject = (oldObject, updatedValues) => {
+  return {
+    ...oldObject,
+    ...updatedValues
   }
 }
 
@@ -53,8 +69,8 @@ export const getIEVersion = () => {
 
 export const loadImage = async (url = '', callback = () => {
 }, onprogress = e => {
-}, onerror = () => {
-}) => {
+  }, onerror = () => {
+  }) => {
   if (typeof url === 'string' || url instanceof String) {
     try {
       const xmlHttp = new XMLHttpRequest() // eslint-disable-line

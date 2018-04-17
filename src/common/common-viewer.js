@@ -1,7 +1,9 @@
 import {
   clone,
-  push
+  push,
+  updateObject
 } from '@/common/utils'
+
 import {
   checkPanoramaFormat
 } from '@/common/helpers'
@@ -12,9 +14,10 @@ class CommonViewer {
     let _el = null
     let _panoramas = []
     let _currentPanorama = {}
+    let _version = ''
 
     this.init = (options) => {
-      this.checkVersion()
+      this.setVersion(version)
       this.initEl(options.el)
       this.initPanoramas(options.panoramas)
       _currentPanorama = (options.index !== undefined)
@@ -28,7 +31,6 @@ class CommonViewer {
     }
 
     this.initPanoramas = (panoramas) => {
-      // console.log('panoramas: ', panoramas)
       panoramas.map(panorama => checkPanoramaFormat(panorama))
 
       _panoramas = panoramas
@@ -46,6 +48,42 @@ class CommonViewer {
       return this
     }
 
+    this.updatePanorama = (id, payload = {}) => {
+      let foundIndex
+      const foundPanorama = _panoramas.find((panorama, index) => {
+        foundIndex = index
+        return panorama.objectId === id
+      })
+      if (!foundPanorama) {
+        throw new Error('updatePanorama failed, id can\'t find panorama')
+      }
+      const updatedPanorama = updateObject(foundPanorama, payload)
+      const newPanoramas = clone(_panoramas)
+      newPanoramas.splice(foundIndex, 1, updatedPanorama)
+      _panoramas = newPanoramas
+    }
+
+    this.updateCurrentPanorama = (payload = {}) => {
+      const foundIndex = _panoramas.findIndex(panorama => (
+        panorama.objectId === _currentPanorama.objectId
+      ))
+      if (!_currentPanorama) {
+        throw new Error('updatePanorama failed, id can\'t find panorama')
+      }
+      const updatedPanorama = updateObject(_currentPanorama, payload)
+      _currentPanorama = updatedPanorama
+      const newPanoramas = clone(_panoramas)
+      newPanoramas.splice(foundIndex, 1, updatedPanorama)
+      _panoramas = newPanoramas
+    }
+
+    this.removePanorama = (id) => {
+      const filteredPanoramas = _panoramas.filter(panorama => (
+        panorama.objectId !== id
+      ))
+      _panoramas = clone(filteredPanoramas)
+    }
+
     this.selectPanorama = (id) => {
       if (!id) {
         throw new Error('selectPanorama id is required')
@@ -61,12 +99,12 @@ class CommonViewer {
     this.getEl = () => _el
     this.getPanoramas = () => clone(_panoramas)
     this.getCurrentPanorama = () => clone(_currentPanorama)
-  }
 
-  checkVersion () {
-    console.log('version:', version)
-    this.version = version
-    return version
+    this.setVersion = (version) => {
+      _version = version
+    }
+
+    this.getVersion = () => _version
   }
 }
 

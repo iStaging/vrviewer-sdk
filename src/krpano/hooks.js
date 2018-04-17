@@ -2,6 +2,7 @@ import {
   isFunction,
   loadImage
 } from '@/common/utils'
+import krpanoConstants from './krpano-constants'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm should be this
@@ -22,11 +23,11 @@ const getHooks = vm => {
       const newIndex = panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = panoramas[newIndex]
-        const oldHLookat = vm.getKrpanoLookAtH()
+        const oldHLookat = krpanoConstants.getKrpanoLookAtH()
         if (isFunction(loadingSettings.onLoadingPanoramaStart)) {
           loadingSettings.onLoadingPanoramaStart()
         }
-        const krpanoEl = vm.getKrpanoEl()
+        const krpanoEl = krpanoConstants.getKrpanoEl()
         if (foundPanorama.cubemapReady) {
           krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
            ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${gyroSettings.active});`)
@@ -40,9 +41,9 @@ const getHooks = vm => {
             }
             krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
              ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${gyroSettings.active});`)
-          }, (e) => {
+          }, (event) => {
             if (isFunction(loadingSettings.onLoadingPanoramaProgress)) {
-              loadingSettings.onLoadingPanoramaProgress(e)
+              loadingSettings.onLoadingPanoramaProgress(event)
             }
           }, (error) => {
             if (isFunction(loadingSettings.onLoadingPanoramaError)) {
@@ -74,7 +75,7 @@ const getHooks = vm => {
       // vm.setMarkerInfo(index)
     },
     changeCamera (h, v) {
-      vm.setKrpanoLookAtH(h)
+      krpanoConstants.setKrpanoLookAtH(h)
     },
     handleShowPopup (index) {
       vm.handleShowPopup(index)
