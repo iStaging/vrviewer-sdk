@@ -10,6 +10,7 @@ import {
   contextMenuXml,
   gyroMessageXml
 } from './xml/plugins'
+import krpanoHelpers from './krpano-helpers'
 import getStylesXml from './xml/styles'
 import getLogoTripodXml from './xml/tripod'
 import eventsXml from './xml/events'
@@ -167,7 +168,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
         krpanoEl.call(`first_panorama_ready(${gyroSettings.active || false});`)
         if (autoRotateSettings.active) {
           this.startAutoRotate()
-          this.stopAutoRotateEvent().addEvent()
+          krpanoHelpers.stopAutoRotateEvent.call(this).addEvent()
         }
         if (isFunction(callback)) {
           callback()
@@ -202,14 +203,14 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     })
   }
 
-  removePano () {
+  destroy () {
     const { removepano } = window
     if (this.getKrpanoId && this.getKrpanoEl) {
       const krpanoId = this.getKrpanoId()
       removepano(krpanoId)
       console.log('pano removed')
       this.setKrpanoEl({})
-      this.stopAutoRotateEvent().removeEvent()
+      krpanoHelpers.stopAutoRotateEvent.call(this).removeEvent()
     }
   }
 
@@ -224,36 +225,9 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
   toggleGyro (bool) {
     const krpanoEl = this.getKrpanoEl()
     if (bool) {
-      krpanoEl.krpanoEl.call('start_gyro();')
+      krpanoEl.call('start_gyro();')
     } else {
-      krpanoEl.krpanoEl.call('stop_gyro();')
-    }
-  }
-
-  stopAutoRotateEvent () {
-    const autoRotateSettings = this.getAutoRotateSettings()
-    const keydownHandler = (e) => {
-      if (e.keyCode === 37 ||
-        e.keyCode === 38 ||
-        e.keyCode === 39 ||
-        e.keyCode === 40) {
-        this.stopAutoRotate(true, autoRotateSettings.restartTime)
-      }
-    }
-    const stopAutoRotateHandler = () => {
-      this.stopAutoRotate(true, autoRotateSettings.restartTime)
-    }
-    return {
-      addEvent () {
-        window.addEventListener('keydown', keydownHandler)
-        window.addEventListener('mousedown', stopAutoRotateHandler)
-        window.addEventListener('touchstart', stopAutoRotateHandler)
-      },
-      removeEvent () {
-        window.removeEventListener('keydown', keydownHandler)
-        window.removeEventListener('mousedown', stopAutoRotateHandler)
-        window.removeEventListener('touchstart', stopAutoRotateHandler)
-      }
+      krpanoEl.call('stop_gyro();')
     }
   }
 }

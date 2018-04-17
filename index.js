@@ -138,8 +138,8 @@ function initKrpano () {
   }, 3500)
 
   window.setTimeout(() => {
-    console.log('remove pano')
-    Krpano.removePano()
+    console.log('remove krpano')
+    Krpano.removeKrpano()
   }, 7000)
 
   window.setTimeout(() => {
