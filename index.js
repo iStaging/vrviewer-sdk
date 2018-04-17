@@ -70,7 +70,7 @@ const panoramas = [{
 /* eslint-disable */
 function initAframe () {
   console.log(VRMaker)
-  const aframeViewer =  new VRMaker.AframeViewer()
+  const aframeViewer = new VRMaker.AframeViewer()
 
   aframeViewer.init({
     el: document.getElementById('vrmaker'),
@@ -78,9 +78,11 @@ function initAframe () {
   })
   aframeViewer.generateAframe()
 
-  // setTimeout(() => {
-  //   aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
-  // }, 1000)
+  setTimeout(() => {
+    aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
+      console.log('loaded')
+    })
+  }, 1000)
 }
 
 function initKrpano () {
@@ -90,7 +92,7 @@ function initKrpano () {
     panoramas
   })
 
-  Krpano.generateKrpano({
+  const config = {
     autoRotateSettings: {
       active: true,
       rotateDuration: 200000,
@@ -99,11 +101,7 @@ function initKrpano () {
     gyroSettings: {
       active: false
     },
-    krpanoSettings: {
-      html5: 'webgl+only',
-      webglsettings: { depth: true },
-      passQueryParameters: true,
-      lazyLoad: true,
+    basicSettings: {
       mwheel: true,
       focus: false
     },
@@ -128,7 +126,11 @@ function initKrpano () {
     initViewSettings: {
       active: true
     }
-  })
+  }
+
+  Krpano.generateKrpano(config)
+  // console.log(Krpano.getPanoramas())
+  // Krpano.updatePanorama('782949e8-c37a-4171-a004-54c76937135c', { foo: 'bar' })
 
   window.setTimeout(() => {
     console.log('enter vr mode')

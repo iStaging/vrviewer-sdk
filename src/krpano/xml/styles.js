@@ -8,19 +8,22 @@ import {
 import {
   markerAlpha
 } from './common'
-import linkImage from '../../../img/krpano-img/markers/link.png'
-import memoImage from '../../../img/krpano-img/markers/memo.png'
-import pointImage from '../../../img/krpano-img/markers/point.png'
-import tagImage from '../../../img/krpano-img/markers/tag.png'
-import videoImage from '../../../img/krpano-img/markers/video.png'
-import leftArrowImage from '../../../img/krpano-img/markers/arrows/left-arrow.png'
-import rightArrowImage from '../../../img/krpano-img/markers/arrows/right-arrow.png'
-import frontArrowImage from '../../../img/krpano-img/markers/arrows/front-arrow.png'
-import leftFrontArrowImage from '../../../img/krpano-img/markers/arrows/left-front-arrow.png'
-import rightFrontArrowImage from '../../../img/krpano-img/markers/arrows/right-front-arrow.png'
-import prevPanoramaImage from '../../../img/krpano-img/prev-panorama.png'
-import menuImage from '../../../img/krpano-img/menu.png'
-import nextPanoramaImage from '../../../img/krpano-img/next-panorama.png'
+import krpanoConstants from '@/krpano/krpano-constants'
+import {
+  linkImage,
+  memoImage,
+  pointImage,
+  tagImage,
+  videoImage,
+  leftArrowImage,
+  rightArrowImage,
+  frontArrowImage,
+  leftFrontArrowImage,
+  rightFrontArrowImage,
+  prevPanoramaImage,
+  menuImage,
+  nextPanoramaImage
+} from '@/common/resources'
 const markerInfoCss = 'font-family:Arial; color:#fff;'
 const markerInfoCommonAttribute = 'scale="1" distorted="true" wordwrap="true" bgcolor="0x000000" bgalpha=".8"'
 const markerIconCommonAttribute = `zoom="true" distorted="true" scale="1" vr_timeout="700" keep="false" alpha="${markerAlpha}"`
@@ -61,7 +64,7 @@ width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alph
 const vrThumbWidth = 160
 const getStylesXml = function (panoramas) {
   try {
-    this.getVrThumbAth
+    krpanoConstants.getVrThumbAth
   } catch (e) {
     throw new Error('getStylesXml must use getStylesXml.call(this, ...arg)')
   }
@@ -71,7 +74,7 @@ const getStylesXml = function (panoramas) {
     const horizontalCount = Math.floor(index / 4)
     // vr mode thumbnail
     let oy = (-(vrThumbWidth / 2 + 30) * 1.5) + (vrThumbWidth / 2 + 30) * (verticalCount)
-    let vrThumbAth = this.getVrThumbAth() * horizontalCount
+    let vrThumbAth = krpanoConstants.getVrThumbAth() * horizontalCount
     if (isRtl()) {
       vrThumbAth *= -1
     }
