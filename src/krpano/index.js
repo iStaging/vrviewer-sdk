@@ -167,11 +167,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
         krpanoEl.call(`first_panorama_ready(${gyroSettings.active || false});`)
         if (autoRotateSettings.active) {
           this.startAutoRotate()
-          const stopAutoRotateHandler = () => {
-            this.stopAutoRotate(true, autoRotateSettings.restartTime)
-          }
-          window.addEventListener('mousedown', stopAutoRotateHandler)
-          window.addEventListener('touchstart', stopAutoRotateHandler)
+          this.stopAutoRotateEvent().addEvent()
         }
         if (isFunction(callback)) {
           callback()
@@ -211,6 +207,7 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       removepano(krpanoId)
       console.log('pano removed')
       this.setKrpanoEl({})
+      this.stopAutoRotateEvent().removeEvent()
     }
   }
 
@@ -219,6 +216,33 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
     if (!isEmpty(this.getKrpanoEl)) {
       const krpanoEl = this.getKrpanoEl()
       krpanoEl.call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
+    }
+  }
+
+  stopAutoRotateEvent () {
+    const autoRotateSettings = this.getAutoRotateSettings()
+    const keydownHandler = (e) => {
+      if (e.keyCode === 37 ||
+        e.keyCode === 38 ||
+        e.keyCode === 39 ||
+        e.keyCode === 40) {
+        this.stopAutoRotate(true, autoRotateSettings.restartTime)
+      }
+    }
+    const stopAutoRotateHandler = () => {
+      this.stopAutoRotate(true, autoRotateSettings.restartTime)
+    }
+    return {
+      addEvent () {
+        window.addEventListener('keydown', keydownHandler)
+        window.addEventListener('mousedown', stopAutoRotateHandler)
+        window.addEventListener('touchstart', stopAutoRotateHandler)
+      },
+      removeEvent () {
+        window.removeEventListener('keydown', keydownHandler)
+        window.removeEventListener('mousedown', stopAutoRotateHandler)
+        window.removeEventListener('touchstart', stopAutoRotateHandler)
+      }
     }
   }
 }
