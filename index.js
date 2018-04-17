@@ -129,6 +129,8 @@ function initKrpano () {
   }
 
   Krpano.generateKrpano(config)
+  // console.log(Krpano.getPanoramas())
+  // Krpano.updatePanorama('782949e8-c37a-4171-a004-54c76937135c', { foo: 'bar' })
 
   window.setTimeout(() => {
     console.log('change panorama')
