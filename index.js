@@ -139,7 +139,7 @@ function initKrpano () {
 
   window.setTimeout(() => {
     console.log('remove krpano')
-    Krpano.removeKrpano()
+    Krpano.destroy()
   }, 7000)
 
   window.setTimeout(() => {

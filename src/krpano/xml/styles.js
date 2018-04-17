@@ -8,6 +8,7 @@ import {
 import {
   markerAlpha
 } from './common'
+import krpanoConstants from '@/krpano/krpano-constants'
 import linkImage from '../../../img/krpano-img/markers/link.png'
 import memoImage from '../../../img/krpano-img/markers/memo.png'
 import pointImage from '../../../img/krpano-img/markers/point.png'
@@ -61,7 +62,7 @@ width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alph
 const vrThumbWidth = 160
 const getStylesXml = function (panoramas) {
   try {
-    this.getVrThumbAth
+    krpanoConstants.getVrThumbAth
   } catch (e) {
     throw new Error('getStylesXml must use getStylesXml.call(this, ...arg)')
   }
@@ -71,7 +72,7 @@ const getStylesXml = function (panoramas) {
     const horizontalCount = Math.floor(index / 4)
     // vr mode thumbnail
     let oy = (-(vrThumbWidth / 2 + 30) * 1.5) + (vrThumbWidth / 2 + 30) * (verticalCount)
-    let vrThumbAth = this.getVrThumbAth() * horizontalCount
+    let vrThumbAth = krpanoConstants.getVrThumbAth() * horizontalCount
     if (isRtl()) {
       vrThumbAth *= -1
     }

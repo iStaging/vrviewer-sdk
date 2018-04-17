@@ -1,4 +1,5 @@
 import { clone } from '@/common/utils'
+import krpanoConstants from '@/krpano/krpano-constants'
 
 class KrpanoAutoRotate {
   constructor () {
@@ -21,16 +22,16 @@ class KrpanoAutoRotate {
     }
 
     this.startAutoRotate = function () {
-      if (this.getKrpanoEl) {
-        this.getKrpanoEl().call(`auto_rotate();`)
+      if (krpanoConstants.getKrpanoEl) {
+        krpanoConstants.getKrpanoEl().call(`auto_rotate();`)
       }
       _cameraRotateConfig.isCameraRotating = true
     }
 
     this.stopAutoRotate = function (shouldAutoStartRotate = false, duration = 20000) {
       if (_cameraRotateConfig.isCameraRotating === true) {
-        if (this.getKrpanoEl) {
-          this.getKrpanoEl().call(`stop_auto_rotate();`)
+        if (krpanoConstants.getKrpanoEl) {
+          krpanoConstants.getKrpanoEl().call(`stop_auto_rotate();`)
         }
         _cameraRotateConfig.isCameraRotating = false
       }

@@ -1,6 +1,7 @@
 import { markerAlpha } from './common'
 import { isRtl } from '@/common/helpers'
 import { getIEVersion } from '@/common/utils'
+import krpanoConstants from '@/krpano/krpano-constants'
 
 const getActionsXml = function (panoramas, startIndex = 0) {
   try {
@@ -38,7 +39,7 @@ const getActionsXml = function (panoramas, startIndex = 0) {
 </action>
 
 <action name="look_straight">
-if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, easeInOutSine); tween(view.fov, ${this.getDefaultFov()}, distance(150, 0.8)););
+if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, easeInOutSine); tween(view.fov, ${krpanoConstants.getDefaultFov()}, distance(150, 0.8)););
 </action>
 
 <action name="normal_view">
@@ -50,7 +51,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="planet_view">
 <!-- start planet view -->
-  lookat(${(panoramas[startIndex].panoramaRotation ? -panoramas[startIndex].panoramaRotation.y : 0) + this.getKrpanoXOffset()}, 90, 150);
+  lookat(${(panoramas[startIndex].panoramaRotation ? -panoramas[startIndex].panoramaRotation.y : 0) + krpanoConstants.getKrpanoXOffset()}, 90, 150);
   set(view.architectural, 0.0);
   set(view.pannini, 0.0);
   set(view.fisheye, 1.0);
@@ -87,8 +88,8 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
       let horizontalCount = Math.floor(i / 4)
       result += `hotspot[vr_panorama_${i}].loadstyle(vr_panorama_style);
 hotspot[vr_panorama_text_${i}].loadstyle(vr_panorama_style);
-set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));
-set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));`
+set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));
+set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));`
     }
     return result
   })()}
@@ -127,7 +128,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   <!-- 把 vr 裡的 marker 對應 info 顯示/隱藏 -->
   if(webvr.isenabled, ${(() => {
     let result = ''
-    const krpanoVrModeObj = this.getKrpanoVrModeObj()
+    const krpanoVrModeObj = krpanoConstants.getKrpanoVrModeObj()
     krpanoVrModeObj.vrModeShouldShow.forEach(item => {
       result += ` set(hotspot[${item}].visible,true);`
     })
@@ -179,8 +180,8 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
       const horizontalCount = Math.floor(i / 4)
       result += `hotspot[vr_panorama_${i}].loadstyle(vr_panorama_style);
 hotspot[vr_panorama_text_${i}].loadstyle(vr_panorama_style);
-set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));
-set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));`
+set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));
+set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));`
     }
     return result
   })()}
@@ -253,7 +254,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrTh
 <action name="webvr_onentervr">
   ${(() => {
     let result = ''
-    const krpanoVrModeObj = this.getKrpanoVrModeObj()
+    const krpanoVrModeObj = krpanoConstants.getKrpanoVrModeObj()
     krpanoVrModeObj.vrModeShouldShow.forEach(item => { result += `set(hotspot[${item}].visible,true);` })
     krpanoVrModeObj.vrModeShouldHide.forEach(item => { result += `set(hotspot[${item}].visible,false);` })
     return result
@@ -268,7 +269,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrTh
 <action name="webvr_onexitvr">
   ${(() => {
     let result = ''
-    const krpanoVrModeObj = this.getKrpanoVrModeObj()
+    const krpanoVrModeObj = krpanoConstants.getKrpanoVrModeObj()
     krpanoVrModeObj.vrModeShouldShow.forEach(item => { result += `set(hotspot[${item}].visible,false);` })
     krpanoVrModeObj.vrModeShouldHide.forEach(item => { result += `set(hotspot[${item}].visible,true);` })
     return result
