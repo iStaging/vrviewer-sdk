@@ -1,8 +1,10 @@
-import webvrMinJs from '../lib/webvr.min'
-import webvrCursorImage from '../lib/webvr-cursor.png'
-import threeKrpanoPluginMinJs from '../lib/three.krpanoplugin.min'
-import gyro2MinJs from '../lib/gyro2.min'
-import gyroMessageMinJs from '../lib/gyro-message.min'
+import {
+  webvrMinJs,
+  webvrCursorImage,
+  threeKrpanopluginMinJs,
+  gyro2MinJs,
+  gyroMessageMinJs
+} from '@/common/resources'
 
 export const webVRXml = `<plugin name="WebVR" devices="html5" keep="true"
 url="${webvrMinJs}"
@@ -777,6 +779,6 @@ autocalibration="false" />`
 
 export const contextMenuXml = `<contextmenu fullscreen="false" versioninfo="false" />`
 export const threeJsXml = `<!--add the custom ThreeJS plugin-->
-<plugin name="threejs" url="${threeKrpanoPluginMinJs}" keep="true" />`
+<plugin name="threejs" url="${threeKrpanopluginMinJs}" keep="true" />`
 export const gyroMessageXml = `<!--add the custom ThreeJS plugin-->
 <plugin name="gyroMessage" enabled="false" url="${gyroMessageMinJs}" keep="true" />`
