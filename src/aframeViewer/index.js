@@ -16,8 +16,8 @@ class AframeViewer extends CommonViewer {
     const cameraRotationOffset = 90
     let cameraStartRotation
 
-    this.getCurrentPanorama().cameraStartRotation
-      ? cameraStartRotation = this.getCurrentPanorama().cameraStartRotation
+    this.getCurrentPanorama().panoramaRotation
+      ? cameraStartRotation = this.getCurrentPanorama().panoramaRotation
       : cameraStartRotation = {}
 
     // a-sky
