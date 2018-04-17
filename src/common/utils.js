@@ -31,6 +31,13 @@ export const isEqual = (a, b) => {
   return aKeys.every(key => a[key] === b[key])
 }
 
+export const updateObject = (oldObject, updatedValues) => {
+  return {
+    ...oldObject,
+    ...updatedValues
+  }
+}
+
 /**
  * detect IE
  * returns version of IE or false, if browser is not Internet Explorer
