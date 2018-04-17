@@ -3,10 +3,6 @@ import { isEqual } from '@/common/utils'
 
 describe('krpano/extends/settings.js', () => {
   let basicSettings = {
-    html5: 'webgl+only',
-    webglsettings: { depth: true },
-    passQueryParameters: true,
-    lazyLoad: true,
     mwheel: true,
     focus: false
   }

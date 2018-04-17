@@ -34,10 +34,6 @@ class Krpano extends CommonViewer {
         active: false
       },
       krpanoSettings: {
-        html5: 'webgl+only',
-        webglsettings: { depth: true },
-        passQueryParameters: true,
-        lazyLoad: true,
         mwheel: true,
         focus: false
       },

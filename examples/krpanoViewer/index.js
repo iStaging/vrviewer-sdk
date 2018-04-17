@@ -84,10 +84,6 @@ Krpano.generateKrpano({
     active: false
   },
   basicSettings: {
-    html5: 'webgl+only',
-    webglsettings: { depth: true },
-    passQueryParameters: true,
-    lazyLoad: true,
     mwheel: true,
     focus: false
   },

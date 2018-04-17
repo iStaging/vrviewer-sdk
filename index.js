@@ -92,7 +92,7 @@ function initKrpano () {
     panoramas
   })
 
-  Krpano.generateKrpano({
+  const config = {
     autoRotateSettings: {
       active: true,
       rotateDuration: 200000,
@@ -102,10 +102,6 @@ function initKrpano () {
       active: false
     },
     basicSettings: {
-      html5: 'webgl+only',
-      webglsettings: { depth: true },
-      passQueryParameters: true,
-      lazyLoad: true,
       mwheel: true,
       focus: false
     },
@@ -130,12 +126,26 @@ function initKrpano () {
     initViewSettings: {
       active: true
     }
-  })
+  }
+
+  Krpano.generateKrpano(config)
+  // console.log(Krpano.getPanoramas())
+  // Krpano.updatePanorama('782949e8-c37a-4171-a004-54c76937135c', { foo: 'bar' })
 
   window.setTimeout(() => {
     console.log('change panorama')
     Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
   }, 3500)
+
+  window.setTimeout(() => {
+    console.log('remove pano')
+    Krpano.removePano()
+  }, 7000)
+
+  window.setTimeout(() => {
+    console.log('generate pano again')
+    Krpano.generateKrpano()
+  }, 10500)
 }
 
 // initAframe()

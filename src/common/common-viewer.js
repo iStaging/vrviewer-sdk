@@ -1,6 +1,7 @@
 import {
   clone,
-  push
+  push,
+  updateObject
 } from '@/common/utils'
 
 import {
@@ -45,6 +46,42 @@ class CommonViewer {
     this.addPanorama = (panorama) => {
       _panoramas = push(panorama, _panoramas)
       return this
+    }
+
+    this.updatePanorama = (id, payload = {}) => {
+      let foundIndex
+      const foundPanorama = _panoramas.find((panorama, index) => {
+        foundIndex = index
+        return panorama.objectId === id
+      })
+      if (!foundPanorama) {
+        throw new Error('updatePanorama failed, id can\'t find panorama')
+      }
+      const updatedPanorama = updateObject(foundPanorama, payload)
+      const newPanoramas = clone(_panoramas)
+      newPanoramas.splice(foundIndex, 1, updatedPanorama)
+      _panoramas = newPanoramas
+    }
+
+    this.updateCurrentPanorama = (payload = {}) => {
+      const foundIndex = _panoramas.findIndex(panorama => (
+        panorama.objectId === _currentPanorama.objectId
+      ))
+      if (!_currentPanorama) {
+        throw new Error('updatePanorama failed, id can\'t find panorama')
+      }
+      const updatedPanorama = updateObject(_currentPanorama, payload)
+      _currentPanorama = updatedPanorama
+      const newPanoramas = clone(_panoramas)
+      newPanoramas.splice(foundIndex, 1, updatedPanorama)
+      _panoramas = newPanoramas
+    }
+
+    this.removePanorama = (id) => {
+      const filteredPanoramas = _panoramas.filter(panorama => (
+        panorama.objectId !== id
+      ))
+      _panoramas = clone(filteredPanoramas)
     }
 
     this.selectPanorama = (id) => {
