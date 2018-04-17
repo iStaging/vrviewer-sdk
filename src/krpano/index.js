@@ -221,6 +221,24 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
       krpanoEl.call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
     }
   }
+
+  toggleGyro (bool) {
+    const krpanoEl = krpanoConstants.getKrpanoEl()
+    if (bool) {
+      krpanoEl.call('start_gyro();')
+    } else {
+      krpanoEl.call('stop_gyro();')
+    }
+  }
+
+  toggleVRMode (bool) {
+    const krpanoEl = krpanoConstants.getKrpanoEl()
+    if (bool) {
+      krpanoEl.call('WebVR.enterVR();')
+    } else {
+      krpanoEl.call('WebVR.exitVR();')
+    }
+  }
 }
 
 export default Krpano

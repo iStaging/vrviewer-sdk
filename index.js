@@ -73,23 +73,20 @@ function initAframe () {
   const aframeViewer =  new VRMaker.AframeViewer()
 
   aframeViewer.init({
-    el: document.getElementById('vrmaker-aframe'),
+    el: document.getElementById('vrmaker'),
     panoramas
   })
   aframeViewer.generateAframe()
 
-  setTimeout(() => {
-    aframeViewer.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
-    aframeViewer.setPanoramaSrc(aframeViewer.getCurrentPanorama().desktopUrl, () => {
-      console.log('loaded')
-    })
-  }, 1000)
+  // setTimeout(() => {
+  //   aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
+  // }, 1000)
 }
 
 function initKrpano () {
   const Krpano =  new VRMaker.Krpano()
   Krpano.init({
-    el: document.querySelector('#vrmaker-krpano'),
+    el: document.querySelector('#vrmaker'),
     panoramas
   })
 
@@ -134,9 +131,29 @@ function initKrpano () {
   })
 
   window.setTimeout(() => {
-    console.log('change panorama')
-    Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
-  }, 3500)
+    console.log('enter vr mode')
+    Krpano.toggleVRMode(true)
+  }, 3000)
+
+  window.setTimeout(() => {
+    console.log('exit vr mode')
+    Krpano.toggleVRMode(false)
+  }, 8000)
+
+  // window.setTimeout(() => {
+  //   console.log('change panorama')
+  //   Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
+  // }, 3500)
+  //
+  // window.setTimeout(() => {
+  //   console.log('remove krpano')
+  //   Krpano.destroy()
+  // }, 7000)
+  //
+  // window.setTimeout(() => {
+  //   console.log('generate pano again')
+  //   Krpano.generateKrpano()
+  // }, 10500)
 }
 
 // initAframe()
