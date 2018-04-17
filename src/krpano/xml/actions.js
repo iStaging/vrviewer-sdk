@@ -1,6 +1,7 @@
 import { markerAlpha } from './common'
 import { isRtl } from '@/common/helpers'
 import { getIEVersion } from '@/common/utils'
+import krpanoConstants from '@/krpano/krpano-constants'
 
 const getActionsXml = function (panoramas, startIndex = 0) {
   try {
@@ -21,7 +22,7 @@ const getActionsXml = function (panoramas, startIndex = 0) {
     if (showPlanetView) {
       return `loadscene(first_panorama_${panoramas[startIndex].objectId});
       planet_view();`
-    } 
+    }
     return `loadscene(panorama_${panoramas[startIndex].objectId});`
   })()}
   set(plugin[gyro].enabled, false);
@@ -38,7 +39,7 @@ const getActionsXml = function (panoramas, startIndex = 0) {
 </action>
 
 <action name="look_straight">
-if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, easeInOutSine); tween(view.fov, ${this.getDefaultFov()}, distance(150, 0.8)););
+if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, easeInOutSine); tween(view.fov, ${krpanoConstants.getDefaultFov()}, distance(150, 0.8)););
 </action>
 
 <action name="normal_view">
@@ -50,7 +51,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="planet_view">
 <!-- start planet view -->
-  lookat(${(panoramas[startIndex].panoramaRotation ? -panoramas[startIndex].panoramaRotation.y : 0) + this.getKrpanoXOffset()}, 90, 150);
+  lookat(${(panoramas[startIndex].panoramaRotation ? -panoramas[startIndex].panoramaRotation.y : 0) + krpanoConstants.getKrpanoXOffset()}, 90, 150);
   set(view.architectural, 0.0);
   set(view.pannini, 0.0);
   set(view.fisheye, 1.0);
@@ -87,8 +88,8 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
       let horizontalCount = Math.floor(i / 4)
       result += `hotspot[vr_panorama_${i}].loadstyle(vr_panorama_style);
 hotspot[vr_panorama_text_${i}].loadstyle(vr_panorama_style);
-set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));
-set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));`
+set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));
+set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));`
     }
     return result
   })()}
@@ -96,7 +97,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrTh
 </action>
 
 <action name="change_scene">
-<!-- 
+<!--
 change scene in krpano, and callback to javascript (auto call it from prepare_change_scene)
 %1 ~ %6 is all same with prepare_change_scene
 %7 = newIndex
@@ -106,8 +107,8 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
 -->
   jscall(calc('krpano.hooks.stopAutoRotate()'));
   if (%10 == true, set(plugin[gyro].enabled, false);); <!-- 切換場景時 Gyro 需要先關閉，切換後設定好 h 視角，再打開 -->
-  if (webvr.isenabled AND webvr.headtracking == true, set(webvr.headtracking, false);); 
-  
+  if (webvr.isenabled AND webvr.headtracking == true, set(webvr.headtracking, false););
+
   jscall(calc('krpano.hooks.changeImage("%2", "%3", %5, ' + webvr.isenabled + ')'));
   def(prevVlookat, number, calc(view.vlookat)); <!-- 儲存當前仰角 -->
   def(prevHlookat, number, calc(view.hlookat)); <!-- 儲存當前視角 -->
@@ -121,13 +122,13 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
       return `jscall(calc('krpano.hooks.threeJsMoving(%4, %6, %7, %8, %9)'));
     loadscene(%1, null, MERGE, BLEND(0.3));`
     }
-  })()},  
+  })()},
   loadscene(%1, null, MERGE, BLEND(1));
   );
   <!-- 把 vr 裡的 marker 對應 info 顯示/隱藏 -->
   if(webvr.isenabled, ${(() => {
     let result = ''
-    const krpanoVrModeObj = this.getKrpanoVrModeObj()
+    const krpanoVrModeObj = krpanoConstants.getKrpanoVrModeObj()
     krpanoVrModeObj.vrModeShouldShow.forEach(item => {
       result += ` set(hotspot[${item}].visible,true);`
     })
@@ -136,7 +137,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
     })
     return result
   })()});
-  
+
   set(view.vlookat, calc(prevVlookat)); <!-- 使用前一個 camera 仰角 -->
   if (%4, set(view.hlookat, calc(%4 - (%6 - prevHlookat))));
   if (%10, set(plugin[gyro].enabled, true);); <!-- 若有啟動 Gyro，在這裡要重新打開 -->
@@ -146,22 +147,22 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   if (scene[get(xml.scene)].name == '%1' AND scene[get(xml.scene)].isTopLogo == 'true',
   set(hotspot[topLogoTripod].visible, true);,
   set(hotspot[topLogoTripod].visible, false););
-  
+
   ${(() => {
     if (!getIEVersion()) {
       return `if (%5,
-      jscall(calc('krpano.hooks.threeJsMovingStop()')); wait(LOAD);, 
+      jscall(calc('krpano.hooks.threeJsMovingStop()')); wait(LOAD);,
       wait(LOAD););`
     } else {
       return `wait(LOAD);
   wait(BLEND);`
     }
   })()}
-  
+
   <!-- 非 VR 模式時啟動自動旋轉 -->
   if ((webvr.isenabled == false AND webvr.isfake == true) OR
   (webvr.isenabled == false AND webvr.isfake == false),
-    jscall(calc('krpano.hooks.startAutoRotate()'));); 
+    jscall(calc('krpano.hooks.startAutoRotate()')););
 </action>
 
 <action name="toggle_vr_menu">
@@ -179,8 +180,8 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
       const horizontalCount = Math.floor(i / 4)
       result += `hotspot[vr_panorama_${i}].loadstyle(vr_panorama_style);
 hotspot[vr_panorama_text_${i}].loadstyle(vr_panorama_style);
-set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));
-set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrThumbAth() * horizontalCount}));`
+set(hotspot[vr_panorama_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));
+set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConstants.getVrThumbAth() * horizontalCount}));`
     }
     return result
   })()}
@@ -253,7 +254,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrTh
 <action name="webvr_onentervr">
   ${(() => {
     let result = ''
-    const krpanoVrModeObj = this.getKrpanoVrModeObj()
+    const krpanoVrModeObj = krpanoConstants.getKrpanoVrModeObj()
     krpanoVrModeObj.vrModeShouldShow.forEach(item => { result += `set(hotspot[${item}].visible,true);` })
     krpanoVrModeObj.vrModeShouldHide.forEach(item => { result += `set(hotspot[${item}].visible,false);` })
     return result
@@ -268,7 +269,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${this.getVrTh
 <action name="webvr_onexitvr">
   ${(() => {
     let result = ''
-    const krpanoVrModeObj = this.getKrpanoVrModeObj()
+    const krpanoVrModeObj = krpanoConstants.getKrpanoVrModeObj()
     krpanoVrModeObj.vrModeShouldShow.forEach(item => { result += `set(hotspot[${item}].visible,false);` })
     krpanoVrModeObj.vrModeShouldHide.forEach(item => { result += `set(hotspot[${item}].visible,true);` })
     return result
@@ -361,7 +362,7 @@ jscall(calc('krpano.hooks.clickKrpanoScreen();'));
 
 <action name="enter_closest_point_marker">
 <!-- 滑鼠點的位置 -->
-screentosphere(mouse.x, mouse.y, m_ath, m_atv); 
+screentosphere(mouse.x, mouse.y, m_ath, m_atv);
 jscall(calc('krpano.hooks.findClosestPointMarker(' + m_ath + ', ' + m_atv + ', krpano.hooks.enterClosestPointMarker);'));
 </action>`
 }

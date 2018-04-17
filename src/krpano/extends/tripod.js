@@ -1,10 +1,10 @@
 import { clone } from '@/common/utils'
-import tripodImage from '../../../img/krpano-img/logo-tripod.png'
+import { logoTripodImage } from '@/common/resources'
 
 class KrpanoTripod {
   constructor () {
     let _tripodSettings = {
-      image: tripodImage,
+      image: logoTripodImage,
       size: 100 // 0 ~ 100
     }
 

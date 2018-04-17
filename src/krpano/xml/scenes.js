@@ -4,9 +4,10 @@ import {
   xmlString,
   xmlUrlString
 } from '@/common/helpers'
-import {
-  isEmpty
-} from '@/common/utils'
+// import {
+//   isEmpty
+// } from '@/common/utils'
+import krpanoConstants from '@/krpano/krpano-constants'
 // import getMarkerMemoXml from './marker-memo'
 // import getMarkerPointXml from './marker-point'
 // import getMarkerTagXml from './marker-tag'
@@ -14,7 +15,7 @@ import {
 // startIndex is started from 0
 const getScenesXml = function (panoramas, startIndex) {
   try {
-    this.getKrpanoXOffset
+    krpanoConstants.getKrpanoXOffset
   } catch (e) {
     throw new Error('getScenesXml must use getScenesXml.call(this, ...arg)')
   }
@@ -56,7 +57,7 @@ const getScenesXml = function (panoramas, startIndex) {
     if (index === startIndex) {
       // for planet view init look at
       startupScene = `<scene name="first_panorama_${panorama.objectId}" isTopLogo="${panorama.isTopLogo}">
-    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + this.getKrpanoXOffset()}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${this.getDefaultFov()}"
+    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoConstants.getKrpanoXOffset()}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${krpanoConstants.getDefaultFov()}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
   ${(() => {
         if (panorama.cubemapReady) {
@@ -77,7 +78,7 @@ ${hotspot}</scene>`
 const getSceneXml = function (panorama, hotspot) {
   let sceneXml = ''
   sceneXml += `<scene name="panorama_${panorama.objectId}" title="${xmlString(panorama.name)}" objectId="${panorama.objectId}" isTopLogo="${panorama.isTopLogo}">
-    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + this.getKrpanoXOffset()}" vlookat="0" fovtype="MFOV" fov="${this.getDefaultFov()}" fovmin="30" fovmax="${this.getDefaultFov()}"
+    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoConstants.getKrpanoXOffset()}" vlookat="0" fovtype="MFOV" fov="${krpanoConstants.getDefaultFov()}" fovmin="30" fovmax="${krpanoConstants.getDefaultFov()}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
     ${(() => {
     if (panorama.cubemapReady) {
