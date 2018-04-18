@@ -7,7 +7,7 @@ import {
 import {
   checkPanoramaFormat
 } from '@/common/helpers'
-import { version } from '../../package.json'
+import { version } from '@/../package.json'
 
 class CommonViewer {
   constructor () {
@@ -20,6 +20,7 @@ class CommonViewer {
       this.setVersion(version)
       this.initEl(options.el)
       this.initPanoramas(options.panoramas)
+      console.log('VRMaker version: ', this.getVersion())
       _currentPanorama = (options.index !== undefined)
         ? options.index
         : options.panoramas[0]
