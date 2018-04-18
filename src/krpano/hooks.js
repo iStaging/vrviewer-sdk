@@ -2,7 +2,7 @@ import {
   isFunction,
   loadImage
 } from '@/common/utils'
-import krpanoConstants from './krpano-constants'
+import krpanoConstants from '@/krpano/krpano-constants'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm should be this
