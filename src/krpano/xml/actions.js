@@ -1,5 +1,4 @@
 import { markerAlpha } from '@/krpano/xml/common'
-import { isRtl } from '@/common/helpers'
 import { getIEVersion } from '@/common/utils'
 import krpanoConstants from '@/krpano/krpano-constants'
 
@@ -87,9 +86,6 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
   ${(() => {
     let result = ''
     let calc = '+'
-    if (isRtl()) {
-      calc = '-'
-    }
     for (let i = 0; i < panoramas.length; i++) {
       let horizontalCount = Math.floor(i / 4)
       result += `hotspot[vr_panorama_${i}].loadstyle(vr_panorama_style);
@@ -179,9 +175,6 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   ${(() => {
     let result = ''
     let calc = '+'
-    if (isRtl()) {
-      calc = '-'
-    }
     for (let i = 0; i < panoramas.length; i++) {
       const horizontalCount = Math.floor(i / 4)
       result += `hotspot[vr_panorama_${i}].loadstyle(vr_panorama_style);
