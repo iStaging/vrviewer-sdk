@@ -4,7 +4,6 @@ var compression = require('compression')
 var app = express();
 
 // app.enable(‘trust proxy’);
-// app.use(AV.Cloud.HttpsRedirect());
 app.use(compression({filter: shouldCompress}))
 
 function shouldCompress (req, res) {
@@ -32,9 +31,8 @@ app.use(express.static('dist'));
 app.use('/dist', express.static('dist'));
 app.use('/examples', express.static('examples'));
 
-// app.get('*', function (req, res) {
-//   res.sendfile('./index.html');
-// });
+app.use('/api', require('./routes/'));
+
 
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
