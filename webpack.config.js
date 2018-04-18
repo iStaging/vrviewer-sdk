@@ -6,7 +6,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-  entry: './index.js',
+  entry: './dev/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -50,7 +50,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    openPage: '/dev'
   },
   performance: {
     hints: false
