@@ -1,0 +1,71 @@
+{
+  "name": "vrmaker",
+  "keywords": [
+    "vrmaker",
+    "aframe",
+    "krpano",
+    "panorama",
+    "VR"
+  ],
+  "description": "vamaker help you build your 360 panorama solution more easily by aframe or krpano.",
+  "version": "1.0.0",
+  "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/vrmaker.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --mode development",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --mode production",
+    "test": "jest",
+    "test-watch": "jest --watchAll"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "dependencies": {
+    "aframe": "^0.8.1",
+    "extends-classes": "^1.0.5",
+    "mime": "^2.2.2",
+    "http-status": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "compression": "^1.7.2",
+    "connect-history-api-fallback": "^1.5.0",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "express": "^4.16.3",
+    "file-loader": "^1.1.11",
+    "jest": "^22.4.3",
+    "regenerator-runtime": "^0.11.1",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "\\.(css|jpg|png)$": "<rootDir>/empty-module.js"
+    }
+  }
+}
