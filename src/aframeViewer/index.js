@@ -60,6 +60,30 @@ class AframeViewer extends CommonViewer {
       throw new Error('You need to include aframe script or import it first. Use it before vrmaker.')
     }
   }
+
+  enterVRMode () {
+    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    aSceneEl.enterVR()
+    this.enterFulScreen()
+  }
+
+  exitVRMode () {
+    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    aSceneEl.exitVR()
+    this.enterFulScreen()
+  }
+
+  enterFulScreen () {
+    if (document.requestFullscreen) {
+      document.requestFullscreen()
+    } else if (document.msRequestFullscreen) {
+      document.msRequestFullscreen()
+    } else if (document.mozRequestFullScreen) {
+      document.mozRequestFullScreen()
+    } else if (document.webkitRequestFullscreen) {
+      document.webkitRequestFullscreen()
+    }
+  }
 }
 
 export default AframeViewer

@@ -1,14 +1,84 @@
-// local demo data
-// var panoramas = [
-//   {
-//     panoramaName: 'name01',
-//     downloadLink: 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
-//     panoramaId: 'id01',
-//     panoramaIndex: 0,
-//     cubemapReady: true,
-//     cubemapLinks: ['cubemap-url1.jpg,', 'cubemap-url2.jpg', 'cubemap-url3.jpg'],
-//   }
-// ]
+// testus: aaa9a22a-7da1-4d97-9ef2-1ecc653e512c
+const panoramas = [{
+  'adjustedRawUrl': '',
+  'category': 'custom',
+  'createdAt': 1522637785000,
+  'cubemapFilePath': 'd76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/0f62e098-b8aa-4a4a-a635-f2243788471f.jpg',
+  'cubemapReady': true,
+  'desktopUrl': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
+  'floorplanRotation': 0,
+  'geoLatitude': 25.03884,
+  'geoLongitude': 121.46018,
+  'index': -25,
+  'is720': true,
+  'isTopLogo': true,
+  'mobileUrl': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-mobile',
+  'name': 'Others',
+  'objectId': '0f62e098-b8aa-4a4a-a635-f2243788471f',
+  'panoramaRotation': {
+    'x': 0,
+    'y': 0,
+    'z': 0
+  },
+  'position': {
+    'x': 0,
+    'y': 0
+  },
+  'rawUrl': 'https://storage.googleapis.com/vrcam-test-images/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/0f62e098-b8aa-4a4a-a635-f2243788471f.jpg',
+  'stereoUrl': '',
+  'thumbnail': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-thumbnail',
+  'updatedAt': 1522637786000,
+  'customCategory': 'Others',
+  'markers': [],
+  'cubemapPreivewUrl': 'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg',
+  'cubemapUrl': 'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg',
+  // new naming
+  'panoramaName': 'name01',
+  'downloadLink': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
+  'panoramaId': '0f62e098-b8aa-4a4a-a635-f2243788471f',
+  'panoramaIndex': -25,
+  // 'cubemapReady': true,
+  'cubemapLinks': ['url_01', 'url_03']
+}, {
+  'adjustedRawUrl': '',
+  'category': 'custom',
+  'createdAt': 1520837198000,
+  'cubemapFilePath': 'd76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/782949e8-c37a-4171-a004-54c76937135c.jpg',
+  'cubemapReady': true,
+  'desktopUrl': 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
+  'floorplanRotation': 0,
+  'index': -24,
+  'is720': true,
+  'isTopLogo': false,
+  'mobileUrl': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/YUp4ielD-mobile',
+  'name': '',
+  'objectId': '782949e8-c37a-4171-a004-54c76937135c',
+  'panoramaRotation': {
+    'x': 0,
+    'y': 0,
+    'z': 0
+  },
+  'position': {
+    'x': 0,
+    'y': 0
+  },
+  'rawUrl': 'https://storage.googleapis.com/vrcam-test.appspot.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/782949e8-c37a-4171-a004-54c76937135c.jpg',
+  'stereoUrl': '',
+  'thumbnail': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/YUp4ielD-thumbnail',
+  'updatedAt': 1520837199000,
+  'customCategory': 'Others',
+  'markers': [],
+  'cubemapPreivewUrl': 'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_782949e8-c37a-4171-a004-54c76937135c.jpg',
+  'cubemapUrl': 'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_782949e8-c37a-4171-a004-54c76937135c.jpg',
+  // new naming
+  'panoramaName': 'name02',
+  'downloadLink': 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
+  'panoramaId': '782949e8-c37a-4171-a004-54c76937135c',
+  'panoramaIndex': -24,
+  // 'cubemapReady': true,
+  'cubemapLinks': ['url_01', 'url_03']
+}]
+
 /* eslint-disable */
 
 function getPanoCollection () {
