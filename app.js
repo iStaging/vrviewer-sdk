@@ -27,7 +27,7 @@ app.use( function (req, res, next) {
   next();
 })
 
-app.use(express.static('dist'));
+app.use(express.static('examples'));
 app.use('/dist', express.static('dist'));
 app.use('/examples', express.static('examples'));
 

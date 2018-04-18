@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>VRMaker - homepage</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #ebebeb;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main-text {
+        font-size: 22px;
+        padding: 0 20px;
+        color: #ec0974;
+      }
+
+      .main-text:hover {
+        color: #a50651;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <img src="logo.png">
+        <h1>VRMaker</h1>
+      </div>
+      <p>vamaker help you build your 360 panorama solution more easily by aframe or krpano.</p>
+      <p>
+        check the documentation here:
+      </p>
+      <a class="main-text" href="https://istaging.gitbook.io/vr-marker-sdk" target="_blank">https://istaging.gitbook.io/vr-marker-sdk</a>
+      <h2>Viewer:</h2>
+      <p>choose one of VR viewer:</p>
+      <div>
+        <a class="main-text" href="../examples/krpanoViewer/index.html">krpano</a>
+        <a class="main-text" href="../examples/aframeViewer/index.html">aframe</a>
+      </div>
+    </div>
+  </body>
+</html>
