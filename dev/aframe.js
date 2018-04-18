@@ -24,43 +24,39 @@ const panoramas = [{
 }]
 
 // console.log(VRMaker)
+var aframeViewer = new VRMaker.AframeViewer()
 
 // vrmaker viewer init sample code - aframe
 function initAframe () {
   // new AframeViewer
-  var aframeViewer = new VRMaker.AframeViewer()
-
   aframeViewer.init({
     el: document.getElementById('vrmaker-aframe'),
     panoramas
   })
   // generate aframe viewer
   aframeViewer.generateAframe()
+}
 
-  // change panorama function
-  setTimeout(() => {
-    aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
-      console.log('loaded')
-    })
-  }, 3000)
-
-  // remove aframe viewer
-  window.setTimeout(() => {
-    console.log('remove aframe viewer')
-    aframeViewer.destroy()
-  }, 7000)
-
-  // generate aframe viewer again
-  window.setTimeout(() => {
-    console.log('generate aframe pano again')
-    aframeViewer.generateAframe()
-  }, 9500)
-
-  // enter aframe vr mode by custom button
-  document.getElementById("enter-aframe-vrmode").addEventListener("click", function() {
-    console.log('toggle aframe vr mode')
-    aframeViewer.toggleVRMode(true)
-  });
+// change aframe panorama to viewer
+function changePanorama () {
+  aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
+    console.log('loaded')
+  })
 }
 
 initAframe()
+
+// change panorama function
+setTimeout(changePanorama(), 3000)
+
+// remove aframe viewer
+document.getElementById("remove-aframe-viewer").addEventListener("click", function() {
+  console.log('remove aframe viewer')
+  aframeViewer.destroy()
+})
+
+// enter aframe vr mode by custom button
+document.getElementById("enter-aframe-vrmode").addEventListener("click", function() {
+  console.log('toggle aframe vr mode')
+  aframeViewer.toggleVRMode(true)
+});

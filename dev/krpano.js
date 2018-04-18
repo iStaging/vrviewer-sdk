@@ -24,17 +24,17 @@ const panoramas = [{
 }]
 
 // console.log(VRMaker)
+var krpanoViewer =  new VRMaker.KrpanoViewer()
 
 // vrmaker viewer init sample code - krpano
 function initKrpano () {
   // new KrpanoViewer
-  var krpanoViewer =  new VRMaker.KrpanoViewer()
-
   krpanoViewer.init({
     el: document.querySelector('#vrmaker-krpano'),
     panoramas
   })
 
+  // krpano viewer config
   const config = {
     autoRotateSettings: {
       active: true,
@@ -71,33 +71,30 @@ function initKrpano () {
       active: true
     }
   }
-
   // generate krpano viewer
   krpanoViewer.generateKrpano(config)
+}
 
-  // change panorama function
-  window.setTimeout(() => {
-    console.log('change panorama')
-    krpanoViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
-  }, 3500)
-
-  // remove krpano viewer
-  window.setTimeout(() => {
-    console.log('remove krpano viewer')
-    krpanoViewer.destroy()
-  }, 7000)
-
-  // generate krpano viewer again
-  window.setTimeout(() => {
-    console.log('generate krpano pano again')
-    krpanoViewer.generateKrpano()
-  }, 9500)
-
-  // enter krpano vr mode by custom button
-  document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
-    console.log('toggle krpano vr mode')
-    krpanoViewer.toggleVRMode(true)
-  });
+// change aframe panorama to viewer
+function changePanorama () {
+  krpanoViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
+    console.log('loaded')
+  })
 }
 
 initKrpano()
+
+// change panorama function
+setTimeout(changePanorama(), 3000)
+
+// remove krpano viewer
+document.getElementById("remove-krpano-viewer").addEventListener("click", function() {
+  console.log('remove krpano viewer')
+  krpanoViewer.destroy()
+})
+
+// enter krpano vr mode by custom button
+document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
+  console.log('toggle krpano vr mode')
+  krpanoViewer.toggleVRMode(true)
+});
