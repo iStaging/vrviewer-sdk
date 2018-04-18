@@ -1,4 +1,4 @@
-import { markerAlpha } from './common'
+import { markerAlpha } from '@/krpano/xml/common'
 import { getIEVersion } from '@/common/utils'
 import krpanoConstants from '@/krpano/krpano-constants'
 

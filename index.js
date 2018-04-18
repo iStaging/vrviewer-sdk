@@ -1,4 +1,4 @@
-import '@'
+import '@/'
 
 // testus: aaa9a22a-7da1-4d97-9ef2-1ecc653e512c
 const panoramas = [{

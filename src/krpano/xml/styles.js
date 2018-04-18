@@ -6,7 +6,7 @@ import {
 } from '@/common/helpers'
 import {
   markerAlpha
-} from './common'
+} from '@/krpano/xml/common'
 import krpanoConstants from '@/krpano/krpano-constants'
 import {
   linkImage,
