@@ -1,22 +1,20 @@
 import { clone } from '@/common/utils'
 
+let _gyroSettings = {
+  active: false
+}
+
 class KrpanoGyro {
-  constructor () {
-    let _gyroSettings = {
-      active: false
-    }
+  setGyroSettings (settings) {
+    _gyroSettings = settings
+  }
 
-    this.setGyroSettings = (settings) => {
-      _gyroSettings = settings
-    }
+  getGyroSettings () {
+    return clone(_gyroSettings)
+  }
 
-    this.getGyroSettings = () => {
-      return clone(_gyroSettings)
-    }
-
-    this.setGyroActive = (res = false) => {
-      _gyroSettings.active = res
-    }
+  setGyroActive (res = false) {
+    _gyroSettings.active = res
   }
 }
 

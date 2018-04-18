@@ -1,21 +1,19 @@
 import { clone } from '@/common/utils'
 
+let _loadingSettings = {
+  onLoadingPanoramaStart () {},
+  onLoadingPanoramaFinish () {},
+  onLoadingPanoramaProgress (event) {},
+  onLoadingPanoramaError (error) { return error }
+}
+
 class KrpanoLoadingPanorama {
-  constructor () {
-    let _loadingSettings = {
-      onLoadingPanoramaStart () {},
-      onLoadingPanoramaFinish () {},
-      onLoadingPanoramaProgress (event) {},
-      onLoadingPanoramaError (error) {}
-    }
+  setLoadingSettings (settings) {
+    _loadingSettings = settings
+  }
 
-    this.setLoadingSettings = (settings) => {
-      _loadingSettings = settings
-    }
-
-    this.getLoadingSettings = () => {
-      return clone(_loadingSettings)
-    }
+  getLoadingSettings () {
+    return clone(_loadingSettings)
   }
 }
 

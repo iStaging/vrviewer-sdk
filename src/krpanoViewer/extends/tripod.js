@@ -1,20 +1,18 @@
 import { clone } from '@/common/utils'
 import { logoTripodImage } from '@/common/resources'
 
+let _tripodSettings = {
+  image: logoTripodImage,
+  size: 100 // 0 ~ 100
+}
+
 class KrpanoTripod {
-  constructor () {
-    let _tripodSettings = {
-      image: logoTripodImage,
-      size: 100 // 0 ~ 100
-    }
+  setTripodSettings (settings) {
+    _tripodSettings = settings
+  }
 
-    this.setTripodSettings = (settings) => {
-      _tripodSettings = settings
-    }
-
-    this.getTripodSettings = () => {
-      return clone(_tripodSettings)
-    }
+  getTripodSettings () {
+    return clone(_tripodSettings)
   }
 }
 

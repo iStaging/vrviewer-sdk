@@ -1,19 +1,17 @@
 import { clone } from '@/common/utils'
 
+let _basicSettings = {
+  mwheel: true,
+  focus: false
+}
+
 class KrpanoBasic {
-  constructor () {
-    let _basicSettings = {
-      mwheel: true,
-      focus: false
-    }
+  setBasicSettings (settings) {
+    _basicSettings = settings
+  }
 
-    this.setBasicSettings = (settings) => {
-      _basicSettings = settings
-    }
-
-    this.getBasicSettings = () => {
-      return clone(_basicSettings)
-    }
+  getBasicSettings () {
+    return clone(_basicSettings)
   }
 }
 

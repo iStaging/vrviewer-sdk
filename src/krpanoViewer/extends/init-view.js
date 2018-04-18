@@ -1,18 +1,16 @@
 import { clone } from '@/common/utils'
 
+let _initViewSettings = {
+  active: true
+}
+
 class KrpanoInitView {
-  constructor () {
-    let _initViewSettings = {
-      active: true
-    }
+  setInitViewSettings (settings) {
+    _initViewSettings = settings
+  }
 
-    this.setInitViewSettings = (settings) => {
-      _initViewSettings = settings
-    }
-
-    this.getInitViewSettings = () => {
-      return clone(_initViewSettings)
-    }
+  getInitViewSettings () {
+    return clone(_initViewSettings)
   }
 }
 
