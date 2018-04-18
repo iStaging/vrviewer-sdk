@@ -34,7 +34,7 @@ class CommonViewer {
       panoramas.map(panorama => checkPanoramaFormat(panorama))
 
       _panoramas = panoramas
-      this.selectPanorama(panoramas[0].objectId)
+      this.selectPanorama(panoramas[0].panoramaId)
       return this
     }
 
@@ -52,7 +52,7 @@ class CommonViewer {
       let foundIndex
       const foundPanorama = _panoramas.find((panorama, index) => {
         foundIndex = index
-        return panorama.objectId === id
+        return panorama.panoramaId === id
       })
       if (!foundPanorama) {
         throw new Error('updatePanorama failed, id can\'t find panorama')
@@ -65,7 +65,7 @@ class CommonViewer {
 
     this.updateCurrentPanorama = (payload = {}) => {
       const foundIndex = _panoramas.findIndex(panorama => (
-        panorama.objectId === _currentPanorama.objectId
+        panorama.panoramaId === _currentPanorama.panoramaId
       ))
       if (!_currentPanorama) {
         throw new Error('updatePanorama failed, id can\'t find panorama')
@@ -79,7 +79,7 @@ class CommonViewer {
 
     this.removePanorama = (id) => {
       const filteredPanoramas = _panoramas.filter(panorama => (
-        panorama.objectId !== id
+        panorama.panoramaId !== id
       ))
       _panoramas = clone(filteredPanoramas)
     }
@@ -88,7 +88,7 @@ class CommonViewer {
       if (!id) {
         throw new Error('selectPanorama id is required')
       }
-      const foundPanorama = _panoramas.find(panorama => panorama.objectId === id)
+      const foundPanorama = _panoramas.find(panorama => panorama.panoramaId === id)
       if (!foundPanorama) {
         throw new Error('Panorama is not found by your id')
       }

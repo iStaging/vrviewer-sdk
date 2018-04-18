@@ -12,7 +12,7 @@ class AframeViewer extends CommonViewer {
     const aCameraContainerEl = document.createElement('a-entity')
     const aCameraEl = document.createElement('a-camera')
     const el = this.getEl()
-    const { desktopUrl } = this.getCurrentPanorama()
+    const { downloadLink } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
     let cameraStartRotation
 
@@ -21,7 +21,7 @@ class AframeViewer extends CommonViewer {
       : cameraStartRotation = {}
 
     // a-sky
-    aSkyEl.setAttribute('src', desktopUrl)
+    aSkyEl.setAttribute('src', downloadLink)
     aSceneEl.appendChild(aSkyEl)
     el.appendChild(aSceneEl)
 
@@ -47,12 +47,12 @@ class AframeViewer extends CommonViewer {
     const img = new Image()
 
     img.onload = () => {
-      aSkyEl.setAttribute('src', currentPanorama.desktopUrl)
+      aSkyEl.setAttribute('src', currentPanorama.downloadLink)
       if (callback) {
         callback()
       }
     }
-    img.src = currentPanorama.desktopUrl
+    img.src = currentPanorama.downloadLink
   }
 
   checkAframe () {
