@@ -3,109 +3,112 @@ import {
   push,
   updateObject
 } from '@/common/utils'
-
 import {
   checkPanoramaFormat
 } from '@/common/helpers'
 import { version } from '@/../package.json'
 
+let _el = new WeakMap()
+let _panoramas = new WeakMap()
+let _currentPanorama = new WeakMap()
+let _version = new WeakMap()
+
 class CommonViewer {
-  constructor () {
-    let _el = null
-    let _panoramas = []
-    let _currentPanorama = {}
-    let _version = ''
+  init (options) {
+    this.setVersion(version)
+    this.initEl(options.el)
+    this.initPanoramas(options.panoramas)
+    console.log('VRMaker version: ', this.getVersion())
+    _currentPanorama = (options.index !== undefined)
+      ? options.index
+      : options.panoramas[0]
+  }
 
-    this.init = (options) => {
-      this.setVersion(version)
-      this.initEl(options.el)
-      this.initPanoramas(options.panoramas)
-      console.log('VRMaker version: ', this.getVersion())
-      _currentPanorama = (options.index !== undefined)
-        ? options.index
-        : options.panoramas[0]
+  initEl (el) {
+    _el = el
+  }
+
+  initPanoramas (panoramas) {
+    panoramas.map(panorama => checkPanoramaFormat(panorama))
+
+    _panoramas = panoramas
+    this.selectPanorama(panoramas[0].panoramaId)
+  }
+
+  addPanoramas (panoramas) {
+    _panoramas = _panoramas.concat(panoramas)
+  }
+
+  addPanorama (panorama) {
+    _panoramas = push(panorama, _panoramas)
+  }
+
+  updatePanorama (id, payload = {}) {
+    let foundIndex
+    const foundPanorama = _panoramas.find((panorama, index) => {
+      foundIndex = index
+      return panorama.panoramaId === id
+    })
+    if (!foundPanorama) {
+      throw new Error('updatePanorama failed, id can\'t find panorama')
     }
+    const updatedPanorama = updateObject(foundPanorama, payload)
+    const newPanoramas = clone(_panoramas)
+    newPanoramas.splice(foundIndex, 1, updatedPanorama)
+    _panoramas = newPanoramas
+  }
 
-    this.initEl = (el) => {
-      _el = el
-      return this
+  updateCurrentPanorama (payload = {}) {
+    const foundIndex = _panoramas.findIndex(panorama => (
+      panorama.panoramaId === _currentPanorama.panoramaId
+    ))
+    if (!_currentPanorama) {
+      throw new Error('updatePanorama failed, id can\'t find panorama')
     }
+    const updatedPanorama = updateObject(_currentPanorama, payload)
+    _currentPanorama = updatedPanorama
+    const newPanoramas = clone(_panoramas)
+    newPanoramas.splice(foundIndex, 1, updatedPanorama)
+    _panoramas = newPanoramas
+  }
 
-    this.initPanoramas = (panoramas) => {
-      panoramas.map(panorama => checkPanoramaFormat(panorama))
+  removePanorama (id) {
+    const filteredPanoramas = _panoramas.filter(panorama => (
+      panorama.panoramaId !== id
+    ))
+    _panoramas = clone(filteredPanoramas)
+  }
 
-      _panoramas = panoramas
-      this.selectPanorama(panoramas[0].panoramaId)
-      return this
+  selectPanorama (id) {
+    if (!id) {
+      throw new Error('selectPanorama id is required')
     }
-
-    this.addPanoramas = (panoramas) => {
-      _panoramas = _panoramas.concat(panoramas)
-      return this
+    const foundPanorama = _panoramas.find(panorama => panorama.panoramaId === id)
+    if (!foundPanorama) {
+      throw new Error('Panorama is not found by your id')
     }
+    _currentPanorama = foundPanorama
+    return _currentPanorama
+  }
 
-    this.addPanorama = (panorama) => {
-      _panoramas = push(panorama, _panoramas)
-      return this
-    }
+  getEl () {
+    return _el
+  }
 
-    this.updatePanorama = (id, payload = {}) => {
-      let foundIndex
-      const foundPanorama = _panoramas.find((panorama, index) => {
-        foundIndex = index
-        return panorama.panoramaId === id
-      })
-      if (!foundPanorama) {
-        throw new Error('updatePanorama failed, id can\'t find panorama')
-      }
-      const updatedPanorama = updateObject(foundPanorama, payload)
-      const newPanoramas = clone(_panoramas)
-      newPanoramas.splice(foundIndex, 1, updatedPanorama)
-      _panoramas = newPanoramas
-    }
+  getPanoramas () {
+    return clone(_panoramas)
+  }
 
-    this.updateCurrentPanorama = (payload = {}) => {
-      const foundIndex = _panoramas.findIndex(panorama => (
-        panorama.panoramaId === _currentPanorama.panoramaId
-      ))
-      if (!_currentPanorama) {
-        throw new Error('updatePanorama failed, id can\'t find panorama')
-      }
-      const updatedPanorama = updateObject(_currentPanorama, payload)
-      _currentPanorama = updatedPanorama
-      const newPanoramas = clone(_panoramas)
-      newPanoramas.splice(foundIndex, 1, updatedPanorama)
-      _panoramas = newPanoramas
-    }
+  getCurrentPanorama () {
+    return clone(_currentPanorama)
+  }
 
-    this.removePanorama = (id) => {
-      const filteredPanoramas = _panoramas.filter(panorama => (
-        panorama.panoramaId !== id
-      ))
-      _panoramas = clone(filteredPanoramas)
-    }
+  getVersion () {
+    return _version
+  }
 
-    this.selectPanorama = (id) => {
-      if (!id) {
-        throw new Error('selectPanorama id is required')
-      }
-      const foundPanorama = _panoramas.find(panorama => panorama.panoramaId === id)
-      if (!foundPanorama) {
-        throw new Error('Panorama is not found by your id')
-      }
-      _currentPanorama = foundPanorama
-      return _currentPanorama
-    }
-
-    this.getEl = () => _el
-    this.getPanoramas = () => clone(_panoramas)
-    this.getCurrentPanorama = () => clone(_currentPanorama)
-
-    this.setVersion = (version) => {
-      _version = version
-    }
-
-    this.getVersion = () => _version
+  setVersion (version) {
+    _version = version
   }
 }
 
