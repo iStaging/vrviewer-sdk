@@ -8,7 +8,7 @@ VRMaker js sdk help you build and edit your 360 panorama solution more easily by
 - viewer
   - AframeViewer
   - KrpanoViewer
-- panorama (need your server communicate with vrmaker backend api - need your server communicate with vrmaker backend api)
+- panorama (need your server communicate with vrmaker backend api - need your server communicate with vrmaker backend api - panding)
   - cubemap
   - auto hotspot
 - marker (need your server communicate with vrmaker backend api - panding)
@@ -24,6 +24,42 @@ npm install
 ```
 
 ## How to use
+
+### ES6:
+
+``` bash
+import VRMaker from 'vrmaker'
+
+// init krpano viewer (recommended)
+new VRMaker.krpanoViewer()
+...
+
+// init aframe viewer
+new VRMaker.AframeViewer()
+...
+
+// check more in documation
+```
+
+### Use cdn:
+
+``` bash
+// include script
+<script src="https://www.istaging.com/sdk/vrmaker.js">
+
+// init krpano viewer (recommended)
+new VRMaker.krpanoViewer()
+...
+
+// init aframe viewer
+new VRMaker.AframeViewer()
+...
+
+// check more in documation
+```
+
+
+## Work with vrmaker backend server
 Use node express sample server to get panoramas from vrmaker backend server api and init it by krpano or aframe.
 Check in the examples folder.
 
