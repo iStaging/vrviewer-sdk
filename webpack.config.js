@@ -6,7 +6,10 @@ function resolve (dir) {
 }
 
 module.exports = {
-  entry: './dev/index.js',
+  entry: [
+    './dev/aframe.js',
+    './dev/krpano.js'
+  ],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',

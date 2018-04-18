@@ -1,5 +1,5 @@
 import { clone } from '@/common/utils'
-import krpanoConstants from '@/krpano/krpano-constants'
+import krpanoConstants from '@/krpanoViewer/krpano-constants'
 
 class KrpanoAutoRotate {
   constructor () {

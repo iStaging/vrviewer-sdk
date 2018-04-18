@@ -8,28 +8,24 @@ import {
   threeJsXml,
   contextMenuXml,
   gyroMessageXml
-} from '@/krpano/xml/plugins'
-import krpanoHelpers from '@/krpano/krpano-helpers'
-import krpanoConstants from '@/krpano/krpano-constants'
-import getStylesXml from '@/krpano/xml/styles'
-import getLogoTripodXml from '@/krpano/xml/tripod'
-import eventsXml from '@/krpano/xml/events'
-import getScenesXml from '@/krpano/xml/scenes'
-import getActionsXml from '@/krpano/xml/actions'
+} from '@/krpanoViewer/xml/plugins'
+import krpanoHelpers from '@/krpanoViewer/krpano-helpers'
+import krpanoConstants from '@/krpanoViewer/krpano-constants'
+import getStylesXml from '@/krpanoViewer/xml/styles'
+import getLogoTripodXml from '@/krpanoViewer/xml/tripod'
+import eventsXml from '@/krpanoViewer/xml/events'
+import getScenesXml from '@/krpanoViewer/xml/scenes'
+import getActionsXml from '@/krpanoViewer/xml/actions'
 import CommonViewer from '@/common/common-viewer'
-import KrpanoAutoRotate from '@/krpano/extends/auto-rotate'
-import KrpanoGyro from '@/krpano/extends/gyro'
-import KrpanoTripod from '@/krpano/extends/tripod'
-import KrpanoBasic from '@/krpano/extends/basic'
-import KrpanoInitView from '@/krpano/extends/init-view'
-import KrpanoLoadingPanorama from '@/krpano/extends/loading-panorama'
+import KrpanoAutoRotate from '@/krpanoViewer/extends/auto-rotate'
+import KrpanoGyro from '@/krpanoViewer/extends/gyro'
+import KrpanoTripod from '@/krpanoViewer/extends/tripod'
+import KrpanoBasic from '@/krpanoViewer/extends/basic'
+import KrpanoInitView from '@/krpanoViewer/extends/init-view'
+import KrpanoLoadingPanorama from '@/krpanoViewer/extends/loading-panorama'
 import classes from 'extends-classes'
 
-class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoBasic, KrpanoInitView, KrpanoLoadingPanorama) {
-  constructor () {
-    super(...arguments)
-  }
-
+class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoBasic, KrpanoInitView, KrpanoLoadingPanorama) {
   generateKrpano (config) {
     const { embedpano, removepano } = window
     if (!(embedpano && removepano)) {
@@ -115,4 +111,4 @@ class Krpano extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoT
   }
 }
 
-export default Krpano
+export default KrpanoViewer

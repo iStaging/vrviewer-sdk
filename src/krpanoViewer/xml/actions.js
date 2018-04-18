@@ -1,7 +1,7 @@
-import { markerAlpha } from '@/krpano/xml/common'
+import { markerAlpha } from '@/krpanoViewer/xml/common'
 import { isRtl } from '@/common/helpers'
 import { getIEVersion } from '@/common/utils'
-import krpanoConstants from '@/krpano/krpano-constants'
+import krpanoConstants from '@/krpanoViewer/krpano-constants'
 
 const getActionsXml = function (panoramas, startIndex = 0) {
   try {

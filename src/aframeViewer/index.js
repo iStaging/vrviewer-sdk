@@ -22,6 +22,7 @@ class AframeViewer extends CommonViewer {
 
     // a-sky
     aSkyEl.setAttribute('src', downloadLink)
+    aSceneEl.setAttribute('embedded', '')
     aSceneEl.appendChild(aSkyEl)
     el.appendChild(aSceneEl)
 

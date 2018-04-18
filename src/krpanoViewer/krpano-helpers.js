@@ -1,6 +1,6 @@
 import { isFunction } from '@/common/utils'
-import getHooks from '@/krpano/hooks'
-import krpanoConstants from '@/krpano/krpano-constants'
+import getHooks from '@/krpanoViewer/hooks'
+import krpanoConstants from '@/krpanoViewer/krpano-constants'
 
 // Note: all function should use by .call(this)
 const krpanoHelpers = {

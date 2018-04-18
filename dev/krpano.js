@@ -1,6 +1,6 @@
 import '@/'
 
-// testus: aaa9a22a-7da1-4d97-9ef2-1ecc653e512c
+// dev test data
 const panoramas = [{
   'panoramaName': 'name01',
   'downloadLink': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
@@ -23,28 +23,15 @@ const panoramas = [{
   ]
 }]
 
-/* eslint-disable */
-function initAframe () {
-  console.log(VRMaker)
-  const aframeViewer = new VRMaker.AframeViewer()
+// console.log(VRMaker)
 
-  aframeViewer.init({
-    el: document.getElementById('vrmaker'),
-    panoramas
-  })
-  aframeViewer.generateAframe()
-
-  setTimeout(() => {
-    aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
-      console.log('loaded')
-    })
-  }, 1000)
-}
-
+// vrmaker viewer init sample code - krpano
 function initKrpano () {
-  window.Krpano =  new VRMaker.Krpano()
-  Krpano.init({
-    el: document.querySelector('#vrmaker'),
+  // new KrpanoViewer
+  var krpanoViewer =  new VRMaker.KrpanoViewer()
+
+  krpanoViewer.init({
+    el: document.querySelector('#vrmaker-krpano'),
     panoramas
   })
 
@@ -85,35 +72,28 @@ function initKrpano () {
     }
   }
 
-  Krpano.generateKrpano(config)
-  // console.log(Krpano.getPanoramas())
-  // Krpano.updatePanorama('782949e8-c37a-4171-a004-54c76937135c', { foo: 'bar' })
+  krpanoViewer.generateKrpano(config)
 
-  // window.setTimeout(() => {
-  //   console.log('enter vr mode')
-  //   Krpano.toggleVRMode(true)
-  // }, 3000)
-
-  // window.setTimeout(() => {
-  //   console.log('exit vr mode')
-  //   Krpano.toggleVRMode(false)
-  // }, 8000)
-
+  // change panorama function
   window.setTimeout(() => {
     console.log('change panorama')
-    Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
+    krpanoViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
   }, 3500)
 
   window.setTimeout(() => {
     console.log('remove krpano')
-    Krpano.destroy()
+    krpanoViewer.destroy()
   }, 7000)
 
   window.setTimeout(() => {
     console.log('generate pano again')
-    Krpano.generateKrpano()
+    krpanoViewer.generateKrpano()
   }, 9500)
+
+  // enter krpano vr mode by custom button
+  document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
+    krpanoViewer.toggleVRMode(true)
+  });
 }
 
-// initAframe()
 initKrpano()

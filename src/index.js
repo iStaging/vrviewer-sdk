@@ -1,9 +1,9 @@
-import Krpano from '@/krpano/index'
+import KrpanoViewer from '@/krpanoViewer'
 import AframeViewer from '@/aframeViewer'
 
 const VRMaker = {
   AframeViewer,
-  Krpano
+  KrpanoViewer
 }
 
 window.VRMaker = VRMaker

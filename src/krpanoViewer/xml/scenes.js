@@ -7,7 +7,7 @@ import {
 // import {
 //   isEmpty
 // } from '@/common/utils'
-import krpanoConstants from '@/krpano/krpano-constants'
+import krpanoConstants from '@/krpanoViewer/krpano-constants'
 // import getMarkerMemoXml from './marker-memo'
 // import getMarkerPointXml from './marker-point'
 // import getMarkerTagXml from './marker-tag'

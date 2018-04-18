@@ -13,19 +13,42 @@
         position: relative;
         width: 100%;
         height: 100%;
+        display: flex;
       }
 
       .container {
         position: relative;
-        width: 100%;
+        width: 50%;
         height: 100%;
         background-color: #fffdfd;
+      }
+
+      #vrmaker-aframe, #vrmaker-krpano {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .button-section {
+        position: absolute;
+        top: 20px;
+        right: 20px;
       }
     </style>
   </head>
   <body>
-    <div id="vrmaker" class="container"></div>
+    <div class="container">
+      <div id="vrmaker-aframe"></div>
+      <div class="button-section">
+        <button type="button" id="enter-aframe-vrmode">Enter VR</button>
+      </div>
+    </div>
+    <div class="container">
+      <div id="vrmaker-krpano"></div>
+      <div class="button-section">
+        <button type="button" id="enter-krpano-vrmode">Enter VR</button>
+      </div>
+    </div>
     <script type="text/javascript" src="../dist/vrmaker.js"></script>
-    <button type="button" onclick="Krpano.toggleVRMode(true)">Enter VR</button>
   </body>
 </html>
