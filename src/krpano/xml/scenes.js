@@ -56,15 +56,15 @@ const getScenesXml = function (panoramas, startIndex) {
 
     if (index === startIndex) {
       // for planet view init look at
-      startupScene = `<scene name="first_panorama_${panorama.objectId}" isTopLogo="${panorama.isTopLogo}">
+      startupScene = `<scene name="first_panorama_${panorama.panoramaId}" isTopLogo="${panorama.isTopLogo}">
     <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoConstants.getKrpanoXOffset()}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${krpanoConstants.getDefaultFov()}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
   ${(() => {
         if (panorama.cubemapReady) {
-          return `<preview url="${panorama.cubemapPreivewUrl ? xmlUrlString(panorama.cubemapPreivewUrl) : ''}" />
-<image><cube url="${panorama.cubemapUrl ? xmlUrlString(panorama.cubemapUrl) : ''}" /></image>`
+          return `<preview url="${panorama.cubemapLinks[0] ? xmlUrlString(panorama.cubemapLinks[0]) : ''}" />
+<image><cube url="${panorama.cubemapLinks[1] ? xmlUrlString(panorama.cubemapLinks[1]) : ''}" /></image>`
         } else {
-          return `<image><sphere url="${panorama.desktopUrl ? xmlUrlString(panorama.desktopUrl) : ''}" /></image>`
+          return `<image><sphere url="${panorama.downloadLink ? xmlUrlString(panorama.downloadLink) : ''}" /></image>`
         }
       })()}
 ${hotspot}</scene>`
@@ -77,15 +77,15 @@ ${hotspot}</scene>`
 
 const getSceneXml = function (panorama, hotspot) {
   let sceneXml = ''
-  sceneXml += `<scene name="panorama_${panorama.objectId}" title="${xmlString(panorama.name)}" objectId="${panorama.objectId}" isTopLogo="${panorama.isTopLogo}">
+  sceneXml += `<scene name="panorama_${panorama.panoramaId}" title="${xmlString(panorama.name)}" panoramaId="${panorama.panoramaId}" isTopLogo="${panorama.isTopLogo}">
     <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoConstants.getKrpanoXOffset()}" vlookat="0" fovtype="MFOV" fov="${krpanoConstants.getDefaultFov()}" fovmin="30" fovmax="${krpanoConstants.getDefaultFov()}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
     ${(() => {
     if (panorama.cubemapReady) {
-      return `<preview url="${panorama.cubemapPreivewUrl ? xmlUrlString(panorama.cubemapPreivewUrl) : ''}" />
-<image><cube url="${panorama.cubemapUrl ? xmlUrlString(panorama.cubemapUrl) : ''}" /></image>`
+      return `<preview url="${panorama.cubemapLinks[0] ? xmlUrlString(panorama.cubemapLinks[0]) : ''}" />
+<image><cube url="${panorama.cubemapLinks[1] ? xmlUrlString(panorama.cubemapLinks[1]) : ''}" /></image>`
     } else {
-      return `<image><sphere url="${panorama.desktopUrl ? xmlUrlString(panorama.desktopUrl) : ''}" /></image>`
+      return `<image><sphere url="${panorama.downloadLink ? xmlUrlString(panorama.downloadLink) : ''}" /></image>`
     }
   })()}
     ${hotspot}</scene>`

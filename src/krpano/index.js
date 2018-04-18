@@ -1,8 +1,6 @@
 import {
-  clone,
   getIEVersion,
-  isEmpty,
-  isFunction
+  isEmpty
 } from '@/common/utils'
 import {
   webVRXml,
@@ -18,7 +16,6 @@ import getLogoTripodXml from '@/krpano/xml/tripod'
 import eventsXml from '@/krpano/xml/events'
 import getScenesXml from '@/krpano/xml/scenes'
 import getActionsXml from '@/krpano/xml/actions'
-import getHooks from '@/krpano/hooks'
 import CommonViewer from '@/common/common-viewer'
 import KrpanoAutoRotate from '@/krpano/extends/auto-rotate'
 import KrpanoGyro from '@/krpano/extends/gyro'

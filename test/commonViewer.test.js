@@ -12,7 +12,7 @@ let aframeViewer
 beforeEach(() => {
   htmlEl = document.createElement('div')
   aframeViewer = new VRMaker.AframeViewer()
-  panorama = { objectId: '1' }
+  panorama = { panoramaId: '1' }
   panoramas = [panorama]
   elId = 'vrmaker-aframe'
   htmlEl.id = elId
@@ -43,14 +43,14 @@ describe('commonViewer', () => {
 
   it('addPanoramas', () => {
     const oldPanoramas = clone(panoramas)
-    aframeViewer.addPanoramas([{ objectId: '2' }])
+    aframeViewer.addPanoramas([{ panoramaId: '2' }])
     expect(aframeViewer.getPanoramas()).not.toBe(oldPanoramas)
   })
 
   it('selectPanorama', () => {
-    panoramas.push({ objectId: '2' })
-    aframeViewer.selectPanorama(panoramas[1].objectId)
-    expect(aframeViewer.getCurrentPanorama().objectId).toBe(panoramas[1].objectId)
+    panoramas.push({ panoramaId: '2' })
+    aframeViewer.selectPanorama(panoramas[1].panoramaId)
+    expect(aframeViewer.getCurrentPanorama().panoramaId).toBe(panoramas[1].panoramaId)
   })
 
   it('getEl', () => {

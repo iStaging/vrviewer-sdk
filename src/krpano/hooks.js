@@ -19,8 +19,8 @@ const getHooks = vm => {
       const currentPanorama = vm.getCurrentPanorama()
       const gyroSettings = vm.getGyroSettings()
       const loadingSettings = vm.getLoadingSettings()
-      const oldIndex = panoramas.findIndex(panorama => panorama.objectId === currentPanorama.objectId)
-      const newIndex = panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
+      const oldIndex = panoramas.findIndex(panorama => panorama.panoramaId === currentPanorama.panoramaId)
+      const newIndex = panoramas.findIndex(panorama => panorama.panoramaId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = panoramas[newIndex]
         const oldHLookat = krpanoConstants.getKrpanoLookAtH()
@@ -35,7 +35,7 @@ const getHooks = vm => {
             loadingSettings.onLoadingPanoramaFinish()
           }
         } else {
-          loadImage(foundPanorama.desktopUrl, () => {
+          loadImage(foundPanorama.downloadLink, () => {
             if (isFunction(loadingSettings.onLoadingPanoramaFinish)) {
               loadingSettings.onLoadingPanoramaFinish()
             }
@@ -81,7 +81,7 @@ const getHooks = vm => {
       vm.handleShowPopup(index)
     },
     exitVrMode () {
-      vm.exitVrMode()
+      vm.toggleVRMode(false)
     },
     clickKrpanoScreen () {
       // vm.clickKrpanoScreen()

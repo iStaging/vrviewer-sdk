@@ -20,10 +20,10 @@ const getActionsXml = function (panoramas, startIndex = 0) {
   })()}
   ${(() => {
     if (showPlanetView) {
-      return `loadscene(first_panorama_${panoramas[startIndex].objectId});
+      return `loadscene(first_panorama_${panoramas[startIndex].panoramaId});
       planet_view();`
     }
-    return `loadscene(panorama_${panoramas[startIndex].objectId});`
+    return `loadscene(panorama_${panoramas[startIndex].panoramaId});`
   })()}
   set(plugin[gyro].enabled, false);
 </action>
@@ -59,7 +59,13 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="auto_rotate">
 <!-- start auto rotate -->
-  tween(view.hlookat, calc(view.hlookat - 360), ${autoRotateSettings.rotateDuration / 1000}, linear, auto_rotate());
+  ${(() => {
+    let direction = '-'
+    if (autoRotateSettings.revert) {
+      direction = '+'
+    }
+    return `tween(view.hlookat, calc(view.hlookat ${direction} 360), ${autoRotateSettings.rotateDuration / 1000}, linear, auto_rotate());`
+  })()}
 </action>
 
 <action name="stop_auto_rotate">
@@ -70,7 +76,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 <action name="prepare_change_scene">
 <!-- 儲存當前仰角 All javascript call this action to trigger change scene here first
   %1 = next scene name
-  %2 = next scene objectId
+  %2 = next scene panoramaId
   %3 = selectedMethod
   %4 = next scene hlookat offset (for marker)
   %5 = is clicked from marker point
@@ -198,7 +204,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConsta
     if(newsceneindex GT lastsceneindex, set(newsceneindex, 1));
     def(selectedMethod, string, 'VrModePrev');
     if(%1 == 1, set(selectedMethod, 'VrModeNext'));
-    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].objectId), get(selectedMethod), 0);
+    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].panoramaId), get(selectedMethod), 0);
   );
 </action>
 
@@ -259,11 +265,10 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConsta
     krpanoVrModeObj.vrModeShouldHide.forEach(item => { result += `set(hotspot[${item}].visible,false);` })
     return result
   })()}
-  jscall(calc('krpano.hooks.stopAutoRotate()')););
+  jscall(calc('krpano.hooks.stopAutoRotate()'));
   webvr_showbuttons();
   webvr_hide_all_non_vr_layers();
   if(webvr.isfake, webvr_show_fakemode_info(true););
-  jscall(calc('krpano.hooks.stopAutoRotateInVrMode()')););
 </action>
 
 <action name="webvr_onexitvr">
@@ -279,7 +284,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConsta
   tween(layer[webvr_setupbutton].alpha,0);
   webvr_show_fakemode_info(false);
   webvr_restore_layers();
-  jscall(calc('krpano.hooks.startAutoRotate()')););
+  jscall(calc('krpano.hooks.startAutoRotate()'));
 </action>
 
 <action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[

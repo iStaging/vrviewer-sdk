@@ -80,12 +80,12 @@ const getStylesXml = function (panoramas) {
     }
     style += `<hotspot name="vr_panorama_${index}" style="vr_panorama_style" zorder="6" url="${xmlUrlString(panorama.thumbnail)}" vr_timeout="2000"
 ath="${vrThumbAth}" oy="${oy}"
-width="${vrThumbWidth}" height="${vrThumbWidth / 2}" onclick="prepare_change_scene(panorama_${panorama.objectId}, ${panorama.objectId}, VrModeThumbnail)" />
+width="${vrThumbWidth}" height="${vrThumbWidth / 2}" onclick="prepare_change_scene(panorama_${panorama.panoramaId}, ${panorama.panoramaId}, VrModeThumbnail)" />
 <hotspot name="vr_panorama_text_${index}" css="font-family:Arial; color:#fff; font-size:12px; text-align: center; line-height: 18px;"
 type="text" html="${xmlString(krpanoAutoBlank(krpanoEnterString(panorama.customCategory || panorama.category), 10, true))}" vr_timeout="2000"
 style="vr_panorama_style" bgcolor="0x000000" bgalpha=".8" zorder="7"
 ath="${vrThumbAth}" oy="${oy + 50}"
-width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${panorama.objectId}, ${panorama.objectId}, 'VrModeThumbnailText')" />`
+width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${panorama.panoramaId}, ${panorama.panoramaId}, 'VrModeThumbnailText')" />`
 
     // load all images from markers
     // if (panorama.markers && panorama.markers.length) {

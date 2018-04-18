@@ -26,7 +26,10 @@ router.get('/panoCollection', function mainHandler (req, res) {
       panoramaId: 'id01',
       panoramaIndex: 0,
       cubemapReady: true,
-      cubemapLinks: ['cubemap-url1.jpg,', 'cubemap-url2.jpg', 'cubemap-url3.jpg'],
+      cubemapLinks: [
+        'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_782949e8-c37a-4171-a004-54c76937135c.jpg',
+        'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_782949e8-c37a-4171-a004-54c76937135c.jpg'
+      ]
     }
   ]
   res.status(HTTPStatus.OK).json(response);
