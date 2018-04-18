@@ -1,3 +1,5 @@
+version: 1.0.0
+
 # Overview
 
 ### What is VR Marker SDK?
