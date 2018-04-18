@@ -72,12 +72,6 @@ class AframeViewer extends CommonViewer {
     }
   }
 
-  exitVRMode () {
-    const aSceneEl = document.getElementsByTagName('a-scene')[0]
-    aSceneEl.exitVR()
-    this.enterFulScreen()
-  }
-
   enterFullScreen () {
     if (document.requestFullscreen) {
       document.requestFullscreen()
