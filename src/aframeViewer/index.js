@@ -62,28 +62,44 @@ class AframeViewer extends CommonViewer {
     }
   }
 
-  enterVRMode () {
+  toggleVRMode (boolean) {
     const aSceneEl = document.getElementsByTagName('a-scene')[0]
-    aSceneEl.enterVR()
-    this.enterFulScreen()
+    if (boolean) {
+      aSceneEl.enterVR()
+      this.enterFulScreen()
+    } else {
+      aSceneEl.exitVR()
+      this.exitFullScreen()
+    }
   }
 
-  exitVRMode () {
-    const aSceneEl = document.getElementsByTagName('a-scene')[0]
-    aSceneEl.exitVR()
-    this.enterFulScreen()
-  }
-
-  enterFulScreen () {
+  enterFullScreen () {
     if (document.requestFullscreen) {
       document.requestFullscreen()
-    } else if (document.msRequestFullscreen) {
-      document.msRequestFullscreen()
-    } else if (document.mozRequestFullScreen) {
-      document.mozRequestFullScreen()
     } else if (document.webkitRequestFullscreen) {
       document.webkitRequestFullscreen()
+    } else if (document.mozRequestFullScreen) {
+      document.mozRequestFullScreen()
+    } else if (document.msRequestFullscreen) {
+      document.msRequestFullscreen()
     }
+  }
+
+  exitFullScreen () {
+    if (document.exitFullscreen) {
+      document.exitFullscreen()
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen()
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen()
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen()
+    }
+  }
+
+  destroy () {
+    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    aSceneEl.parentNode.removeChild(aSceneEl)
   }
 }
 
