@@ -36,7 +36,8 @@ function initAframe () {
 
   setTimeout(() => {
     aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
-      console.log('loaded')
+      console.log('Loaded.')
+      aframeViewer.toggleVRMode(false)
     })
   }, 1000)
 }
