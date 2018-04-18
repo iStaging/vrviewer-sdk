@@ -2,8 +2,7 @@ import {
   countText
 } from '@/common/utils'
 import {
-  isRtl,
-  krpanoAutoBlank,
+  rpanoAutoBlank,
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
@@ -50,23 +49,12 @@ const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon,
       oy: 40
     }
   }
-  if (isRtl()) {
-    tagInfoPosition.photo.ox = 100
-  }
   if (marker.photo) {
-    if (isRtl()) {
-      tagInfoPosition.photo.ox = 170
-      tagInfoPosition.title.ox = -80
-      tagInfoPosition.price.ox = -80
-      tagInfoPosition.description.ox = -80
-      tagInfoPosition.descriptionWithoutPrice.ox = -80
-    } else {
-      tagInfoPosition.photo.ox = -170
-      tagInfoPosition.title.ox = 80
-      tagInfoPosition.price.ox = 80
-      tagInfoPosition.description.ox = 80
-      tagInfoPosition.descriptionWithoutPrice.ox = 80
-    }
+    tagInfoPosition.photo.ox = -170
+    tagInfoPosition.title.ox = 80
+    tagInfoPosition.price.ox = 80
+    tagInfoPosition.description.ox = 80
+    tagInfoPosition.descriptionWithoutPrice.ox = 80
     tagInfoPosition.bg.width = 520
     tagInfoPosition.photo.oy = -20
     tagInfoPosition.title.oy = -65
@@ -96,19 +84,11 @@ const getMarkerTagXml = (marker, ath, atv, category, hotspotIcon, useCustomIcon,
       zorder="3"
       enabled="false" />`
   } else {
-    if (isRtl()) {
-      tagInfoPosition.bg.ox = -10
-      tagInfoPosition.title.ox = -10
-      tagInfoPosition.price.ox = -10
-      tagInfoPosition.description.ox = -10
-      tagInfoPosition.descriptionWithoutPrice.ox = -10
-    } else {
-      tagInfoPosition.bg.ox = 10
-      tagInfoPosition.title.ox = 10
-      tagInfoPosition.price.ox = 10
-      tagInfoPosition.description.ox = 10
-      tagInfoPosition.descriptionWithoutPrice.ox = 10
-    }
+    tagInfoPosition.bg.ox = 10
+    tagInfoPosition.title.ox = 10
+    tagInfoPosition.price.ox = 10
+    tagInfoPosition.description.ox = 10
+    tagInfoPosition.descriptionWithoutPrice.ox = 10
     tagInfoPosition.bg.width = 360
     tagInfoPosition.title.oy = -65
     tagInfoPosition.price.oy = -35

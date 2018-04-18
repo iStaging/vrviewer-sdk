@@ -172,5 +172,5 @@ function initKrpano () {
   // }, 10500)
 }
 
-initAframe()
-// initKrpano()
+// initAframe()
+initKrpano()
