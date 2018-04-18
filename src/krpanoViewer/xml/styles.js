@@ -1,5 +1,4 @@
 import {
-  isRtl,
   xmlString,
   xmlUrlString,
   krpanoAutoBlank,
@@ -32,10 +31,6 @@ const markerIconSize = 'width="51.2" height="51.2"'
 const basicStyles = () => {
   let prev = '-1'
   let next = '+1'
-  if (isRtl()) {
-    prev = '+1'
-    next = '-1'
-  }
   return `<style name="link" url="${linkImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="memo" url="${memoImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="point" url="${pointImage}" ${markerIconCommonAttribute} ${markerIconSize} />
@@ -75,9 +70,6 @@ const getStylesXml = function (panoramas) {
     // vr mode thumbnail
     let oy = (-(vrThumbWidth / 2 + 30) * 1.5) + (vrThumbWidth / 2 + 30) * (verticalCount)
     let vrThumbAth = krpanoConstants.getVrThumbAth() * horizontalCount
-    if (isRtl()) {
-      vrThumbAth *= -1
-    }
     style += `<hotspot name="vr_panorama_${index}" style="vr_panorama_style" zorder="6" url="${xmlUrlString(panorama.thumbnail)}" vr_timeout="2000"
 ath="${vrThumbAth}" oy="${oy}"
 width="${vrThumbWidth}" height="${vrThumbWidth / 2}" onclick="prepare_change_scene(panorama_${panorama.panoramaId}, ${panorama.panoramaId}, VrModeThumbnail)" />
