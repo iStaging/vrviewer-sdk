@@ -1,33 +1,45 @@
-version: 1.0.0
+# VRMaker
 
-# Overview
+VRMaker js sdk help you build and edit your 360 panorama solution more easily by aframe or krpano.
 
-### What is VR Marker SDK?
-VR Marker is a SDK that lets you create your own 360 and virtual reality tours. It was created and it's maintained by iStaging. It requires minimum configuration.
+## documation
+[vrmaker js sdk documation](https://istaging.gitbook.io/vr-marker-sdk/)
 
----
+- viewer
+  - AframeViewer
+  - KrpanoViewer
+- panorama (need your server communicate with vrmaker backend api - need your server communicate with vrmaker backend api)
+  - cubemap
+  - auto hotspot
+- marker (need your server communicate with vrmaker backend api - panding)
+  - point
+  - tag
 
-### Features
-Create your own tours: Generate 360 and VR tours using your own content.
-Upload your own panoramas: Upload your own panoramas with our SDK. You can even create cubemaps.
-Auto hotspots:  Your panoramas can auto-generate relations between each other (via hotspots) to allow visitors to navigate between them. (Pending.)
-Other editing capabilities: You can modify hotspots, markers, tags, and other content and see the changes in your tour. (Pending.)
+## installation
 
----
-
-### Build Setup
+Install dependencies by npm or yarn
 
 ``` bash
-# install dependencies
-yarn
-
-# serve with hot reload at localhost:8080
-yarn dev
-
-# build for production with minification, it will output a file in dist/vrmaker.js
-yarn build
+npm install
 ```
 
----
+## How to use
+Use node express sample server to get panoramas from vrmaker backend server api and init it by krpano or aframe.
+Check in the examples folder.
 
-More documents [here](https://istaging.gitbook.io/vr-marker-sdk/overview "overview")
+``` bash
+npm start
+```
+
+## If you only want to use vrmaker 360 viewer..
+You can also use your own data without istaging api to create 360 viewer. (not recommended)
+Check in the dev folder.
+
+``` bash
+npm run dev
+```
+
+# Thanks
+
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
