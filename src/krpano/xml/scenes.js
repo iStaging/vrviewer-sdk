@@ -64,7 +64,7 @@ const getScenesXml = function (panoramas, startIndex) {
           return `<preview url="${panorama.cubemapLinks[0] ? xmlUrlString(panorama.cubemapLinks[0]) : ''}" />
 <image><cube url="${panorama.cubemapLinks[1] ? xmlUrlString(panorama.cubemapLinks[1]) : ''}" /></image>`
         } else {
-          return `<image><sphere url="${panorama.desktopUrl ? xmlUrlString(panorama.desktopUrl) : ''}" /></image>`
+          return `<image><sphere url="${panorama.downloadLink ? xmlUrlString(panorama.downloadLink) : ''}" /></image>`
         }
       })()}
 ${hotspot}</scene>`
@@ -85,7 +85,7 @@ const getSceneXml = function (panorama, hotspot) {
       return `<preview url="${panorama.cubemapLinks[0] ? xmlUrlString(panorama.cubemapLinks[0]) : ''}" />
 <image><cube url="${panorama.cubemapLinks[1] ? xmlUrlString(panorama.cubemapLinks[1]) : ''}" /></image>`
     } else {
-      return `<image><sphere url="${panorama.desktopUrl ? xmlUrlString(panorama.desktopUrl) : ''}" /></image>`
+      return `<image><sphere url="${panorama.downloadLink ? xmlUrlString(panorama.downloadLink) : ''}" /></image>`
     }
   })()}
     ${hotspot}</scene>`

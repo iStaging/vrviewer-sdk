@@ -35,7 +35,7 @@ const getHooks = vm => {
             loadingSettings.onLoadingPanoramaFinish()
           }
         } else {
-          loadImage(foundPanorama.desktopUrl, () => {
+          loadImage(foundPanorama.downloadLink, () => {
             if (isFunction(loadingSettings.onLoadingPanoramaFinish)) {
               loadingSettings.onLoadingPanoramaFinish()
             }

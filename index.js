@@ -98,20 +98,20 @@ function initKrpano () {
   //   Krpano.toggleVRMode(false)
   // }, 8000)
 
-  // window.setTimeout(() => {
-  //   console.log('change panorama')
-  //   Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
-  // }, 3500)
-  //
-  // window.setTimeout(() => {
-  //   console.log('remove krpano')
-  //   Krpano.destroy()
-  // }, 7000)
-  //
-  // window.setTimeout(() => {
-  //   console.log('generate pano again')
-  //   Krpano.generateKrpano()
-  // }, 10500)
+  window.setTimeout(() => {
+    console.log('change panorama')
+    Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
+  }, 3500)
+
+  window.setTimeout(() => {
+    console.log('remove krpano')
+    Krpano.destroy()
+  }, 7000)
+
+  window.setTimeout(() => {
+    console.log('generate pano again')
+    Krpano.generateKrpano()
+  }, 9500)
 }
 
 // initAframe()
