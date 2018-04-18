@@ -34,6 +34,7 @@ function initAframe () {
     el: document.getElementById('vrmaker-aframe'),
     panoramas
   })
+  // generate aframe viewer
   aframeViewer.generateAframe()
 
   // change panorama function
@@ -43,8 +44,21 @@ function initAframe () {
     })
   }, 3000)
 
+  // remove aframe viewer
+  window.setTimeout(() => {
+    console.log('remove aframe viewer')
+    aframeViewer.destroy()
+  }, 7000)
+
+  // generate aframe viewer again
+  window.setTimeout(() => {
+    console.log('generate aframe pano again')
+    aframeViewer.generateAframe()
+  }, 9500)
+
   // enter aframe vr mode by custom button
   document.getElementById("enter-aframe-vrmode").addEventListener("click", function() {
+    console.log('toggle aframe vr mode')
     aframeViewer.toggleVRMode(true)
   });
 }

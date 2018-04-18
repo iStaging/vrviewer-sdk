@@ -72,6 +72,7 @@ function initKrpano () {
     }
   }
 
+  // generate krpano viewer
   krpanoViewer.generateKrpano(config)
 
   // change panorama function
@@ -80,18 +81,21 @@ function initKrpano () {
     krpanoViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
   }, 3500)
 
+  // remove krpano viewer
   window.setTimeout(() => {
-    console.log('remove krpano')
+    console.log('remove krpano viewer')
     krpanoViewer.destroy()
   }, 7000)
 
+  // generate krpano viewer again
   window.setTimeout(() => {
-    console.log('generate pano again')
+    console.log('generate krpano pano again')
     krpanoViewer.generateKrpano()
   }, 9500)
 
   // enter krpano vr mode by custom button
   document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
+    console.log('toggle krpano vr mode')
     krpanoViewer.toggleVRMode(true)
   });
 }

@@ -56,17 +56,11 @@ class AframeViewer extends CommonViewer {
     img.src = currentPanorama.downloadLink
   }
 
-  checkAframe () {
-    if (typeof window === 'undefined' || !window.AFRAME) {
-      throw new Error('You need to include aframe script or import it first. Use it before vrmaker.')
-    }
-  }
-
   toggleVRMode (boolean) {
     const aSceneEl = document.getElementsByTagName('a-scene')[0]
     if (boolean) {
       aSceneEl.enterVR()
-      this.enterFulScreen()
+      this.enterFullScreen()
     } else {
       aSceneEl.exitVR()
       this.exitFullScreen()
@@ -100,6 +94,12 @@ class AframeViewer extends CommonViewer {
   destroy () {
     const aSceneEl = document.getElementsByTagName('a-scene')[0]
     aSceneEl.parentNode.removeChild(aSceneEl)
+  }
+
+  checkAframe () {
+    if (typeof window === 'undefined' || !window.AFRAME) {
+      throw new Error('You need to include aframe script or import it first. Use it before vrmaker.')
+    }
   }
 }
 

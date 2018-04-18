@@ -26,6 +26,11 @@ import KrpanoLoadingPanorama from '@/krpanoViewer/extends/loading-panorama'
 import classes from 'extends-classes'
 
 class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoBasic, KrpanoInitView, KrpanoLoadingPanorama) {
+  constructor () {
+    super(...arguments)
+    this.checkKrpano()
+  }
+
   generateKrpano (config) {
     const { embedpano, removepano } = window
     if (!(embedpano && removepano)) {
@@ -107,6 +112,12 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
       krpanoEl.call('WebVR.enterVR();')
     } else {
       krpanoEl.call('WebVR.exitVR();')
+    }
+  }
+
+  checkKrpano () {
+    if (typeof window === 'undefined' || !window.krpanoJS) {
+      throw new Error('You need to include krpanoJS script or import it first. Use it before vrmaker.')
     }
   }
 }
