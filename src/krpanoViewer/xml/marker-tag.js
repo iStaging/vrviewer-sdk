@@ -2,7 +2,7 @@ import {
   countText
 } from '@/common/utils'
 import {
-  rpanoAutoBlank,
+  krpanoAutoBlank,
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
