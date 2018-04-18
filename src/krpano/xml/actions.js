@@ -59,7 +59,13 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="auto_rotate">
 <!-- start auto rotate -->
-  tween(view.hlookat, calc(view.hlookat - 360), ${autoRotateSettings.rotateDuration / 1000}, linear, auto_rotate());
+  ${(() => {
+    let direction = '-'
+    if (autoRotateSettings.revert) {
+      direction = '+'
+    }
+    return `tween(view.hlookat, calc(view.hlookat ${direction} 360), ${autoRotateSettings.rotateDuration / 1000}, linear, auto_rotate());`
+  })()}
 </action>
 
 <action name="stop_auto_rotate">

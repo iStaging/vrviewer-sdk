@@ -9,6 +9,7 @@ class KrpanoAutoRotate {
     }
     let _autoRotateSettings = {
       active: false,
+      revert: false,
       rotateDuration: 200000,
       restartTime: 20000
     }

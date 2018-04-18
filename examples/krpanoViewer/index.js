@@ -35,6 +35,7 @@ Krpano.init({
 Krpano.generateKrpano({
   autoRotateSettings: {
     active: true,
+    revert: false,
     rotateDuration: 200000,
     restartTime: 20000
   },
