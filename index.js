@@ -100,7 +100,7 @@ function initAframe () {
 }
 
 function initKrpano () {
-  const Krpano =  new VRMaker.Krpano()
+  window.Krpano =  new VRMaker.Krpano()
   Krpano.init({
     el: document.querySelector('#vrmaker'),
     panoramas
@@ -146,15 +146,15 @@ function initKrpano () {
   // console.log(Krpano.getPanoramas())
   // Krpano.updatePanorama('782949e8-c37a-4171-a004-54c76937135c', { foo: 'bar' })
 
-  window.setTimeout(() => {
-    console.log('enter vr mode')
-    Krpano.toggleVRMode(true)
-  }, 3000)
+  // window.setTimeout(() => {
+  //   console.log('enter vr mode')
+  //   Krpano.toggleVRMode(true)
+  // }, 3000)
 
-  window.setTimeout(() => {
-    console.log('exit vr mode')
-    Krpano.toggleVRMode(false)
-  }, 8000)
+  // window.setTimeout(() => {
+  //   console.log('exit vr mode')
+  //   Krpano.toggleVRMode(false)
+  // }, 8000)
 
   // window.setTimeout(() => {
   //   console.log('change panorama')
@@ -172,5 +172,5 @@ function initKrpano () {
   // }, 10500)
 }
 
-initAframe()
-// initKrpano()
+// initAframe()
+initKrpano()

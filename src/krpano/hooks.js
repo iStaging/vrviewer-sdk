@@ -81,7 +81,7 @@ const getHooks = vm => {
       vm.handleShowPopup(index)
     },
     exitVrMode () {
-      vm.exitVrMode()
+      vm.toggleVRMode(false)
     },
     clickKrpanoScreen () {
       // vm.clickKrpanoScreen()

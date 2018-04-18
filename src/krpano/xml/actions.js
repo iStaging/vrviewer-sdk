@@ -259,11 +259,10 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConsta
     krpanoVrModeObj.vrModeShouldHide.forEach(item => { result += `set(hotspot[${item}].visible,false);` })
     return result
   })()}
-  jscall(calc('krpano.hooks.stopAutoRotate()')););
+  jscall(calc('krpano.hooks.stopAutoRotate()'));
   webvr_showbuttons();
   webvr_hide_all_non_vr_layers();
   if(webvr.isfake, webvr_show_fakemode_info(true););
-  jscall(calc('krpano.hooks.stopAutoRotateInVrMode()')););
 </action>
 
 <action name="webvr_onexitvr">
@@ -279,7 +278,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${krpanoConsta
   tween(layer[webvr_setupbutton].alpha,0);
   webvr_show_fakemode_info(false);
   webvr_restore_layers();
-  jscall(calc('krpano.hooks.startAutoRotate()')););
+  jscall(calc('krpano.hooks.startAutoRotate()'));
 </action>
 
 <action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
