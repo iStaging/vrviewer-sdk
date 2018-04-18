@@ -1,14 +1,24 @@
-// local demo data
-// var panoramas = [
-//   {
-//     panoramaName: 'name01',
-//     downloadLink: 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
-//     panoramaId: 'id01',
-//     panoramaIndex: 0,
-//     cubemapReady: true,
-//     cubemapLinks: ['cubemap-url1.jpg,', 'cubemap-url2.jpg', 'cubemap-url3.jpg'],
-//   }
-// ]
+const panoramas = [{
+  'panoramaName': 'name01',
+  'downloadLink': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
+  'panoramaId': '0f62e098-b8aa-4a4a-a635-f2243788471f',
+  'panoramaIndex': -25,
+  'cubemapReady': true,
+  'cubemapLinks': [
+    'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg',
+    'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg'
+  ]
+}, {
+  'panoramaName': 'name02',
+  'downloadLink': 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
+  'panoramaId': '782949e8-c37a-4171-a004-54c76937135c',
+  'panoramaIndex': -24,
+  'cubemapReady': true,
+  'cubemapLinks': [
+    'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_782949e8-c37a-4171-a004-54c76937135c.jpg',
+    'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_782949e8-c37a-4171-a004-54c76937135c.jpg'
+  ]
+}]
 /* eslint-disable */
 
 function getPanoCollection () {
@@ -26,7 +36,7 @@ function getPanoCollection () {
 }
 /* eslint-disable */
 
-const Krpano =  new VRMaker.Krpano()
+const Krpano = new VRMaker.KrpanoViewer()
 Krpano.init({
   el: document.querySelector('#vrmaker-krpano'),
   panoramas
@@ -71,5 +81,5 @@ Krpano.generateKrpano({
 
 window.setTimeout(() => {
   console.log('change panorama')
-  Krpano.selectPanorama('782949e8-c37a-4171-a004-54c76937135c')
+  Krpano.changePanorama('782949e8-c37a-4171-a004-54c76937135c')
 }, 3500)
