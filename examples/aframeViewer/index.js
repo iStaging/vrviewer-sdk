@@ -7,14 +7,12 @@ var aframeViewer = new VRMaker.AframeViewer()
 function getPanoCollection () {
   return fetch('/api/panoCollection', {
     method: 'get'
-  })
-  .then(function (response) {
+  }).then(function (response) {
     if (response.status >= 200 && response.status < 300) {
       return response.json()
     }
-  })
-  .catch(function (error) {
-    return error.response.json();
+  }).catch(function (error) {
+    return error.response.json()
   })
 }
 
