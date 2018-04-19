@@ -1,4 +1,4 @@
-import KrpanoLoadingPanorama from '@/krpano/extends/loading-panorama'
+import KrpanoLoadingPanorama from '@/krpanoViewer/extends/loading-panorama'
 
 describe('krpano/extends/loading-panorama.js', () => {
   let loadingSettings = {
