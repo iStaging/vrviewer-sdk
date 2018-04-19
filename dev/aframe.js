@@ -1,9 +1,9 @@
 import '@/'
 
 // dev test data
-const panoramas = [{
+var panoramas = [{
   'panoramaName': 'name01',
-  'downloadLink': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
+  'downloadLink': 'https://storage.googleapis.com/vr-cam-161603.appspot.com/0b76c6f2-7f66-4454-9fb3-3e05bf98f7e7/0013be6e-c70c-42f1-8ccd-7f51b7b82204/panoramas/4f26b89d-4383-4723-be9d-d12fd2c2cef0.jpg',
   'panoramaId': '0f62e098-b8aa-4a4a-a635-f2243788471f',
   'panoramaIndex': -25,
   'cubemapReady': true,
@@ -23,12 +23,11 @@ const panoramas = [{
   ]
 }]
 
-// console.log(VRMaker)
+// new VRMaker aframe viewer
 var aframeViewer = new VRMaker.AframeViewer()
 
-// vrmaker viewer init sample code - aframe
+// init aframe viewer with data
 function initAframe () {
-  // new AframeViewer
   aframeViewer.init({
     el: document.getElementById('vrmaker-aframe'),
     panoramas
@@ -46,8 +45,7 @@ function changePanorama () {
 
 initAframe()
 
-// change panorama function
-setTimeout(changePanorama(), 3000)
+setTimeout(changePanorama, 3000)
 
 // remove aframe viewer
 document.getElementById("remove-aframe-viewer").addEventListener("click", function() {

@@ -1,9 +1,9 @@
 import '@/'
 
 // dev test data
-const panoramas = [{
+var panoramas = [{
   'panoramaName': 'name01',
-  'downloadLink': 'https://vrcam-test-api.istaging.com/api/v1/getresizemapping/Vwz2ielD-desktop',
+  'downloadLink': 'https://storage.googleapis.com/vr-cam-161603.appspot.com/597efad3e330d900662d630d/images/fromImageIO/A2/T_D_6_K_i_e_l_g_A2.jpeg',
   'panoramaId': '0f62e098-b8aa-4a4a-a635-f2243788471f',
   'panoramaIndex': -25,
   'cubemapReady': true,
@@ -23,19 +23,18 @@ const panoramas = [{
   ]
 }]
 
-// console.log(VRMaker)
+// new VRMaker krpano viewer
 var krpanoViewer =  new VRMaker.KrpanoViewer()
 
-// vrmaker viewer init sample code - krpano
+// init krpano viewer with data
 function initKrpano () {
-  // new KrpanoViewer
   krpanoViewer.init({
     el: document.querySelector('#vrmaker-krpano'),
     panoramas
   })
 
   // krpano viewer config
-  const config = {
+  var config = {
     autoRotateSettings: {
       active: true,
       revert: false,
@@ -75,7 +74,7 @@ function initKrpano () {
   krpanoViewer.generateKrpano(config)
 }
 
-// change aframe panorama to viewer
+// change krpano panorama to viewer
 function changePanorama () {
   krpanoViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
     console.log('loaded')
@@ -84,10 +83,7 @@ function changePanorama () {
 
 initKrpano()
 
-// change panorama function
-setTimeout(() => {
-  changePanorama()
-}, 3000)
+setTimeout(changePanorama, 3000)
 
 // remove krpano viewer
 document.getElementById("remove-krpano-viewer").addEventListener("click", function() {
