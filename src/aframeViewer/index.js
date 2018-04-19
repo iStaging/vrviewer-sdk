@@ -11,19 +11,27 @@ class AframeViewer extends CommonViewer {
     const aSkyEl = document.createElement('a-sky')
     const aCameraContainerEl = document.createElement('a-entity')
     const aCameraEl = document.createElement('a-camera')
-    const aAnimation = document.createElement('a-animation')
+    const aAnimationEl = document.createElement('a-animation')
+    const aAssetsEl = document.createElement('a-assets')
+    const imgEl = document.createElement('img')
+    const imgElId = 'panorama-image'
     const el = this.getEl()
     const { downloadLink } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
     let cameraStartRotation
-    console.log('FONCI', config)
 
     this.getCurrentPanorama().panoramaRotation
       ? cameraStartRotation = this.getCurrentPanorama().panoramaRotation
       : cameraStartRotation = {}
 
+    // a-assets
+    imgEl.src = downloadLink
+    imgEl.id = imgElId
+    aAssetsEl.append(imgEl)
+    aSceneEl.append(aAssetsEl)
+
     // a-sky
-    aSkyEl.setAttribute('src', downloadLink)
+    aSkyEl.setAttribute('src', `#${imgElId}`)
     aSceneEl.setAttribute('embedded', '')
     aSceneEl.appendChild(aSkyEl)
     el.appendChild(aSceneEl)
@@ -40,21 +48,21 @@ class AframeViewer extends CommonViewer {
     )
 
     // a-animation
-    aAnimation.setAttribute('attribute', 'rotation')
-    aAnimation.setAttribute('fill', 'forwards')
-    aAnimation.setAttribute('easing', 'linear')
-    aAnimation.setAttribute('dur', '200000')
-    aAnimation.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
-    aAnimation.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
+    aAnimationEl.setAttribute('attribute', 'rotation')
+    aAnimationEl.setAttribute('fill', 'forwards')
+    aAnimationEl.setAttribute('easing', 'linear')
+    aAnimationEl.setAttribute('dur', '200000')
+    aAnimationEl.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
+    aAnimationEl.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
     // aAnimation.setAttribute('from', `0 0 0`)
     // aAnimation.setAttribute('to', `0 360 0`)
-    aAnimation.setAttribute('repeat', 'indefinite')
-    aAnimation.setAttribute('startEvents', 'rotation-start')
-    aAnimation.setAttribute('pauseEvents', 'rotation-pause')
+    aAnimationEl.setAttribute('repeat', 'indefinite')
+    aAnimationEl.setAttribute('startEvents', 'rotation-start')
+    aAnimationEl.setAttribute('pauseEvents', 'rotation-pause')
 
     // a-scene
     aCameraContainerEl.appendChild(aCameraEl)
-    aCameraContainerEl.appendChild(aAnimation)
+    aCameraContainerEl.appendChild(aAnimationEl)
     aSceneEl.appendChild(aCameraContainerEl)
 
     // config
