@@ -1,60 +1,60 @@
-import Krpano from '@/krpano/index'
+import KrpanoViewer from '@/KrpanoViewer'
 
 describe('krpano/index.js', () => {
-  let krpano
+  let krpanoViewer
   beforeEach(() => {
-    krpano = new Krpano()
+    krpanoViewer = new KrpanoViewer()
   })
 
   it('setKrpanoId and getKrpanoId should be worked', () => {
     const krpanoId = 'testId'
-    krpano.setKrpanoId(krpanoId)
-    expect(krpano.getKrpanoId()).toEqual(krpanoId)
+    krpanoViewer.setKrpanoId(krpanoId)
+    expect(krpanoViewer.getKrpanoId()).toEqual(krpanoId)
   })
 
   it('setKrpanoXml and getKrpanoXml should be worked', () => {
     const krpanoXml = 'testXml'
-    krpano.setKrpanoXml(krpanoXml)
-    expect(krpano.getKrpanoXml()).toEqual(krpanoXml)
+    krpanoViewer.setKrpanoXml(krpanoXml)
+    expect(krpanoViewer.getKrpanoXml()).toEqual(krpanoXml)
   })
 
   it('setKrpanoEl and getKrpanoEl should be worked', () => {
     const krpanoEl = 'testEl'
-    krpano.setKrpanoEl(krpanoEl)
-    expect(krpano.getKrpanoEl()).toEqual(krpanoEl)
+    krpanoViewer.setKrpanoEl(krpanoEl)
+    expect(krpanoViewer.getKrpanoEl()).toEqual(krpanoEl)
   })
 
   it('addVrModeShouldHide should be worked', () => {
     const newVrModeShouldHide = 'testHide'
-    krpano.addVrModeShouldHide(newVrModeShouldHide)
-    const { vrModeShouldHide } = krpano.getKrpanoVrModeObj()
+    krpanoViewer.addVrModeShouldHide(newVrModeShouldHide)
+    const { vrModeShouldHide } = krpanoViewer.getKrpanoVrModeObj()
     expect(vrModeShouldHide).toEqual(expect.arrayContaining(['testHide']))
   })
 
   it('addVrModeShouldShow should be worked', () => {
     const initVrModeShouldShow = ['vr_menu_bg', 'vr_menu_l', 'vr_menu', 'vr_menu_r']
     const newVrModeShouldShow = 'testShow'
-    krpano.addVrModeShouldShow(newVrModeShouldShow)
-    const { vrModeShouldShow } = krpano.getKrpanoVrModeObj()
+    krpanoViewer.addVrModeShouldShow(newVrModeShouldShow)
+    const { vrModeShouldShow } = krpanoViewer.getKrpanoVrModeObj()
     expect(vrModeShouldShow).toEqual(expect.arrayContaining(initVrModeShouldShow.concat(['testShow'])))
   })
 
   it('setKrpanoLookAtH and getKrpanoLookAtH should be worked', () => {
     const krpanoLookAtH = 'testLookAtH'
-    krpano.setKrpanoLookAtH(krpanoLookAtH)
-    expect(krpano.getKrpanoLookAtH()).toEqual(krpanoLookAtH)
+    krpanoViewer.setKrpanoLookAtH(krpanoLookAtH)
+    expect(krpanoViewer.getKrpanoLookAtH()).toEqual(krpanoLookAtH)
   })
 
   it('getDefaultFov should be 120', () => {
-    expect(krpano.getDefaultFov()).toEqual(120)
+    expect(krpanoViewer.getDefaultFov()).toEqual(120)
   })
 
   it('getKrpanoXOffset should be 90', () => {
-    expect(krpano.getKrpanoXOffset()).toEqual(90)
+    expect(krpanoViewer.getKrpanoXOffset()).toEqual(90)
   })
 
   it('getVrThumbAth should be 24', () => {
-    expect(krpano.getVrThumbAth()).toEqual(24)
+    expect(krpanoViewer.getVrThumbAth()).toEqual(24)
   })
 
   it('generateKrpano should', () => {
@@ -75,12 +75,12 @@ describe('krpano/index.js', () => {
       loadingSettings,
       initViewSettings
     }
-    krpano.setConfig(config)
-    expect(krpano.getAutoRotateSettings()).toEqual(autoRotateSettings)
-    expect(krpano.getGyroSettings()).toEqual(gyroSettings)
-    expect(krpano.getTripodSettings()).toEqual(tripodSettings)
-    expect(krpano.getBasicSettings()).toEqual(basicSettings)
-    expect(krpano.getLoadingSettings()).toEqual(loadingSettings)
-    expect(krpano.getInitViewSettings()).toEqual(initViewSettings)
+    krpanoViewer.setConfig(config)
+    expect(krpanoViewer.getAutoRotateSettings()).toEqual(autoRotateSettings)
+    expect(krpanoViewer.getGyroSettings()).toEqual(gyroSettings)
+    expect(krpanoViewer.getTripodSettings()).toEqual(tripodSettings)
+    expect(krpanoViewer.getBasicSettings()).toEqual(basicSettings)
+    expect(krpanoViewer.getLoadingSettings()).toEqual(loadingSettings)
+    expect(krpanoViewer.getInitViewSettings()).toEqual(initViewSettings)
   })
 })

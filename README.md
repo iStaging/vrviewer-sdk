@@ -11,6 +11,7 @@ VRMaker js sdk help you build and edit your 360 panorama solution more easily by
     - change animation
     - support cubemap
   - AframeViewer
+  - auto rotation
 - panorama (pending - need your server communicate with vrmaker backend api)
   - cubemap
   - auto hotspot
