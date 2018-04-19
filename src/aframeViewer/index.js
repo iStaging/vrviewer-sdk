@@ -1,4 +1,9 @@
+import {
+  enterFullScreen,
+  exitFullScreen, isFunction, loadImage
+} from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
+import aframeConstants from '@/aframeViewer/aframe-constants'
 
 class AframeViewer extends CommonViewer {
   constructor () {
@@ -8,20 +13,18 @@ class AframeViewer extends CommonViewer {
 
   generateAframe (config) {
     const aSceneEl = document.createElement('a-scene')
+    aframeConstants.setSceneEl(aSceneEl)
     const aSkyEl = document.createElement('a-sky')
+    aframeConstants.setSkyEl(aSkyEl)
     const aCameraContainerEl = document.createElement('a-entity')
     const aCameraEl = document.createElement('a-camera')
     const aAnimationEl = document.createElement('a-animation')
     const aAssetsEl = document.createElement('a-assets')
-    // const imgElId = 'panorama-image'
     const el = this.getEl()
-    // const { downloadLink } = this.getCurrentPanorama()
+    const { panoramaRotation } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
-    let cameraStartRotation
-
-    this.getCurrentPanorama().panoramaRotation
-      ? cameraStartRotation = this.getCurrentPanorama().panoramaRotation
-      : cameraStartRotation = {}
+    aframeConstants.setCameraEl(aCameraEl)
+    let cameraStartRotation = panoramaRotation || {}
 
     // a-assets
     aAssetsEl.setAttribute('timeout', '1000')
@@ -81,57 +84,40 @@ class AframeViewer extends CommonViewer {
 
   changePanorama (panoramaId, callback) {
     this.selectPanorama(panoramaId)
-    const aSkyEl = document.getElementsByTagName('a-sky')[0]
+    const aSkyEl = aframeConstants.getSkyEl()
     const currentPanorama = this.getCurrentPanorama()
-    const img = new Image()
-
-    img.onload = () => {
+    loadImage(currentPanorama.downloadLink, () => {
       aSkyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
-      if (callback) {
+      if (isFunction(callback)) {
         callback()
       }
-    }
-    img.src = currentPanorama.downloadLink
+    })
   }
 
   toggleVRMode (boolean) {
-    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    const aSceneEl = aframeConstants.getSceneEl()
     if (boolean) {
-      aSceneEl.enterVR()
-      this.enterFullScreen()
+      if (isFunction(aSceneEl.enterVR)) {
+        aSceneEl.enterVR()
+      } else {
+        throw new Error('Aframe can\'t execute enterVR')
+      }
+      enterFullScreen()
     } else {
-      aSceneEl.exitVR()
-      this.exitFullScreen()
-    }
-  }
-
-  enterFullScreen () {
-    if (document.requestFullscreen) {
-      document.requestFullscreen()
-    } else if (document.webkitRequestFullscreen) {
-      document.webkitRequestFullscreen()
-    } else if (document.mozRequestFullScreen) {
-      document.mozRequestFullScreen()
-    } else if (document.msRequestFullscreen) {
-      document.msRequestFullscreen()
-    }
-  }
-
-  exitFullScreen () {
-    if (document.exitFullscreen) {
-      document.exitFullscreen()
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen()
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen()
+      if (isFunction(aSceneEl.exitVR)) {
+        aSceneEl.exitVR()
+      } else {
+        throw new Error('Aframe can\'t execute exitVR')
+      }
+      exitFullScreen()
     }
   }
 
   destroy () {
-    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    const aSceneEl = aframeConstants.getSceneEl()
     aSceneEl.parentNode.removeChild(aSceneEl)
+    aframeConstants.setSceneEl({})
+    aframeConstants.setSkyEl({})
   }
 
   checkAframe () {
