@@ -1,4 +1,9 @@
+import {
+  enterFullScreen,
+  exitFullScreen, loadImage
+} from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
+import aframeConstants from '@/aframeViewer/aframe-constants'
 
 class AframeViewer extends CommonViewer {
   constructor () {
@@ -8,17 +13,16 @@ class AframeViewer extends CommonViewer {
 
   generateAframe () {
     const aSceneEl = document.createElement('a-scene')
+    aframeConstants.setSceneEl(aSceneEl)
     const aSkyEl = document.createElement('a-sky')
+    aframeConstants.setSkyEl(aSkyEl)
     const aCameraContainerEl = document.createElement('a-entity')
     const aCameraEl = document.createElement('a-camera')
+    aframeConstants.setCameraEl(aCameraEl)
     const el = this.getEl()
-    const { downloadLink } = this.getCurrentPanorama()
+    const { downloadLink, panoramaRotation } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
-    let cameraStartRotation
-
-    this.getCurrentPanorama().panoramaRotation
-      ? cameraStartRotation = this.getCurrentPanorama().panoramaRotation
-      : cameraStartRotation = {}
+    let cameraStartRotation = panoramaRotation || {}
 
     // a-sky
     aSkyEl.setAttribute('src', downloadLink)
@@ -44,56 +48,31 @@ class AframeViewer extends CommonViewer {
   changePanorama (panoramaId, callback) {
     this.selectPanorama(panoramaId)
     const currentPanorama = this.getCurrentPanorama()
-    const aSkyEl = document.querySelector('a-sky')
-    const img = new Image()
-
-    img.onload = () => {
+    const aSkyEl = aframeConstants.getSkyEl()
+    loadImage(currentPanorama.downloadLink, () => {
       aSkyEl.setAttribute('src', currentPanorama.downloadLink)
-      if (callback) {
+      if (typeof callback === 'function') {
         callback()
       }
-    }
-    img.src = currentPanorama.downloadLink
+    })
   }
 
   toggleVRMode (boolean) {
-    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    const aSceneEl = aframeConstants.getSceneEl()
     if (boolean) {
       aSceneEl.enterVR()
-      this.enterFullScreen()
+      enterFullScreen()
     } else {
       aSceneEl.exitVR()
-      this.exitFullScreen()
-    }
-  }
-
-  enterFullScreen () {
-    if (document.requestFullscreen) {
-      document.requestFullscreen()
-    } else if (document.webkitRequestFullscreen) {
-      document.webkitRequestFullscreen()
-    } else if (document.mozRequestFullScreen) {
-      document.mozRequestFullScreen()
-    } else if (document.msRequestFullscreen) {
-      document.msRequestFullscreen()
-    }
-  }
-
-  exitFullScreen () {
-    if (document.exitFullscreen) {
-      document.exitFullscreen()
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen()
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen()
+      exitFullScreen()
     }
   }
 
   destroy () {
-    const aSceneEl = document.getElementsByTagName('a-scene')[0]
+    const aSceneEl = aframeConstants.getSceneEl()
     aSceneEl.parentNode.removeChild(aSceneEl)
+    aframeConstants.setSceneEl({})
+    aframeConstants.setSkyEl({})
   }
 
   checkAframe () {

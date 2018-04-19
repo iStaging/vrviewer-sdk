@@ -127,3 +127,27 @@ export const countText = (string, instr) => {
 export const isFunction = (callee) => {
   return typeof callee === 'function' && callee instanceof Function
 }
+
+export const enterFullScreen = () => {
+  if (document.requestFullscreen) {
+    document.requestFullscreen()
+  } else if (document.webkitRequestFullscreen) {
+    document.webkitRequestFullscreen()
+  } else if (document.mozRequestFullScreen) {
+    document.mozRequestFullScreen()
+  } else if (document.msRequestFullscreen) {
+    document.msRequestFullscreen()
+  }
+}
+
+export const exitFullScreen = () => {
+  if (document.exitFullscreen) {
+    document.exitFullscreen()
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen()
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen()
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen()
+  }
+}

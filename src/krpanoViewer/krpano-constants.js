@@ -8,7 +8,7 @@ let _krpanoVrModeObj = {
   vrModeShouldShow: ['vr_menu_bg', 'vr_menu_l', 'vr_menu', 'vr_menu_r']
 }
 let _krpanoLookAtH = 0
-const krpanoVariables = {
+const krpanoConstants = {
   setKrpanoId: (krpanoId) => {
     _krpanoId = krpanoId
   },
@@ -43,4 +43,4 @@ const krpanoVariables = {
   getVrThumbAth: () => 24
 }
 
-export default krpanoVariables
+export default krpanoConstants
