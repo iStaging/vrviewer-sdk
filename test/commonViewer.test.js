@@ -1,4 +1,4 @@
-import VRMaker from '../src'
+import VRMaker from '@/'
 import { clone } from '@/common/utils'
 import AFRAME from 'aframe'
 

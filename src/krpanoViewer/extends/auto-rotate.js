@@ -1,4 +1,7 @@
-import { clone } from '@/common/utils'
+import {
+  clone,
+  isEmpty
+} from '@/common/utils'
 import krpanoConstants from '@/krpanoViewer/krpano-constants'
 
 let _cameraRotateConfig = {
@@ -22,7 +25,7 @@ class KrpanoAutoRotate {
   }
 
   startAutoRotate () {
-    if (krpanoConstants.getKrpanoEl) {
+    if (!isEmpty(krpanoConstants.getKrpanoEl)) {
       krpanoConstants.getKrpanoEl().call(`auto_rotate();`)
     }
     _cameraRotateConfig.isCameraRotating = true
@@ -30,7 +33,7 @@ class KrpanoAutoRotate {
 
   stopAutoRotate (shouldAutoStartRotate = false, duration = 20000) {
     if (_cameraRotateConfig.isCameraRotating === true) {
-      if (krpanoConstants.getKrpanoEl) {
+      if (!isEmpty(krpanoConstants.getKrpanoEl)) {
         krpanoConstants.getKrpanoEl().call(`stop_auto_rotate();`)
       }
       _cameraRotateConfig.isCameraRotating = false

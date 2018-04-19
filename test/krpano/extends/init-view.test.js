@@ -1,4 +1,4 @@
-import KrpanoInitView from '@/krpano/extends/init-view'
+import KrpanoInitView from '@/KrpanoViewer/extends/init-view'
 
 describe('krpano/extends/init-view.js', () => {
   let initViewSettings = {
