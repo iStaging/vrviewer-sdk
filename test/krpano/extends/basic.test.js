@@ -1,4 +1,4 @@
-import KrpanoBasic from '@/krpano/extends/basic'
+import KrpanoBasic from '@/krpanoViewer/extends/basic'
 import { isEqual } from '@/common/utils'
 
 describe('krpano/extends/settings.js', () => {

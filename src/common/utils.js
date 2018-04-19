@@ -68,16 +68,23 @@ export const getIEVersion = () => {
   return false
 }
 
+const loadedUrls = []
 export const loadImage = async (url = '', callback = () => {
 }, onprogress = e => {
-  }, onerror = () => {
-  }) => {
+}, onerror = () => {
+}) => {
   if (typeof url === 'string' || url instanceof String) {
     try {
+      const hasLoaded = loadedUrls.some(loadedUrl => loadedUrl === url)
+      if (hasLoaded) {
+        callback()
+        return
+      }
       const xmlHttp = new XMLHttpRequest() // eslint-disable-line
       xmlHttp.open('GET', url, true)
       xmlHttp.responseType = 'arraybuffer'
       xmlHttp.onload = () => {
+        loadedUrls.push(url)
         callback()
       }
       xmlHttp.onprogress = e => {
@@ -90,14 +97,20 @@ export const loadImage = async (url = '', callback = () => {
     } catch (e) {
     }
   } else if ((typeof url === 'object' || url instanceof Object) && url.length > 0) {
-    url = url.filter(uniUrl => uniUrl)
-    const loadAllImages = url.map(uniUrl => {
+    const urls = url.filter(existUrl => existUrl)
+    const loadAllImages = urls.map(url => {
       return new Promise((resolve, reject) => {
         try {
+          const hasLoaded = loadedUrls.some(loadedUrl => loadedUrl === url)
+          if (hasLoaded) {
+            callback()
+            return
+          }
           const xmlHttp = new XMLHttpRequest() // eslint-disable-line
-          xmlHttp.open('GET', uniUrl, true)
+          xmlHttp.open('GET', url, true)
           xmlHttp.responseType = 'arraybuffer'
           xmlHttp.onload = () => {
+            loadedUrls.push(url)
             resolve()
           }
           xmlHttp.onerror = () => {
@@ -126,4 +139,28 @@ export const countText = (string, instr) => {
 
 export const isFunction = (callee) => {
   return typeof callee === 'function' && callee instanceof Function
+}
+
+export const enterFullScreen = () => {
+  if (document.requestFullscreen) {
+    document.requestFullscreen()
+  } else if (document.webkitRequestFullscreen) {
+    document.webkitRequestFullscreen()
+  } else if (document.mozRequestFullScreen) {
+    document.mozRequestFullScreen()
+  } else if (document.msRequestFullscreen) {
+    document.msRequestFullscreen()
+  }
+}
+
+export const exitFullScreen = () => {
+  if (document.exitFullscreen) {
+    document.exitFullscreen()
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen()
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen()
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen()
+  }
 }

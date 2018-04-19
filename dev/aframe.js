@@ -13,7 +13,7 @@ var panoramas = [{
   ]
 }, {
   'panoramaName': 'name02',
-  'downloadLink': 'https://aframe.io/aframe/examples/boilerplate/panorama/puydesancy.jpg',
+  'downloadLink': 'https://storage.googleapis.com/vr-cam-161603.appspot.com/b6a1ba85-cb52-4abb-be50-419f9c329d6b/8ffa7a7f-4d90-41c0-b9c3-7b995d213109/panoramas/00b27bcb-0143-435d-8180-37d1766f5671.jpg',
   'panoramaId': '782949e8-c37a-4171-a004-54c76937135c',
   'panoramaIndex': -24,
   'cubemapReady': true,

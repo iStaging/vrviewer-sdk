@@ -1,4 +1,4 @@
-import KrpanoTripod from '@/krpano/extends/tripod'
+import KrpanoTripod from '@/krpanoViewer/extends/tripod'
 
 describe('krpano/extends/tripod.js', () => {
   let tripodSettings = {
