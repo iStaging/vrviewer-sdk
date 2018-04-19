@@ -43,14 +43,16 @@ function initAframe () {
 // change aframe panorama to viewer
 function changePanorama () {
   aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
-    console.log('loaded')
+    console.log('Loaded.')
   })
 }
 
 initAframe()
 
 // change panorama function
-setTimeout(changePanorama(), 3000)
+setTimeout(() => {
+  changePanorama()
+}, 3000)
 
 // remove aframe viewer
 document.getElementById("remove-aframe-viewer").addEventListener("click", function() {

@@ -13,10 +13,9 @@ class AframeViewer extends CommonViewer {
     const aCameraEl = document.createElement('a-camera')
     const aAnimationEl = document.createElement('a-animation')
     const aAssetsEl = document.createElement('a-assets')
-    const imgEl = document.createElement('img')
-    const imgElId = 'panorama-image'
+    // const imgElId = 'panorama-image'
     const el = this.getEl()
-    const { downloadLink } = this.getCurrentPanorama()
+    // const { downloadLink } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
     let cameraStartRotation
 
@@ -25,13 +24,17 @@ class AframeViewer extends CommonViewer {
       : cameraStartRotation = {}
 
     // a-assets
-    imgEl.src = downloadLink
-    imgEl.id = imgElId
-    aAssetsEl.append(imgEl)
+    aAssetsEl.setAttribute('timeout', '1000')
     aSceneEl.append(aAssetsEl)
+    this.getPanoramas().forEach(panorama => {
+      const imgEl = document.createElement('img')
+      imgEl.src = panorama.downloadLink
+      imgEl.id = panorama.panoramaId
+      aAssetsEl.appendChild(imgEl)
+    })
 
     // a-sky
-    aSkyEl.setAttribute('src', `#${imgElId}`)
+    aSkyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
     aSceneEl.setAttribute('embedded', '')
     aSceneEl.appendChild(aSkyEl)
     el.appendChild(aSceneEl)
@@ -72,18 +75,18 @@ class AframeViewer extends CommonViewer {
 
     // events
     aSceneEl.addEventListener('click', function (e) {
-      aAnimation.emit('pause')
+      aAnimationEl.emit('pause')
     })
   }
 
   changePanorama (panoramaId, callback) {
     this.selectPanorama(panoramaId)
+    const aSkyEl = document.getElementsByTagName('a-sky')[0]
     const currentPanorama = this.getCurrentPanorama()
-    const aSkyEl = document.querySelector('a-sky')
     const img = new Image()
 
     img.onload = () => {
-      aSkyEl.setAttribute('src', currentPanorama.downloadLink)
+      aSkyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
       if (callback) {
         callback()
       }
