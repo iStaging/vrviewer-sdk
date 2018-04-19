@@ -1,6 +1,7 @@
 {
   "name": "vrmaker",
   "keywords": [
+    "istaging",
     "vrmaker",
     "aframe",
     "krpano",
@@ -8,7 +9,7 @@
     "VR"
   ],
   "description": "vamaker sdk help you build your 360 panorama solution more easily by aframe or krpano.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
   "license": "MIT",
   "private": false,
@@ -17,7 +18,7 @@
     "start": "node app.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --mode development",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --mode production",
-    "test": "jest",
+    "unit": "jest",
     "test-watch": "jest --watchAll"
   },
   "repository": {
@@ -31,10 +32,11 @@
   ],
   "dependencies": {
     "extends-classes": "^1.0.5",
-    "mime": "^2.2.2",
-    "http-status": "^1.0.1"
+    "http-status": "^1.0.1",
+    "mime": "^2.2.2"
   },
   "devDependencies": {
+    "aframe": "^0.8.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",

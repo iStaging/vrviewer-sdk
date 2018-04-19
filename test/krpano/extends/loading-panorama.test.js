@@ -1,11 +1,11 @@
-import KrpanoLoadingPanorama from '@/krpanoViewer/extends/loading-panorama'
+import KrpanoLoadingPanorama from '@/KrpanoViewer/extends/loading-panorama'
 
 describe('krpano/extends/loading-panorama.js', () => {
   let loadingSettings = {
     onLoadingPanoramaStart () {},
     onLoadingPanoramaFinish () {},
     onLoadingPanoramaProgress (event) {},
-    onLoadingPanoramaError (error) {}
+    onLoadingPanoramaError (error) { console.log(error) }
   }
 
   it('setLoadingSettings and getLoadingSettings should be worked', () => {

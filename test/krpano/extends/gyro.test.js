@@ -1,4 +1,4 @@
-import KrpanoGyro from '@/krpanoViewer/extends/gyro'
+import KrpanoGyro from '@/KrpanoViewer/extends/gyro'
 
 describe('krpano/extends/gyro.js', () => {
   let gyroSettings = {

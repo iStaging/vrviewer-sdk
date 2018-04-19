@@ -1,10 +1,10 @@
-import Krpano from '@/krpanoViewer/index'
+import KrpanoViewer from '@/KrpanoViewer'
 
 describe('krpano/index.js', () => {
-  let krpano
+  let krpanoViewer
   beforeEach(() => {
     window.krpanoJS = 'something'
-    krpano = new Krpano()
+    krpanoViewer = new KrpanoViewer()
   })
 
   it('generateKrpano should', () => {
