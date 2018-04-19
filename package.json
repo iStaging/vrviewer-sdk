@@ -9,7 +9,7 @@
     "VR"
   ],
   "description": "vamaker sdk help you build your 360 panorama solution more easily by aframe or krpano.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
   "license": "MIT",
   "private": false,
