@@ -11,6 +11,7 @@ class AframeViewer extends CommonViewer {
     const aSkyEl = document.createElement('a-sky')
     const aCameraContainerEl = document.createElement('a-entity')
     const aCameraEl = document.createElement('a-camera')
+    const aAnimation = document.createElement('a-animation')
     const el = this.getEl()
     const { downloadLink } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
@@ -29,6 +30,7 @@ class AframeViewer extends CommonViewer {
     // a-camera
     const cameraX = cameraStartRotation.x || 0
     const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
+    // const cameraY = cameraStartRotation.y || 0
     const cameraZ = cameraStartRotation.z || 0
 
     aCameraContainerEl.setAttribute(
@@ -36,9 +38,28 @@ class AframeViewer extends CommonViewer {
       `${cameraX} ${cameraY} ${cameraZ}`
     )
 
+    // a-animation
+    aAnimation.setAttribute('attribute', 'rotation')
+    aAnimation.setAttribute('fill', 'forwards')
+    aAnimation.setAttribute('easing', 'linear')
+    aAnimation.setAttribute('dur', '200000')
+    aAnimation.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
+    aAnimation.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
+    // aAnimation.setAttribute('from', `0 0 0`)
+    // aAnimation.setAttribute('to', `0 360 0`)
+    aAnimation.setAttribute('repeat', 'indefinite')
+    aAnimation.setAttribute('startEvents', 'rotation-start')
+    aAnimation.setAttribute('pauseEvents', 'rotation-pause')
+
     // a-scene
     aCameraContainerEl.appendChild(aCameraEl)
+    aCameraContainerEl.appendChild(aAnimation)
     aSceneEl.appendChild(aCameraContainerEl)
+
+    // events
+    aSceneEl.addEventListener('click', function (e) {
+      aAnimation.emit('pause')
+    })
   }
 
   changePanorama (panoramaId, callback) {
