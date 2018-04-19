@@ -1,6 +1,6 @@
 import {
   enterFullScreen,
-  exitFullScreen, loadImage
+  exitFullScreen, isFunction, loadImage
 } from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
 import aframeConstants from '@/aframeViewer/aframe-constants'
@@ -51,7 +51,7 @@ class AframeViewer extends CommonViewer {
     const aSkyEl = aframeConstants.getSkyEl()
     loadImage(currentPanorama.downloadLink, () => {
       aSkyEl.setAttribute('src', currentPanorama.downloadLink)
-      if (typeof callback === 'function') {
+      if (isFunction(callback)) {
         callback()
       }
     })
@@ -60,10 +60,18 @@ class AframeViewer extends CommonViewer {
   toggleVRMode (boolean) {
     const aSceneEl = aframeConstants.getSceneEl()
     if (boolean) {
-      aSceneEl.enterVR()
+      if (isFunction(aSceneEl.enterVR)) {
+        aSceneEl.enterVR()
+      } else {
+        throw new Error('Aframe can\'t execute enterVR')
+      }
       enterFullScreen()
     } else {
-      aSceneEl.exitVR()
+      if (isFunction(aSceneEl.exitVR)) {
+        aSceneEl.exitVR()
+      } else {
+        throw new Error('Aframe can\'t execute exitVR')
+      }
       exitFullScreen()
     }
   }

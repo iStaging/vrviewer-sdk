@@ -9,27 +9,27 @@ let _krpanoVrModeObj = {
 }
 let _krpanoLookAtH = 0
 const krpanoConstants = {
-  setKrpanoId: (krpanoId) => {
+  setKrpanoId: krpanoId => {
     _krpanoId = krpanoId
   },
 
-  setKrpanoXml: (xml) => {
+  setKrpanoXml: xml => {
     _xml = xml
   },
 
-  setKrpanoEl: (krpanoEl) => {
+  setKrpanoEl: krpanoEl => {
     _krpanoEl = krpanoEl
   },
 
-  addVrModeShouldHide: (item) => {
+  addVrModeShouldHide: item => {
     _krpanoVrModeObj.vrModeShouldHide.push(item)
   },
 
-  addVrModeShouldShow: (item) => {
+  addVrModeShouldShow: item => {
     _krpanoVrModeObj.vrModeShouldShow.push(item)
   },
 
-  setKrpanoLookAtH: (h) => {
+  setKrpanoLookAtH: h => {
     _krpanoLookAtH = h
   },
 
