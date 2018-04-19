@@ -19,19 +19,12 @@ VRMaker js sdk help you build and edit your 360 panorama solution more easily by
   - point
   - tag
 
-## installation
-
-Install dependencies by npm or yarn
-
-``` bash
-npm install
-```
-
 ## How to use
 
 ### ES6:
 
 ``` bash
+npm install vrmaker
 import VRMaker from 'vrmaker'
 
 // init krpano viewer (recommended)
@@ -81,6 +74,3 @@ npm run dev
 ```
 
 # Thanks
-
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
