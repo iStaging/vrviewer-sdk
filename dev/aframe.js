@@ -34,6 +34,9 @@ function initAframe () {
     panoramas
   })
   // generate aframe viewer
+  // const config = {
+  //   disableVR: true
+  // }
   aframeViewer.generateAframe()
 }
 

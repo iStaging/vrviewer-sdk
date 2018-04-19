@@ -21,40 +21,38 @@ const panoramas = [{
   ]
 }]
 
-/* eslint-disable */
+console.log('panoramas: ', panoramas)
 
 function getPanoCollection () {
   return fetch('/api/panoCollection', {
     method: 'get'
-  })
-  .then(function (response) {
+  }).then(function (response) {
     if (response.status >= 200 && response.status < 300) {
       return response.json()
     }
-  })
-  .catch(function (error) {
-    return error.response.json();
+  }).catch(function (error) {
+    return error.response.json()
   })
 }
 
-console.log(VRMaker)
-
 // get panoCollection from server
-getPanoCollection()
-  .then(function (panoramas) {
-    // init vrmaker aframe viewer
-    console.log('panoramas: ', panoramas)
-    var aframeViewer =  new VRMaker.AframeViewer()
-    aframeViewer.init({
-      el: document.getElementById('vrmaker-aframe'),
-      panoramas
-    })
-    aframeViewer.generateAframe()
-
-    // change panorama
-    setTimeout(() => {
-      aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
-        console.log('loaded')
-      })
-    }, 3000)
+getPanoCollection().then(function (panoramas) {
+  // init vrmaker aframe viewer
+  var aframeViewer = new VRMaker.AframeViewer() // eslint-disable-line
+  aframeViewer.init({
+    el: document.getElementById('vrmaker-aframe'),
+    panoramas
   })
+
+  // const config = {
+  //   disableVR: true
+  // }
+  aframeViewer.generateAframe()
+
+  // change panorama
+  setTimeout(() => {
+    aframeViewer.changePanorama('782949e8-c37a-4171-a004-54c76937135c', () => {
+      console.log('loaded')
+    })
+  }, 3000)
+})

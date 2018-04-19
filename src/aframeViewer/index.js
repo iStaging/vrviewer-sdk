@@ -6,7 +6,7 @@ class AframeViewer extends CommonViewer {
     this.checkAframe()
   }
 
-  generateAframe () {
+  generateAframe (config) {
     const aSceneEl = document.createElement('a-scene')
     const aSkyEl = document.createElement('a-sky')
     const aCameraContainerEl = document.createElement('a-entity')
@@ -16,6 +16,7 @@ class AframeViewer extends CommonViewer {
     const { downloadLink } = this.getCurrentPanorama()
     const cameraRotationOffset = 90
     let cameraStartRotation
+    console.log('FONCI', config)
 
     this.getCurrentPanorama().panoramaRotation
       ? cameraStartRotation = this.getCurrentPanorama().panoramaRotation
@@ -55,6 +56,11 @@ class AframeViewer extends CommonViewer {
     aCameraContainerEl.appendChild(aCameraEl)
     aCameraContainerEl.appendChild(aAnimation)
     aSceneEl.appendChild(aCameraContainerEl)
+
+    // config
+    if (config && config.disableVR) {
+      aSceneEl.setAttribute('vr-mode-ui', 'enabled: false')
+    }
 
     // events
     aSceneEl.addEventListener('click', function (e) {
