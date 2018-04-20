@@ -31,56 +31,15 @@ class AframeViewer extends CommonViewer {
     _el = this.getEl()
     _cameraStartRotation = this.getCurrentPanorama().panoramaRotation || {}
 
-    // a-assets
-    _assetsEl.setAttribute('timeout', '1000')
-    _sceneEl.append(_assetsEl)
-    this.getPanoramas().forEach(panorama => {
-      const imgEl = document.createElement('img')
-      imgEl.src = panorama.downloadLink
-      imgEl.id = panorama.panoramaId
-      _assetsEl.appendChild(imgEl)
-    })
+    // elements
+    initAssetsEl(this)
+    initSkyEl(this)
+    initCameraEl(this)
+    initCameraAnimationEl(this)
 
     // settings
     _sceneEl.setAttribute('embedded', '')
     _sceneEl.setAttribute('debug', '')
-
-    // a-sky
-    _skyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
-    _sceneEl.appendChild(_skyEl)
-    _el.appendChild(_sceneEl)
-
-    // a-camera
-    _cameraContainerEl.id = 'camera-container'
-    const cameraX = _cameraStartRotation.x || 0
-    // const cameraY = cameraRotationOffset + (_cameraStartRotation.y || 0)
-    const cameraY = _cameraStartRotation.y || 0
-    const cameraZ = _cameraStartRotation.z || 0
-
-    _cameraContainerEl.setAttribute(
-      'rotation',
-      `${cameraX} ${cameraY} ${cameraZ}`
-    )
-
-    // a-animation
-    if (config.autoRotate.enabled) {
-      _cameraAnimationEl.setAttribute('attribute', 'rotation')
-      _cameraAnimationEl.setAttribute('fill', 'forwards')
-      _cameraAnimationEl.setAttribute('easing', 'linear')
-      _cameraAnimationEl.setAttribute('dur', `${config.autoRotate.duration}`)
-      // _cameraAnimationEl.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
-      // _cameraAnimationEl.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
-      _cameraAnimationEl.setAttribute('from', `0 0 0`)
-      _cameraAnimationEl.setAttribute('to', `0 360 0`)
-      _cameraAnimationEl.setAttribute('repeat', 'indefinite')
-      _cameraAnimationEl.setAttribute('startEvents', 'rotation-start')
-      _cameraAnimationEl.setAttribute('pauseEvents', 'rotation-pause')
-
-      // a-scene
-      _cameraContainerEl.appendChild(_cameraEl)
-      _cameraContainerEl.appendChild(_cameraAnimationEl)
-      _sceneEl.appendChild(_cameraContainerEl)
-    }
 
     // config
     if (config.disableVR) {
@@ -91,6 +50,57 @@ class AframeViewer extends CommonViewer {
     _sceneEl.addEventListener('click', () => {
       this.stopAutoRotate()
     })
+
+    // functions
+    function initAssetsEl (context) {
+      _assetsEl.setAttribute('timeout', '1000')
+      _sceneEl.append(_assetsEl)
+      context.getPanoramas().forEach(panorama => {
+        const imgEl = document.createElement('img')
+        imgEl.src = panorama.downloadLink
+        imgEl.id = panorama.panoramaId
+        _assetsEl.appendChild(imgEl)
+      })
+    }
+
+    function initSkyEl (context) {
+      _skyEl.setAttribute('src', `#${context.getCurrentPanorama().panoramaId}`)
+      _sceneEl.appendChild(_skyEl)
+      _el.appendChild(_sceneEl)
+    }
+
+    function initCameraEl (context) {
+      _cameraContainerEl.id = 'camera-container'
+      const cameraX = _cameraStartRotation.x || 0
+      // const cameraY = cameraRotationOffset + (_cameraStartRotation.y || 0)
+      const cameraY = _cameraStartRotation.y || 0
+      const cameraZ = _cameraStartRotation.z || 0
+
+      _cameraContainerEl.setAttribute(
+        'rotation',
+        `${cameraX} ${cameraY} ${cameraZ}`
+      )
+    }
+
+    function initCameraAnimationEl (context) {
+      if (config.autoRotate.enabled) {
+        _cameraAnimationEl.setAttribute('attribute', 'rotation')
+        _cameraAnimationEl.setAttribute('fill', 'forwards')
+        _cameraAnimationEl.setAttribute('easing', 'linear')
+        _cameraAnimationEl.setAttribute('dur', `${config.autoRotate.duration}`)
+        // _cameraAnimationEl.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
+        // _cameraAnimationEl.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
+        _cameraAnimationEl.setAttribute('from', `0 0 0`)
+        _cameraAnimationEl.setAttribute('to', `0 360 0`)
+        _cameraAnimationEl.setAttribute('repeat', 'indefinite')
+        _cameraAnimationEl.setAttribute('startEvents', 'rotation-start')
+        _cameraAnimationEl.setAttribute('pauseEvents', 'rotation-pause')
+
+        _cameraContainerEl.appendChild(_cameraEl)
+        _cameraContainerEl.appendChild(_cameraAnimationEl)
+        _sceneEl.appendChild(_cameraContainerEl)
+      }
+    }
   }
 
   changePanorama (panoramaId, callback) {
@@ -106,21 +116,19 @@ class AframeViewer extends CommonViewer {
   }
 
   toggleVRMode (boolean) {
-    const _sceneEl = aframeConstants.getSceneEl()
     if (boolean) {
+      console.log('SS', _sceneEl.enterVR)
       if (isFunction(_sceneEl.enterVR)) {
         _sceneEl.enterVR()
       } else {
         throw new Error('Aframe can\'t execute enterVR')
       }
-      enterFullScreen()
     } else {
       if (isFunction(_sceneEl.exitVR)) {
         _sceneEl.exitVR()
       } else {
         throw new Error('Aframe can\'t execute exitVR')
       }
-      exitFullScreen()
     }
   }
 
