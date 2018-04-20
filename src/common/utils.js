@@ -142,7 +142,7 @@ export const countText = (string, instr) => {
 }
 
 export const isFunction = (callee) => {
-  return typeof callee === 'function' && callee instanceof Function
+  return typeof callee === 'function'
 }
 
 export const enterFullScreen = () => {
