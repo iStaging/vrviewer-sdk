@@ -1,21 +1,5 @@
-import {
-  getIEVersion,
-  isEmpty
-} from '@/common/utils'
-import {
-  webVRXml,
-  gyroXml,
-  threeJsXml,
-  contextMenuXml,
-  gyroMessageXml
-} from '@/krpanoViewer/xml/plugins'
 import krpanoHelpers from '@/krpanoViewer/krpano-helpers'
 import krpanoConstants from '@/krpanoViewer/krpano-constants'
-import getStylesXml from '@/krpanoViewer/xml/styles'
-import getLogoTripodXml from '@/krpanoViewer/xml/tripod'
-import eventsXml from '@/krpanoViewer/xml/events'
-import getScenesXml from '@/krpanoViewer/xml/scenes'
-import getActionsXml from '@/krpanoViewer/xml/actions'
 import CommonViewer from '@/common/common-viewer'
 import KrpanoAutoRotate from '@/krpanoViewer/extends/auto-rotate'
 import KrpanoGyro from '@/krpanoViewer/extends/gyro'
