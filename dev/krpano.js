@@ -81,18 +81,18 @@ function changePanorama () {
   })
 }
 
-initKrpano()
+// initKrpano()
 
-setTimeout(changePanorama, 3000)
-
-// remove krpano viewer
-document.getElementById("remove-krpano-viewer").addEventListener("click", function() {
-  console.log('remove krpano viewer')
-  krpanoViewer.destroy()
-})
-
-// enter krpano vr mode by custom button
-document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
-  console.log('toggle krpano vr mode')
-  krpanoViewer.toggleVRMode(true)
-});
+// setTimeout(changePanorama, 3000)
+//
+// // remove krpano viewer
+// document.getElementById("remove-krpano-viewer").addEventListener("click", function() {
+//   console.log('remove krpano viewer')
+//   krpanoViewer.destroy()
+// })
+//
+// // enter krpano vr mode by custom button
+// document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
+//   console.log('toggle krpano vr mode')
+//   krpanoViewer.toggleVRMode(true)
+// });

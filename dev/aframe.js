@@ -53,9 +53,9 @@ function changePanorama () {
 initAframe()
 
 // change panorama function
-setTimeout(changePanorama, 3000)
-setTimeout(aframeViewer.stopAutoRotate, 8000)
-setTimeout(aframeViewer.startAutoRotate, 9000)
+// setTimeout(changePanorama, 3000)
+setTimeout(aframeViewer.stopAutoRotate, 7000)
+setTimeout(aframeViewer.startAutoRotate, 8000)
 
 // remove aframe viewer
 document.getElementById("remove-aframe-viewer").addEventListener("click", function() {

@@ -9,6 +9,7 @@ class AframeViewer extends CommonViewer {
   constructor () {
     super(...arguments)
     this.checkAframe()
+    this.cameraRotation = {}
   }
 
   generateAframe (config = { disableVR: false, autoRotate: {} }) {
@@ -36,13 +37,17 @@ class AframeViewer extends CommonViewer {
       aAssetsEl.appendChild(imgEl)
     })
 
+    // settings
+    aSceneEl.setAttribute('embedded', '')
+    aSceneEl.setAttribute('debug', '')
+
     // a-sky
     aSkyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
-    aSceneEl.setAttribute('embedded', '')
     aSceneEl.appendChild(aSkyEl)
     el.appendChild(aSceneEl)
 
     // a-camera
+    aCameraContainerEl.id = 'camera-container'
     const cameraX = cameraStartRotation.x || 0
     // const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
     const cameraY = cameraStartRotation.y || 0
@@ -117,14 +122,18 @@ class AframeViewer extends CommonViewer {
 
   startAutoRotate () {
     const aAnimationEl = document.getElementsByTagName('a-animation')[0]
-    console.log('STASTDE')
+    const { y } = this.cameraRotation
     aAnimationEl.emit('play')
-    console.log(aAnimationEl)
+    aAnimationEl.setAttribute('from', `0 ${y} 0`)
+    aAnimationEl.setAttribute('to', `0 360 0`)
   }
 
   stopAutoRotate () {
     const aAnimationEl = document.getElementsByTagName('a-animation')[0]
+    const aCameraContainerEl = document.getElementById('camera-container')
+    const cameraRotation = aCameraContainerEl.getAttribute('rotation')
     console.log('STOPPED')
+    this.cameraRotation = cameraRotation
     aAnimationEl.emit('pause')
   }
 
