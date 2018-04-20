@@ -15,7 +15,7 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
     krpanoHelpers.checkKrpano()
   }
 
-  generateKrpano (config) {
+  generateKrpano (config, callback) {
     const { embedpano, removepano } = window
     if (!(embedpano && removepano)) {
       throw new Error('krpano player is required')
@@ -25,7 +25,7 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
     const panoramas = this.getPanoramas()
     krpanoConstants.initKrpanoVRModeItems(panoramas)
     krpanoHelpers.generateXml.call(this)
-    krpanoHelpers.embedPano.call(this)
+    krpanoHelpers.embedPano.call(this, callback)
 
     return this
   }
