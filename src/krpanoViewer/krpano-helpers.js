@@ -1,4 +1,8 @@
-import { getIEVersion, isEmpty, isFunction } from '@/common/utils'
+import {
+  getIEVersion,
+  isEmpty,
+  isFunction
+} from '@/common/utils'
 import getHooks from '@/krpanoViewer/hooks'
 import krpanoConstants from '@/krpanoViewer/krpano-constants'
 import getScenesXml from '@/krpanoViewer/xml/scenes'
@@ -16,25 +20,6 @@ const krpanoHelpers = {
     }
     const basicSettings = this.getBasicSettings()
     const krpanoId = krpanoConstants.getKrpanoId()
-    const handleKrpanoReady = (krpanoEl, callback) => {
-      krpanoConstants.setKrpanoEl(krpanoEl)
-      krpanoEl.hooks = getHooks(this)
-      const xml = krpanoConstants.getKrpanoXml()
-      krpanoEl.call(`loadxml(${escape(xml)})`)
-      window.setTimeout(() => {
-        const gyroSettings = this.getGyroSettings()
-        const autoRotateSettings = this.getAutoRotateSettings()
-        krpanoEl.call(`first_panorama_ready(${gyroSettings.active || false});`)
-        if (autoRotateSettings.active) {
-          this.startAutoRotate()
-          krpanoHelpers.stopAutoRotateEvent.call(this).addEvent()
-        }
-        if (isFunction(callback)) {
-          callback()
-        }
-      }, 1500)
-    }
-
     window.embedpano({
       id: krpanoId,
       target: el.id,
@@ -54,12 +39,31 @@ const krpanoHelpers = {
       webglsettings: { depth: true },
       passQueryParameters: true,
       onready: (krpanoEl) => {
-        handleKrpanoReady(krpanoEl, callback)
+        krpanoHelpers.handleKrpanoReady.call(this, krpanoEl, callback)
       },
       onerror (msg) {
         console.error('pano create error', msg)
       }
     })
+  },
+
+  handleKrpanoReady (krpanoEl, callback) { // should .call(this)
+    krpanoConstants.setKrpanoEl(krpanoEl)
+    krpanoEl.hooks = getHooks(this)
+    const xml = krpanoConstants.getKrpanoXml()
+    krpanoEl.call(`loadxml(${escape(xml)})`)
+    window.setTimeout(() => {
+      const gyroSettings = this.getGyroSettings()
+      const autoRotateSettings = this.getAutoRotateSettings()
+      krpanoEl.call(`first_panorama_ready(${gyroSettings.active || false});`)
+      if (autoRotateSettings.active) {
+        this.startAutoRotate()
+        krpanoHelpers.stopAutoRotateEvent.call(this).addEvent()
+      }
+      if (isFunction(callback)) {
+        callback(krpanoEl)
+      }
+    }, 1500)
   },
 
   setConfig (config = {}) { // should .call(this)
@@ -71,22 +75,22 @@ const krpanoHelpers = {
       loadingSettings,
       initViewSettings
     } = config
-    if (autoRotateSettings && isFunction(this.setAutoRotateSettings)) {
+    if (!isEmpty(autoRotateSettings) && isFunction(this.setAutoRotateSettings)) {
       this.setAutoRotateSettings(autoRotateSettings)
     }
-    if (gyroSettings && isFunction(this.setGyroSettings)) {
+    if (!isEmpty(gyroSettings) && isFunction(this.setGyroSettings)) {
       this.setGyroSettings(gyroSettings)
     }
-    if (tripodSettings && isFunction(this.setTripodSettings)) {
+    if (!isEmpty(tripodSettings) && isFunction(this.setTripodSettings)) {
       this.setTripodSettings(tripodSettings)
     }
-    if (basicSettings && isFunction(this.setBasicSettings)) {
+    if (!isEmpty(basicSettings) && isFunction(this.setBasicSettings)) {
       this.setBasicSettings(basicSettings)
     }
-    if (loadingSettings && isFunction(this.setLoadingSettings)) {
+    if (!isEmpty(loadingSettings) && isFunction(this.setLoadingSettings)) {
       this.setLoadingSettings(loadingSettings)
     }
-    if (initViewSettings && isFunction(this.setInitViewSettings)) {
+    if (!isEmpty(initViewSettings) && isFunction(this.setInitViewSettings)) {
       this.setInitViewSettings(initViewSettings)
     }
   },
