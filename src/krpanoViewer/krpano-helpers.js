@@ -1,6 +1,12 @@
-import { isEmpty, isFunction } from '@/common/utils'
+import { getIEVersion, isEmpty, isFunction } from '@/common/utils'
 import getHooks from '@/krpanoViewer/hooks'
 import krpanoConstants from '@/krpanoViewer/krpano-constants'
+import getScenesXml from '@/krpanoViewer/xml/scenes'
+import getActionsXml from '@/krpanoViewer/xml/actions'
+import getLogoTripodXml from '@/krpanoViewer/xml/tripod'
+import { contextMenuXml, gyroMessageXml, gyroXml, threeJsXml, webVRXml } from '@/krpanoViewer/xml/plugins'
+import getStylesXml from '@/krpanoViewer/xml/styles'
+import eventsXml from '@/krpanoViewer/xml/events'
 
 const krpanoHelpers = {
   embedPano (callback) { // should .call(this)
@@ -112,6 +118,31 @@ const krpanoHelpers = {
         window.removeEventListener('touchstart', stopAutoRotateHandler)
       }
     }
+  },
+
+  generateXml () {
+    const panoramas = this.getPanoramas()
+    if (panoramas.length <= 0) {
+      krpanoConstants.setKrpanoXml('')
+      return
+    }
+    const tripodSettings = this.getTripodSettings()
+    const stylesXml = getStylesXml.call(this, panoramas, 0)
+    const scenesXml = getScenesXml.call(this, panoramas, 0)
+    const actionsXml = getActionsXml.call(this, panoramas, 0)
+    const logoTripodXml = getLogoTripodXml(tripodSettings.image, tripodSettings.size, panoramas[0].isTopLogo)
+    krpanoConstants.setKrpanoXml(`<krpano onstart="startup();">
+      ${webVRXml}
+      ${gyroXml}
+      ${gyroMessageXml}
+      ${contextMenuXml}
+      ${logoTripodXml}
+      ${eventsXml}
+      ${stylesXml}
+      ${scenesXml}
+      ${actionsXml}
+      ${!getIEVersion() ? threeJsXml : ''}
+    </krpano>`)
   },
 
   checkInit () {

@@ -50,6 +50,13 @@ const krpanoConstants = {
   getKrpanoXOffset: () => 90,
   getVrThumbAth: () => 24,
 
+  initKrpanoVRModeItems (panoramas) {
+    panoramas.forEach((panorama, index) => {
+      this.addVrModeShouldShow(`vr_panorama_${index}`)
+      this.addVrModeShouldShow(`vr_panorama_text_${index}`)
+    })
+  },
+
   initConstants () {
     this.setKrpanoId('')
     this.setKrpanoEl({})
@@ -58,6 +65,9 @@ const krpanoConstants = {
     this.initVrModeShouldHide()
     this.initVrModeShouldShow()
   }
+
+
+
 }
 
 export default krpanoConstants

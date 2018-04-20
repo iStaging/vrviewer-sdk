@@ -83,7 +83,7 @@ function changePanorama () {
 
 initKrpano()
 
-// setTimeout(changePanorama, 3000)
+setTimeout(changePanorama, 3500)
 
 // remove krpano viewer
 document.getElementById('remove-krpano-viewer').addEventListener('click', function () {

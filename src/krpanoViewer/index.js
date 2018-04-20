@@ -39,40 +39,8 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
     krpanoConstants.setKrpanoId('krpano_' + Math.floor(Math.random() * (100000 - 100 + 1) + 100))
     krpanoHelpers.setConfig.call(this, config)
     const panoramas = this.getPanoramas()
-
-    const initKrpanoVRMode = () => {
-      panoramas.forEach((panorama, index) => {
-        krpanoConstants.addVrModeShouldShow(`vr_panorama_${index}`)
-        krpanoConstants.addVrModeShouldShow(`vr_panorama_text_${index}`)
-      })
-    }
-
-    const generateXml = () => {
-      if (panoramas.length <= 0) {
-        krpanoConstants.setKrpanoXml('')
-        return
-      }
-      const tripodSettings = this.getTripodSettings()
-      const stylesXml = getStylesXml.call(this, panoramas, 0)
-      const scenesXml = getScenesXml.call(this, panoramas, 0)
-      const actionsXml = getActionsXml.call(this, panoramas, 0)
-      const logoTripodXml = getLogoTripodXml(tripodSettings.image, tripodSettings.size, panoramas[0].isTopLogo)
-      krpanoConstants.setKrpanoXml(`<krpano onstart="startup();">
-      ${webVRXml}
-      ${gyroXml}
-      ${gyroMessageXml}
-      ${contextMenuXml}
-      ${logoTripodXml}
-      ${eventsXml}
-      ${stylesXml}
-      ${scenesXml}
-      ${actionsXml}
-      ${!getIEVersion() ? threeJsXml : ''}
-      </krpano>`)
-    }
-
-    initKrpanoVRMode()
-    generateXml()
+    krpanoConstants.initKrpanoVRModeItems(panoramas)
+    krpanoHelpers.generateXml.call(this)
     krpanoHelpers.embedPano.call(this)
 
     return this
