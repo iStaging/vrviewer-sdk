@@ -84,8 +84,8 @@ class AframeViewer extends CommonViewer {
     }
 
     // events
-    aSceneEl.addEventListener('click', function (e) {
-      aAnimationEl.emit('pause')
+    aSceneEl.addEventListener('click', () => {
+      this.stopAutoRotate()
     })
   }
 
