@@ -83,16 +83,16 @@ function changePanorama () {
 
 initKrpano()
 
-setTimeout(changePanorama, 3000)
+setTimeout(changePanorama, 3500)
 
 // remove krpano viewer
-document.getElementById("remove-krpano-viewer").addEventListener("click", function() {
+document.getElementById('remove-krpano-viewer').addEventListener('click', function () {
   console.log('remove krpano viewer')
   krpanoViewer.destroy()
 })
 
 // enter krpano vr mode by custom button
-document.getElementById("enter-krpano-vrmode").addEventListener("click", function() {
+document.getElementById('enter-krpano-vrmode').addEventListener('click', function () {
   console.log('toggle krpano vr mode')
   krpanoViewer.toggleVRMode(true)
-});
+})

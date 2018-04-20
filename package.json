@@ -9,7 +9,8 @@
     "VR"
   ],
   "description": "vamaker sdk help you build your 360 panorama solution more easily by aframe or krpano.",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "homepage": "https://istaging.gitbook.io/vr-marker-sdk",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
   "license": "MIT",
   "private": false,
@@ -30,6 +31,9 @@
     "last 2 versions",
     "not ie <= 8"
   ],
+  "engines": {
+    "node" : ">=4"
+  },
   "dependencies": {
     "extends-classes": "^1.0.5",
     "http-status": "^1.0.1",

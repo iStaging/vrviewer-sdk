@@ -1,5 +1,6 @@
 import {
   clone,
+  isEmpty,
   push,
   updateObject
 } from '@/common/utils'
@@ -59,12 +60,12 @@ class CommonViewer {
   }
 
   updateCurrentPanorama (payload = {}) {
+    if (isEmpty(_currentPanorama)) {
+      throw new Error('currentPanorama doesn\'t found')
+    }
     const foundIndex = _panoramas.findIndex(panorama => (
       panorama.panoramaId === _currentPanorama.panoramaId
     ))
-    if (!_currentPanorama) {
-      throw new Error('updatePanorama failed, id can\'t find panorama')
-    }
     const updatedPanorama = updateObject(_currentPanorama, payload)
     _currentPanorama = updatedPanorama
     const newPanoramas = clone(_panoramas)

@@ -33,10 +33,14 @@ function initAframe () {
     panoramas
   })
   // generate aframe viewer
-  // const config = {
-  //   disableVR: true
-  // }
-  aframeViewer.generateAframe()
+  const config = {
+    // disableVR: true
+    autoRotate: {
+      enabled: true,
+      duration: 200000
+    }
+  }
+  aframeViewer.generateAframe(config)
 }
 
 // change aframe panorama to viewer
@@ -50,6 +54,8 @@ initAframe()
 
 // change panorama function
 setTimeout(changePanorama, 3000)
+setTimeout(aframeViewer.stopAutoRotate, 7000)
+setTimeout(aframeViewer.startAutoRotate, 8000)
 
 // remove aframe viewer
 document.getElementById("remove-aframe-viewer").addEventListener("click", function() {

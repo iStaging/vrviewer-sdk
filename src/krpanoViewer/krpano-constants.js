@@ -21,6 +21,14 @@ const krpanoConstants = {
     _krpanoEl = krpanoEl
   },
 
+  initVrModeShouldHide: () => {
+    _krpanoVrModeObj.vrModeShouldHide = []
+  },
+
+  initVrModeShouldShow: () => {
+    _krpanoVrModeObj.vrModeShouldShow = ['vr_menu_bg', 'vr_menu_l', 'vr_menu', 'vr_menu_r']
+  },
+
   addVrModeShouldHide: item => {
     _krpanoVrModeObj.vrModeShouldHide.push(item)
   },
@@ -40,7 +48,23 @@ const krpanoConstants = {
   getKrpanoLookAtH: () => _krpanoLookAtH,
   getDefaultFov: () => 120,
   getKrpanoXOffset: () => 90,
-  getVrThumbAth: () => 24
+  getVrThumbAth: () => 24,
+
+  initKrpanoVRModeItems (panoramas) {
+    panoramas.forEach((panorama, index) => {
+      this.addVrModeShouldShow(`vr_panorama_${index}`)
+      this.addVrModeShouldShow(`vr_panorama_text_${index}`)
+    })
+  },
+
+  initConstants () {
+    this.setKrpanoId('')
+    this.setKrpanoEl({})
+    this.setKrpanoXml('')
+    this.setKrpanoLookAtH(0)
+    this.initVrModeShouldHide()
+    this.initVrModeShouldShow()
+  }
 }
 
 export default krpanoConstants
