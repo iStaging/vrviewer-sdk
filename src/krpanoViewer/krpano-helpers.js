@@ -1,10 +1,9 @@
-import { isFunction } from '@/common/utils'
+import { isEmpty, isFunction } from '@/common/utils'
 import getHooks from '@/krpanoViewer/hooks'
 import krpanoConstants from '@/krpanoViewer/krpano-constants'
 
-// Note: all function should use by .call(this)
 const krpanoHelpers = {
-  embedPano (callback) {
+  embedPano (callback) { // should .call(this)
     const el = this.getEl()
     if (!el) {
       throw new Error('element not found')
@@ -59,7 +58,7 @@ const krpanoHelpers = {
     })
   },
 
-  setConfig (config = {}) {
+  setConfig (config = {}) { // should .call(this)
     const {
       autoRotateSettings,
       gyroSettings,
@@ -88,7 +87,7 @@ const krpanoHelpers = {
     }
   },
 
-  stopAutoRotateEvent () {
+  stopAutoRotateEvent () { // should .call(this)
     const autoRotateSettings = this.getAutoRotateSettings()
     const keydownHandler = (e) => {
       if (e.keyCode === 37 ||
@@ -112,6 +111,19 @@ const krpanoHelpers = {
         window.removeEventListener('mousedown', stopAutoRotateHandler)
         window.removeEventListener('touchstart', stopAutoRotateHandler)
       }
+    }
+  },
+
+  checkInit () {
+    const krpanoEl = krpanoConstants.getKrpanoEl()
+    if (isEmpty(krpanoEl)) {
+      throw new Error('You need to call generateKrpano first.')
+    }
+  },
+
+  checkKrpano () {
+    if (typeof window === 'undefined' || !window.krpanoJS) {
+      throw new Error('You need to include krpanoJS script or import it first. Use it before vrmaker.')
     }
   }
 }

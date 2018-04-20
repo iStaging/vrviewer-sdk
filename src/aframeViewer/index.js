@@ -1,9 +1,8 @@
 import {
-  enterFullScreen,
-  exitFullScreen, isFunction, loadImage
+  isFunction,
+  loadImage
 } from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
-import aframeConstants from '@/aframeViewer/aframe-constants'
 
 let _el
 let _sceneEl
@@ -25,6 +24,7 @@ class AframeViewer extends CommonViewer {
     _sceneEl = document.createElement('a-scene')
     _skyEl = document.createElement('a-sky')
     _cameraContainerEl = document.createElement('a-entity')
+    _cameraContainerEl.id = 'camera-container'
     _cameraEl = document.createElement('a-camera')
     _cameraAnimationEl = document.createElement('a-animation')
     _assetsEl = document.createElement('a-assets')
@@ -70,7 +70,6 @@ class AframeViewer extends CommonViewer {
     }
 
     function initCameraEl (context) {
-      _cameraContainerEl.id = 'camera-container'
       const cameraX = _cameraStartRotation.x || 0
       // const cameraY = cameraRotationOffset + (_cameraStartRotation.y || 0)
       const cameraY = _cameraStartRotation.y || 0
@@ -105,7 +104,6 @@ class AframeViewer extends CommonViewer {
 
   changePanorama (panoramaId, callback) {
     this.selectPanorama(panoramaId)
-    const _skyEl = aframeConstants.getSkyEl()
     const currentPanorama = this.getCurrentPanorama()
     loadImage(currentPanorama.downloadLink, () => {
       _skyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
@@ -121,19 +119,18 @@ class AframeViewer extends CommonViewer {
       if (isFunction(_sceneEl.enterVR)) {
         _sceneEl.enterVR()
       } else {
-        throw new Error('Aframe can\'t execute enterVR')
+        throw new Error('You should call generateAframe first')
       }
     } else {
       if (isFunction(_sceneEl.exitVR)) {
         _sceneEl.exitVR()
       } else {
-        throw new Error('Aframe can\'t execute exitVR')
+        throw new Error('You should call generateAframe first')
       }
     }
   }
 
   startAutoRotate () {
-    const _cameraAnimationEl = document.getElementsByTagName('a-animation')[0]
     const { y } = this.cameraRotation
     _cameraAnimationEl.emit('play')
     _cameraAnimationEl.setAttribute('from', `0 ${y} 0`)
@@ -141,8 +138,6 @@ class AframeViewer extends CommonViewer {
   }
 
   stopAutoRotate () {
-    const _cameraAnimationEl = document.getElementsByTagName('a-animation')[0]
-    const _cameraContainerEl = document.getElementById('camera-container')
     const cameraRotation = _cameraContainerEl.getAttribute('rotation')
     console.log('STOPPED')
     this.cameraRotation = cameraRotation
@@ -150,10 +145,9 @@ class AframeViewer extends CommonViewer {
   }
 
   destroy () {
-    const _sceneEl = aframeConstants.getSceneEl()
     _sceneEl.parentNode.removeChild(_sceneEl)
-    aframeConstants.setSceneEl({})
-    aframeConstants.setSkyEl({})
+    _sceneEl = {}
+    _skyEl = {}
   }
 
   checkAframe () {
