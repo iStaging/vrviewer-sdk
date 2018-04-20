@@ -71,8 +71,6 @@ class AframeViewer extends CommonViewer {
     }
 
     const initCameraEl = () => {
-      _cameraContainerEl.id = 'camera-container'
-    function initCameraEl (context) {
       const cameraX = _cameraStartRotation.x || 0
       // const cameraY = cameraRotationOffset + (_cameraStartRotation.y || 0)
       const cameraY = _cameraStartRotation.y || 0
