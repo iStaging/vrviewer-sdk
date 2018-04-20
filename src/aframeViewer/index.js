@@ -32,12 +32,6 @@ class AframeViewer extends CommonViewer {
     _el = this.getEl()
     _cameraStartRotation = this.getCurrentPanorama().panoramaRotation || {}
 
-    // elements
-    initAssetsEl(this)
-    initSkyEl(this)
-    initCameraEl(this)
-    initCameraAnimationEl(this)
-
     // settings
     _sceneEl.setAttribute('embedded', '')
     _sceneEl.setAttribute('debug', '')
@@ -142,10 +136,9 @@ class AframeViewer extends CommonViewer {
   }
 
   toggleVRMode (shouldShowVRMode) {
-    const aSceneEl = aframeConstants.getSceneEl()
     shouldShowVRMode
-      ? aSceneEl.enterVR()
-      : aSceneEl.exitVR()
+      ? _sceneEl.enterVR()
+      : _sceneEl.exitVR()
   }
 
   startAutoRotate () {
