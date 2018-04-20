@@ -28,7 +28,7 @@ import classes from 'extends-classes'
 class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, KrpanoTripod, KrpanoBasic, KrpanoInitView, KrpanoLoadingPanorama) {
   constructor () {
     super(...arguments)
-    this.checkKrpano()
+    krpanoHelpers.checkKrpano()
   }
 
   generateKrpano (config) {
@@ -41,10 +41,10 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
     const panoramas = this.getPanoramas()
 
     const initKrpanoVRMode = () => {
-      for (let i = 0; i < panoramas.length; i++) {
-        krpanoConstants.addVrModeShouldShow(`vr_panorama_${i}`)
-        krpanoConstants.addVrModeShouldShow(`vr_panorama_text_${i}`)
-      }
+      panoramas.forEach((panorama, index) => {
+        krpanoConstants.addVrModeShouldShow(`vr_panorama_${index}`)
+        krpanoConstants.addVrModeShouldShow(`vr_panorama_text_${index}`)
+      })
     }
 
     const generateXml = () => {
@@ -79,25 +79,24 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
   }
 
   destroy () {
+    krpanoHelpers.checkInit()
     const { removepano } = window
-    if (krpanoConstants.getKrpanoId && krpanoConstants.getKrpanoEl) {
-      const krpanoId = krpanoConstants.getKrpanoId()
-      removepano(krpanoId)
-      console.log('pano removed')
-      krpanoConstants.setKrpanoEl({})
-      krpanoHelpers.stopAutoRotateEvent.call(this).removeEvent()
-    }
+    krpanoHelpers.stopAutoRotateEvent.call(this).removeEvent()
+    const krpanoId = krpanoConstants.getKrpanoId()
+    removepano(krpanoId)
+    krpanoConstants.initConstants()
+    console.log('pano removed')
   }
 
   changePanorama (panoramaId = '') {
+    krpanoHelpers.checkInit()
     this.selectPanorama(panoramaId)
-    if (!isEmpty(krpanoConstants.getKrpanoEl)) {
-      const krpanoEl = krpanoConstants.getKrpanoEl()
-      krpanoEl.call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
-    }
+    const krpanoEl = krpanoConstants.getKrpanoEl()
+    krpanoEl.call(`prepare_change_scene(panorama_${panoramaId || ''}, ${panoramaId || ''});`)
   }
 
   toggleGyro (bool) {
+    krpanoHelpers.checkInit()
     const krpanoEl = krpanoConstants.getKrpanoEl()
     if (bool) {
       krpanoEl.call('start_gyro();')
@@ -107,17 +106,12 @@ class KrpanoViewer extends classes(CommonViewer, KrpanoAutoRotate, KrpanoGyro, K
   }
 
   toggleVRMode (bool) {
+    krpanoHelpers.checkInit()
     const krpanoEl = krpanoConstants.getKrpanoEl()
     if (bool) {
       krpanoEl.call('WebVR.enterVR();')
     } else {
       krpanoEl.call('WebVR.exitVR();')
-    }
-  }
-
-  checkKrpano () {
-    if (typeof window === 'undefined' || !window.krpanoJS) {
-      throw new Error('You need to include krpanoJS script or import it first. Use it before vrmaker.')
     }
   }
 }

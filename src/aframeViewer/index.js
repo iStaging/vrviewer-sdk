@@ -3,7 +3,6 @@ import {
   loadImage
 } from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
-import aframeConstants from '@/aframeViewer/aframe-constants'
 
 let _el
 let _sceneEl
@@ -104,7 +103,6 @@ class AframeViewer extends CommonViewer {
 
   changePanorama (panoramaId, callback) {
     this.selectPanorama(panoramaId)
-    const _skyEl = aframeConstants.getSkyEl()
     const currentPanorama = this.getCurrentPanorama()
     loadImage(currentPanorama.downloadLink, () => {
       _skyEl.setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
@@ -122,7 +120,6 @@ class AframeViewer extends CommonViewer {
   }
 
   startAutoRotate () {
-    const _cameraAnimationEl = document.getElementsByTagName('a-animation')[0]
     const { y } = this.cameraRotation
     _cameraAnimationEl.emit('play')
     _cameraAnimationEl.setAttribute('from', `0 ${y} 0`)
@@ -130,8 +127,6 @@ class AframeViewer extends CommonViewer {
   }
 
   stopAutoRotate () {
-    const _cameraAnimationEl = document.getElementsByTagName('a-animation')[0]
-    const _cameraContainerEl = document.getElementById('camera-container')
     const cameraRotation = _cameraContainerEl.getAttribute('rotation')
     console.log('STOPPED')
     this.cameraRotation = cameraRotation
@@ -139,10 +134,9 @@ class AframeViewer extends CommonViewer {
   }
 
   destroy () {
-    const _sceneEl = aframeConstants.getSceneEl()
     _sceneEl.parentNode.removeChild(_sceneEl)
-    aframeConstants.setSceneEl({})
-    aframeConstants.setSkyEl({})
+    _sceneEl = {}
+    _skyEl = {}
   }
 
   checkAframe () {
