@@ -1,11 +1,34 @@
-import Krpano from '@/krpanoViewer/index'
-import KrpanoHelpers from '@/krpanoViewer/krpano-helpers'
+import KrpanoViewer from '@/krpanoViewer/index'
+import krpanoHelpers from '@/krpanoViewer/krpano-helpers'
+import krpanoConstants from '@/krpanoViewer/krpano-constants'
+import { clone } from '@/common/utils'
 
 describe('krpano/hrpano-helpers.js', () => {
-  it('setConfig should be worked well', () => {
+  let krpanoViewer
+  beforeEach(() => {
     window.krpanoJS = 'something'
-    const krpano = new Krpano()
+    window.embedpano = (config) => {
+      config.onready({
+        call: () => {}
+      })
+    }
+    window.removepano = () => {}
+    krpanoViewer = new KrpanoViewer()
+  })
 
+  it('embedPano should be worked well', () => {
+    krpanoHelpers.handleKrpanoReady = jest.fn()
+    krpanoHelpers.embedPano.call(krpanoViewer)
+    expect(krpanoHelpers.handleKrpanoReady).toBeCalled()
+  })
+
+  // it('handleKrpanoReady should be worked well', () => {
+  //   krpanoConstants.setKrpanoEl = jest.fn()
+  //   krpanoHelpers.handleKrpanoReady.call(krpanoViewer) // fixme: influenced by previous test
+  //   expect(krpanoConstants.setKrpanoEl).toBeCalled()
+  // })
+
+  it('setConfig should be worked well', () => {
     const autoRotateSettings = { test: 'test autoRotateSettings' }
     const gyroSettings = { test: 'test gyroSettings' }
     const tripodSettings = { test: 'test tripodSettings' }
@@ -20,12 +43,18 @@ describe('krpano/hrpano-helpers.js', () => {
       loadingSettings,
       initViewSettings
     }
-    KrpanoHelpers.setConfig.call(krpano, config)
-    expect(krpano.getAutoRotateSettings()).toEqual(autoRotateSettings)
-    expect(krpano.getGyroSettings()).toEqual(gyroSettings)
-    expect(krpano.getTripodSettings()).toEqual(tripodSettings)
-    expect(krpano.getBasicSettings()).toEqual(basicSettings)
-    expect(krpano.getLoadingSettings()).toEqual(loadingSettings)
-    expect(krpano.getInitViewSettings()).toEqual(initViewSettings)
+    krpanoViewer.setAutoRotateSettings = jest.fn()
+    krpanoViewer.setGyroSettings = jest.fn()
+    krpanoViewer.setTripodSettings = jest.fn()
+    krpanoViewer.setBasicSettings = jest.fn()
+    krpanoViewer.setLoadingSettings = jest.fn()
+    krpanoViewer.setInitViewSettings = jest.fn()
+    krpanoHelpers.setConfig.call(krpanoViewer, config)
+    expect(krpanoViewer.setAutoRotateSettings).toBeCalled()
+    expect(krpanoViewer.setGyroSettings).toBeCalled()
+    expect(krpanoViewer.setTripodSettings).toBeCalled()
+    expect(krpanoViewer.setBasicSettings).toBeCalled()
+    expect(krpanoViewer.setLoadingSettings).toBeCalled()
+    expect(krpanoViewer.setInitViewSettings).toBeCalled()
   })
 })
