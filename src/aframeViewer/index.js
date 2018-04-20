@@ -1,6 +1,6 @@
 import {
-  enterFullScreen,
-  exitFullScreen, isFunction, loadImage
+  isFunction,
+  loadImage
 } from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
 import aframeConstants from '@/aframeViewer/aframe-constants'
@@ -9,27 +9,31 @@ class AframeViewer extends CommonViewer {
   constructor () {
     super(...arguments)
     this.checkAframe()
+    this.timeout = '1000'
   }
 
   generateAframe (config) {
     const aSceneEl = document.createElement('a-scene')
-    aframeConstants.setSceneEl(aSceneEl)
     const aSkyEl = document.createElement('a-sky')
-    aframeConstants.setSkyEl(aSkyEl)
     const aCameraContainerEl = document.createElement('a-entity')
     const aCameraEl = document.createElement('a-camera')
     const aAnimationEl = document.createElement('a-animation')
     const aAssetsEl = document.createElement('a-assets')
     const el = this.getEl()
     const { panoramaRotation } = this.getCurrentPanorama()
+    const panoramas = this.getPanoramas()
     const cameraRotationOffset = 90
+    const cameraStartRotation = panoramaRotation || {}
+
+    aframeConstants.setSceneEl(aSceneEl)
+    aframeConstants.setSkyEl(aSkyEl)
     aframeConstants.setCameraEl(aCameraEl)
-    let cameraStartRotation = panoramaRotation || {}
 
     // a-assets
-    aAssetsEl.setAttribute('timeout', '1000')
+    aAssetsEl.setAttribute('timeout', this.timeout)
     aSceneEl.append(aAssetsEl)
-    this.getPanoramas().forEach(panorama => {
+
+    panoramas.forEach(panorama => {
       const imgEl = document.createElement('img')
       imgEl.src = panorama.downloadLink
       imgEl.id = panorama.panoramaId
@@ -45,9 +49,7 @@ class AframeViewer extends CommonViewer {
     // a-camera
     const cameraX = cameraStartRotation.x || 0
     const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
-    // const cameraY = cameraStartRotation.y || 0
     const cameraZ = cameraStartRotation.z || 0
-
     aCameraContainerEl.setAttribute(
       'rotation',
       `${cameraX} ${cameraY} ${cameraZ}`
@@ -77,7 +79,7 @@ class AframeViewer extends CommonViewer {
     }
 
     // events
-    aSceneEl.addEventListener('click', function (e) {
+    aSceneEl.addEventListener('click', (e) => {
       aAnimationEl.emit('pause')
     })
   }
@@ -94,23 +96,11 @@ class AframeViewer extends CommonViewer {
     })
   }
 
-  toggleVRMode (boolean) {
+  toggleVRMode (shouldShowVRMode) {
     const aSceneEl = aframeConstants.getSceneEl()
-    if (boolean) {
-      if (isFunction(aSceneEl.enterVR)) {
-        aSceneEl.enterVR()
-      } else {
-        throw new Error('Aframe can\'t execute enterVR')
-      }
-      enterFullScreen()
-    } else {
-      if (isFunction(aSceneEl.exitVR)) {
-        aSceneEl.exitVR()
-      } else {
-        throw new Error('Aframe can\'t execute exitVR')
-      }
-      exitFullScreen()
-    }
+    shouldShowVRMode
+      ? aSceneEl.enterVR()
+      : aSceneEl.exitVR()
   }
 
   destroy () {

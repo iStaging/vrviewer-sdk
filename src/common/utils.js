@@ -32,6 +32,10 @@ export const isEqual = (a, b) => {
   return aKeys.every(key => a[key] === b[key])
 }
 
+export const isElement = (element) => {
+  return element instanceof Element
+}
+
 export const updateObject = (oldObject, updatedValues) => {
   return {
     ...oldObject,
