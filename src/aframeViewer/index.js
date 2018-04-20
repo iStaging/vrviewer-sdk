@@ -11,7 +11,7 @@ class AframeViewer extends CommonViewer {
     this.checkAframe()
   }
 
-  generateAframe (config) {
+  generateAframe (config = { disableVR: false, autoRotate: {} }) {
     const aSceneEl = document.createElement('a-scene')
     aframeConstants.setSceneEl(aSceneEl)
     const aSkyEl = document.createElement('a-sky')
@@ -22,7 +22,7 @@ class AframeViewer extends CommonViewer {
     const aAssetsEl = document.createElement('a-assets')
     const el = this.getEl()
     const { panoramaRotation } = this.getCurrentPanorama()
-    const cameraRotationOffset = 90
+    // const cameraRotationOffset = 90
     aframeConstants.setCameraEl(aCameraEl)
     let cameraStartRotation = panoramaRotation || {}
 
@@ -44,8 +44,8 @@ class AframeViewer extends CommonViewer {
 
     // a-camera
     const cameraX = cameraStartRotation.x || 0
-    const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
-    // const cameraY = cameraStartRotation.y || 0
+    // const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
+    const cameraY = cameraStartRotation.y || 0
     const cameraZ = cameraStartRotation.z || 0
 
     aCameraContainerEl.setAttribute(
@@ -54,25 +54,27 @@ class AframeViewer extends CommonViewer {
     )
 
     // a-animation
-    aAnimationEl.setAttribute('attribute', 'rotation')
-    aAnimationEl.setAttribute('fill', 'forwards')
-    aAnimationEl.setAttribute('easing', 'linear')
-    aAnimationEl.setAttribute('dur', '200000')
-    aAnimationEl.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
-    aAnimationEl.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
-    // aAnimation.setAttribute('from', `0 0 0`)
-    // aAnimation.setAttribute('to', `0 360 0`)
-    aAnimationEl.setAttribute('repeat', 'indefinite')
-    aAnimationEl.setAttribute('startEvents', 'rotation-start')
-    aAnimationEl.setAttribute('pauseEvents', 'rotation-pause')
+    if (config.autoRotate.enabled) {
+      aAnimationEl.setAttribute('attribute', 'rotation')
+      aAnimationEl.setAttribute('fill', 'forwards')
+      aAnimationEl.setAttribute('easing', 'linear')
+      aAnimationEl.setAttribute('dur', `${config.autoRotate.duration}`)
+      // aAnimationEl.setAttribute('from', `0 ${0 + cameraRotationOffset} 0`)
+      // aAnimationEl.setAttribute('to', `0 ${360 + cameraRotationOffset} 0`)
+      aAnimationEl.setAttribute('from', `0 0 0`)
+      aAnimationEl.setAttribute('to', `0 360 0`)
+      aAnimationEl.setAttribute('repeat', 'indefinite')
+      aAnimationEl.setAttribute('startEvents', 'rotation-start')
+      aAnimationEl.setAttribute('pauseEvents', 'rotation-pause')
 
-    // a-scene
-    aCameraContainerEl.appendChild(aCameraEl)
-    aCameraContainerEl.appendChild(aAnimationEl)
-    aSceneEl.appendChild(aCameraContainerEl)
+      // a-scene
+      aCameraContainerEl.appendChild(aCameraEl)
+      aCameraContainerEl.appendChild(aAnimationEl)
+      aSceneEl.appendChild(aCameraContainerEl)
+    }
 
     // config
-    if (config && config.disableVR) {
+    if (config.disableVR) {
       aSceneEl.setAttribute('vr-mode-ui', 'enabled: false')
     }
 
@@ -111,6 +113,19 @@ class AframeViewer extends CommonViewer {
       }
       exitFullScreen()
     }
+  }
+
+  startAutoRotate () {
+    const aAnimationEl = document.getElementsByTagName('a-animation')[0]
+    console.log('STASTDE')
+    aAnimationEl.emit('play')
+    console.log(aAnimationEl)
+  }
+
+  stopAutoRotate () {
+    const aAnimationEl = document.getElementsByTagName('a-animation')[0]
+    console.log('STOPPED')
+    aAnimationEl.emit('pause')
   }
 
   destroy () {
