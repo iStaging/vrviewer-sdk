@@ -22,6 +22,36 @@ class AframeViewer extends CommonViewer {
   }
 
   generateAframe (config = { disableVR: false, autoRotate: {} }) {
+    _sceneEl = document.createElement('a-scene')
+    _skyEl = document.createElement('a-sky')
+    _cameraContainerEl = document.createElement('a-entity')
+    _cameraContainerEl.id = 'camera-container'
+    _cameraEl = document.createElement('a-camera')
+    _cameraAnimationEl = document.createElement('a-animation')
+    _assetsEl = document.createElement('a-assets')
+    _el = this.getEl()
+    _cameraStartRotation = this.getCurrentPanorama().panoramaRotation || {}
+
+    // elements
+    initAssetsEl(this)
+    initSkyEl(this)
+    initCameraEl(this)
+    initCameraAnimationEl(this)
+
+    // settings
+    _sceneEl.setAttribute('embedded', '')
+    _sceneEl.setAttribute('debug', '')
+
+    // config
+    if (config.disableVR) {
+      _sceneEl.setAttribute('vr-mode-ui', 'enabled: false')
+    }
+
+    // events
+    _sceneEl.addEventListener('click', () => {
+      this.stopAutoRotate()
+    })
+
     // functions
     const initAssetsEl = (panoramas) => {
       _assetsEl.setAttribute('timeout', '1000')
@@ -42,6 +72,7 @@ class AframeViewer extends CommonViewer {
 
     const initCameraEl = () => {
       _cameraContainerEl.id = 'camera-container'
+    function initCameraEl (context) {
       const cameraX = _cameraStartRotation.x || 0
       // const cameraY = cameraRotationOffset + (_cameraStartRotation.y || 0)
       const cameraY = _cameraStartRotation.y || 0
