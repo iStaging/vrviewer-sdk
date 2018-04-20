@@ -16,11 +16,9 @@ const krpanoHelpers = {
     }
     const basicSettings = this.getBasicSettings()
     const krpanoId = krpanoConstants.getKrpanoId()
-
     const handleKrpanoReady = (krpanoEl, callback) => {
-      krpanoEl.hooks = getHooks(this)
       krpanoConstants.setKrpanoEl(krpanoEl)
-      // console.log('pano created', this.krpanoEl.hooks)
+      krpanoEl.hooks = getHooks(this)
       const xml = krpanoConstants.getKrpanoXml()
       krpanoEl.call(`loadxml(${escape(xml)})`)
       window.setTimeout(() => {
@@ -95,7 +93,7 @@ const krpanoHelpers = {
 
   stopAutoRotateEvent () { // should .call(this)
     const autoRotateSettings = this.getAutoRotateSettings()
-    const keydownHandler = (e) => {
+    const keydownHandler = e => {
       if (e.keyCode === 37 ||
         e.keyCode === 38 ||
         e.keyCode === 39 ||

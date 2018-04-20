@@ -65,9 +65,6 @@ const krpanoConstants = {
     this.initVrModeShouldHide()
     this.initVrModeShouldShow()
   }
-
-
-
 }
 
 export default krpanoConstants
