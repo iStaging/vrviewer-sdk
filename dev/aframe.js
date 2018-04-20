@@ -53,7 +53,7 @@ function changePanorama () {
 initAframe()
 
 // change panorama function
-// setTimeout(changePanorama, 3000)
+setTimeout(changePanorama, 3000)
 setTimeout(aframeViewer.stopAutoRotate, 7000)
 setTimeout(aframeViewer.startAutoRotate, 8000)
 
