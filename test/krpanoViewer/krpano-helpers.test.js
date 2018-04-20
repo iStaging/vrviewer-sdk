@@ -4,29 +4,40 @@ import krpanoConstants from '@/krpanoViewer/krpano-constants'
 import { clone } from '@/common/utils'
 
 describe('krpano/hrpano-helpers.js', () => {
+  const krpanoEl = {
+    call: () => {}
+  }
+  window.krpanoJS = 'something'
+  window.embedpano = (config) => {
+    config.onready(krpanoEl)
+  }
+  window.removepano = () => {}
   let krpanoViewer
   beforeEach(() => {
-    window.krpanoJS = 'something'
-    window.embedpano = (config) => {
-      config.onready({
-        call: () => {}
-      })
-    }
-    window.removepano = () => {}
     krpanoViewer = new KrpanoViewer()
   })
 
   it('embedPano should be worked well', () => {
+    const storedFunction = krpanoHelpers.handleKrpanoReady
     krpanoHelpers.handleKrpanoReady = jest.fn()
     krpanoHelpers.embedPano.call(krpanoViewer)
     expect(krpanoHelpers.handleKrpanoReady).toBeCalled()
+    krpanoHelpers.handleKrpanoReady = storedFunction
   })
 
-  // it('handleKrpanoReady should be worked well', () => {
-  //   krpanoConstants.setKrpanoEl = jest.fn()
-  //   krpanoHelpers.handleKrpanoReady.call(krpanoViewer) // fixme: influenced by previous test
-  //   expect(krpanoConstants.setKrpanoEl).toBeCalled()
-  // })
+  it('handleKrpanoReady should be worked well', (done) => {
+    jest.setTimeout(2000)
+    const storedFunction = krpanoConstants.setKrpanoEl
+    const callback = jest.fn
+    krpanoConstants.setKrpanoEl = jest.fn()
+    krpanoHelpers.handleKrpanoReady.call(krpanoViewer, krpanoEl, callback)
+    expect(krpanoConstants.setKrpanoEl).toBeCalled()
+    krpanoConstants.setKrpanoEl = storedFunction
+    window.setTimeout(() => {
+      expect(callback).toBeCalled()
+    }, 1500)
+    done()
+  })
 
   it('setConfig should be worked well', () => {
     const autoRotateSettings = { test: 'test autoRotateSettings' }
