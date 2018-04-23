@@ -17,17 +17,21 @@ const aframeHelpers = {
   },
 
   initSkyEl () {
-    aframeConstants.getSkyEl().setAttribute('src', `#${commonViewer.getCurrentPanorama().panoramaId}`)
-    aframeConstants.getSceneEl().appendChild(aframeConstants.getSkyEl())
-    commonViewer.getEl().appendChild(aframeConstants.getSceneEl())
+    const currentPanorama = commonViewer.getCurrentPanorama()
+    const skyEl = aframeConstants.getSkyEl()
+    const sceneEl = aframeConstants.getSceneEl()
+    skyEl.setAttribute('src', `#${currentPanorama.panoramaId}`)
+    sceneEl.appendChild(aframeConstants.getSkyEl())
+    commonViewer.getEl().appendChild(sceneEl)
   },
 
   initCameraEl () {
     aframeConstants.getCameraContainerEl().id = 'camera-container'
-    const cameraX = aframeConstants.getCameraStartRotation().x || 0
-    // const cameraY = cameraRotationOffset + (aframeConstants.getCameraStartRotation().y || 0)
-    const cameraY = aframeConstants.getCameraStartRotation().y || 0
-    const cameraZ = aframeConstants.getCameraStartRotation().z || 0
+    const cameraRotationOffset = 90
+    const cameraStartRotation = aframeConstants.getCameraStartRotation()
+    const cameraX = cameraStartRotation.x || 0
+    const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
+    const cameraZ = cameraStartRotation.z || 0
 
     aframeConstants.getCameraContainerEl().setAttribute(
       'rotation',
@@ -37,6 +41,7 @@ const aframeHelpers = {
 
   initCameraAnimationEl (config) {
     if (config.autoRotate.enabled) {
+      const sceneEl = aframeConstants.getSceneEl()
       const cameraEl = aframeConstants.getCameraEl()
       const cameraContainerEL = aframeConstants.getCameraContainerEl()
       const cameraAnimationEl = aframeConstants.getCameraAnimationEl()
@@ -53,9 +58,9 @@ const aframeHelpers = {
         pauseEvents: 'rotation-pause'
       })
 
-      aframeConstants.getCameraContainerEl().appendChild(cameraEl)
-      aframeConstants.getCameraContainerEl().appendChild(cameraAnimationEl)
-      aframeConstants.getSceneEl().appendChild(cameraContainerEL)
+      cameraContainerEL.appendChild(cameraEl)
+      cameraContainerEL.appendChild(cameraAnimationEl)
+      sceneEl.appendChild(cameraContainerEL)
     }
   }
 }

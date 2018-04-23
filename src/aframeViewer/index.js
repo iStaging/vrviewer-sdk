@@ -38,25 +38,25 @@ class AframeViewer extends CommonViewer {
     aframeHelpers.initCameraAnimationEl(config)
 
     // settings
-    aframeConstants.getSceneEl().setAttribute('embedded', '')
-    aframeConstants.getSceneEl().setAttribute('debug', '')
+    setAttributes(sceneEl, { embedded: '', debug: '' })
 
     // config
     if (config.disableVR) {
-      aframeConstants.getSceneEl().setAttribute('vr-mode-ui', 'enabled: false')
+      sceneEl.setAttribute('vr-mode-ui', 'enabled: false')
     }
 
     // events
-    aframeConstants.getSceneEl().addEventListener('click', (e) => {
-      this.stopAutoRotate()
+    sceneEl.addEventListener('click', (e) => {
+      this.stopAutoRotate(config)
     })
   }
 
   changePanorama (panoramaId, callback) {
-    this.selectPanorama(panoramaId)
+    const skyEl = aframeConstants.getSkyEl()
     const currentPanorama = this.getCurrentPanorama()
+    this.selectPanorama(panoramaId)
     loadImage(currentPanorama.downloadLink, () => {
-      aframeConstants.getSkyEl().setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
+      skyEl.setAttribute('src', `#${currentPanorama.panoramaId}`)
       if (isFunction(callback)) {
         callback()
       }
@@ -79,11 +79,14 @@ class AframeViewer extends CommonViewer {
     })
   }
 
-  stopAutoRotate () {
+  stopAutoRotate (config) {
     const cameraContainerEL = aframeConstants.getCameraContainerEl()
     const cameraRotation = cameraContainerEL.getAttribute('rotation')
     aframeConstants.setCameraRotation(cameraRotation)
     aframeConstants.getCameraAnimationEl().emit('pause')
+    setTimeout(() => {
+      this.startAutoRotate()
+    }, config.autoRotate.restartTime)
   }
 
   destroy () {

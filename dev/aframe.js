@@ -26,20 +26,21 @@ var panoramas = [{
 // new VRMaker aframe viewer
 var aframeViewer = new VRMaker.AframeViewer()
 
+var config = {
+  // disableVR: true
+  autoRotate: {
+    enabled: true,
+    duration: 200000,
+    restartTime: 20000
+  }
+}
+
 // init aframe viewer with data
 function initAframe () {
   aframeViewer.init({
     el: document.getElementById('vrmaker-aframe'),
     panoramas
   })
-  // generate aframe viewer
-  const config = {
-    // disableVR: true
-    autoRotate: {
-      enabled: true,
-      duration: 200000
-    }
-  }
   aframeViewer.generateAframe(config)
 }
 
@@ -54,7 +55,9 @@ initAframe()
 
 // change panorama function
 setTimeout(changePanorama, 3000)
-setTimeout(aframeViewer.stopAutoRotate, 7000)
+setTimeout(() => {
+  aframeViewer.stopAutoRotate(config)
+}, 7000)
 setTimeout(aframeViewer.startAutoRotate, 8000)
 
 // remove aframe viewer
