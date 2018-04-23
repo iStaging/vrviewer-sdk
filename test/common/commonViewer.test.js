@@ -1,5 +1,8 @@
 import CommonViewer from '@/common/common-viewer'
-import { clone } from '@/common/utils'
+import {
+  clone,
+  push
+} from '@/common/utils'
 import AFRAME from 'aframe'
 
 window.AFRAME = AFRAME
@@ -56,9 +59,19 @@ describe('commonViewer', () => {
   })
 
   it('addPanoramas', () => {
-    const oldPanoramas = clone(panoramas)
-    commonViewer.addPanoramas([{ panoramaId: '2' }])
-    expect(commonViewer.getPanoramas()).not.toBe(oldPanoramas)
+    const oldPanoramas = commonViewer.getPanoramas()
+    const payload = [{ panoramaId: '2' }, { panoramaId: '3' }]
+    commonViewer.addPanoramas(payload)
+    const newPanoramas = oldPanoramas.concat(payload)
+    expect(commonViewer.getPanoramas()).toEqual(newPanoramas)
+  })
+
+  it('addPanorama', () => {
+    const oldPanoramas = commonViewer.getPanoramas()
+    const payload = { panoramaId: '2' }
+    commonViewer.addPanorama(payload)
+    const newPanoramas = push(oldPanoramas, payload)
+    expect(commonViewer.getPanoramas()).toEqual(newPanoramas)
   })
 
   it('selectPanorama and getCurrentPanorama', () => {

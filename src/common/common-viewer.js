@@ -41,7 +41,7 @@ class CommonViewer {
   }
 
   addPanorama (panorama) {
-    _panoramas = push(panorama, _panoramas)
+    _panoramas = push(_panoramas, panorama)
   }
 
   updatePanorama (id, payload = {}) {
