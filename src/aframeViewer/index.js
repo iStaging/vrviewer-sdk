@@ -14,21 +14,21 @@ class AframeViewer extends CommonViewer {
   }
 
   generateAframe (config = { disableVR: false, autoRotate: {} }) {
-    const scene = document.createElement('a-scene')
-    const sky = document.createElement('a-sky')
-    const camera = document.createElement('a-camera')
-    const cameraContainer = document.createElement('a-entity')
-    const cameraStartRotation = this.getCurrentPanorama().panoramaRotation || {}
-    const cameraAnimation = document.createElement('a-animation')
-    const assets = document.createElement('a-assets')
+    const sceneEl = document.createElement('a-scene')
+    const skyEl = document.createElement('a-sky')
+    const cameraEl = document.createElement('a-camera')
+    const cameraContainerEl = document.createElement('a-entity')
+    const cameraStartRotationEl = this.getCurrentPanorama().panoramaRotation || {}
+    const cameraAnimationEl = document.createElement('a-animation')
+    const assetsEl = document.createElement('a-assets')
 
-    aframeConstants.setSceneEl(scene)
-    aframeConstants.setSkyEl(sky)
-    aframeConstants.setCameraEl(camera)
-    aframeConstants.setCameraContainerEl(cameraContainer)
-    aframeConstants.setCameraAnimationEl(cameraAnimation)
-    aframeConstants.setAssetsEl(assets)
-    aframeConstants.setCameraStartRotation(cameraStartRotation || {})
+    aframeConstants.setSceneEl(sceneEl)
+    aframeConstants.setSkyEl(skyEl)
+    aframeConstants.setCameraEl(cameraEl)
+    aframeConstants.setCameraContainerEl(cameraContainerEl)
+    aframeConstants.setCameraAnimationEl(cameraAnimationEl)
+    aframeConstants.setAssetsEl(assetsEl)
+    aframeConstants.setCameraStartRotation(cameraStartRotationEl || {})
 
     // init
     aframeHelpers.initAssetsEl()

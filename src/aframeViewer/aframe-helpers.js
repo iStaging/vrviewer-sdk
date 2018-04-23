@@ -1,5 +1,6 @@
 import aframeConstants from '@/aframeViewer/aframe-constants'
 import CommonViewer from '@/common/common-viewer'
+import { setAttributes } from '@/common/utils'
 
 const commonViewer = new CommonViewer()
 
@@ -36,19 +37,25 @@ const aframeHelpers = {
 
   initCameraAnimationEl (config) {
     if (config.autoRotate.enabled) {
-      aframeConstants.getCameraAnimationEl().setAttribute('attribute', 'rotation')
-      aframeConstants.getCameraAnimationEl().setAttribute('fill', 'forwards')
-      aframeConstants.getCameraAnimationEl().setAttribute('easing', 'linear')
-      aframeConstants.getCameraAnimationEl().setAttribute('dur', `${config.autoRotate.duration}`)
-      aframeConstants.getCameraAnimationEl().setAttribute('from', `0 0 0`)
-      aframeConstants.getCameraAnimationEl().setAttribute('to', `0 360 0`)
-      aframeConstants.getCameraAnimationEl().setAttribute('repeat', 'indefinite')
-      aframeConstants.getCameraAnimationEl().setAttribute('startEvents', 'rotation-start')
-      aframeConstants.getCameraAnimationEl().setAttribute('pauseEvents', 'rotation-pause')
+      const cameraEl = aframeConstants.getCameraEl()
+      const cameraContainerEL = aframeConstants.getCameraContainerEl()
+      const cameraAnimationEl = aframeConstants.getCameraAnimationEl()
 
-      aframeConstants.getCameraContainerEl().appendChild(aframeConstants.getCameraEl())
-      aframeConstants.getCameraContainerEl().appendChild(aframeConstants.getCameraAnimationEl())
-      aframeConstants.getSceneEl().appendChild(aframeConstants.getCameraContainerEl())
+      setAttributes(cameraAnimationEl, {
+        attribute: 'rotation',
+        fill: 'forwards',
+        easing: 'linear',
+        dur: `${config.autoRotate.duration}`,
+        from: `0 0 0`,
+        to: `0 360 0`,
+        repeat: 'indefinite',
+        startEvents: 'rotation-start',
+        pauseEvents: 'rotation-pause'
+      })
+
+      aframeConstants.getCameraContainerEl().appendChild(cameraEl)
+      aframeConstants.getCameraContainerEl().appendChild(cameraAnimationEl)
+      aframeConstants.getSceneEl().appendChild(cameraContainerEL)
     }
   }
 }
