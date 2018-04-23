@@ -19,14 +19,10 @@ class CommonViewer {
     this.setVersion(version)
     this.initEl(options.el)
     this.initPanoramas(options.panoramas)
-    console.log('VRMaker version: ', this.getVersion())
+    // console.log('VRMaker version: ', this.getVersion())
     _currentPanorama = (options.panoramaIndex !== undefined)
       ? options.panoramaIndex
       : options.panoramas[0]
-  }
-
-  initEl (el) {
-    _el = el
   }
 
   initPanoramas (panoramas) {
@@ -37,11 +33,13 @@ class CommonViewer {
   }
 
   addPanoramas (panoramas) {
+    panoramas.map(panorama => checkPanoramaFormat(panorama))
     _panoramas = _panoramas.concat(panoramas)
   }
 
   addPanorama (panorama) {
-    _panoramas = push(panorama, _panoramas)
+    checkPanoramaFormat(panorama)
+    _panoramas = push(_panoramas, panorama)
   }
 
   updatePanorama (id, payload = {}) {
@@ -54,6 +52,7 @@ class CommonViewer {
       throw new Error('updatePanorama failed, id can\'t find panorama')
     }
     const updatedPanorama = updateObject(foundPanorama, payload)
+    checkPanoramaFormat(updatedPanorama)
     const newPanoramas = clone(_panoramas)
     newPanoramas.splice(foundIndex, 1, updatedPanorama)
     _panoramas = newPanoramas
@@ -67,6 +66,7 @@ class CommonViewer {
       panorama.panoramaId === _currentPanorama.panoramaId
     ))
     const updatedPanorama = updateObject(_currentPanorama, payload)
+    checkPanoramaFormat(updatedPanorama)
     _currentPanorama = updatedPanorama
     const newPanoramas = clone(_panoramas)
     newPanoramas.splice(foundIndex, 1, updatedPanorama)
@@ -90,6 +90,10 @@ class CommonViewer {
     }
     _currentPanorama = foundPanorama
     return _currentPanorama
+  }
+
+  initEl (el) {
+    _el = el
   }
 
   getEl () {
