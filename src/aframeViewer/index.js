@@ -1,6 +1,7 @@
 import {
   isFunction,
-  loadImage
+  loadImage,
+  setAttributes
 } from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
 import aframeConstants from '@/aframeViewer/aframe-constants'
@@ -69,20 +70,25 @@ class AframeViewer extends CommonViewer {
   }
 
   startAutoRotate () {
-    const { y } = aframeConstants.getCameraRotation()
+    const cameraRotationY = aframeConstants.getCameraRotation().y
+    const cameraAnimationEl = aframeConstants.getCameraAnimationEl()
     aframeConstants.getCameraAnimationEl().emit('play')
-    aframeConstants.getCameraAnimationEl().setAttribute('from', `0 ${y} 0`)
-    aframeConstants.getCameraAnimationEl().setAttribute('to', `0 360 0`)
+    setAttributes(cameraAnimationEl, {
+      from: `0 ${cameraRotationY} 0`,
+      to: `0 360 0`
+    })
   }
 
   stopAutoRotate () {
-    const cameraRotation = aframeConstants.getCameraContainerEl().getAttribute('rotation')
+    const cameraContainerEL = aframeConstants.getCameraContainerEl()
+    const cameraRotation = cameraContainerEL.getAttribute('rotation')
     aframeConstants.setCameraRotation(cameraRotation)
     aframeConstants.getCameraAnimationEl().emit('pause')
   }
 
   destroy () {
-    aframeConstants.getSceneEl().parentNode.removeChild(aframeConstants.getSceneEl())
+    const sceneEl = aframeConstants.getSceneEl()
+    sceneEl.parentNode.removeChild(sceneEl)
     aframeConstants.setSceneEl({})
     aframeConstants.setSkyEl({})
   }
