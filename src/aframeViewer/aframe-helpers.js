@@ -1,5 +1,6 @@
 import aframeConstants from '@/aframeViewer/aframe-constants'
 import CommonViewer from '@/common/common-viewer'
+import { setAttributes } from '@/common/utils'
 
 const commonViewer = new CommonViewer()
 
@@ -16,17 +17,21 @@ const aframeHelpers = {
   },
 
   initSkyEl () {
-    aframeConstants.getSkyEl().setAttribute('src', `#${commonViewer.getCurrentPanorama().panoramaId}`)
-    aframeConstants.getSceneEl().appendChild(aframeConstants.getSkyEl())
-    commonViewer.getEl().appendChild(aframeConstants.getSceneEl())
+    const currentPanorama = commonViewer.getCurrentPanorama()
+    const skyEl = aframeConstants.getSkyEl()
+    const sceneEl = aframeConstants.getSceneEl()
+    skyEl.setAttribute('src', `#${currentPanorama.panoramaId}`)
+    sceneEl.appendChild(aframeConstants.getSkyEl())
+    commonViewer.getEl().appendChild(sceneEl)
   },
 
   initCameraEl () {
     aframeConstants.getCameraContainerEl().id = 'camera-container'
-    const cameraX = aframeConstants.getCameraStartRotation().x || 0
-    // const cameraY = cameraRotationOffset + (aframeConstants.getCameraStartRotation().y || 0)
-    const cameraY = aframeConstants.getCameraStartRotation().y || 0
-    const cameraZ = aframeConstants.getCameraStartRotation().z || 0
+    const cameraRotationOffset = 90
+    const cameraStartRotation = aframeConstants.getCameraStartRotation()
+    const cameraX = cameraStartRotation.x || 0
+    const cameraY = cameraRotationOffset + (cameraStartRotation.y || 0)
+    const cameraZ = cameraStartRotation.z || 0
 
     aframeConstants.getCameraContainerEl().setAttribute(
       'rotation',
@@ -34,23 +39,28 @@ const aframeHelpers = {
     )
   },
 
-  initCameraAnimationEl () {
-    // if (config.autoRotate.enabled) {
-    if (true === true) { //eslint-disable-line
-      aframeConstants.getCameraAnimationEl().setAttribute('attribute', 'rotation')
-      aframeConstants.getCameraAnimationEl().setAttribute('fill', 'forwards')
-      aframeConstants.getCameraAnimationEl().setAttribute('easing', 'linear')
-      // aframeConstants.getCameraAnimationEl().setAttribute('dur', `${config.autoRotate.duration}`)
-      aframeConstants.getCameraAnimationEl().setAttribute('dur', `${200000}`)
-      aframeConstants.getCameraAnimationEl().setAttribute('from', `0 0 0`)
-      aframeConstants.getCameraAnimationEl().setAttribute('to', `0 360 0`)
-      aframeConstants.getCameraAnimationEl().setAttribute('repeat', 'indefinite')
-      aframeConstants.getCameraAnimationEl().setAttribute('startEvents', 'rotation-start')
-      aframeConstants.getCameraAnimationEl().setAttribute('pauseEvents', 'rotation-pause')
+  initCameraAnimationEl (config) {
+    if (config.autoRotate.enabled) {
+      const sceneEl = aframeConstants.getSceneEl()
+      const cameraEl = aframeConstants.getCameraEl()
+      const cameraContainerEL = aframeConstants.getCameraContainerEl()
+      const cameraAnimationEl = aframeConstants.getCameraAnimationEl()
 
-      aframeConstants.getCameraContainerEl().appendChild(aframeConstants.getCameraEl())
-      aframeConstants.getCameraContainerEl().appendChild(aframeConstants.getCameraAnimationEl())
-      aframeConstants.getSceneEl().appendChild(aframeConstants.getCameraContainerEl())
+      setAttributes(cameraAnimationEl, {
+        attribute: 'rotation',
+        fill: 'forwards',
+        easing: 'linear',
+        dur: `${config.autoRotate.duration}`,
+        from: `0 0 0`,
+        to: `0 360 0`,
+        repeat: 'indefinite',
+        startEvents: 'rotation-start',
+        pauseEvents: 'rotation-pause'
+      })
+
+      cameraContainerEL.appendChild(cameraEl)
+      cameraContainerEL.appendChild(cameraAnimationEl)
+      sceneEl.appendChild(cameraContainerEL)
     }
   }
 }

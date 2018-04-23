@@ -1,6 +1,7 @@
 import {
   isFunction,
-  loadImage
+  loadImage,
+  setAttributes
 } from '@/common/utils'
 import CommonViewer from '@/common/common-viewer.js'
 import aframeConstants from '@/aframeViewer/aframe-constants'
@@ -14,40 +15,48 @@ class AframeViewer extends CommonViewer {
   }
 
   generateAframe (config = { disableVR: false, autoRotate: {} }) {
-    aframeConstants.setSceneEl(document.createElement('a-scene'))
-    aframeConstants.setSkyEl(document.createElement('a-sky'))
-    aframeConstants.setCameraEl(document.createElement('a-camera'))
-    aframeConstants.setCameraContainerEl(document.createElement('a-entity'))
-    aframeConstants.setCameraAnimationEl(document.createElement('a-animation'))
-    aframeConstants.setAssetsEl(document.createElement('a-assets'))
-    aframeConstants.setCameraStartRotation(this.getCurrentPanorama().panoramaRotation || {})
+    const sceneEl = document.createElement('a-scene')
+    const skyEl = document.createElement('a-sky')
+    const cameraEl = document.createElement('a-camera')
+    const cameraContainerEl = document.createElement('a-entity')
+    const cameraStartRotationEl = this.getCurrentPanorama().panoramaRotation || {}
+    const cameraAnimationEl = document.createElement('a-animation')
+    const assetsEl = document.createElement('a-assets')
+
+    aframeConstants.setSceneEl(sceneEl)
+    aframeConstants.setSkyEl(skyEl)
+    aframeConstants.setCameraEl(cameraEl)
+    aframeConstants.setCameraContainerEl(cameraContainerEl)
+    aframeConstants.setCameraAnimationEl(cameraAnimationEl)
+    aframeConstants.setAssetsEl(assetsEl)
+    aframeConstants.setCameraStartRotation(cameraStartRotationEl || {})
 
     // init
     aframeHelpers.initAssetsEl()
     aframeHelpers.initSkyEl()
     aframeHelpers.initCameraEl()
-    aframeHelpers.initCameraAnimationEl()
+    aframeHelpers.initCameraAnimationEl(config)
 
     // settings
-    aframeConstants.getSceneEl().setAttribute('embedded', '')
-    aframeConstants.getSceneEl().setAttribute('debug', '')
+    setAttributes(sceneEl, { embedded: '', debug: '' })
 
     // config
     if (config.disableVR) {
-      aframeConstants.getSceneEl().setAttribute('vr-mode-ui', 'enabled: false')
+      sceneEl.setAttribute('vr-mode-ui', 'enabled: false')
     }
 
     // events
-    aframeConstants.getSceneEl().addEventListener('click', (e) => {
-      this.stopAutoRotate()
+    sceneEl.addEventListener('click', (e) => {
+      this.stopAutoRotate(config)
     })
   }
 
   changePanorama (panoramaId, callback) {
-    this.selectPanorama(panoramaId)
+    const skyEl = aframeConstants.getSkyEl()
     const currentPanorama = this.getCurrentPanorama()
+    this.selectPanorama(panoramaId)
     loadImage(currentPanorama.downloadLink, () => {
-      aframeConstants.getSkyEl().setAttribute('src', `#${this.getCurrentPanorama().panoramaId}`)
+      skyEl.setAttribute('src', `#${currentPanorama.panoramaId}`)
       if (isFunction(callback)) {
         callback()
       }
@@ -61,20 +70,28 @@ class AframeViewer extends CommonViewer {
   }
 
   startAutoRotate () {
-    const { y } = aframeConstants.getCameraRotation()
+    const cameraRotationY = aframeConstants.getCameraRotation().y
+    const cameraAnimationEl = aframeConstants.getCameraAnimationEl()
     aframeConstants.getCameraAnimationEl().emit('play')
-    aframeConstants.getCameraAnimationEl().setAttribute('from', `0 ${y} 0`)
-    aframeConstants.getCameraAnimationEl().setAttribute('to', `0 360 0`)
+    setAttributes(cameraAnimationEl, {
+      from: `0 ${cameraRotationY} 0`,
+      to: `0 360 0`
+    })
   }
 
-  stopAutoRotate () {
-    const cameraRotation = aframeConstants.getCameraContainerEl().getAttribute('rotation')
+  stopAutoRotate (config) {
+    const cameraContainerEL = aframeConstants.getCameraContainerEl()
+    const cameraRotation = cameraContainerEL.getAttribute('rotation')
     aframeConstants.setCameraRotation(cameraRotation)
     aframeConstants.getCameraAnimationEl().emit('pause')
+    setTimeout(() => {
+      this.startAutoRotate()
+    }, config.autoRotate.restartTime)
   }
 
   destroy () {
-    aframeConstants.getSceneEl().parentNode.removeChild(aframeConstants.getSceneEl())
+    const sceneEl = aframeConstants.getSceneEl()
+    sceneEl.parentNode.removeChild(sceneEl)
     aframeConstants.setSceneEl({})
     aframeConstants.setSkyEl({})
   }
