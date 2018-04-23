@@ -8,15 +8,13 @@ import AFRAME from 'aframe'
 window.AFRAME = AFRAME
 let elId
 let htmlEl
-let panoramas
-let panorama
 let commonViewer
+const defaultPanorama = { panoramaId: '1' }
+const defaultPanoramas = [defaultPanorama]
 
 beforeEach(() => {
   commonViewer = new CommonViewer()
   htmlEl = document.createElement('div')
-  panorama = { panoramaId: '1' }
-  panoramas = [panorama]
   elId = 'vrmaker-aframe'
   htmlEl.id = elId
 })
@@ -33,12 +31,12 @@ describe('commonViewer', () => {
     commonViewer.initPanoramas = jest.fn()
     commonViewer.init({
       el: htmlEl,
-      panoramas
+      panoramas: defaultPanoramas
     })
     expect(commonViewer.setVersion).toBeCalled()
     expect(commonViewer.initEl).toBeCalled()
     expect(commonViewer.initPanoramas).toBeCalled()
-    expect(commonViewer.getCurrentPanorama()).toEqual(panoramas[0])
+    expect(commonViewer.getCurrentPanorama()).toEqual(defaultPanorama)
     commonViewer.setVersion = storedFunctions[0]
     commonViewer.initEl = storedFunctions[1]
     commonViewer.initPanoramas = storedFunctions[2]
@@ -52,9 +50,9 @@ describe('commonViewer', () => {
   it('initPanoramas and getPanoramas', () => {
     const storedFunctions = commonViewer.selectPanorama
     commonViewer.selectPanorama = jest.fn()
-    commonViewer.initPanoramas(panoramas)
+    commonViewer.initPanoramas(defaultPanoramas)
     expect(commonViewer.selectPanorama).toBeCalled()
-    expect(commonViewer.getPanoramas()).toEqual(panoramas)
+    expect(commonViewer.getPanoramas()).toEqual(defaultPanoramas)
     commonViewer.selectPanorama = storedFunctions
   })
 
@@ -68,15 +66,25 @@ describe('commonViewer', () => {
 
   it('addPanorama', () => {
     const oldPanoramas = commonViewer.getPanoramas()
-    const payload = { panoramaId: '2' }
+    const payload = { panoramaId: '4' }
     commonViewer.addPanorama(payload)
     const newPanoramas = push(oldPanoramas, payload)
     expect(commonViewer.getPanoramas()).toEqual(newPanoramas)
   })
 
-  it('selectPanorama and getCurrentPanorama', () => {
-    panoramas.push({ panoramaId: '2' })
-    commonViewer.selectPanorama(panoramas[1].panoramaId)
-    expect(commonViewer.getCurrentPanorama().panoramaId).toBe(panoramas[1].panoramaId)
+  it('removePanorama', () => {
+    const panoramaId = '1'
+    commonViewer.removePanorama(panoramaId)
+    const panoramas = commonViewer.getPanoramas()
+    panoramas.forEach(panorama => {
+      expect(panorama.panoramaId).not.toEqual('1')
+    })
+  })
+
+  it('updateCurrentPanorama, selectPanorama and getCurrentPanorama', () => {
+    commonViewer.selectPanorama('4')
+    expect(commonViewer.getCurrentPanorama().panoramaId).toEqual('4')
+    commonViewer.updateCurrentPanorama({ foo: 'bar' })
+    expect(commonViewer.getCurrentPanorama().foo).toEqual('bar')
   })
 })

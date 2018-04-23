@@ -37,10 +37,12 @@ class CommonViewer {
   }
 
   addPanoramas (panoramas) {
+    panoramas.map(panorama => checkPanoramaFormat(panorama))
     _panoramas = _panoramas.concat(panoramas)
   }
 
   addPanorama (panorama) {
+    checkPanoramaFormat(panorama)
     _panoramas = push(_panoramas, panorama)
   }
 
@@ -54,6 +56,7 @@ class CommonViewer {
       throw new Error('updatePanorama failed, id can\'t find panorama')
     }
     const updatedPanorama = updateObject(foundPanorama, payload)
+    checkPanoramaFormat(updatedPanorama)
     const newPanoramas = clone(_panoramas)
     newPanoramas.splice(foundIndex, 1, updatedPanorama)
     _panoramas = newPanoramas
@@ -67,6 +70,7 @@ class CommonViewer {
       panorama.panoramaId === _currentPanorama.panoramaId
     ))
     const updatedPanorama = updateObject(_currentPanorama, payload)
+    checkPanoramaFormat(updatedPanorama)
     _currentPanorama = updatedPanorama
     const newPanoramas = clone(_panoramas)
     newPanoramas.splice(foundIndex, 1, updatedPanorama)
