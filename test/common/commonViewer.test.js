@@ -6,17 +6,15 @@ import {
 import AFRAME from 'aframe'
 
 window.AFRAME = AFRAME
-let elId
-let htmlEl
+let htmlEl = document.createElement('div')
+let elId = 'vrmaker-aframe'
+htmlEl.id = elId
 let commonViewer
 const defaultPanorama = { panoramaId: '1' }
 const defaultPanoramas = [defaultPanorama]
 
 beforeEach(() => {
   commonViewer = new CommonViewer()
-  htmlEl = document.createElement('div')
-  elId = 'vrmaker-aframe'
-  htmlEl.id = elId
 })
 
 describe('commonViewer', () => {
