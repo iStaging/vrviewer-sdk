@@ -14,13 +14,21 @@ class AframeViewer extends CommonViewer {
   }
 
   generateAframe (config = { disableVR: false, autoRotate: {} }) {
-    aframeConstants.setSceneEl(document.createElement('a-scene'))
-    aframeConstants.setSkyEl(document.createElement('a-sky'))
-    aframeConstants.setCameraEl(document.createElement('a-camera'))
-    aframeConstants.setCameraContainerEl(document.createElement('a-entity'))
-    aframeConstants.setCameraAnimationEl(document.createElement('a-animation'))
-    aframeConstants.setAssetsEl(document.createElement('a-assets'))
-    aframeConstants.setCameraStartRotation(this.getCurrentPanorama().panoramaRotation || {})
+    const scene = document.createElement('a-scene')
+    const sky = document.createElement('a-sky')
+    const camera = document.createElement('a-camera')
+    const cameraContainer = document.createElement('a-entity')
+    const cameraStartRotation = this.getCurrentPanorama().panoramaRotation || {}
+    const cameraAnimation = document.createElement('a-animation')
+    const assets = document.createElement('a-assets')
+
+    aframeConstants.setSceneEl(scene)
+    aframeConstants.setSkyEl(sky)
+    aframeConstants.setCameraEl(camera)
+    aframeConstants.setCameraContainerEl(cameraContainer)
+    aframeConstants.setCameraAnimationEl(cameraAnimation)
+    aframeConstants.setAssetsEl(assets)
+    aframeConstants.setCameraStartRotation(cameraStartRotation || {})
 
     // init
     aframeHelpers.initAssetsEl()
