@@ -34,14 +34,12 @@ const aframeHelpers = {
     )
   },
 
-  initCameraAnimationEl () {
-    // if (config.autoRotate.enabled) {
-    if (true === true) { //eslint-disable-line
+  initCameraAnimationEl (config) {
+    if (config.autoRotate.enabled) {
       aframeConstants.getCameraAnimationEl().setAttribute('attribute', 'rotation')
       aframeConstants.getCameraAnimationEl().setAttribute('fill', 'forwards')
       aframeConstants.getCameraAnimationEl().setAttribute('easing', 'linear')
-      // aframeConstants.getCameraAnimationEl().setAttribute('dur', `${config.autoRotate.duration}`)
-      aframeConstants.getCameraAnimationEl().setAttribute('dur', `${200000}`)
+      aframeConstants.getCameraAnimationEl().setAttribute('dur', `${config.autoRotate.duration}`)
       aframeConstants.getCameraAnimationEl().setAttribute('from', `0 0 0`)
       aframeConstants.getCameraAnimationEl().setAttribute('to', `0 360 0`)
       aframeConstants.getCameraAnimationEl().setAttribute('repeat', 'indefinite')

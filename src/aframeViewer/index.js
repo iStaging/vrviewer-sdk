@@ -26,7 +26,7 @@ class AframeViewer extends CommonViewer {
     aframeHelpers.initAssetsEl()
     aframeHelpers.initSkyEl()
     aframeHelpers.initCameraEl()
-    aframeHelpers.initCameraAnimationEl()
+    aframeHelpers.initCameraAnimationEl(config)
 
     // settings
     aframeConstants.getSceneEl().setAttribute('embedded', '')
