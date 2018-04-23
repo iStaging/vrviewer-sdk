@@ -28,7 +28,7 @@ describe('krpano/hrpano-helpers.js', () => {
   it('handleKrpanoReady should be worked well', (done) => {
     jest.setTimeout(2000)
     const storedFunction = krpanoConstants.setKrpanoEl
-    const callback = jest.fn
+    const callback = jest.fn()
     krpanoConstants.setKrpanoEl = jest.fn()
     krpanoHelpers.handleKrpanoReady.call(krpanoViewer, krpanoEl, callback)
     expect(krpanoConstants.setKrpanoEl).toBeCalled()
@@ -54,6 +54,14 @@ describe('krpano/hrpano-helpers.js', () => {
       loadingSettings,
       initViewSettings
     }
+    const storedFunctions = [
+      krpanoViewer.setAutoRotateSettings,
+      krpanoViewer.setGyroSettings,
+      krpanoViewer.setTripodSettings,
+      krpanoViewer.setBasicSettings,
+      krpanoViewer.setLoadingSettings,
+      krpanoViewer.setInitViewSettings
+    ]
     krpanoViewer.setAutoRotateSettings = jest.fn()
     krpanoViewer.setGyroSettings = jest.fn()
     krpanoViewer.setTripodSettings = jest.fn()
@@ -67,5 +75,11 @@ describe('krpano/hrpano-helpers.js', () => {
     expect(krpanoViewer.setBasicSettings).toBeCalled()
     expect(krpanoViewer.setLoadingSettings).toBeCalled()
     expect(krpanoViewer.setInitViewSettings).toBeCalled()
+    krpanoViewer.setAutoRotateSettings = storedFunctions[0]
+    krpanoViewer.setGyroSettings = storedFunctions[1]
+    krpanoViewer.setTripodSettings = storedFunctions[2]
+    krpanoViewer.setBasicSettings = storedFunctions[3]
+    krpanoViewer.setLoadingSettings = storedFunctions[4]
+    krpanoViewer.setInitViewSettings = storedFunctions[5]
   })
 })
