@@ -14,7 +14,14 @@ class AframeViewer extends CommonViewer {
     this.timeout = 1000
   }
 
-  generateAframe (config = { disableVR: false, autoRotate: {} }) {
+  generateAframe (config = {
+    disableVR: false,
+    autoRotate: {
+      enabled: true,
+      duration: 200000,
+      restartTime: 20000
+    }
+  }) {
     const sceneEl = document.createElement('a-scene')
     const skyEl = document.createElement('a-sky')
     const cameraEl = document.createElement('a-camera')
@@ -69,9 +76,10 @@ class AframeViewer extends CommonViewer {
       : aframeConstants.getSceneEl().exitVR()
   }
 
-  startAutoRotate () {
+  startAutoRotate (config) {
     const cameraRotationY = aframeConstants.getCameraRotation().y
     const cameraAnimationEl = aframeConstants.getCameraAnimationEl()
+    if (!config.autoRotate.enabled) return
     aframeConstants.getCameraAnimationEl().emit('play')
     setAttributes(cameraAnimationEl, {
       from: `0 ${cameraRotationY} 0`,
