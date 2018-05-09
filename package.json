@@ -14,7 +14,7 @@
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
   "license": "MIT",
   "private": false,
-  "main": "dist/vrviewer.js",
+  "main": "dist/vrviewer-sdk.js",
   "scripts": {
     "start": "node app.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --mode development",
