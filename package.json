@@ -1,5 +1,5 @@
 {
-  "name": "vrviewer",
+  "name": "vrviewer-sdk",
   "keywords": [
     "istaging",
     "vrviewer",
@@ -10,7 +10,7 @@
   ],
   "description": "vamaker sdk help you build your 360 panorama solution more easily by aframe or krpano.",
   "version": "1.0.3",
-  "homepage": "https://istaging.gitbook.io/vr-marker-sdk",
+  "homepage": "https://istaging.gitbook.io/vr-maker-sdk",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
   "license": "MIT",
   "private": false,
