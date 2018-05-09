@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>VRMaker SDK - Krpano</title>
+    <title>VRViewer SDK - Krpano</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
     <script type="text/javascript" src="https://www.istaging.com/sdk/three.min.js"></script>
     <script type="text/javascript" src="https://www.istaging.com/sdk/krpano-demo.min.js"></script>
-    <script type="text/javascript" src="../../dist/vrmaker.js"></script>
+    <script type="text/javascript" src="../../dist/vrviewer.js"></script>
     <style>
       html, body {
         margin: 0;
@@ -24,7 +24,7 @@
         background-color: #fffdfd;
       }
 
-      #vrmaker-aframe, #vrmaker-krpano {
+      #vrviewer-aframe, #vrviewer-krpano {
         position: relative;
         width: 100%;
         height: 100%;
@@ -39,7 +39,7 @@
   </head>
   <body>
     <div class="container">
-      <div id="vrmaker-krpano"></div>
+      <div id="vrviewer-krpano"></div>
       <div class="button-section">
         <button type="button" id="enter-krpano-vrmode">Enter VR</button>
         <button type="button" id="remove-krpano-viewer">remove viewer</button>

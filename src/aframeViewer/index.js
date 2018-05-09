@@ -106,7 +106,7 @@ class AframeViewer extends CommonViewer {
 
   checkAframe () {
     if (typeof window === 'undefined' || !window.AFRAME) {
-      throw new Error('You need to include aframe script or import it first. Use it before vrmaker.')
+      throw new Error('You need to include aframe script or import it first. Use it before vrviewer.')
     }
   }
 }

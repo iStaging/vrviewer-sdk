@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-// new VRMaker krpano viewer
-var krpanoViewer =  new VRMaker.KrpanoViewer()
+// new VRViewer krpano viewer
+var krpanoViewer =  new VRViewer.KrpanoViewer()
 
 // get panoCollection from server
 function getPanoCollection () {
@@ -21,7 +21,7 @@ function getPanoCollection () {
 // init krpano viewer with data
 function initKrpano (panoramas) {
   krpanoViewer.init({
-    el: document.querySelector('#vrmaker-krpano'),
+    el: document.querySelector('#vrviewer-krpano'),
     panoramas
   })
 

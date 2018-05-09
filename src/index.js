@@ -1,10 +1,10 @@
 import KrpanoViewer from '@/krpanoViewer'
 import AframeViewer from '@/aframeViewer'
 
-const VRMaker = {
+const VRViewer = {
   AframeViewer,
   KrpanoViewer
 }
 
-window.VRMaker = VRMaker
-export default VRMaker
+window.VRViewer = VRViewer
+export default VRViewer

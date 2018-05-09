@@ -1,6 +1,6 @@
-# VRMaker
+# VRViewer
 
-VRMaker js sdk help you build and edit your 360 panorama solution more easily by aframe or krpano.
+VRViewer js sdk help you build and edit your 360 panorama solution more easily by aframe or krpano.
 
 ## documation
 [https://istaging.gitbook.io/vr-marker-sdk](https://istaging.gitbook.io/vr-marker-sdk)
@@ -12,10 +12,10 @@ VRMaker js sdk help you build and edit your 360 panorama solution more easily by
     - support cubemap
   - AframeViewer
   - auto rotation
-- panorama (pending - need your server communicate with vrmaker backend api)
+- panorama (pending - need your server communicate with vrviewer backend api)
   - cubemap
   - auto hotspot
-- marker (pending - need your server communicate with vrmaker backend api)
+- marker (pending - need your server communicate with vrviewer backend api)
   - point
   - tag
 
@@ -24,15 +24,15 @@ VRMaker js sdk help you build and edit your 360 panorama solution more easily by
 ### ES6:
 
 ``` bash
-npm install vrmaker
-import VRMaker from 'vrmaker'
+npm install vrviewer
+import VRViewer from 'vrviewer'
 
 // init krpano viewer (recommended)
-new VRMaker.krpanoViewer()
+new VRViewer.krpanoViewer()
 ...
 
 // init aframe viewer
-new VRMaker.AframeViewer()
+new VRViewer.AframeViewer()
 ...
 
 // check more in documation or examples, dev folder
@@ -42,14 +42,14 @@ new VRMaker.AframeViewer()
 
 ``` bash
 // include script
-<script src="https://www.istaging.com/sdk/vrmaker.js">
+<script src="https://www.istaging.com/sdk/vrviewer.js">
 
 // init krpano viewer (recommended)
-new VRMaker.krpanoViewer()
+new VRViewer.krpanoViewer()
 ...
 
 // init aframe viewer
-new VRMaker.AframeViewer()
+new VRViewer.AframeViewer()
 ...
 
 // check more in documation or examples, dev folder
@@ -57,15 +57,15 @@ new VRMaker.AframeViewer()
 
 Warning: use aframe will not support auto rotation, animation cubemap.
 
-## Work with vrmaker backend server
-Use node express sample server to get the access key to upload your panoramas by vrmaker backend server api and init it by krpano or aframe.
+## Work with vrviewer backend server
+Use node express sample server to get the access key to upload your panoramas by vrviewer backend server api and init it by krpano or aframe.
 Check in the examples folder.
 
 ``` bash
 npm start
 ```
 
-## If you only want to use vrmaker 360 viewer..
+## If you only want to use vrviewer 360 viewer..
 You can also only use your own data without istaging api to create 360 viewer. (not recommended)
 Check in the dev folder.
 
