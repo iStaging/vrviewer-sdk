@@ -23,8 +23,8 @@ var panoramas = [{
   ]
 }]
 
-// new VRMaker aframe viewer
-var aframeViewer = new VRMaker.AframeViewer()
+// new VRViewer aframe viewer
+var aframeViewer = new VRViewer.AframeViewer()
 
 var config = {
   // disableVR: true
@@ -38,7 +38,7 @@ var config = {
 // init aframe viewer with data
 function initAframe () {
   aframeViewer.init({
-    el: document.getElementById('vrmaker-aframe'),
+    el: document.getElementById('vrviewer-aframe'),
     panoramas
   })
   aframeViewer.generateAframe(config)

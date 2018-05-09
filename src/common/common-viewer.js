@@ -19,7 +19,7 @@ class CommonViewer {
     this.setVersion(version)
     this.initEl(options.el)
     this.initPanoramas(options.panoramas)
-    // console.log('VRMaker version: ', this.getVersion())
+    // console.log('VRViewer version: ', this.getVersion())
     _currentPanorama = (options.panoramaIndex !== undefined)
       ? options.panoramaIndex
       : options.panoramas[0]

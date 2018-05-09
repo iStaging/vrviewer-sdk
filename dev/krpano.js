@@ -23,13 +23,13 @@ var panoramas = [{
   ]
 }]
 
-// new VRMaker krpano viewer
-var krpanoViewer =  new VRMaker.KrpanoViewer()
+// new VRViewer krpano viewer
+var krpanoViewer =  new VRViewer.KrpanoViewer()
 
 // init krpano viewer with data
 function initKrpano () {
   krpanoViewer.init({
-    el: document.querySelector('#vrmaker-krpano'),
+    el: document.querySelector('#vrviewer-krpano'),
     panoramas
   })
 

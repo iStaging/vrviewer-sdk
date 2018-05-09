@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-// new VRMaker aframe viewer
-var aframeViewer = new VRMaker.AframeViewer()
+// new VRViewer aframe viewer
+var aframeViewer = new VRViewer.AframeViewer()
 
 // get panoCollection from server
 function getPanoCollection () {
@@ -19,7 +19,7 @@ function getPanoCollection () {
 // init aframe viewer with data
 function initAframe (panoramas) {
   aframeViewer.init({
-    el: document.getElementById('vrmaker-aframe'),
+    el: document.getElementById('vrviewer-aframe'),
     panoramas
   })
   // generate aframe viewer

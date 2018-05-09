@@ -7,7 +7,7 @@ import AFRAME from 'aframe'
 
 window.AFRAME = AFRAME
 let htmlEl = document.createElement('div')
-let elId = 'vrmaker-aframe'
+let elId = 'vrviewer-aframe'
 htmlEl.id = elId
 let commonViewer
 const defaultPanorama = { panoramaId: '1' }

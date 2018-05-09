@@ -156,7 +156,7 @@ const krpanoHelpers = {
 
   checkKrpano () {
     if (typeof window === 'undefined' || !window.krpanoJS) {
-      throw new Error('You need to include krpanoJS script or import it first. Use it before vrmaker.')
+      throw new Error('You need to include krpanoJS script or import it first. Use it before vrviewer.')
     }
   }
 }
