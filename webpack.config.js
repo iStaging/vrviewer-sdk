@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vrviewer.js',
+    filename: 'vrviewer-sdk.js',
     library: 'vrviewer',
     libraryTarget: 'umd',
     umdNamedDefine: true
