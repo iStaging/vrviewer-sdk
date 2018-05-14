@@ -2,12 +2,14 @@ import {
   isDevelopment
 } from '@/api/helpers'
 import {
+  fakeBuilding
+} from '@/api/resources'
+import {
   addParameter
 } from '@/api/utils'
 import BuildingsManager from '@/store/manager/buildings-manager'
 
 const state = {
-  buildings: [], // only property has buildings; Single building won't use this
   currentBuilding: {
     objectId: '',
     floorplan: ''
@@ -15,7 +17,6 @@ const state = {
 }
 
 export const getters = {
-  buildings: state => state.buildings,
   currentBuilding: state => state.currentBuilding,
   logoSize: state => state.currentBuilding.logoSize,
   floorplan: state => state.currentBuilding.floorplan
@@ -28,15 +29,15 @@ export const actions = {
         // It's the same building, no need to fetch it again
         return
       }
-      const resp = {}
+      const resp = fakeBuilding
       dispatch('setProgressCount', 0)
       dispatch('showProgress')
-      // console.log('resp', resp)
+      console.log('resp', resp)
       if (!resp) {
         BuildingsManager.noBuildingCallback({ dispatch, commit, state, rootState })
         return
       }
-      const building = resp.data || {}
+      const building = resp
       building.objectId = buildingId
       // to prevent cache, trigger force fetch latest photo
       if (building.thumbnail) {
@@ -60,39 +61,17 @@ export const actions = {
       dispatch('setProgressMax', 100)
       // const panoramaIds = Object.keys(resp.Panoramas)
       // console.log('panoramaIds:', panoramaIds)
-      const userId = resp.Owner
       console.log('building:', building)
       commit('SET_BUILDING', building)
-      commit('SET_USER_ID', userId)
-      if (rootState.user.user.objectId !== userId) {
-        await dispatch('fetchPublicProfile', userId)
-        BuildingsManager.afterFetchProfileHandler({ dispatch, building, buildingId })
-      } else {
-        BuildingsManager.afterFetchProfileHandler({ dispatch, building, buildingId })
-      }
+      BuildingsManager.afterFetchProfileHandler({ dispatch, building, buildingId })
       dispatch('setBuildingNotFound', false)
     } else {
       BuildingsManager.noBuildingCallback({ dispatch, commit, state, rootState })
     }
-  },
-
-  selectBuilding ({ state, rootState }, building = {}) {
-    if ((building.objectId === state.currentBuilding.objectId) ||
-      rootState.progress.isProgressActive ||
-      ((rootState.app.isBuildingNotFound || rootState.app.isNoPanoramasFound) && !rootState.krpano.isKrpanoActive)) {
-      return
-    }
-    delete rootState.route.query.index
-    // Next step will go to pages/Default/index.vue beforeRouteUpdate() method
-    // Why don't I write here? Because user might go back to previous page, I must handle the situation
   }
 }
 
 export const mutations = {
-  SET_BUILDINGS (state, buildings = []) {
-    state.buildings = buildings
-  },
-
   SET_BUILDING (state, building = {}) {
     state.currentBuilding = building
   }

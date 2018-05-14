@@ -83,37 +83,37 @@ class VRViewer {
 // Vue.config.devtools = false
 // Vue.config.silent = true
 
-const vrEditor = new VRViewer()
-vrEditor.init({
+const vrViewer = new VRViewer()
+vrViewer.init({
   el: '#vrviewer-sdk',
   lang: 'zh-cn'
 })
 
-vrEditor.onSaveMarker = (data) => {
+vrViewer.onSaveMarker = (data) => {
   console.log('onSaveMarker', data)
 }
 
-vrEditor.onSaveMarkerSuccess = (data) => {
+vrViewer.onSaveMarkerSuccess = (data) => {
   console.log('onSaveMarkerSuccess', data)
 }
 
-vrEditor.onSortPanoramas = (data) => {
+vrViewer.onSortPanoramas = (data) => {
   console.log('onSortPanoramas', data)
 }
 
-vrEditor.onDeletePanoramas = (data) => {
+vrViewer.onDeletePanoramas = (data) => {
   console.log('onDeletePanoramas', data)
 }
 
-vrEditor.onCreatePanoramas = (data) => {
+vrViewer.onCreatePanoramas = (data) => {
   console.log('onCreatePanoramas', data)
 }
 
-vrEditor.onUpdatePanorama = (data) => {
+vrViewer.onUpdatePanorama = (data) => {
   console.log('onUpdatePanorama', data)
 }
 
-vrEditor.updateEvents()
+vrViewer.updateEvents()
 
 window.VRViewer = VRViewer
 export default VRViewer

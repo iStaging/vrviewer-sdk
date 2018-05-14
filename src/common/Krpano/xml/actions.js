@@ -68,10 +68,9 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 <!-- 儲存當前仰角 All javascript call this action to trigger change scene here first
   %1 = next scene name
   %2 = next scene panoramaId
-  %3 = selectedMethod
-  %4 = next scene hlookat offset (for marker)
-  %5 = is clicked from marker point
-  %6 = marker ath
+  %3 = next scene hlookat offset (for marker)
+  %4 = is clicked from marker point
+  %5 = marker ath
 -->
 <!-- 把 vr 裡的 marker 對應 info 顯示/隱藏 -->
   set(style[vr_panorama_style].scale, 0);
@@ -87,23 +86,23 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
     }
     return result
   })()}
-  jscall(calc('krpano.hooks.prepareChangeScene("%1", "%2", "%3", "%4", %5, %6)'));
+  jscall(calc('krpano.hooks.prepareChangeScene("%1", "%2", "%3", %4, %5)'));
 </action>
 
 <action name="change_scene">
 <!--
 change scene in krpano, and callback to javascript (auto call it from prepare_change_scene)
-%1 ~ %6 is all same with prepare_change_scene
-%7 = newIndex
-%8 = oldIndex
-%9 = oldHLookat
-%10 is gyro enabled
+%1 ~ %5 is all same with prepare_change_scene
+%6 = newIndex
+%7 = oldIndex
+%8 = oldHLookat
+%9 is gyro enabled
 -->
   jscall(calc('krpano.hooks.stopAutoRotate()'));
-  if (%10 == true, set(plugin[gyro].enabled, false);); <!-- 切換場景時 Gyro 需要先關閉，切換後設定好 h 視角，再打開 -->
+  if (%9 == true, set(plugin[gyro].enabled, false);); <!-- 切換場景時 Gyro 需要先關閉，切換後設定好 h 視角，再打開 -->
   if (webvr.isenabled AND webvr.headtracking == true, set(webvr.headtracking, false););
 
-  jscall(calc('krpano.hooks.changeImage("%2", "%3", %5, ' + webvr.isenabled + ')'));
+  jscall(calc('krpano.hooks.changeImage("%2")'));
   def(prevVlookat, number, calc(view.vlookat)); <!-- 儲存當前仰角 -->
   def(prevHlookat, number, calc(view.hlookat)); <!-- 儲存當前視角 -->
 
@@ -113,7 +112,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
       return 'loadscene(%1, null, MERGE, BLEND(1));'
     } else {
       // non-IE do 3.js moving
-      return `jscall(calc('krpano.hooks.threeJsMoving(%4, %6, %7, %8, %9)'));
+      return `jscall(calc('krpano.hooks.threeJsMoving(%4, %5, %6, %7, %8)'));
     loadscene(%1, null, MERGE, BLEND(0.3));`
     }
   })()},
@@ -132,7 +131,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   })()}
   );
   set(view.vlookat, calc(prevVlookat)); <!-- 使用前一個 camera 仰角 -->
-  if (%4, set(view.hlookat, calc(%4 - (%6 - prevHlookat))));
+  if (%4, set(view.hlookat, calc(%4 - (%5 - prevHlookat))));
   if (%10, set(plugin[gyro].enabled, true);); <!-- 若有啟動 Gyro，在這裡要重新打開 -->
   if (webvr.isenabled AND webvr.headtracking == false, set(webvr.headtracking, true););
 

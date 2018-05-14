@@ -2,13 +2,7 @@ const state = {
   isShareActive: false,
   shareUrl: {
     origin: '',
-    qrcode: '',
-    facebook: '',
-    googlePlus: '',
-    twitter: '',
-    messenger: '',
-    line: '',
-    ycFullscreen: ''
+    qrcode: ''
   }
 }
 
@@ -55,12 +49,6 @@ export const mutations = {
     }
     state.shareUrl.origin = url
     state.shareUrl.qrcode = `${url}${divider}qrcode`
-    state.shareUrl.facebook = `${url}${divider}facebook`
-    state.shareUrl.googlePlus = `${url}${divider}google-plus`
-    state.shareUrl.twitter = `${url}${divider}twitter`
-    state.shareUrl.messenger = `${url}${divider}messenger`
-    state.shareUrl.line = `${url}${divider}line`
-    state.shareUrl.ycFullscreen = `${url}${divider}yc-fullscreen`
   }
 }
 

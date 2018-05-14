@@ -69,12 +69,11 @@
       <div class="viewer-layer-container">
         <div class="share-container">
           <qr-code :url="shareUrl.qrcode"></qr-code>
-          <share-list></share-list>
         </div>
       </div>
     </viewer-layer>
 
-    <!--bottom buildings and panoramas-->
+    <!--bottom panoramas-->
     <section
       v-show="shouldViewerLayerShow"
       class="viewer-list-wrapper"
@@ -147,7 +146,6 @@ import Krpano from '../common/Krpano/index.vue'
 import MarkerInfo from '../common/ViewerLayer/MarkerInfo.vue'
 import Popup from '../components/Popup/index.vue'
 import QrCode from '../components/QrCode.vue'
-import ShareList from '../common/ShareList/index.vue'
 import ViewerLayer from '../common/ViewerLayer/index.vue'
 import ViewerList from '../common/ViewerList/index.vue'
 import ViewerMarkersHover from '../common/ViewerMarkersHover/index.vue'
@@ -163,7 +161,6 @@ export default {
     MarkerInfo,
     Popup,
     QrCode,
-    ShareList,
     ViewerLayer,
     ViewerList,
     ViewerMarkersHover
@@ -203,6 +200,10 @@ export default {
       }
       // }
     }, 2500)
+
+    window.setTimeout(() => {
+      this.setScreenReady(true)
+    }, 3000)
   },
 
   beforeDestroy () {
@@ -212,13 +213,11 @@ export default {
   computed: {
     ...mapGetters([
       'currentBuilding',
-      'customSetting',
       'floorplan',
       'isFloorplanActive',
       'isFullscreen',
       'isGyroFromIframe',
       'isInformationActive',
-      'isLocationActive',
       'isMarkerInfoActive',
       'isNoPanoramasFound',
       'isPanoramasListActive',
@@ -261,13 +260,6 @@ export default {
         return this.shouldPanoramasListAndFloorplanShow
       }
       return false
-    },
-
-    shouldGoogleMapActive () {
-      return process.env.USE_GOOGLE_MAP &&
-        this.customSetting.googleMap &&
-        this.currentBuilding.hasPin &&
-        this.isMapReady
     }
   },
 
@@ -499,10 +491,6 @@ export default {
     bottom: 160px + 15px
     opacity: 1
     transform: translateX(-($i-main-floorplan-wrapper-landscape-transform-x)) translateX($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2)
-  }
-
-  .floorplan-wrapper-has-buildings {
-    bottom: 200px + 15px
   }
 
   .viewer-list-wrapper-collapse,

@@ -130,8 +130,6 @@ export default {
       'currentMarker',
       'currentBuilding',
       'currentPanorama',
-      'customSetting',
-      'headquarter',
       'isGyroEnabled',
       'isFloorplanActive',
       'isKrpanoActive',
@@ -145,8 +143,7 @@ export default {
       'krpanoXmlPlugins',
       'krpanoXOffset',
       'logoSize',
-      'panoramas',
-      'user'
+      'panoramas'
     ]),
 
     krpanoXml () {
@@ -154,9 +151,9 @@ export default {
         return ''
       }
       const startIndex = 0
-      const { panoramas, krpanoXOffset, customSetting, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth } = this
+      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth } = this
       const stylesXml = getStylesXml(panoramas, vrThumbAth, vrThumbWidth)
-      const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, customSetting, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov)
+      const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov)
       const actionsXml = getActionsXml(startIndex, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj)
       const logoTripodXml = getLogoTripodXml(this.logoTripod, this.logoSize, this.panoramas[0].isTopLogo)
       const xml = `<krpano onstart="startup();">
@@ -179,9 +176,7 @@ export default {
     },
 
     logoTripod () {
-      return this.headquarter.tripodUrl ||
-        this.currentBuilding.logo ||
-        ''
+      return this.currentBuilding.logo || ''
     }
   },
 
@@ -240,35 +235,6 @@ export default {
       const panorama = this.panoramas[index]
       index = convertIndexFromArrayToUrl(index, this.panoramas.length)
       this.setPanorama(panorama)
-      if (selectedMethod) {
-        switch (selectedMethod) {
-          case 'Screen':
-            break
-          case 'VrMode':
-            break
-          case 'VrModePrev':
-            break
-          case 'VrModeNext':
-            break
-          case 'VrModeThumbnail':
-            break
-          case 'VrModeThumbnailText':
-            break
-          case 'Hotspot':
-            if (isMarkerPoint) {
-              if (isWebVr) {
-              } else {
-              }
-            }
-            break
-          case 'PanoramaList':
-            break
-          case 'YcPanoramaList':
-            break
-          case 'FloorplanDots':
-            break
-        }
-      }
     },
 
     handleShowPopup (index = 0) {

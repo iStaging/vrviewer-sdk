@@ -135,13 +135,3 @@ export default {
   background-color: alpha($pink-color, .9)
 }
 </style>
-
-<style lang="stylus" rel="stylesheet/stylus">
-.yc-floorplan {
-  .floorplan-point {
-    &.active, &:hover {
-      background-color: alpha(#fc3, 60%)
-    }
-  }
-}
-</style>

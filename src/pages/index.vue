@@ -1,10 +1,10 @@
 <template>
   <div
     class="default-container theme"
-    :class="[themeColorClass, {
+    :class="{
       'theme-rtl theme-rtl-overlap': isRtl,
       'transparent': isTransparent
-    }]">
+    }">
     <!--not found liveTour in url-->
     <div
       v-if="isBuildingNotFound"
@@ -33,11 +33,11 @@
 <script type="text/javascript">
 import { mapActions, mapGetters } from 'vuex'
 import {
-  COLOR
-} from '@/api/constants'
-import {
   isRtl
 } from '@/api/helpers'
+import {
+  fakeBuildingId
+} from '@/api/resources'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
 import IAside from './IAside.vue'
@@ -61,61 +61,19 @@ export default {
     }
   },
 
-  beforeRouteEnter (to, from, next) {
-    next(async vm => {
-      const { buildingId } = to.params
-      await vm.fetchBuilding(buildingId)
-    })
-  },
-
-  // select group's building will go here
-  async beforeRouteUpdate (to, from, next) {
-    if (to.params.buildingId === from.params.buildingId &&
-      to.query.group === from.query.group) {
-    } else {
-      const { buildingId } = to.params
-      await this.fetchBuilding(buildingId)
-    }
-    next()
+  beforeMount () {
+    const buildingId = fakeBuildingId
+    this.fetchBuilding(buildingId)
   },
 
   computed: {
     ...mapGetters([
-      'buildings',
       'currentPanorama',
-      'customSetting',
       'isAppReady',
       'isBuildingNotFound',
       'krpanoEl',
-      'panoramas',
-      'themeColor'
+      'panoramas'
     ]),
-
-    themeColorClass () {
-      if (process.env.USE_THEME_COLOR) {
-        if (this.themeColor === COLOR.ETWARM_THEME) {
-          return 'theme-etwarm-red'
-        } else {
-          switch (this.themeColor) {
-            case 'black':
-              return 'theme-black'
-            case 'blue':
-              return 'theme-blue'
-            case 'green':
-              return 'theme-green'
-            case 'orange':
-              return 'theme-orange'
-            case 'yellow':
-              return 'theme-yellow'
-            case 'pink':
-            default:
-              return 'theme-pink'
-          }
-        }
-      } else {
-        return 'theme-pink'
-      }
-    },
 
     isTransparent () {
       // return this.$route.query.background === 'transparent'
@@ -137,6 +95,7 @@ export default {
   position: relative
   height: 100%
   background-color: $black
+  overflow: hidden
 
   &.transparent {
     background-color: transparent

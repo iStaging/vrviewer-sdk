@@ -9,7 +9,7 @@ import getMarkerMemoXml from './marker-memo'
 import getMarkerPointXml from './marker-point'
 import getMarkerTagXml from './marker-tag'
 
-const getScenesXml = (panoramas, startIndex, krpanoXOffset, customSetting, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov) => {
+const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov) => {
   let scene = ''
   let startupScene = ''
   panoramas.forEach((panorama, index) => {
@@ -18,7 +18,7 @@ const getScenesXml = (panoramas, startIndex, krpanoXOffset, customSetting, krpan
       panorama.markers.forEach((marker, index) => {
         let { ath, atv } = coords3dTo2d(marker.position)
         ath = getCorrectRotation(ath + krpanoXOffset)
-        const useCustomIcon = customSetting.customBranding && marker.useCustomIcon && marker.iconUrl
+        const useCustomIcon = marker.useCustomIcon && marker.iconUrl
 
         switch (marker.type) {
           case 'point':

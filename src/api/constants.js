@@ -49,22 +49,4 @@ export const COMPANY = {
   HOUSE_FUN: 'house-fun',
   ETWARM: 'etwarm'
 }
-export const COLOR = {
-  DEFAULT_THEME: 'pink',
-  DEFAULT_MAIN_COLOR: '#ec0974',
-  DEFAULT_SUB_COLOR: '#662e91',
-  ETWARM_THEME: 'etwarm-red',
-  ETWARM_MAIN_COLOR: '#e60012',
-  ETWARM_SUB_COLOR: '#f49d37',
-  BLACK_MAIN_COLOR: '#000000',
-  BLACK_SUB_COLOR: '#bcbdc1',
-  BLUE_MAIN_COLOR: '#49b9fb',
-  BLUE_SUB_COLOR: '#a3d5ff',
-  GREEN_MAIN_COLOR: '#61be6b',
-  GREEN_SUB_COLOR: '#c3d898',
-  ORANGE_MAIN_COLOR: '#f95738',
-  ORANGE_SUB_COLOR: '#ffd07b',
-  YELLOW_MAIN_COLOR: '#fcbf49',
-  YELLOW_SUB_COLOR: '#ffd5c2'
-}
 export const DEFAULT_LOGO_SIZE = 60

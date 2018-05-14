@@ -6,52 +6,24 @@
   <section
     role="banner"
     class="profile">
-    <template v-if="!customSetting.customBranding">
-      <figure
-        class="profile-figure"
-        @click="toggleProfile">
-        <img
-          class="profile-avatar"
-          :src="defaultAvatar">
-      </figure>
-      <div
-        v-show="isProfileActive"
-        class="profile-detail">
-        <h4 class="profile-detail-title">
-          {{ defaultName }}
-        </h4>
-        <a
-          class="profile-detail-text"
-          :href="iStagingUrl"
-          target="_blank"
-          @click="clickBasicDescriptionUrl">
-          {{ defaultDescription }}
-        </a>
-      </div>
-    </template>
-    <template v-else-if="showContactInfo">
-      <figure
-        class="profile-figure"
-        @click="toggleProfile">
-        <img
-          class="profile-avatar"
-          :src="userAvatar">
-      </figure>
-      <div
-        v-if="user"
-        v-show="isProfileActive"
-        class="profile-detail">
-        <h4 class="profile-detail-title">
-          {{ profileData('name') }}
-        </h4>
-        <p class="profile-detail-text">
-          {{ profileData('companyDisplayName') }}
-        </p>
-        <p class="profile-detail-text">
-          {{ profileData('phone') }}
-        </p>
-      </div>
-    </template>
+    <figure
+      class="profile-figure"
+      @click="toggleProfile">
+      <img
+        class="profile-avatar"
+        :src="userAvatar">
+    </figure>
+    <div class="profile-detail">
+      <h4 class="profile-detail-title">
+        {{ profileData('name') }}
+      </h4>
+      <p class="profile-detail-text">
+        {{ profileData('companyDisplayName') }}
+      </p>
+      <p class="profile-detail-text">
+        {{ profileData('phone') }}
+      </p>
+    </div>
     <div class="profile-building-info">
       <h1
         v-if="currentBuilding.name"
@@ -84,19 +56,12 @@ export default {
 
   computed: {
     ...mapGetters([
-      'currentBuilding',
-      'customSetting',
-      'isProfileActive',
-      'showContactInfo',
-      'user'
+      'currentBuilding'
     ]),
 
     userAvatar () {
-      if (this.user.showAdminProfile && this.user.adminProfile) {
-        return this.user.adminProfile.profileUrl || this.defaultAvatar
-      } else {
-        return this.user.profileUrl || this.defaultAvatar
-      }
+      // todo: collection logo
+      // return this.user.profileUrl || this.defaultAvatar
     }
   },
 
@@ -106,11 +71,8 @@ export default {
     ]),
 
     profileData (key) {
-      if (this.user.showAdminProfile && this.user.adminProfile) {
-        return this.user.adminProfile[key]
-      } else {
-        return this.user[key]
-      }
+      // return this.user[key]
+      // todo: collection info data
     },
 
     clickBasicDescriptionUrl () {

@@ -3,7 +3,6 @@ import {
   loadImage
 } from '@/api/utils'
 import {
-  convertIndexFromUrlToArray,
   krpanoHelpers
 } from '@/api/helpers'
 
@@ -49,7 +48,7 @@ export default class PanoramasManager {
   panoramaMarkersReadyHandler (panoramas) { // each image thumbnail loaded, do action here
     this.panoramaMarkersReadyCounter += 1
     if (this.panoramaMarkersReadyCounter >= panoramas.length) { // when all image thumbnail loaded, do action here
-      const startIndex = convertIndexFromUrlToArray(this.rootState.route.query.index, panoramas.length)
+      const startIndex = 0
       this.commit('SET_PANORAMAS', panoramas || [])
       this.commit('SET_PANORAMA', (panoramas && panoramas.length) ? panoramas[startIndex] : {})
       this.dispatch('addProgressCount', 10)

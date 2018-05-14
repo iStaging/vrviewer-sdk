@@ -9,26 +9,27 @@ export const getters = {
 export const actions = {
   async fetchMarkers ({ dispatch, commit, rootState }, panorama = {}) {
     return new Promise((resolve, reject) => {
-      const resp = [{}]
-      if (!resp) {
-        dispatch('addProgressCount', 1)
-        resolve([])
-        return
-      }
-      const markerIds = Object.keys(resp)
-      let markers = markerIds.map(objectId => {
-        const marker = resp[objectId].data
-        marker.objectId = objectId
-        return marker
-      }) || []
-
-      if (rootState.route.query.tags === 'false') {
-        markers = markers.filter(marker => marker.type !== 'tag')
-      }
-      console.log('markers', markers)
-      commit('SET_MARKER', {})
+      // const resp = [{}]
+      // if (!resp) {
+      //   dispatch('addProgressCount', 1)
+      //   resolve([])
+      //   return
+      // }
+      // const markerIds = Object.keys(resp)
+      // let markers = markerIds.map(objectId => {
+      //   const marker = resp[objectId].data
+      //   marker.objectId = objectId
+      //   return marker
+      // }) || []
+      //
+      // if (rootState.route.query.tags === 'false') {
+      //   markers = markers.filter(marker => marker.type !== 'tag')
+      // }
+      // console.log('markers', markers)
+      // commit('SET_MARKER', {})
       dispatch('addProgressCount', 1)
-      resolve(markers)
+      // resolve(markers)
+      resolve([])
     })
   },
 

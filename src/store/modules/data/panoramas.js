@@ -1,5 +1,6 @@
 import api from '@/api/index'
 import { CATEGORIES } from '@/api/constants'
+import { fakePanoramas } from '@/api/resources'
 import {
   imageIEHack
 } from '@/api/helpers'
@@ -26,17 +27,15 @@ export const getters = {
 export const actions = {
   async fetchPanoramas ({ dispatch, commit, state, rootState }, buildingId = '') {
     const panoramasManager = new PanoramasManager({ dispatch, commit, state, rootState })
-    const resp = [{}] // panoramas
+    const resp = fakePanoramas
+    console.log(resp)
     dispatch('setKrpanoActive', false)
     dispatch('setPanoramasNotFound', false)
     if (!resp) {
       panoramasManager.noPanoramasHandler()
       return
     }
-    const panoramaIds = Object.keys(resp)
-    let panoramas = panoramaIds.map(objectId => {
-      const panorama = resp[objectId].data
-      panorama.objectId = objectId
+    let panoramas = resp.map(panorama => {
       const foundCategory = CATEGORIES.find(category => category.value === panorama.category)
       if (!foundCategory) {
         panorama.customCategory = panorama.category
@@ -61,7 +60,8 @@ export const actions = {
     dispatch('setProgressMax', panoramas.length + 12)
 
     panoramas.forEach(async panorama => {
-      const cubemap = new Cubemap(panorama, rootState.user.userId)
+      // const cubemap = new Cubemap(panorama, rootState.user.userId)
+      const cubemap = new Cubemap(panorama)
       cubemap.init()
       panorama.markers = await dispatch('fetchMarkers', panorama)
       if (getIEVersion() === 11) {

@@ -1,5 +1,5 @@
 <docs>
-  This list is in the bottom, contains buildings and panoramas
+  This list is in the bottom, contains panoramas
 </docs>
 
 <template>

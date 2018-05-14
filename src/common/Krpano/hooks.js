@@ -17,14 +17,14 @@ const hooks = vm => {
         shouldAutoStartRotate: bool
       })
     },
-    prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', selectedMethod = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
+    prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
       const oldIndex = vm.panoramas.findIndex(panorama => panorama.objectId === vm.currentPanorama.objectId)
       const newIndex = vm.panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = vm.panoramas[newIndex]
         const oldHLookat = vm.krpanoLookAtH
         if (foundPanorama.cubemapReady) {
-          vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
+          vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${nextPanoramaRotation},
            ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
         } else {
           vm.setProgressCount(0)
@@ -32,7 +32,7 @@ const hooks = vm => {
           vm.showProgress()
           loadImage(foundPanorama.desktopUrl, () => {
             vm.closeProgress()
-            vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${selectedMethod}, ${nextPanoramaRotation},
+            vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${nextPanoramaRotation},
              ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
           }, (e) => {
             vm.setProgressCount(e * 2)
@@ -42,8 +42,8 @@ const hooks = vm => {
         }
       }
     },
-    changeImage (nextPanoramaId, selectedMethod, isMarkerPoint, isWebVr) {
-      vm.selectPanorama(nextPanoramaId, selectedMethod, isMarkerPoint, isWebVr)
+    changeImage (nextPanoramaId) {
+      vm.selectPanorama(nextPanoramaId)
     },
     threeJsMoving (nextPanoramaRotation = 0, markerAth = 0, newIndex, oldIndex, oldHLookat = 0) {
       // console.log('threeJsMoving', nextPanoramaRotation, markerAth, newIndex, oldIndex, oldHLookat)

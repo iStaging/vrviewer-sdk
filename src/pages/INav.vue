@@ -133,12 +133,13 @@ export default {
 
   data () {
     return {
+      mainColor: '#000',
       defaultColor: '#fff',
       icon: {
+        information: { color: this.defaultColor },
         fullscreen: { color: this.defaultColor },
         gyro: { color: this.defaultColor },
         like: { color: this.defaultColor },
-        location: { color: this.defaultColor },
         qrcode: { color: this.defaultColor },
         share: { color: this.defaultColor },
         floorplan: { color: this.defaultColor },
@@ -152,7 +153,6 @@ export default {
   computed: {
     ...mapGetters([
       'currentBuilding',
-      'customSetting',
       'floorplan',
       'isFloorplanActive',
       'isFullscreen',
@@ -312,9 +312,15 @@ export default {
       'toggleGyro',
       'toggleInformation',
       'togglePanoramasList',
-      'toggleShare',
-      'updateLikeCount'
-    ])
+      'toggleShare'
+    ]),
+
+    changeColor (key = {}, value = '') {
+      if (!key && !key.color) {
+        return
+      }
+      key.color = value
+    }
   },
 
   watch: {
