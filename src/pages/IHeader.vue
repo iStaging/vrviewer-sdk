@@ -69,7 +69,7 @@ export default {
   }
 }
 
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .i-header {
     z-index: $i-header-z
   }
@@ -109,7 +109,7 @@ export default {
     left: $i-header-header-center-pos
   }
 
-  @media (min-width: $response) {
+  @media screen and (min-width: $response) {
     .header-intro {
       left: auto
       right: $i-header-header-intro-large-pos

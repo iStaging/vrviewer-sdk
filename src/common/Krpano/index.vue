@@ -133,7 +133,6 @@ export default {
       'isGyroEnabled',
       'isFloorplanActive',
       'isKrpanoActive',
-      'isInformationActive',
       'isMarkerInfoActive',
       'isPanoramasListActive',
       'isShareActive',
@@ -183,7 +182,6 @@ export default {
   methods: {
     ...mapActions([
       'closeFloorplan',
-      'closeInformation',
       'closeMarkerInfo',
       'closeMobileMenu',
       'closePanoramasList',
@@ -361,7 +359,6 @@ export default {
 
     pcCloseAll () {
       this.closeMarkerInfo()
-      this.closeInformation()
       this.closeShare()
       // 768 = CSS assets/css/variables.styl $response value
       if (window.innerWidth < 768) {

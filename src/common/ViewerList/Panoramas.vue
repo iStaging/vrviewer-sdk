@@ -107,10 +107,8 @@ export default {
               return
             }
             this.selectPanorama(panorama)
-            this.closeInformation()
             this.closeShare()
             this.closeMarkerInfo()
-            this.closeLocation()
           },
           ...panorama
         }
@@ -122,10 +120,8 @@ export default {
 
   methods: {
     ...mapActions([
-      'closeInformation',
       'closeShare',
       'closeMarkerInfo',
-      'closeLocation',
       'selectPanorama',
       'setHoveredPanorama'
     ]),
@@ -222,7 +218,7 @@ $w = 120px
   max-width: $w
 }
 
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .panoramas {
     padding: 14px 20px
     min-height: 146px

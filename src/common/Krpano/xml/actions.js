@@ -92,6 +92,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
 <action name="change_scene">
 <!--
 change scene in krpano, and callback to javascript (auto call it from prepare_change_scene)
+// todo: remove %3
 %1 ~ %5 is all same with prepare_change_scene
 %6 = newIndex
 %7 = oldIndex

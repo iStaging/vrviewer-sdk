@@ -173,11 +173,7 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
   @extend .absolute-full
 }
 
-@media (min-width: $response) {
-  .viewer-layer {
-    z-index: $viewer-layer-z
-  }
-
+@media screen and (min-width: $response) {
   .viewer-layer-close {
     position: absolute
   }

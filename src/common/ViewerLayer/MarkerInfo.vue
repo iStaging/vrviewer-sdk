@@ -144,7 +144,7 @@ export default {
 }
 
 $image-w = 160px
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .marker-info {
     margin-top: 0
   }
@@ -212,7 +212,7 @@ $image-w = 160px
 @import '~css/variables.styl'
 
 .theme-rtl.theme-rtl-overlap {
-  @media (min-width: $response) {
+  @media screen and (min-width: $response) {
     .marker-info-large-left {
       margin-right: auto
       margin-left: $marker-info-marker-info-large-left-margin

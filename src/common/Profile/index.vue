@@ -135,13 +135,13 @@ export default {
   box-shadow: 1px 1px 2px 1px alpha($black, 30%)
 }
 
-@media (orientation: landscape) {
+@media screen and (orientation: landscape) {
   .profile {
     max-width: 200px
   }
 }
 
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .profile {
     max-width: 200px
     flex-direction: column

@@ -136,7 +136,6 @@ export default {
       mainColor: '#000',
       defaultColor: '#fff',
       icon: {
-        information: { color: this.defaultColor },
         fullscreen: { color: this.defaultColor },
         gyro: { color: this.defaultColor },
         like: { color: this.defaultColor },
@@ -158,7 +157,6 @@ export default {
       'isFullscreen',
       'isGyroEnabled',
       'isGyroFromIframe',
-      'isInformationActive',
       'isMobileMenuActive',
       'isPanoramasListActive',
       'isShareActive',
@@ -211,17 +209,6 @@ export default {
 
     navMobileInnerList () {
       let list = [{
-        name: 'information',
-        caption: this.$t('information'),
-        isActive: this.isInformationActive,
-        method: () => {
-          this.showInformation()
-          this.closeMobileMenu()
-          this.closeShare()
-          this.closeMarkerInfo()
-        }
-      }]
-      list.push(...[{
         name: 'vrmode',
         caption: this.$t('vrmode'),
         hidden: !this.canDeviceSupportGyro,
@@ -239,21 +226,12 @@ export default {
           this.closeMobileMenu()
           this.enterFullscreen()
         }
-      }])
+      }]
       return list
     },
 
     navPcList () {
       let list = [{
-        name: 'information',
-        caption: this.$t('information'),
-        isActive: this.isInformationActive,
-        method: () => {
-          this.toggleInformation()
-          this.closeShare()
-          this.closeMarkerInfo()
-        }
-      }, {
         name: 'panoSelect',
         caption: this.$t('panoSelect'),
         isActive: this.isPanoramasListActive,
@@ -268,15 +246,13 @@ export default {
         method: () => {
           this.toggleFloorplan()
         }
-      }]
-      list.push(...[{
+      }, {
         name: 'share',
         caption: this.$t('share'),
         // hidden: this.$route.query.share === 'hidden',
         isActive: this.isShareActive,
         method: () => {
           this.toggleShare()
-          this.closeInformation()
           this.closeMarkerInfo()
         }
       }, {
@@ -288,7 +264,7 @@ export default {
           this.closeMobileMenu()
           this.enterFullscreen()
         }
-      }])
+      }]
       return list
     }
   },
@@ -296,21 +272,17 @@ export default {
   methods: {
     ...mapActions([
       'closeFloorplan',
-      'closeInformation',
       'closeMobileMenu',
       'closeMarkerInfo',
       'closePanoramasList',
       'closeShare',
       'enterFullscreen',
       'enterVrMode',
-      'showInformation',
-      'showLocation',
       'showMobileMenu',
       'startGyro',
       'stopGyro',
       'toggleFloorplan',
       'toggleGyro',
-      'toggleInformation',
       'togglePanoramasList',
       'toggleShare'
     ]),
@@ -458,7 +430,7 @@ export default {
   display: none
 }
 
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .i-nav {
     width: 200px
     height: 100%
@@ -587,7 +559,7 @@ export default {
     margin-left: auto
   }
 
-  @media (min-width: $response) {
+  @media screen and (min-width: $response) {
     .i-nav-pc-tooltip {
       right: auto
       left: $i-main-i-nav-pc-tooltip-pos

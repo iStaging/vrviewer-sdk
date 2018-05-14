@@ -140,7 +140,6 @@ import { mapActions, mapGetters } from 'vuex'
 import { isIframe, isMobile, isIOS } from '@/api/utils'
 import Floorplan from '../common/Floorplan/index.vue'
 import Icon from '../components/Icon/index.vue'
-import Information from '../common/ViewerLayer/Information.vue'
 import Instructions from '../common/Instructions/index.vue'
 import Krpano from '../common/Krpano/index.vue'
 import MarkerInfo from '../common/ViewerLayer/MarkerInfo.vue'
@@ -155,7 +154,6 @@ export default {
   components: {
     Floorplan,
     Icon,
-    Information,
     Instructions,
     Krpano,
     MarkerInfo,
@@ -177,8 +175,7 @@ export default {
       isFloorplanReady: false,
       markerPositionX: 0,
       markerPositionY: 0,
-      noPanoramasImage: require('img/trash-can.svg'),
-      selectedInformation: {}
+      noPanoramasImage: require('img/trash-can.svg')
     }
   },
 
@@ -189,7 +186,6 @@ export default {
     window.addEventListener('resize', this.resizeHandler)
 
     this.isFloorplanReady = true
-    this.selectedInformation = this.currentBuilding
     this.initShare()
     this.resizeHandler()
 
@@ -217,7 +213,6 @@ export default {
       'isFloorplanActive',
       'isFullscreen',
       'isGyroFromIframe',
-      'isInformationActive',
       'isMarkerInfoActive',
       'isNoPanoramasFound',
       'isPanoramasListActive',
@@ -243,9 +238,7 @@ export default {
 
     shouldPanoramasListAndFloorplanShow () {
       return !this.isShareActive &&
-        !this.isMarkerInfoActive &&
-        !this.isInformationActive &&
-        !this.isLocationActive
+        !this.isMarkerInfoActive
     },
 
     shouldPanoramasListShow () {
@@ -265,8 +258,6 @@ export default {
 
   methods: {
     ...mapActions([
-      'closeInformation',
-      'closeLocation',
       'closeMarkerInfo',
       'closePopup',
       'closeShare',
@@ -315,10 +306,6 @@ export default {
       }
     },
 
-    selectInformation (info) {
-      this.selectedInformation = info
-    },
-
     resizeHandler () {
       // 768 = CSS assets/css/variables.styl $response value
       if (window.innerWidth >= 768) {
@@ -342,15 +329,6 @@ export default {
     shareUrl: {
       handler () {
         this.initShare()
-      },
-      deep: true
-    },
-
-    currentBuilding: {
-      handler (newValue, oldValue) {
-        if (oldValue.objectId === this.selectedInformation.objectId) {
-          this.selectedInformation = newValue
-        }
       },
       deep: true
     }
@@ -459,7 +437,7 @@ export default {
   padding: 10px
 }
 
-@media (orientation: landscape) {
+@media screen and (orientation: landscape) {
   .floorplan-wrapper {
     position: absolute
     height: 100%
@@ -476,7 +454,7 @@ export default {
   }
 }
 
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .viewer-list-wrapper {
     opacity: 1
     transform: translateY(100%) translateY(-($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2))
@@ -532,7 +510,7 @@ export default {
     transform: rotateY(180deg)
   }
 
-  @media (orientation: landscape) {
+  @media screen and (orientation: landscape) {
     .floorplan-wrapper {
       right: $i-main-floorplan-wrapper-landscape-pos
       left: auto
@@ -544,7 +522,7 @@ export default {
     }
   }
 
-  @media (min-width: $response) {
+  @media screen and (min-width: $response) {
     .floorplan-wrapper {
       right: $i-main-floorplan-wrapper-landscape-pos
       left: auto

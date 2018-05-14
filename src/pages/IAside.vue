@@ -95,7 +95,7 @@ export default {
   padding: 0
 }
 
-@media (min-width: $response) {
+@media screen and (min-width: $response) {
   .i-aside {
     z-index: $i-aside-z
     // don't use extend or it will be replaced
@@ -132,7 +132,7 @@ export default {
     left: $i-aside-aside-icon-close-pos
   }
 
-  @media (min-width: $response) {
+  @media screen and (min-width: $response) {
     .i-nav-parent {
       right: auto
       left: $i-aside-i-nav-parent-pos

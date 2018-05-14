@@ -5,9 +5,7 @@ import app from './modules/app'
 import buildings from './modules/data/buildings'
 import floorplan from './modules/floorplan'
 import fullscreen from './modules/fullscreen'
-import information from './modules/information'
 import krpano from './modules/krpano'
-import location from './modules/location'
 import markerInfo from './modules/marker-info'
 import markers from './modules/data/markers'
 import mobileMenu from './modules/mobile-menu'
@@ -27,9 +25,7 @@ const store = new Vuex.Store({
     buildings,
     floorplan,
     fullscreen,
-    information,
     krpano,
-    location,
     markerInfo,
     markers,
     mobileMenu,

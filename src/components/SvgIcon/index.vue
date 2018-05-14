@@ -1,11 +1,7 @@
 <template>
   <span class="svg-icon">
-    <svg-information
-      v-if="name === 'information'"
-      :color="color">
-    </svg-information>
     <svg-pano-select
-      v-else-if="name === 'panoSelect'"
+      v-if="name === 'panoSelect'"
       :color="color">
     </svg-pano-select>
     <svg-floorplan
@@ -49,7 +45,6 @@ import SvgCloseMobileMenu from './img/SvgCloseMobileMenu.vue'
 import SvgFloorplan from './img/SvgFloorplan.vue'
 import SvgFullscreen from './img/SvgFullscreen.vue'
 import SvgGyro from './img/SvgGyro.vue'
-import SvgInformation from './img/SvgInformation.vue'
 import SvgPanoSelect from './img/SvgPanoSelect.vue'
 import SvgShare from './img/SvgShare.vue'
 import SvgShowMobileMenu from './img/SvgShowMobileMenu.vue'
@@ -63,7 +58,6 @@ export default {
     SvgFloorplan,
     SvgFullscreen,
     SvgGyro,
-    SvgInformation,
     SvgPanoSelect,
     SvgShare,
     SvgShowMobileMenu,
