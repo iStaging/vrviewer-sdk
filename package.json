@@ -3,12 +3,11 @@
   "keywords": [
     "istaging",
     "vrviewer",
-    "aframe",
     "krpano",
     "panorama",
     "VR"
   ],
-  "description": "vrviewer sdk help you build your 360 panorama solution more easily by aframe or krpano.",
+  "description": "vrviewer sdk help you build your 360 panorama solution more easily by krpano.",
   "version": "1.0.5",
   "homepage": "https://istaging.gitbook.io/vr-maker-sdk",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
@@ -32,7 +31,7 @@
     "not ie <= 8"
   ],
   "engines": {
-    "node" : ">=4"
+    "node": ">=4"
   },
   "dependencies": {
     "extends-classes": "^1.0.5",
@@ -40,7 +39,6 @@
     "mime": "^2.2.2"
   },
   "devDependencies": {
-    "aframe": "^0.8.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
