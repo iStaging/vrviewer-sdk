@@ -1,6 +1,6 @@
 # VRViewer
 
-VRViewer js sdk help you to create your 360 panorama viewer more easily by aframe or krpano.
+VRViewer js sdk help you to create your 360 panorama viewer more easily by krpano.
 
 ## documation
 [https://istaging.gitbook.io/vr-maker-sdk](https://istaging.gitbook.io/vr-maker-sdk)
@@ -11,9 +11,6 @@ VRViewer js sdk help you to create your 360 panorama viewer more easily by afram
     - auto rotation
     - change animation
     - support cubemap
-  - AframeViewer
-    - vr mode
-    - auto rotation
 
 ## How to use
 
@@ -25,10 +22,6 @@ import VRViewer from 'vrviewer'
 
 // init krpano viewer (recommended)
 new VRViewer.krpanoViewer()
-...
-
-// init aframe viewer
-new VRViewer.AframeViewer()
 ...
 
 // check more in documation or examples, dev folder
@@ -44,17 +37,11 @@ new VRViewer.AframeViewer()
 new VRViewer.krpanoViewer()
 ...
 
-// init aframe viewer
-new VRViewer.AframeViewer()
-...
-
 // check more in documation or examples, dev folder
 ```
 
-Warning: use aframe will not support change animation and cubemap.
-
 ## Work with istaging vrviewer solution which can upload your panorama with cubemap, auto hotspot, edit your marker like point, tag..etc. Get the data from vrviewer backend server.
-Use node express sample server to get the access key to upload your panoramas by vrviewer backend server api and init the data by krpano or aframe.
+Use node express sample server to get the access key to upload your panoramas by vrviewer backend server api and init the data by krpano.
 Check in the examples folder.
 
 ``` bash

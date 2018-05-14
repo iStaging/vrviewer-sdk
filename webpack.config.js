@@ -7,7 +7,6 @@ function resolve (dir) {
 
 module.exports = {
   entry: [
-    './dev/aframe.js',
     './dev/krpano.js'
   ],
   output: {

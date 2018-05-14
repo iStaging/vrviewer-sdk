@@ -1,13 +1,10 @@
 import CommonViewer from '@/common/common-viewer'
 import {
-  clone,
   push
 } from '@/common/utils'
-import AFRAME from 'aframe'
 
-window.AFRAME = AFRAME
 let htmlEl = document.createElement('div')
-let elId = 'vrviewer-aframe'
+let elId = 'vrviewer'
 htmlEl.id = elId
 let commonViewer
 const defaultPanorama = { panoramaId: '1' }
