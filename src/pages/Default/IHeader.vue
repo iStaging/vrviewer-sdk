@@ -18,9 +18,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { includes } from '~js/utils'
-import api from '~js/index'
-import server from '~js/server'
+import { includes } from '@/api/utils'
+import api from '@/api/index'
+import server from '@/api/server'
 import Profile from '../../common/Profile/index.vue'
 import Social from '../../common/Social/index.vue'
 

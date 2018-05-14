@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isAppReady: false,
   isScreenReady: false,
@@ -23,21 +21,18 @@ export const actions = {
 
   setPropertyNotFound ({ commit, state, rootState }, bool = false) {
     if (state.isPropertyNotFound === false && bool === true) {
-      gaEvents.sendEvent('Property', 'ShowPropertyNotFound', rootState.route.query.group || rootState.property.property.objectId || '')
     }
     commit('SET_PROPERTY_NOT_FOUND', bool)
   },
 
   setBuildingNotFound ({ commit, state, rootState }, bool = false) {
     if (state.isBuildingNotFound === false && bool === true) {
-      gaEvents.sendEvent('Building', 'ShowBuildingNotFound', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
     commit('SET_BUILDING_NOT_FOUND', bool)
   },
 
   setPanoramasNotFound ({ commit, state, rootState }, bool = false) {
     if (state.isNoPanoramasFound === false && bool === true) {
-      gaEvents.sendEvent('Building', 'ShowPanoramasNotFound', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
     commit('SET_PANORAMAS_NOT_FOUND', bool)
   },

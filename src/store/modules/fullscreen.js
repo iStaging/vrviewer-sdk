@@ -1,5 +1,4 @@
-import { enterFullscreen, exitFullscreen } from '~js/utils'
-import gaEvents from '~js/ga-events'
+import { enterFullscreen, exitFullscreen } from '@/api/utils'
 
 const state = {
   isFullscreen: false
@@ -14,7 +13,6 @@ export const actions = {
     if (state.isFullscreen === false) {
       enterFullscreen()
       commit('SET_FULL_SCREEN', true)
-      gaEvents.sendEvent('Building', 'EnterFullScreen', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -22,7 +20,6 @@ export const actions = {
     if (state.isFullscreen === true) {
       exitFullscreen()
       commit('SET_FULL_SCREEN', false)
-      gaEvents.sendEvent('Building', 'ExitFullScreen', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   }
 }

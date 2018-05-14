@@ -33,7 +33,7 @@ import {
   isIframe,
   isIOS,
   isMobile
-} from '~js/utils'
+} from '@/api/utils'
 import Icon from '../../components/Icon/index.vue'
 import IRepeat from '../../components/IRepeat.vue'
 import HandleData from '../../mixins/HandleData.vue'

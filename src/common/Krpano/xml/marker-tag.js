@@ -1,6 +1,6 @@
 import {
   countText
-} from '~js/utils'
+} from '@/api/utils'
 import {
   hotspotIcon,
   isRtl,
@@ -8,7 +8,7 @@ import {
   krpanoEnterString,
   lengthInUtf8Bytes,
   xmlString
-} from '~js/helpers'
+} from '@/api/helpers'
 
 const getMarkerTagXml = function (marker, ath, atv, category, useCustomIcon, index, krpanoVrModeObj) {
   let tag = ''

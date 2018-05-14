@@ -53,8 +53,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { SOCIAL } from '~js/constants'
-import { isEmpty } from '~js/utils'
+import { SOCIAL } from '@/api/constants'
+import { isEmpty } from '@/api/utils'
 import Icon from '../../components/Icon/index.vue'
 import SvgIcon from '../../components/SvgIcon/index.vue'
 

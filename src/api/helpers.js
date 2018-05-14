@@ -1,4 +1,3 @@
-import gaEvents from './ga-events'
 import {
   isEmpty,
   xhr
@@ -71,47 +70,6 @@ export const isRtl = (lang = locale()) => {
 }
 
 export const iStagingUrl = 'https://www.istaging.com'
-
-export const handleUrlRef = (to = { query: {} }, buildingId = '', callback = () => {}) => {
-  const { ref } = to.query
-  let { fullPath } = to
-  switch (ref) {
-    case 'facebook':
-      gaEvents.sendEvent('Building', 'UrlClickedFromFacebook', buildingId)
-      break
-    case 'google-plus':
-      gaEvents.sendEvent('Building', 'UrlClickedFromGooglePlus', buildingId)
-      break
-    case 'twitter':
-      gaEvents.sendEvent('Building', 'UrlClickedFromTwitter', buildingId)
-      break
-    case 'linkedin':
-      gaEvents.sendEvent('Building', 'UrlClickedFromLinkedin', buildingId)
-      break
-    case 'messenger':
-      gaEvents.sendEvent('Building', 'UrlClickedFromMessenger', buildingId)
-      break
-    case 'line':
-      gaEvents.sendEvent('Building', 'UrlClickedFromLine', buildingId)
-      break
-    case 'wechat':
-      gaEvents.sendEvent('Building', 'UrlClickedFromWechat', buildingId)
-      break
-    case 'qrcode':
-      gaEvents.sendEvent('Building', 'ScanQRCodeSuccessful', buildingId)
-      break
-    case 'yc-fullscreen': // 目前永慶的開新視窗按鈕
-      gaEvents.sendEvent('Building', 'UrlClickedFromYungChingFullscreenButton', buildingId)
-      break
-    default:
-  }
-  fullPath = fullPath.replace(/([?&])ref=[a-z-]*/, '') // remove ?ref=xxx or &ref=aaa-bbb
-  if (fullPath.indexOf('?') <= -1 && fullPath.indexOf('&') > -1) {
-    fullPath = fullPath.replace('&', '?')
-  }
-  callback(fullPath)
-}
-
 export const krpanoHelpers = {
   preloadThreeJsImages (allPanoramas) {
     /* eslint-disable */

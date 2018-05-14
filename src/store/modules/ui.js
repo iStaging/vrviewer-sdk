@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isUiMode: false
 }
@@ -13,10 +11,8 @@ export const actions = {
     const { ui } = rootState.route.query
     if (ui === 'true') {
       commit('SET_UI_MODE', true)
-      gaEvents.sendEvent('Building', 'UIMode', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     } else {
       commit('SET_UI_MODE', false)
-      gaEvents.sendEvent('Building', 'NotUIMode', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   }
 }

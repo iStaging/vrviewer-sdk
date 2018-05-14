@@ -1,7 +1,7 @@
 import Vue from 'vue'
 // import VueAxios from 'vue-axios'
 import VueI18n from 'vue-i18n'
-import locales from '@/locales'
+import messages from '@/messages'
 import store from '@/store'
 // import api from '@/api/index'
 // import server from '@/api/server'
@@ -21,7 +21,7 @@ class VRViewer {
     const i18n = new VueI18n({
       locale: config.lang,
       fallbackLocale: 'en',
-      messages: locales,
+      messages,
       silentTranslationWarn: true
     })
     this.updateEvents()

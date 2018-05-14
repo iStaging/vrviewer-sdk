@@ -1,8 +1,10 @@
-const webvrMinJs = require('../../../../static/plugins/webvr.min')
-const webvrCursorImage = require('../../../../static/plugins/webvr_cursor_80x80_17f.png')
-const threeKrpanopluginMinJs = require('../../../../static/plugins/three.krpanoplugin.min')
-const gyro2MinJs = require('../../../../static/plugins/gyro2.min')
-const gyroMessageMinJs = require('../../../../static/plugins/gyro-message.min')
+import {
+  webvrMinJs,
+  webvrCursorImage,
+  threeKrpanopluginMinJs,
+  gyro2MinJs,
+  gyroMessageMinJs
+} from '../../../../src/api/resources'
 
 export const webVRXml = `<plugin name="WebVR" devices="html5" keep="true"
 url="${webvrMinJs}"

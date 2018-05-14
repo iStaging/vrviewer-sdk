@@ -15,6 +15,7 @@
     "analyze": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
+    "davidshimjs-qrcodejs": "^0.0.2",
     "vue": "^2.5.16",
     "vue-i18n": "^7.6.0",
     "vue-router": "^3.0.1",

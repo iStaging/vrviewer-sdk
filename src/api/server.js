@@ -1,6 +1,3 @@
-import firebase from 'firebase'
-import firebaseConfig from './firebase-config'
-import { includes } from './utils'
 import { version } from '../../package.json'
 
 console.info('version:', version)
@@ -19,18 +16,15 @@ for (let item in process.env) {
 server.usServers = ['devus', 'testus', 'produs']
 server.prodServers = ['prod', 'produs']
 
-if (includes(server.usServers, env)) {
-  firebase.initializeApp(firebaseConfig)
-}
 switch (env) {
   case 'devus':
-    server.firebaseStorageUrlStart = 'https://vrcam-dev-cdn.istaging.com/'
+    server.cdnUrlStart = 'https://vrcam-dev-cdn.istaging.com/'
     break
   case 'testus':
-    server.firebaseStorageUrlStart = 'https://vrcam-test-cdn.istaging.com/'
+    server.cdnUrlStart = 'https://vrcam-test-cdn.istaging.com/'
     break
   case 'produs':
-    server.firebaseStorageUrlStart = 'https://vrcam-prod-cdn.istaging.com/'
+    server.cdnUrlStart = 'https://vrcam-prod-cdn.istaging.com/'
     break
   default:
 }

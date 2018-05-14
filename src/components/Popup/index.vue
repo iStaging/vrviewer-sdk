@@ -28,7 +28,7 @@
 <script>
 import {
   POPUP
-} from '~js/constants'
+} from '@/api/constants'
 
 export default {
   name: 'Popup',

@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isLocationActive: false
 }
@@ -12,7 +10,6 @@ export const actions = {
   showLocation ({ commit, state, rootState }) {
     if (state.isLocationActive === false) {
       commit('SET_LOCATION_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'ShowLocation', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -27,7 +24,6 @@ export const actions = {
   closeLocation ({ commit, state, rootState }) {
     if (state.isLocationActive === true) {
       commit('SET_LOCATION_ACTIVE', false)
-      gaEvents.sendEvent('Building', 'CloseLocation', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   }
 }

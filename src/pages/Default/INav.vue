@@ -113,7 +113,7 @@ import {
   isIframe,
   isMobile,
   isIOS
-} from '~js/utils'
+} from '@/api/utils'
 import IRepeat from '../../components/IRepeat.vue'
 import Icon from '../../components/Icon/index.vue'
 import SvgIcon from '../../components/SvgIcon/index.vue'

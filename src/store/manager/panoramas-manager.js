@@ -1,11 +1,11 @@
 import {
   isMobile,
   loadImage
-} from '~js/utils'
+} from '@/api/utils'
 import {
   convertIndexFromUrlToArray,
   krpanoHelpers
-} from '~js/helpers'
+} from '@/api/helpers'
 
 export default class PanoramasManager {
   constructor ({ dispatch, commit, state, rootState }) {

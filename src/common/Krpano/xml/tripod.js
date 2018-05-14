@@ -1,9 +1,9 @@
 import {
   DEFAULT_LOGO_SIZE
-} from '~js/constants'
+} from '@/api/constants'
 import {
   xmlUrlString
-} from '~js/helpers'
+} from '@/api/helpers'
 
 // size: 0% ~ 100%
 function setLogoTripodSize (logoSize = DEFAULT_LOGO_SIZE) {

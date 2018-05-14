@@ -4,7 +4,7 @@ import {
   krpanoEnterString,
   xmlString,
   xmlUrlString
-} from '~js/helpers'
+} from '@/api/helpers'
 import linkImage from '../img/markers/link.png'
 import memoImage from '../img/markers/memo.png'
 import pointImage from '../img/markers/point.png'

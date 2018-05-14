@@ -1,11 +1,10 @@
-import gaEvents from '~js/ga-events'
 import {
   isIframe,
   isIOS
-} from '~js/utils'
+} from '@/api/utils'
 import {
   AUTO_START_ROTATE_TIMER
-} from '~js/constants'
+} from '@/api/constants'
 
 const state = {
   krpanoEl: null,
@@ -61,7 +60,6 @@ export const actions = {
         state.krpanoEl.call(`stop_auto_rotate();`)
         commit('SET_CAMERA_ROTATING', false)
         if (stopMethod) {
-          gaEvents.sendEvent('Panorama', `StopAutoRotateBy${stopMethod}`, rootState.panoramas.currentPanorama.objectId)
         }
       }
       if (state.krpanoCamera.autoStartRotateTimer !== null) {
@@ -112,7 +110,6 @@ export const actions = {
       } else {
         state.krpanoEl.call('stop_gyro();')
       }
-      gaEvents.sendEvent('Building', 'TurnGyroOff', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
       commit('SET_GYRO_ENABLED', false)
     } else {
       console.log('gyro doesn\'t stop')

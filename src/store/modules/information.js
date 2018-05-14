@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isInformationActive: false
 }
@@ -12,7 +10,6 @@ export const actions = {
   showInformation ({ commit, state, rootState }) {
     if (state.isInformationActive === false) {
       commit('SET_INFORMATION_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'ShowInformation', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -27,7 +24,6 @@ export const actions = {
   closeInformation ({ commit, state, rootState }) {
     if (state.isInformationActive === true) {
       commit('SET_INFORMATION_ACTIVE', false)
-      gaEvents.sendEvent('Building', 'CloseInformation', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   }
 }

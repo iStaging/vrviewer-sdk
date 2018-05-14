@@ -1,14 +1,14 @@
 import {
   COMPANY
-} from '~js/constants'
+} from '@/api/constants'
 import {
   getParameterString
-} from '~js/helpers'
-import api from '~js/index'
-import server from '~js/server'
+} from '@/api/helpers'
+import api from '@/api/index'
+import server from '@/api/server'
 import {
   addParameter
-} from '~js/utils'
+} from '@/api/utils'
 import router from '@/router'
 
 const userDefaultObj = {

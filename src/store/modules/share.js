@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isShareActive: false,
   shareUrl: {
@@ -23,7 +21,6 @@ export const actions = {
   showShare ({ commit, state, rootState }) {
     if (state.isShareActive === false) {
       commit('SET_SHARE_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'ShowShare', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -38,7 +35,6 @@ export const actions = {
   closeShare ({ commit, state, rootState }) {
     if (state.isShareActive === true) {
       commit('SET_SHARE_ACTIVE', false)
-      gaEvents.sendEvent('Building', 'CloseShare', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 

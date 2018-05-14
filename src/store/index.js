@@ -16,12 +16,10 @@ import mobileMenu from './modules/mobile-menu'
 import panoramas from './modules/data/panoramas'
 import panoramasList from './modules/panoramas-list'
 import popup from './modules/popup'
-import property from './modules/data/property'
 import share from './modules/share'
 import profile from './modules/profile'
 import progress from './modules/progress'
 import promotion from './modules/promotion'
-import social from './modules/data/social'
 import ui from './modules/ui'
 import user from './modules/data/user'
 import vrmode from './modules/vrmode'
@@ -45,12 +43,10 @@ const store = new Vuex.Store({
     panoramas,
     panoramasList,
     popup,
-    property,
     share,
     profile,
     progress,
     promotion,
-    social,
     ui,
     user,
     vrmode

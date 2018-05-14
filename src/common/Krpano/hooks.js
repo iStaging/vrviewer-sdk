@@ -1,10 +1,9 @@
-import { loadImage } from '~js/utils'
+import { loadImage } from '@/api/utils'
 // import {
 //   coords2dTo3d,
 //   coords3dTo2d,
 //   setCorrectRotation
-// } from '~js/helpers'
-// import gaEvents from '~js/ga-events'
+// } from '@/api/helpers'
 
 // krpano actions use jscall, next step goes here to communicate with vue
 // vm is Vue component's method

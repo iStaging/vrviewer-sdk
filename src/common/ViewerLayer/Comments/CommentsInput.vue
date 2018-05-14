@@ -20,7 +20,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import gaEvents from '~js/ga-events'
 
 export default {
   name: 'CommentsInput',
@@ -58,7 +57,6 @@ export default {
         return
       }
       this.addComment(this.message).then(() => {
-        gaEvents.sendEvent('Building', 'AddComment', this.currentBuilding.objectId)
         this.message = ''
         if (this.commentsEl) {
           this.commentsEl.scrollTop = 0

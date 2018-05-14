@@ -1,5 +1,4 @@
-import { isEmpty } from '~js/utils'
-import gaEvents from '~js/ga-events'
+import { isEmpty } from '@/api/utils'
 
 const state = {
   isMarkerInfoActive: false,
@@ -15,7 +14,6 @@ export const actions = {
   showMarkerInfo ({ commit, state }) {
     if (state.isMarkerInfoActive === false) {
       commit('SET_MARKER_INFO_ACTIVE', true)
-      gaEvents.sendEvent('Marker', 'ShowMarkerInfo', state.markerInfoData.objectId)
     }
   },
 
@@ -30,7 +28,6 @@ export const actions = {
   closeMarkerInfo ({ commit, state }) {
     if (state.isMarkerInfoActive === true) {
       commit('SET_MARKER_INFO_ACTIVE', false)
-      gaEvents.sendEvent('Marker', 'CloseMarkerInfo', state.markerInfoData.objectId)
     }
   },
 
@@ -38,9 +35,7 @@ export const actions = {
     commit('SET_MARKER_INFO_DATA', marker)
     if (!isEmpty(marker)) {
       if (marker.type === 'tag') {
-        gaEvents.sendEvent('Marker', 'TagClicks', marker.objectId)
       } else if (marker.type === 'memo') {
-        gaEvents.sendEvent('Marker', 'MemoClicks', marker.objectId)
       }
     }
   }

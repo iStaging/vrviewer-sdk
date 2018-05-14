@@ -41,8 +41,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { iStagingUrl, locale } from '~js/helpers'
-import gaEvents from '~js/ga-events'
+import { iStagingUrl, locale } from '@/api/helpers'
 import Icon from '../../components/Icon/index.vue'
 
 export default {
@@ -73,11 +72,9 @@ export default {
     ]),
 
     clickLogo () {
-      gaEvents.sendEvent('Building', 'ClickPromotionBarLogo', this.currentBuilding.objectId)
     },
 
     clickPromotionLink () {
-      gaEvents.sendEvent('Building', 'ClickPromotionBarUrl', this.currentBuilding.objectId)
     }
   }
 }

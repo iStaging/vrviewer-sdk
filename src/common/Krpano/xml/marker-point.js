@@ -1,6 +1,6 @@
 import {
   hotspotIcon
-} from '~js/helpers'
+} from '@/api/helpers'
 
 const getMarkerPointXml = function (marker, ath, atv, category, useCustomIcon, index, isMarkerPoint, krpanoXOffset) {
   return `<hotspot

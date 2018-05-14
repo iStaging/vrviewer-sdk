@@ -32,7 +32,7 @@
 
 <script type="text/javascript">
 import { mapActions, mapGetters } from 'vuex'
-import { handleUrlRef } from '~js/helpers'
+import { handleUrlRef } from '@/api/helpers'
 import Loading from '../../common/Loading.vue'
 import YcFooter from './YcFooter.vue'
 import YcHeader from './YcHeader.vue'

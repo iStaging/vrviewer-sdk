@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { loadImage } from '~js/utils'
+import { loadImage } from '@/api/utils'
 
 export default {
   name: 'Icon',

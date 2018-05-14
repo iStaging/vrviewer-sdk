@@ -225,7 +225,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { isIframe, isMobile, isIOS } from '~js/utils'
+import { isIframe, isMobile, isIOS } from '@/api/utils'
 import CommentsInput from '../../common/ViewerLayer/Comments/CommentsInput.vue'
 import CommentsList from '../../common/ViewerLayer/Comments/CommentsList.vue'
 import Floorplan from '../../common/Floorplan/index.vue'

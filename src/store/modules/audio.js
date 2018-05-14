@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   audioEl: null,
   isAudioPlaying: false
@@ -25,7 +23,6 @@ export const actions = {
     if (state.isAudioPlaying === false) {
       if (state.audioEl) {
         state.audioEl.play()
-        gaEvents.sendEvent('Building', 'TurnMusicOn', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
         commit('SET_AUDIO_STATUS', true)
       }
     }
@@ -43,7 +40,6 @@ export const actions = {
     if (state.isAudioPlaying === true) {
       if (state.audioEl) {
         state.audioEl.pause()
-        gaEvents.sendEvent('Building', 'TurnMusicOff', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
         commit('SET_AUDIO_STATUS', false)
       }
     }

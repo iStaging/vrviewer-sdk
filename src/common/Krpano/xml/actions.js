@@ -1,5 +1,5 @@
 import { markerAlpha } from './common'
-import { getIEVersion } from '~js/utils'
+import { getIEVersion } from '@/api/utils'
 
 const getActionsXml = function (startIndex = 0, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj) {
   const autoRotateSettings = {

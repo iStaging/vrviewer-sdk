@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isPanoramasListActive: false
 }
@@ -12,7 +10,6 @@ export const actions = {
   showPanoramasList ({ commit, state, rootState }) {
     if (state.isPanoramasListActive === false) {
       commit('SET_PANORAMAS_LIST_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'ShowPanoramasList', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -27,7 +24,6 @@ export const actions = {
   closePanoramasList ({ commit, state, rootState }) {
     if (state.isPanoramasListActive === true) {
       commit('SET_PANORAMAS_LIST_ACTIVE', false)
-      gaEvents.sendEvent('Building', 'ClosePanoramasList', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   }
 }

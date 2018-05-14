@@ -67,18 +67,17 @@
 import { mapActions, mapGetters } from 'vuex'
 import {
   COLOR
-} from '~js/constants'
+} from '@/api/constants'
 import {
   isRtl,
   handleUrlRef
-} from '~js/helpers'
+} from '@/api/helpers'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
 import IAside from './IAside.vue'
 import IFooter from './IFooter.vue'
 import Loading from '../../common/Loading.vue'
 import PromotionBar from '../../common/PromotionBar/index.vue'
-import ShortcutKeys from '../../mixins/ShortcutKeys.vue'
 
 export default {
   name: 'Default',
@@ -90,10 +89,6 @@ export default {
     Loading,
     PromotionBar
   },
-
-  mixins: [
-    process.env.SHORTCUT_KEYS ? ShortcutKeys : {}
-  ],
 
   data () {
     return {

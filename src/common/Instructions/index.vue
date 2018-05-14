@@ -25,7 +25,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { isPortrait } from '~js/utils'
+import { isPortrait } from '@/api/utils'
 import Icon from '../../components/Icon/index.vue'
 import SvgIcon from '../../components/SvgIcon/index.vue'
 

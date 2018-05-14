@@ -60,8 +60,7 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
-import { isMobile } from '~js/utils'
-import gaEvents from '~js/ga-events'
+import { isMobile } from '@/api/utils'
 
 export default {
   name: 'VisitorWrapper',
@@ -180,7 +179,6 @@ export default {
       }
 
       this.addVisitor(user).then(() => {
-        gaEvents.sendEvent('Building', 'addVisitor', this.currentBuilding.objectId)
         let alreadyFilledVisitorBuildingsId = window.sessionStorage.getItem('alreadyFilledVisitorBuildingsId')
         // console.log('alreadyFilledVisitorBuildingsId: ', alreadyFilledVisitorBuildingsId)
         if (alreadyFilledVisitorBuildingsId) {

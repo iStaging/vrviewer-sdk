@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isProfileActive: true
 }
@@ -12,7 +10,6 @@ export const actions = {
   showProfile ({ commit, state, rootState }) {
     if (state.isProfileActive === false) {
       commit('SET_PROFILE_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'ClickAvatarShowProfile', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -27,7 +24,6 @@ export const actions = {
   closeProfile ({ commit, state, rootState }) {
     if (state.isProfileActive === true) {
       commit('SET_PROFILE_ACTIVE', false)
-      gaEvents.sendEvent('Building', 'ClickAvatarHideProfile', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   }
 }

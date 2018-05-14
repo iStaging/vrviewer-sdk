@@ -75,9 +75,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { iStagingUrl } from '~js/helpers'
+import { iStagingUrl } from '@/api/helpers'
 import Icon from '../../components/Icon/index.vue'
-import gaEvents from '~js/ga-events'
 
 export default {
   name: 'Profile',
@@ -128,7 +127,6 @@ export default {
     },
 
     clickBasicDescriptionUrl () {
-      gaEvents.sendEvent('Building', 'ClickBasicDescriptionUrl', this.currentBuilding.objectId)
     }
   }
 }

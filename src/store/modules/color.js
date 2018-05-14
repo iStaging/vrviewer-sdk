@@ -1,7 +1,6 @@
 import {
   COLOR
-} from '~js/constants'
-import gaEvents from '~js/ga-events'
+} from '@/api/constants'
 
 const state = {
   themeColor: COLOR.DEFAULT_THEME,
@@ -18,7 +17,6 @@ export const getters = {
 export const actions = {
   setThemeColor ({ commit, rootState }, color = COLOR.DEFAULT_THEME) {
     commit('SET_THEME_COLOR', color)
-    gaEvents.sendEvent('Building', `ShowBuildingWith_${color}Color`, rootState.buildings.currentBuilding.objectId)
   },
 
   setMainColor ({ commit }, color = COLOR.DEFAULT_MAIN_COLOR) {

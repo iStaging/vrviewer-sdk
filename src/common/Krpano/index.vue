@@ -40,16 +40,15 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import gaEvents from '~js/ga-events'
 import {
   convertIndexFromArrayToUrl,
   convertIndexFromUrlToArray,
   xmlString
-} from '~js/helpers'
+} from '@/api/helpers'
 import {
   getIEVersion,
   isEmpty
-} from '~js/utils'
+} from '@/api/utils'
 import getActionsXml from './xml/actions'
 import eventsXml from './xml/events'
 import getStylesXml from './xml/styles'
@@ -259,40 +258,29 @@ export default {
       if (selectedMethod) {
         switch (selectedMethod) {
           case 'Screen':
-            gaEvents.sendEvent('Panorama', 'ClickScreenOnPanorama', nextPanoramaId)
             break
           case 'VrMode':
-            gaEvents.sendEvent('Panorama', 'ClickDotInVRView', nextPanoramaId)
             break
           case 'VrModePrev':
-            gaEvents.sendEvent('Panorama', 'ClickPrevInVRView', nextPanoramaId)
             break
           case 'VrModeNext':
-            gaEvents.sendEvent('Panorama', 'ClickNextInVRView', nextPanoramaId)
             break
           case 'VrModeThumbnail':
-            gaEvents.sendEvent('Panorama', 'ClickNextThumbnailInVRVIEW', nextPanoramaId)
             break
           case 'VrModeThumbnailText':
-            gaEvents.sendEvent('Panorama', 'ClickNextThumbnailTextInVRVIEW', nextPanoramaId)
             break
           case 'Hotspot':
             if (isMarkerPoint) {
               if (isWebVr) {
-                gaEvents.sendEvent('Panorama', 'ClickDotInVRView', nextPanoramaId)
               } else {
-                gaEvents.sendEvent('Panorama', 'ClickDotInPanorama', nextPanoramaId)
               }
             }
             break
           case 'PanoramaList':
-            gaEvents.sendEvent('Panorama', 'ClickInPanoramaList', nextPanoramaId)
             break
           case 'YcPanoramaList':
-            gaEvents.sendEvent('Panorama', 'SelectYCInPanoramaList', nextPanoramaId)
             break
           case 'FloorplanDots':
-            gaEvents.sendEvent('Panorama', 'ClickDotOnFloorPlan', nextPanoramaId)
             break
         }
       }
@@ -304,7 +292,6 @@ export default {
       this.setPopupUrl(marker.actionLink)
       this.setPopupSizeConfig({ width, height, widthPercent, widthType })
       this.showPopup()
-      gaEvents.sendEvent('Marker', 'LinkClicks', objectId)
     },
 
     krpanoMarkerMousein (index = 0, mouseX = 0, mouseY = 0) {

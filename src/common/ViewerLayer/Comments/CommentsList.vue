@@ -43,8 +43,8 @@
 <script>
 import moment from 'moment'
 import { mapActions, mapGetters } from 'vuex'
-import { SOCIAL } from '~js/constants'
-import { getBrowserLang } from '~js/helpers'
+import { SOCIAL } from '@/api/constants'
+import { getBrowserLang } from '@/api/helpers'
 import HandleData from '../../../mixins/HandleData.vue'
 
 export default {

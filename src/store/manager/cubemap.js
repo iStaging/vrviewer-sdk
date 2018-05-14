@@ -1,14 +1,13 @@
-import api from '~js/index'
-import { includes, getFilename } from '~js/utils'
-import server from '~js/server'
-import firebaseConfig from '~js/firebase-config'
+import api from '@/api/index'
+import { includes, getFilename } from '@/api/utils'
+import server from '@/api/server'
 const FIREBASE_METHOD = {
   PATH: 0,
   STORAGE: 1
 }
 let urlStart = ''
 if (includes(server.usServers, api.env)) {
-  urlStart = server.firebaseStorageUrlStart
+  urlStart = server.cdnUrlStart
 } else {
   urlStart = server.cnImageServer
 }
@@ -46,18 +45,9 @@ export default class Cubemap {
       this.preivewUrl = urlStart + this.panorama[panoramaKey].replace('panoramas/', 'panoramas/cubemap_preview_')
       this.cubeUrl = urlStart + this.panorama[panoramaKey].replace('panoramas/', 'panoramas/cubemap_%s_')
     } else if (method === FIREBASE_METHOD.STORAGE) {
-      if (includes(this.panorama[panoramaKey], 'firebasestorage.googleapis.com') &&
-        this.panorama[panoramaKey].split(firebaseConfig.storageBucket)[1] &&
-        this.panorama[panoramaKey].split(firebaseConfig.storageBucket)[1].split('/o/')[1]) {
-        // Firebase url
-        this.filename = decodeURIComponent(this.panorama[panoramaKey].split(firebaseConfig.storageBucket)[1].split('/o/')[1]).split('?')[0]
-      } else if (includes(this.panorama[panoramaKey], firebaseConfig.storageBucket) &&
-        this.panorama[panoramaKey].split(`${firebaseConfig.storageBucket}/`)) {
-        // GCP url
-        this.filename = this.panorama[panoramaKey].split(`${firebaseConfig.storageBucket}/`)[1]
-      } else if (includes(this.panorama[panoramaKey], server.firebaseStorageUrlStart)) {
+      if (includes(this.panorama[panoramaKey], server.cdnUrlStart)) {
         // cdn url
-        this.filename = this.panorama[panoramaKey].split(server.firebaseStorageUrlStart)[1]
+        this.filename = this.panorama[panoramaKey].split(server.cdnUrlStart)[1]
       }
       if (this.filename) {
         this.preivewUrl = urlStart + this.filename.replace('panoramas/', 'panoramas/cubemap_preview_')

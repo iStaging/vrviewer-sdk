@@ -1,15 +1,13 @@
-import firebase from 'firebase'
-import api from '~js/index'
-import { CATEGORIES } from '~js/constants'
-import gaEvents from '~js/ga-events'
+import api from '@/api/index'
+import { CATEGORIES } from '@/api/constants'
 import {
   imageIEHack
-} from '~js/helpers'
+} from '@/api/helpers'
 import {
   completeAssign,
   getIEVersion,
   sort
-} from '~js/utils'
+} from '@/api/utils'
 import PanoramasManager from '../../manager/panoramas-manager'
 import Cubemap from '../../manager/cubemap'
 
@@ -28,74 +26,71 @@ export const getters = {
 export const actions = {
   async fetchPanoramas ({ dispatch, commit, state, rootState }, buildingId = '') {
     const panoramasManager = new PanoramasManager({ dispatch, commit, state, rootState })
-    const fetchPanoramas = firebase.database().ref('/panoramas').orderByChild('Building').equalTo(buildingId)
-    fetchPanoramas[process.env.USE_FULL_SYNC ? 'on' : 'once']('value', snapshot => {
-      const resp = snapshot.val()
-      dispatch('setKrpanoActive', false)
-      dispatch('setPanoramasNotFound', false)
-      if (!resp) {
-        panoramasManager.noPanoramasHandler()
-        return
+    const resp = [{}] // panoramas
+    dispatch('setKrpanoActive', false)
+    dispatch('setPanoramasNotFound', false)
+    if (!resp) {
+      panoramasManager.noPanoramasHandler()
+      return
+    }
+    const panoramaIds = Object.keys(resp)
+    let panoramas = panoramaIds.map(objectId => {
+      const panorama = resp[objectId].data
+      panorama.objectId = objectId
+      const foundCategory = CATEGORIES.find(category => category.value === panorama.category)
+      if (!foundCategory) {
+        panorama.customCategory = panorama.category
+        panorama.category = 'custom'
       }
-      const panoramaIds = Object.keys(resp)
-      let panoramas = panoramaIds.map(objectId => {
-        const panorama = resp[objectId].data
-        panorama.objectId = objectId
-        const foundCategory = CATEGORIES.find(category => category.value === panorama.category)
-        if (!foundCategory) {
-          panorama.customCategory = panorama.category
-          panorama.category = 'custom'
+      if (!panorama.position) { // should have default position
+        panorama.position = {
+          x: 0,
+          y: 0
         }
-        if (!panorama.position) { // should have default position
-          panorama.position = {
-            x: 0,
-            y: 0
-          }
-        }
-        return panorama
-      }) || []
-
-      panoramas = panoramas.filter(panorama => panorama.rawUrl) // app maybe create a panorama but not upload photo yet
-      if (panoramas.length <= 0) {
-        panoramasManager.noPanoramasHandler()
-        return
       }
-      console.log('panoramas', panoramas)
-      sort(panoramas, 'index')
-      dispatch('setProgressMax', panoramas.length + 12)
+      return panorama
+    }) || []
 
-      panoramas.forEach(async panorama => {
-        const cubemap = new Cubemap(panorama, rootState.user.userId)
-        cubemap.init()
-        panorama.markers = await dispatch('fetchMarkers', panorama)
-        if (getIEVersion() === 11) {
-          const keys = ['thumbnail', 'desktopUrl', 'mobileUrl']
-          await imageIEHack(panorama, keys)
-        }
-        if (!panorama.cubemapReady || panorama.cubemapReady === false) {
-          // const userId = building.owner ? building.owner.objectId : ''
-          // console.log('panorama.rawUrl', panorama.rawUrl)
-          if (panorama.rawUrl) {
-            api.isPanoramaCubemapReady(panorama.objectId, cubemap.filename).then(bool => {
-              panorama.cubemapReady = bool
-              if (bool === true) {
-                panorama.cubemapPreivewUrl = cubemap.preivewUrl
-                panorama.cubemapUrl = cubemap.cubeUrl
-              }
-              panoramasManager.panoramaMarkersReadyHandler(panoramas)
-            })
-          } else {
-            panorama.cubemapReady = false
+    panoramas = panoramas.filter(panorama => panorama.rawUrl) // app maybe create a panorama but not upload photo yet
+    if (panoramas.length <= 0) {
+      panoramasManager.noPanoramasHandler()
+      return
+    }
+    console.log('panoramas', panoramas)
+    sort(panoramas, 'index')
+    dispatch('setProgressMax', panoramas.length + 12)
+
+    panoramas.forEach(async panorama => {
+      const cubemap = new Cubemap(panorama, rootState.user.userId)
+      cubemap.init()
+      panorama.markers = await dispatch('fetchMarkers', panorama)
+      if (getIEVersion() === 11) {
+        const keys = ['thumbnail', 'desktopUrl', 'mobileUrl']
+        await imageIEHack(panorama, keys)
+      }
+      if (!panorama.cubemapReady || panorama.cubemapReady === false) {
+        // const userId = building.owner ? building.owner.objectId : ''
+        // console.log('panorama.rawUrl', panorama.rawUrl)
+        if (panorama.rawUrl) {
+          api.isPanoramaCubemapReady(panorama.objectId, cubemap.filename).then(bool => {
+            panorama.cubemapReady = bool
+            if (bool === true) {
+              panorama.cubemapPreivewUrl = cubemap.preivewUrl
+              panorama.cubemapUrl = cubemap.cubeUrl
+            }
             panoramasManager.panoramaMarkersReadyHandler(panoramas)
-          }
+          })
         } else {
-          if (panorama.cubemapReady === true) {
-            panorama.cubemapPreivewUrl = cubemap.preivewUrl
-            panorama.cubemapUrl = cubemap.cubeUrl
-          }
+          panorama.cubemapReady = false
           panoramasManager.panoramaMarkersReadyHandler(panoramas)
         }
-      })
+      } else {
+        if (panorama.cubemapReady === true) {
+          panorama.cubemapPreivewUrl = cubemap.preivewUrl
+          panorama.cubemapUrl = cubemap.cubeUrl
+        }
+        panoramasManager.panoramaMarkersReadyHandler(panoramas)
+      }
     })
   },
 
@@ -108,7 +103,6 @@ export const actions = {
   },
 
   setPanorama ({ commit }, panorama = {}) {
-    gaEvents.sendEvent('Panorama', 'ChangePano', panorama.objectId)
     commit('SET_PANORAMA', panorama)
   },
 

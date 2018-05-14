@@ -32,9 +32,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { isMobile } from '~js/utils'
-import gaEvents from '~js/ga-events'
-import server from '~js/server'
+import { isMobile } from '@/api/utils'
+import server from '@/api/server'
 import Icon from '../../components/Icon/index.vue'
 import IRepeat from '../../components/IRepeat.vue'
 import HandleData from '../../mixins/HandleData.vue'
@@ -72,7 +71,6 @@ export default {
           bottom: '0'
         },
         method: () => {
-          gaEvents.sendEvent('Building', 'ClickShareToFacebook', this.currentBuilding.objectId)
         }
       }, {
         name: 'google-plus',
@@ -89,7 +87,6 @@ export default {
           top: 'calc(50% - 9.5px)'
         },
         method: () => {
-          gaEvents.sendEvent('Building', 'ClickShareToGooglePlus', this.currentBuilding.objectId)
         }
       }, {
         name: 'twitter',
@@ -106,7 +103,6 @@ export default {
           top: 'calc(50% - 11px)'
         },
         method: () => {
-          gaEvents.sendEvent('Building', 'ClickShareToTwitter', this.currentBuilding.objectId)
         }
       }, {
         name: 'messenger',
@@ -124,7 +120,6 @@ export default {
           top: 'calc(50% - 13.5px)'
         },
         method: () => {
-          gaEvents.sendEvent('Building', 'ClickShareToMessenger', this.currentBuilding.objectId)
         }
       }, {
         name: 'line',
@@ -142,7 +137,6 @@ export default {
           top: 'calc(50% - 15px)'
         },
         method: () => {
-          gaEvents.sendEvent('Building', 'ClickShareToLine', this.currentBuilding.objectId)
         }
       }]
     }

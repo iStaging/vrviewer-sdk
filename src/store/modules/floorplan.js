@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isFloorplanActive: false
 }
@@ -12,7 +10,6 @@ export const actions = {
   showFloorplan ({ commit, state, rootState }) {
     if (state.isFloorplanActive === false) {
       commit('SET_FLOORPLAN_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'OpenFloorPlan', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
@@ -26,7 +23,6 @@ export const actions = {
 
   closeFloorplan ({ commit, state, rootState }) {
     if (state.isFloorplanActive === true) {
-      gaEvents.sendEvent('Building', 'HideFloorPlan', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
       commit('SET_FLOORPLAN_ACTIVE', false)
     }
   }

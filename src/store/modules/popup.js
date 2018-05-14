@@ -1,7 +1,6 @@
-import gaEvents from '~js/ga-events'
 import {
   POPUP
-} from '~js/constants'
+} from '@/api/constants'
 
 const state = {
   isPopupActive: false,
@@ -24,14 +23,12 @@ export const actions = {
   showPopup ({ commit, state, rootState }) {
     if (state.isPopupActive === false) {
       commit('SET_POPUP_ACTIVE', true)
-      gaEvents.sendEvent('Building', 'ShowPopup', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 
   closePopup ({ commit, state, rootState }) {
     if (state.isPopupActive === true) {
       commit('SET_POPUP_ACTIVE', false)
-      gaEvents.sendEvent('Building', 'ClosePopup', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
     }
   },
 

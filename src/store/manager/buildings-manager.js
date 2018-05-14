@@ -2,13 +2,13 @@ import {
   SOCIAL,
   COMPANY,
   COLOR
-} from '~js/constants'
+} from '@/api/constants'
 import {
   getParameterString
-} from '~js/helpers'
+} from '@/api/helpers'
 import {
   isMobile
-} from '~js/utils'
+} from '@/api/utils'
 import router from '../../router/index'
 
 export default class BuildingsHandler {

@@ -1,5 +1,3 @@
-import gaEvents from '~js/ga-events'
-
 const state = {
   isVrMode: false
 }
@@ -12,7 +10,6 @@ export const actions = {
   enterVrMode ({ commit, state, rootState }) {
     if (rootState.krpano.krpanoEl && state.isVrMode === false) {
       rootState.krpano.krpanoEl.call('WebVR.enterVR();')
-      gaEvents.sendEvent('Building', 'ClickVRButton', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
       commit('SET_VR_MODE', true)
       commit('SET_CAMERA_ROTATING', false)
     }
@@ -21,7 +18,6 @@ export const actions = {
   exitVrMode ({ commit, state, rootState }) {
     if (rootState.krpano.krpanoEl && state.isVrMode === true) {
       rootState.krpano.krpanoEl.call('WebVR.exitVR();')
-      gaEvents.sendEvent('Building', 'ExitVRButton', rootState.route.params.buildingId || rootState.buildings.currentBuilding.objectId || '')
       commit('SET_VR_MODE', false)
       commit('SET_CAMERA_ROTATING', true)
     }

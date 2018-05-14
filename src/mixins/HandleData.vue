@@ -1,5 +1,5 @@
 <script>
-import { getPath, isObject } from '~js/utils'
+import { getPath, isObject } from '@/api/utils'
 
 export default {
   methods: {

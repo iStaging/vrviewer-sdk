@@ -58,7 +58,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import gaEvents from '~js/ga-events'
 
 export default {
   name: 'MarkerInfo',
@@ -76,7 +75,6 @@ export default {
     ]),
 
     clickTagAction () {
-      gaEvents.sendEvent('Marker', 'TagAction', this.markerInfoData.objectId)
     }
   },
 

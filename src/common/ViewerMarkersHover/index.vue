@@ -31,7 +31,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { isMobile, isEmpty } from '~js/utils'
+import { isMobile, isEmpty } from '@/api/utils'
 import Icon from '../../components/Icon/index.vue'
 
 export default {
