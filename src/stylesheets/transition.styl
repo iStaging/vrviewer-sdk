@@ -1,0 +1,38 @@
+$fade-timing-function = ease-out
+$fade-duration = .25s
+.fade-in-out {
+  opacity: 0
+  visibility: hidden
+  transition:
+    opacity $fade-duration $fade-timing-function,
+    visibility 0s $fade-timing-function $fade-duration
+}
+
+.fade-in-out-active {
+  opacity: 1
+  visibility: visible
+  transition: opacity $fade-duration $fade-timing-function
+}
+
+$bounce-timing-function = cubic-bezier(0, 1, .25, 1)
+$bounce-duration = .5s
+.bounce-in {
+  opacity: 0
+  visibility: hidden
+  transform: scale(.85)
+  transition:
+    opacity $bounce-duration $bounce-timing-function,
+    visibility 0s $bounce-timing-function $bounce-duration,
+    transform $bounce-duration $bounce-timing-function
+  pointer-events: none
+}
+
+.bounce-in-active {
+  opacity: 1
+  visibility: visible
+  transform: scale(1)
+  transition:
+    opacity $bounce-duration $bounce-timing-function,
+    transform $bounce-duration $bounce-timing-function
+  pointer-events: auto
+}

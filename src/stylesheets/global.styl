@@ -1,0 +1,105 @@
+@import 'extends.styl'
+@import 'variables.styl'
+@import 'transition.styl'
+@import 'themes/theme-black.styl'
+@import 'themes/theme-blue.styl'
+@import 'themes/theme-green.styl'
+@import 'themes/theme-orange.styl'
+@import 'themes/theme-yellow.styl'
+@import 'themes/theme-etwarm-red.styl'
+
+html, body {
+  @extend .full
+  position: relative
+  margin: 0
+  padding: 0
+  overflow: hidden
+  // -webkit-font-smoothing: antialiased
+}
+
+* {
+  box-sizing: border-box
+  font-family: 'Helvetica', '微軟正黑體', 'Microsoft JhengHei', '微軟雅黑體', 'Microsoft YaHei', 'sans-serif'
+}
+
+h1, h2, h3, h4, h5, h6, p, a, span, small {
+  color: $white
+  text-shadow: 1px 1px 2px #333
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0
+}
+
+h4, h5, h6 {
+  line-height: 22px
+}
+
+p, a {
+  line-height: 18px
+}
+
+a {
+  &, &:hover {
+    text-decoration: none
+  }
+
+  &:hover, &:active {
+    color: $pink-color
+  }
+}
+
+ul, li {
+  margin: 0
+  padding: 0
+  list-style-type: none
+}
+
+figure {
+  margin: 0
+  padding: 0
+}
+
+.pre-custom {
+  display: block
+  font-size: inherit
+  font-family: inherit
+  border: none
+  padding: 0
+  margin: 0
+  background-color: transparent
+  overflow: hidden
+  resize: none
+  white-space: pre-wrap
+  // word-break: break-all
+  // word-wrap: break-word
+  border-radius: 0
+}
+
+.por {
+  position: relative
+}
+
+::-moz-selection {
+  @extend .text-with-gray-bg
+  background-color: $light-pink-color
+}
+
+::selection {
+  @extend .text-with-gray-bg
+  background-color: $light-pink-color
+}
+
+.full-center {
+  @extend .absolute-full
+  @extend .flex-center-column
+  pointer-events: none
+}
+
+.text-center {
+  text-align: center
+}
+
+.theme-rtl.theme-rtl-overlap {
+  direction: rtl
+}

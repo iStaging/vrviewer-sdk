@@ -1,55 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>VRViewer - homepage</title>
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background: #ebebeb;
-      }
+<html>
 
-      .container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+<head>
+  <meta charset=utf-8>
+  <title>iStaging vreditor-sdk example</title>
+  <link href="../dist/vreditor-sdk.css" rel="stylesheet"></link>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+      flex-direction: column;
+    }
+    .desc {
+      text-align: center;
+    }
+    .container {
+      width: 700px;
+      height: 700px;
+    }
+  </style>
+</head>
 
-      .main-text {
-        font-size: 22px;
-        padding: 0 20px;
-        color: #ec0974;
-      }
+<body>
+  <div class="desc">
+    <h1>Welcome to vreditor-sdk !</h1>
+    <p>Enter the token and init it, VREditor sdk will replace the div you assign.</p>
+    <p>You can use vreditor sdk anywhere you want in your website.</p>
+    <p>You should use aframe at first, and beware the sdk container should has at least 700px width and height.</p>
+  </div>
+  <div class="container">
+    <div id="vreditor-sdk"></div>
+  </div>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script> -->
+  <script type="text/javascript" src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+  <script type="text/javascript" src="../dist/vreditor-sdk.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+</body>
 
-      .main-text:hover {
-        color: #a50651;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div>
-        <img src="logo.png">
-        <h1>VRViewer</h1>
-      </div>
-      <p>vrviewer help you build your 360 panorama solution more easily by aframe or krpano.</p>
-      <p>
-        check the documentation here:
-      </p>
-      <a class="main-text" href="https://istaging.gitbook.io/vr-maker-sdk" target="_blank">https://istaging.gitbook.io/vr-maker-sdk</a>
-      <h2>Viewer:</h2>
-      <p>choose one of VR viewer:</p>
-      <div>
-        <a class="main-text" href="../examples/krpanoViewer/index.html">krpano</a>
-        <a class="main-text" href="../examples/aframeViewer/index.html">aframe</a>
-      </div>
-    </div>
-  </body>
 </html>
