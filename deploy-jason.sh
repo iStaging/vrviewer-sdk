@@ -8,20 +8,20 @@ for option in "$@"
         yarn build
         npm version patch
         cd ~/Documents/
-        git clone https://github.com/iStaging/vreditor-sdk.git
-        cd vreditor-sdk/
+        git clone https://github.com/iStaging/vrviewer-sdk.git
+        cd vrviewer-sdk/
         rm -rf dist/
         mkdir dist
-        cp -R ~/Documents/workspace/vreditor-sdk/dist/vreditor-sdk.css dist/vreditor-sdk.css
-        cp -R ~/Documents/workspace/vreditor-sdk/dist/vreditor-sdk.js dist/vreditor-sdk.js
+        cp -R ~/Documents/workspace/vrviewer-sdk/dist/vrviewer-sdk.css dist/vrviewer-sdk.css
+        cp -R ~/Documents/workspace/vrviewer-sdk/dist/vrviewer-sdk.js dist/vrviewer-sdk.js
         git add .
         git commit -am "update js and css in dist file"
         npm version patch
         npm publish
         git push
         cd ..
-        rm -rf vreditor-sdk/
-        cd ~/Documents/workspace/vreditor-sdk/
+        rm -rf vrviewer-sdk/
+        cd ~/Documents/workspace/vrviewer-sdk/
 
         echo 'end publish'
         ;;

@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    'vreditor-sdk': './src/main.js'
+    'vrviewer-sdk': './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -36,9 +36,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'js': resolve('src/assets/js'),
-      'css': resolve('src/assets/css'),
-      'img': resolve('src/assets/img')
+      'css': resolve('src/stylesheets'),
+      'img': resolve('src/images')
     }
   },
   module: {

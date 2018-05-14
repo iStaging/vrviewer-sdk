@@ -55,86 +55,6 @@
       </div>
     </viewer-layer>
 
-    <!--comments-->
-    <viewer-layer
-      v-if="showComment"
-      v-show="shouldViewerLayerShow"
-      class="bounce-in"
-      :class="{ 'bounce-in-active': isCommentsActive }"
-      :closeEvent="closeComments"
-      innerClassName="viewer-layer-second-inner">
-      <ul class="viewer-layer-tabs">
-        <li class="viewer-layer-li viewer-layer-li-active">
-          <span class="viewer-layer-text">{{ $t('comment') }}</span>
-        </li>
-      </ul>
-      <div class="viewer-layer-container">
-        <comments-list @setCommentsEl="setCommentsEl"></comments-list>
-        <comments-input :commentsEl="commentsEl"></comments-input>
-      </div>
-    </viewer-layer>
-
-    <!--information-->
-    <viewer-layer
-      v-show="shouldViewerLayerShow"
-      class="bounce-in"
-      :class="{ 'bounce-in-active': isInformationActive }"
-      :closeEvent="closeInformation">
-      <ul class="viewer-layer-tabs">
-        <li
-          v-if="property.objectId"
-          class="viewer-layer-li"
-          :class="{ 'viewer-layer-li-active': property.objectId === selectedInformation.objectId }">
-          <button
-            class="viewer-layer-text"
-            @click="selectInformation(property)">
-            {{ $t('propertyInfo') }}
-          </button>
-        </li>
-        <li
-          class="viewer-layer-li"
-          :class="{ 'viewer-layer-li-active': currentBuilding.objectId === selectedInformation.objectId }">
-          <button
-            class="viewer-layer-text"
-            @click="selectInformation(currentBuilding)">
-            {{ $t('buildingInfo') }}
-          </button>
-        </li>
-      </ul>
-      <div class="viewer-layer-container">
-        <information
-          :name="selectedInformation.name"
-          :description="selectedInformation.description">
-        </information>
-      </div>
-    </viewer-layer>
-
-    <!--google map-->
-    <viewer-layer
-      v-if="shouldGoogleMapActive"
-      v-show="shouldViewerLayerShow"
-      class="bounce-in"
-      :class="{ 'bounce-in-active': isLocationActive }"
-      :closeEvent="closeLocation">
-      <ul class="viewer-layer-tabs">
-        <li class="viewer-layer-li viewer-layer-li-active">
-          <span class="viewer-layer-text">{{ $t('location') }}</span>
-        </li>
-      </ul>
-      <div class="viewer-layer-container">
-        <i-map
-          v-show="isLocationActive"
-          :lat="currentBuilding.geoLatitude"
-          :lng="currentBuilding.geoLongitude"
-          :hasPin="currentBuilding.hasPin"
-          :mapTypeControl="false"
-          :rotateControl="false"
-          :fullscreenControl="false"
-          :shouldShowAddress="false">
-        </i-map>
-      </div>
-    </viewer-layer>
-
     <!--share-->
     <viewer-layer
       v-show="shouldViewerLayerShow && isShareReady"
@@ -178,8 +98,7 @@
       v-show="shouldViewerLayerShow"
       class="floorplan-wrapper"
       :class="{
-        'floorplan-wrapper-active': shouldFloorplanShow,
-        'floorplan-wrapper-has-buildings': property.objectId
+        'floorplan-wrapper-active': shouldFloorplanShow
       }">
       <floorplan
         v-show="isFloorplanReady"
@@ -214,42 +133,29 @@
       :widthType="popupSizeConfig.widthType"
       @closePopup="closePopup">
     </popup>
-
-    <visitor-wrapper
-      class="bounce-in"
-      :class="{ 'bounce-in-active': shouldShowVisitorInfo }"
-      @hideVisitor="shouldShowVisitorInfo = false">
-    </visitor-wrapper>
   </main>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { isIframe, isMobile, isIOS } from '@/api/utils'
-import CommentsInput from '../../common/ViewerLayer/Comments/CommentsInput.vue'
-import CommentsList from '../../common/ViewerLayer/Comments/CommentsList.vue'
-import Floorplan from '../../common/Floorplan/index.vue'
-import IMap from '../../components/IMap.vue'
-import Icon from '../../components/Icon/index.vue'
-import Information from '../../common/ViewerLayer/Information.vue'
-import Instructions from '../../common/Instructions/index.vue'
-import Krpano from '../../common/Krpano/index.vue'
-import MarkerInfo from '../../common/ViewerLayer/MarkerInfo.vue'
-import Popup from '../../components/Popup/index.vue'
-import QrCode from '../../components/QrCode.vue'
-import ShareList from '../../common/ShareList/index.vue'
-import ViewerLayer from '../../common/ViewerLayer/index.vue'
-import ViewerList from '../../common/ViewerList/index.vue'
-import ViewerMarkersHover from '../../common/ViewerMarkersHover/index.vue'
-import VisitorWrapper from '../../common/VisitorWrapper/index.vue'
+import Floorplan from '../common/Floorplan/index.vue'
+import Icon from '../components/Icon/index.vue'
+import Information from '../common/ViewerLayer/Information.vue'
+import Instructions from '../common/Instructions/index.vue'
+import Krpano from '../common/Krpano/index.vue'
+import MarkerInfo from '../common/ViewerLayer/MarkerInfo.vue'
+import Popup from '../components/Popup/index.vue'
+import QrCode from '../components/QrCode.vue'
+import ShareList from '../common/ShareList/index.vue'
+import ViewerLayer from '../common/ViewerLayer/index.vue'
+import ViewerList from '../common/ViewerList/index.vue'
+import ViewerMarkersHover from '../common/ViewerMarkersHover/index.vue'
 
 export default {
   name: 'IMain',
   components: {
-    CommentsInput,
-    CommentsList,
     Floorplan,
-    IMap,
     Icon,
     Information,
     Instructions,
@@ -260,13 +166,11 @@ export default {
     ShareList,
     ViewerLayer,
     ViewerList,
-    ViewerMarkersHover,
-    VisitorWrapper
+    ViewerMarkersHover
   },
 
   data () {
     return {
-      commentsEl: null,
       floorplanContainerHeight: 250,
       floorplanContainerWidth: 250,
       isMapReady: false,
@@ -274,10 +178,9 @@ export default {
       isMouseOnMarkerInfo: false,
       isShareReady: false,
       isFloorplanReady: false,
-      shouldShowVisitorInfo: false,
       markerPositionX: 0,
       markerPositionY: 0,
-      noPanoramasImage: require('~img/trash-can.svg'),
+      noPanoramasImage: require('img/trash-can.svg'),
       selectedInformation: {}
     }
   },
@@ -289,23 +192,16 @@ export default {
     window.addEventListener('resize', this.resizeHandler)
 
     this.isFloorplanReady = true
-    if (this.property.objectId) {
-      this.selectedInformation = this.property
-    } else {
-      this.selectedInformation = this.currentBuilding
-    }
+    this.selectedInformation = this.currentBuilding
     this.initShare()
-    this.initMap()
-    const delay = 3000
-    this.initVisitorInfo(delay)
     this.resizeHandler()
 
     window.setTimeout(() => {
-      if (this.$route.query.gyro !== 'false') {
-        if (isMobile() && (!isIOS() || ((isIframe() && this.isGyroFromIframe && isIOS()) || !isIframe()))) {
-          this.startGyro() // must after initGyroFromIframe
-        }
+      // if (this.$route.query.gyro !== 'false') {
+      if (isMobile() && (!isIOS() || ((isIframe() && this.isGyroFromIframe && isIOS()) || !isIframe()))) {
+        this.startGyro() // must after initGyroFromIframe
       }
+      // }
     }, 2500)
   },
 
@@ -318,7 +214,6 @@ export default {
       'currentBuilding',
       'customSetting',
       'floorplan',
-      'isCommentsActive',
       'isFloorplanActive',
       'isFullscreen',
       'isGyroFromIframe',
@@ -334,9 +229,7 @@ export default {
       'panoramas',
       'popupSizeConfig',
       'popupUrl',
-      'property',
-      'shareUrl',
-      'showComment'
+      'shareUrl'
     ]),
 
     useResizeAndDraggable () {
@@ -353,7 +246,6 @@ export default {
       return !this.isShareActive &&
         !this.isMarkerInfoActive &&
         !this.isInformationActive &&
-        !this.isCommentsActive &&
         !this.isLocationActive
     },
 
@@ -381,7 +273,6 @@ export default {
 
   methods: {
     ...mapActions([
-      'closeComments',
       'closeInformation',
       'closeLocation',
       'closeMarkerInfo',
@@ -447,47 +338,11 @@ export default {
       }
     },
 
-    // 如果放在 vuex state，CommentsList.vue 會一直觸發 mounted
-    setCommentsEl (commentsEl = null) {
-      this.commentsEl = commentsEl
-    },
-
     initShare () {
       this.isShareReady = false
       this.$nextTick(() => {
         this.isShareReady = true
       })
-    },
-
-    initMap () {
-      this.isMapReady = false
-      this.$nextTick(() => {
-        this.isMapReady = true
-      })
-    },
-
-    initVisitorInfo (delay) {
-      const setVisitorInfoActive = (bool = false, delay = 0) => {
-        this.shouldShowVisitorInfo = bool
-        window.setTimeout(() => {
-          this.setScreenReady(!bool)
-        }, delay)
-      }
-      if (this.currentBuilding.requireVisitorData) {
-        let alreadyFilledVisitorBuildingsId = window.sessionStorage.getItem('alreadyFilledVisitorBuildingsId')
-        // console.log('alreadyFilledVisitorBuildingsId: ', alreadyFilledVisitorBuildingsId)
-        if (alreadyFilledVisitorBuildingsId) {
-          alreadyFilledVisitorBuildingsId = JSON.parse(alreadyFilledVisitorBuildingsId)
-          const foundBuildingId = alreadyFilledVisitorBuildingsId.find(objectId => objectId === this.currentBuilding.objectId)
-          foundBuildingId
-            ? setVisitorInfoActive(false, delay)
-            : setVisitorInfoActive(true)
-        } else {
-          setVisitorInfoActive(true)
-        }
-      } else {
-        setVisitorInfoActive(false, delay)
-      }
     }
   },
 
@@ -500,17 +355,6 @@ export default {
     },
 
     currentBuilding: {
-      handler (newValue, oldValue) {
-        if (oldValue.objectId === this.selectedInformation.objectId) {
-          this.selectedInformation = newValue
-        }
-        this.initMap()
-        this.initVisitorInfo()
-      },
-      deep: true
-    },
-
-    property: {
       handler (newValue, oldValue) {
         if (oldValue.objectId === this.selectedInformation.objectId) {
           this.selectedInformation = newValue
@@ -587,28 +431,28 @@ export default {
     $w = $i-main-arrow-collapse-short-side
     $h = 25px
     bg-size($w, $h)
-    background-image: url('../../components/Icon/img/collapse-arrow/collapse-left.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-left.svg')
   }
 
   &.icon-collapse-right {
     $w = $i-main-arrow-collapse-short-side
     $h = 25px
     bg-size($w, $h)
-    background-image: url('../../components/Icon/img/collapse-arrow/collapse-right.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-right.svg')
   }
 
   &.icon-collapse-up {
     $w = 25px
     $h = $i-main-arrow-collapse-short-side
     bg-size($w, $h)
-    background-image: url('../../components/Icon/img/collapse-arrow/collapse-up.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-up.svg')
   }
 
   &.icon-collapse-down {
     $w = 25px
     $h = $i-main-arrow-collapse-short-side
     bg-size($w, $h)
-    background-image: url('../../components/Icon/img/collapse-arrow/collapse-down.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-down.svg')
   }
 }
 

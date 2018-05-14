@@ -1,10 +1,7 @@
 <template>
-  <div id="app" class="app">
+  <div id="vrviewer-sdk" class="app">
     <template v-if="isBrowserSupport && isWebGlSupport">
-      <keep-alive>
-        <router-view>
-        </router-view>
-      </keep-alive>
+      <default-view></default-view>
     </template>
     <template v-else>
       <div class="full-center error-wrapper">
@@ -30,13 +27,19 @@
 </template>
 
 <script>
+import DefaultView from './pages/index.vue'
+
 export default {
   name: 'app',
+  components: {
+    DefaultView
+  },
+
   data () {
     return {
       isBrowserSupport: false,
       isWebGlSupport: false,
-      noSupportedImage: require('~img/error.png')
+      noSupportedImage: require('img/error.png')
     }
   },
 

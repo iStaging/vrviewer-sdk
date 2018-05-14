@@ -1,6 +1,5 @@
 <template>
   <footer
-    v-if="showPoweredBy && !isUiMode"
     class="i-footer fade-in-out"
     :class="{
       'fade-in-out-active': !isPanoramasListActive,
@@ -21,9 +20,7 @@ export default {
   computed: {
     ...mapGetters([
       'isPanoramasListActive',
-      'isScreenReady',
-      'isUiMode',
-      'showPoweredBy'
+      'isScreenReady'
     ])
   }
 }

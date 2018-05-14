@@ -1,46 +1,13 @@
 <template>
   <div
-    v-if="$route.name === 'default'"
     class="default-container theme"
     :class="[themeColorClass, {
       'theme-rtl theme-rtl-overlap': isRtl,
-      'has-promotion-bar': usePromotionBar && customSetting.showPromotionHeader && isPromotionBarActive,
       'transparent': isTransparent
     }]">
-    <promotion-bar v-if="usePromotionBar && customSetting.showPromotionHeader"></promotion-bar>
-    <!--no liveTour, but has group-->
-    <div
-      v-if="isBuildingNotFound && property.objectId && buildings.length"
-      class="full-center error-wrapper">
-      <figure
-        ref="buildingNotInProperty"
-        class="error-wrapper-container">
-        <img
-          :src="noPanoramasImage"
-          alt="no panoramas">
-        <figcaption
-          v-html="$t('buildingNotInPropertyRedirect')">
-        </figcaption>
-      </figure>
-    </div>
-    <!--not found property in url-->
-    <div
-      v-else-if="isPropertyNotFound"
-      class="full-center error-wrapper">
-      <figure
-        ref="buildingNotFound"
-        class="error-wrapper-container">
-        <img
-          :src="noPanoramasImage"
-          alt="no panoramas">
-        <figcaption
-          v-html="$t('buildingNotFound')">
-        </figcaption>
-      </figure>
-    </div>
     <!--not found liveTour in url-->
     <div
-      v-else-if="isBuildingNotFound"
+      v-if="isBuildingNotFound"
       class="full-center error-wrapper">
       <figure
         ref="buildingNotFound"
@@ -69,15 +36,13 @@ import {
   COLOR
 } from '@/api/constants'
 import {
-  isRtl,
-  handleUrlRef
+  isRtl
 } from '@/api/helpers'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
 import IAside from './IAside.vue'
 import IFooter from './IFooter.vue'
-import Loading from '../../common/Loading.vue'
-import PromotionBar from '../../common/PromotionBar/index.vue'
+import Loading from '../common/Loading.vue'
 
 export default {
   name: 'Default',
@@ -86,30 +51,20 @@ export default {
     IMain,
     IAside,
     IFooter,
-    Loading,
-    PromotionBar
+    Loading
   },
 
   data () {
     return {
       isRtl: isRtl(),
-      noPanoramasImage: require('~img/trash-can.svg'),
-      usePromotionBar: process.env.USE_PROMOTION_BAR
+      noPanoramasImage: require('img/trash-can.svg')
     }
   },
 
   beforeRouteEnter (to, from, next) {
     next(async vm => {
       const { buildingId } = to.params
-      const propertyId = to.query.group
-      handleUrlRef(to, buildingId, fullPath => {
-        vm.$router.replace(fullPath)
-      })
-      if (propertyId) {
-        await vm.fetchProperty(propertyId)
-      } else {
-        await vm.fetchBuilding(buildingId)
-      }
+      await vm.fetchBuilding(buildingId)
     })
   },
 
@@ -119,12 +74,7 @@ export default {
       to.query.group === from.query.group) {
     } else {
       const { buildingId } = to.params
-      const propertyId = to.query.group
-      if (propertyId) {
-        await this.fetchProperty(propertyId)
-      } else {
-        await this.fetchBuilding(buildingId)
-      }
+      await this.fetchBuilding(buildingId)
     }
     next()
   },
@@ -136,11 +86,8 @@ export default {
       'customSetting',
       'isAppReady',
       'isBuildingNotFound',
-      'isPromotionBarActive',
-      'isPropertyNotFound',
       'krpanoEl',
       'panoramas',
-      'property',
       'themeColor'
     ]),
 
@@ -171,13 +118,12 @@ export default {
     },
 
     isTransparent () {
-      return this.$route.query.background === 'transparent'
+      // return this.$route.query.background === 'transparent'
     }
   },
 
   methods: {
     ...mapActions([
-      'fetchProperty',
       'fetchBuilding'
     ])
   }
@@ -194,11 +140,6 @@ export default {
 
   &.transparent {
     background-color: transparent
-  }
-
-  &.has-promotion-bar {
-    height: "calc(100% - %s)" % $promotion-bar-height
-    margin-top: $promotion-bar-height
   }
 }
 

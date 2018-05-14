@@ -17,7 +17,6 @@ Vue.use(VueI18n)
 class VRViewer {
   init (config) {
     console.log('config:', config)
-    this.checkAframe()
     const i18n = new VueI18n({
       locale: config.lang,
       fallbackLocale: 'en',
@@ -31,13 +30,7 @@ class VRViewer {
       i18n,
       render: h => h(App)
     }).$mount(config.el)
-    console.log('vreditor app:', app)
-  }
-
-  checkAframe () {
-    if (typeof window === 'undefined' || !window.AFRAME) {
-      throw new Error('You need to include aframe script or import it first. Use it before vreditor sdk.')
-    }
+    console.log('vrviewer app:', app)
   }
 
   updateEvents () {
@@ -92,7 +85,7 @@ class VRViewer {
 
 const vrEditor = new VRViewer()
 vrEditor.init({
-  el: '#vreditor-sdk',
+  el: '#vrviewer-sdk',
   lang: 'zh-cn'
 })
 

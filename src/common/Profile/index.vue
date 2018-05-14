@@ -6,69 +6,58 @@
   <section
     role="banner"
     class="profile">
-    <template v-if="!isUiMode">
-      <template v-if="!customSetting.customBranding">
-        <figure
-          class="profile-figure"
-          @click="toggleProfile">
-          <img
-            class="profile-avatar"
-            :src="defaultAvatar">
-        </figure>
-        <div
-          v-show="isProfileActive"
-          class="profile-detail">
-          <h4 class="profile-detail-title">
-            {{ defaultName }}
-          </h4>
-          <a
-            class="profile-detail-text"
-            :href="iStagingUrl"
-            target="_blank"
-            @click="clickBasicDescriptionUrl">
-            {{ defaultDescription }}
-          </a>
-        </div>
-      </template>
-      <template v-else-if="showContactInfo">
-        <figure
-          class="profile-figure"
-          @click="toggleProfile">
-          <img
-            class="profile-avatar"
-            :src="userAvatar">
-        </figure>
-        <div
-          v-if="user"
-          v-show="isProfileActive"
-          class="profile-detail">
-          <h4 class="profile-detail-title">
-            {{ profileData('name') }}
-          </h4>
-          <p class="profile-detail-text">
-            {{ profileData('companyDisplayName') }}
-          </p>
-          <p class="profile-detail-text">
-            {{ profileData('phone') }}
-          </p>
-        </div>
-      </template>
+    <template v-if="!customSetting.customBranding">
+      <figure
+        class="profile-figure"
+        @click="toggleProfile">
+        <img
+          class="profile-avatar"
+          :src="defaultAvatar">
+      </figure>
+      <div
+        v-show="isProfileActive"
+        class="profile-detail">
+        <h4 class="profile-detail-title">
+          {{ defaultName }}
+        </h4>
+        <a
+          class="profile-detail-text"
+          :href="iStagingUrl"
+          target="_blank"
+          @click="clickBasicDescriptionUrl">
+          {{ defaultDescription }}
+        </a>
+      </div>
+    </template>
+    <template v-else-if="showContactInfo">
+      <figure
+        class="profile-figure"
+        @click="toggleProfile">
+        <img
+          class="profile-avatar"
+          :src="userAvatar">
+      </figure>
+      <div
+        v-if="user"
+        v-show="isProfileActive"
+        class="profile-detail">
+        <h4 class="profile-detail-title">
+          {{ profileData('name') }}
+        </h4>
+        <p class="profile-detail-text">
+          {{ profileData('companyDisplayName') }}
+        </p>
+        <p class="profile-detail-text">
+          {{ profileData('phone') }}
+        </p>
+      </div>
     </template>
     <div class="profile-building-info">
-      <template v-if="property.objectId">
-        <h1
-          v-if="property.name"
-          class="profile-building-info-title">
-          {{ property.name }}
-        </h1>
-      </template>
-      <template v-else>
-        <h1
-          v-if="currentBuilding.name"
-          class="profile-building-info-title">
-          {{ currentBuilding.name }}
-        </h1>
-      </template>
+      <h1
+        v-if="currentBuilding.name"
+        class="profile-building-info-title">
+        {{ currentBuilding.name }}
+      </h1>
     </div>
   </section>
 </template>
@@ -98,8 +87,6 @@ export default {
       'currentBuilding',
       'customSetting',
       'isProfileActive',
-      'isUiMode',
-      'property',
       'showContactInfo',
       'user'
     ]),

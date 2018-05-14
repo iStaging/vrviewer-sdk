@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512"
-	 enable-background="new 0 0 512 512" xml:space="preserve">
-  <rect x="300.9" y="241" transform="matrix(0.7071 0.7071 -0.7071 0.7071 295.5103 -201.425)" fill="#FFFFFF" width="180" height="30"/>
-  <rect x="300.9" y="241" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -66.5284 351.3864)" fill="#FFFFFF" width="180" height="30"/>
-  <path fill="#FFFFFF" d="M261.7,73.6l-115,102H71c-8.3,0-15,6.7-15,15v130.9c0,8.3,6.7,15,15,15h75.7l115,102
-    c9.7,8.6,25,1.7,25-11.2V84.8C286.7,71.9,271.4,65,261.7,73.6z"/>
-</svg>

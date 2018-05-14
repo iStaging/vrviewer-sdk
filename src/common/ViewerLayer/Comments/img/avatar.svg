@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g id="-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <circle fill="#FFFFFF" cx="30" cy="30" r="30"></circle>
-    <path d="M30,30 C34.14375,30 37.5,26.64375 37.5,22.5 C37.5,18.35625 34.14375,15 30,15 C25.85625,15 22.5,18.35625 22.5,22.5 C22.5,26.64375 25.85625,30 30,30 L30,30 Z M30,33.75 C24.99375,33.75 15,36.2625 15,41.25 L15,45 L45,45 L45,41.25 C45,36.2625 35.00625,33.75 30,33.75 L30,33.75 Z" fill="#BCBDC1"></path>
-  </g>
-</svg>

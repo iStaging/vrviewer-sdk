@@ -1,13 +1,3 @@
-export const SOCIAL = {
-  FETCH_COMMENTS_COUNTS_EACH_TIME: 10,
-  BASIC_FOLDER: 'social',
-  COMMENT_COUNT: 'commentCount',
-  LIKE_COUNT: 'likeCount',
-  VIEW_COUNT: 'viewCount',
-  VISITOR_COUNT: 'visitorCount',
-  COMMENTS: 'comments',
-  VISITORS: 'visitors'
-}
 export const CATEGORIES = [{
   value: 'livingroom',
   text: 'categories.livingroom'
@@ -76,11 +66,5 @@ export const COLOR = {
   ORANGE_SUB_COLOR: '#ffd07b',
   YELLOW_MAIN_COLOR: '#fcbf49',
   YELLOW_SUB_COLOR: '#ffd5c2'
-}
-export const BUILDING = {
-  SHOW_COMMENT: true,
-  SHOW_CONTACT_INFO: true,
-  SHOW_POWERED_BY: true,
-  LOGO_SIZE: 125
 }
 export const DEFAULT_LOGO_SIZE = 60

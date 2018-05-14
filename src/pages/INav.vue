@@ -114,10 +114,10 @@ import {
   isMobile,
   isIOS
 } from '@/api/utils'
-import IRepeat from '../../components/IRepeat.vue'
-import Icon from '../../components/Icon/index.vue'
-import SvgIcon from '../../components/SvgIcon/index.vue'
-import HandleData from '../../mixins/HandleData.vue'
+import IRepeat from '../components/IRepeat.vue'
+import Icon from '../components/Icon/index.vue'
+import SvgIcon from '../components/SvgIcon/index.vue'
+import HandleData from '../mixins/HandleData.vue'
 
 export default {
   name: 'INav',
@@ -135,13 +135,10 @@ export default {
     return {
       defaultColor: '#fff',
       icon: {
-        information: { color: this.defaultColor },
-        comment: { color: this.defaultColor },
         fullscreen: { color: this.defaultColor },
         gyro: { color: this.defaultColor },
         like: { color: this.defaultColor },
         location: { color: this.defaultColor },
-        music: { color: this.defaultColor },
         qrcode: { color: this.defaultColor },
         share: { color: this.defaultColor },
         floorplan: { color: this.defaultColor },
@@ -154,27 +151,18 @@ export default {
 
   computed: {
     ...mapGetters([
-      'audioEl',
       'currentBuilding',
       'customSetting',
       'floorplan',
-      'isAudioPlaying',
-      'isCommentsActive',
       'isFloorplanActive',
       'isFullscreen',
       'isGyroEnabled',
       'isGyroFromIframe',
       'isInformationActive',
-      'isLocationActive',
       'isMobileMenuActive',
       'isPanoramasListActive',
       'isShareActive',
-      'isSocialLiked',
-      'isUiMode',
-      'isVrMode',
-      'mainColor',
-      'showComment',
-      'social'
+      'isVrMode'
     ]),
 
     canDeviceSupportGyro () {
@@ -198,7 +186,7 @@ export default {
         }
       }, {
         name: 'share',
-        hidden: this.isUiMode || this.$route.query.share === 'hidden',
+        // hidden: this.$route.query.share === 'hidden',
         isActive: this.isShareActive,
         method: () => {
           this.toggleShare()
@@ -229,30 +217,10 @@ export default {
         method: () => {
           this.showInformation()
           this.closeMobileMenu()
-          this.closeComments()
           this.closeShare()
           this.closeMarkerInfo()
-          this.closeLocation()
         }
       }]
-      if (process.env.USE_GOOGLE_MAP &&
-        this.customSetting.googleMap &&
-        this.currentBuilding.hasPin) {
-        list.push({
-          name: 'location',
-          caption: this.$t('location'),
-          hidden: this.isUiMode,
-          isActive: this.isLocationActive,
-          method: () => {
-            this.showLocation()
-            this.closeMobileMenu()
-            this.closeInformation()
-            this.closeComments()
-            this.closeShare()
-            this.closeMarkerInfo()
-          }
-        })
-      }
       list.push(...[{
         name: 'vrmode',
         caption: this.$t('vrmode'),
@@ -271,35 +239,6 @@ export default {
           this.closeMobileMenu()
           this.enterFullscreen()
         }
-      }, {
-        name: 'music',
-        caption: this.$t('music'),
-        hidden: !this.audioEl,
-        isActive: this.isAudioPlaying,
-        method: () => {
-          this.toggleAudioStatus()
-        }
-      }, {
-        name: 'comment',
-        caption: this.$t('comment'),
-        hidden: !(this.social || this.showComment) || this.isUiMode,
-        isActive: this.isCommentsActive,
-        method: () => {
-          this.showComments()
-          this.closeMobileMenu()
-          this.closeInformation()
-          this.closeShare()
-          this.closeMarkerInfo()
-          this.closeLocation()
-        }
-      }, {
-        name: 'like',
-        caption: this.$t('like'),
-        hidden: !this.social || this.isUiMode,
-        isActive: this.isSocialLiked,
-        method: () => {
-          this.updateLikeCount()
-        }
       }])
       return list
     },
@@ -311,10 +250,8 @@ export default {
         isActive: this.isInformationActive,
         method: () => {
           this.toggleInformation()
-          this.closeComments()
           this.closeShare()
           this.closeMarkerInfo()
-          this.closeLocation()
         }
       }, {
         name: 'panoSelect',
@@ -332,42 +269,15 @@ export default {
           this.toggleFloorplan()
         }
       }]
-
-      if (process.env.USE_GOOGLE_MAP &&
-        this.currentBuilding.hasPin) {
-        list.push({
-          name: 'location',
-          caption: this.$t('location'),
-          hidden: this.isUiMode,
-          isActive: this.isLocationActive,
-          method: () => {
-            this.toggleLocation()
-            this.closeInformation()
-            this.closeComments()
-            this.closeShare()
-            this.closeMarkerInfo()
-          }
-        })
-      }
       list.push(...[{
         name: 'share',
         caption: this.$t('share'),
-        hidden: this.isUiMode || this.$route.query.share === 'hidden',
+        // hidden: this.$route.query.share === 'hidden',
         isActive: this.isShareActive,
         method: () => {
           this.toggleShare()
           this.closeInformation()
-          this.closeComments()
           this.closeMarkerInfo()
-          this.closeLocation()
-        }
-      }, {
-        name: 'music',
-        caption: this.$t('music'),
-        hidden: !this.audioEl,
-        isActive: this.isAudioPlaying,
-        method: () => {
-          this.toggleAudioStatus()
         }
       }, {
         name: 'fullscreen',
@@ -385,19 +295,14 @@ export default {
 
   methods: {
     ...mapActions([
-      'closeComments',
       'closeFloorplan',
       'closeInformation',
-      'closeLocation',
       'closeMobileMenu',
       'closeMarkerInfo',
       'closePanoramasList',
       'closeShare',
       'enterFullscreen',
       'enterVrMode',
-      'pauseAudio',
-      'playAudio',
-      'showComments',
       'showInformation',
       'showLocation',
       'showMobileMenu',
@@ -406,29 +311,10 @@ export default {
       'toggleFloorplan',
       'toggleGyro',
       'toggleInformation',
-      'toggleLocation',
       'togglePanoramasList',
       'toggleShare',
       'updateLikeCount'
-    ]),
-
-    toggleAudioStatus () {
-      if (!this.audioEl) {
-        return
-      }
-      if (this.audioEl.paused) {
-        this.playAudio()
-      } else {
-        this.pauseAudio()
-      }
-    },
-
-    changeColor (key = {}, value = '') {
-      if (!key && !key.color) {
-        return
-      }
-      key.color = value
-    }
+    ])
   },
 
   watch: {

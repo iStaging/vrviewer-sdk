@@ -39,7 +39,7 @@ export const actions = {
 
   setScreenReady ({ dispatch, commit, rootState }, bool = false) {
     commit('SET_SCREEN_READY', bool)
-    if (!rootState.ui.isUiMode && rootState.route.query.panobar !== 'false') {
+    if (rootState.route.query.panobar !== 'false') {
       bool
         ? dispatch('showPanoramasList')
         : dispatch('closePanoramasList')

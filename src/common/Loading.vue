@@ -9,7 +9,7 @@
     <h1
       v-show="isProgressActive && !isAppReady"
       class="progress-preview-title">
-      {{ property.name || currentBuilding.name }}
+      {{ currentBuilding.name }}
     </h1>
     <!--.top-fixed = put the progress bar to top, not in center-->
     <i-progress
@@ -54,12 +54,11 @@ export default {
       'isAppReady',
       'isProgressActive',
       'progressMax',
-      'progressValue',
-      'property'
+      'progressValue'
     ]),
 
     isTransparent () {
-      return this.$route.query.background === 'transparent'
+      // return this.$route.query.background === 'transparent'
     }
   }
 }

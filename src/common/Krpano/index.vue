@@ -42,7 +42,6 @@
 import { mapActions, mapGetters } from 'vuex'
 import {
   convertIndexFromArrayToUrl,
-  convertIndexFromUrlToArray,
   xmlString
 } from '@/api/helpers'
 import {
@@ -56,7 +55,6 @@ import hooks from './hooks'
 import getScenesXml from './xml/scenes'
 import getLogoTripodXml from './xml/tripod'
 import { contextMenuXml, gyroMessageXml, gyroXml, threeJsXml, webVRXml } from './xml/plugins'
-import router from '../../router'
 
 export default {
   name: 'Krpano',
@@ -134,7 +132,6 @@ export default {
       'currentPanorama',
       'customSetting',
       'headquarter',
-      'isCommentsActive',
       'isGyroEnabled',
       'isFloorplanActive',
       'isKrpanoActive',
@@ -142,7 +139,6 @@ export default {
       'isMarkerInfoActive',
       'isPanoramasListActive',
       'isShareActive',
-      'isUiMode',
       'isVrMode',
       'krpanoEl',
       'krpanoLookAtH',
@@ -157,7 +153,7 @@ export default {
       if (this.panoramas.length <= 0) {
         return ''
       }
-      const startIndex = convertIndexFromUrlToArray(this.$route.query.index, this.panoramas.length)
+      const startIndex = 0
       const { panoramas, krpanoXOffset, customSetting, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth } = this
       const stylesXml = getStylesXml(panoramas, vrThumbAth, vrThumbWidth)
       const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, customSetting, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov)
@@ -183,19 +179,14 @@ export default {
     },
 
     logoTripod () {
-      if (this.customSetting.customBranding) {
-        return this.headquarter.tripodUrl ||
-          this.currentBuilding.logo ||
-          ''
-      } else {
-        return require('./img/logo-tripod.png')
-      }
+      return this.headquarter.tripodUrl ||
+        this.currentBuilding.logo ||
+        ''
     }
   },
 
   methods: {
     ...mapActions([
-      'closeComments',
       'closeFloorplan',
       'closeInformation',
       'closeMarkerInfo',
@@ -249,12 +240,6 @@ export default {
       const panorama = this.panoramas[index]
       index = convertIndexFromArrayToUrl(index, this.panoramas.length)
       this.setPanorama(panorama)
-      router.replace({
-        query: {
-          ...this.$route.query,
-          index
-        }
-      })
       if (selectedMethod) {
         switch (selectedMethod) {
           case 'Screen':
@@ -288,7 +273,7 @@ export default {
 
     handleShowPopup (index = 0) {
       const marker = this.currentPanorama.markers[index]
-      const { objectId, width, height, widthPercent, widthType } = marker
+      const { width, height, widthPercent, widthType } = marker
       this.setPopupUrl(marker.actionLink)
       this.setPopupSizeConfig({ width, height, widthPercent, widthType })
       this.showPopup()
@@ -411,16 +396,12 @@ export default {
     pcCloseAll () {
       this.closeMarkerInfo()
       this.closeInformation()
-      this.closeComments()
       this.closeShare()
       // 768 = CSS assets/css/variables.styl $response value
       if (window.innerWidth < 768) {
         this.closeMobileMenu()
         this.closePanoramasList()
         this.closeFloorplan()
-      }
-      if (this.$route.name === 'yung-ching') {
-        this.closePanoramasList()
       }
     }
   },

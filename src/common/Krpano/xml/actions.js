@@ -129,8 +129,8 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
       result += ` set(hotspot[${item}].visible,false);`
     })
     return result
-  })()});
-
+  })()}
+  );
   set(view.vlookat, calc(prevVlookat)); <!-- 使用前一個 camera 仰角 -->
   if (%4, set(view.hlookat, calc(%4 - (%6 - prevHlookat))));
   if (%10, set(plugin[gyro].enabled, true);); <!-- 若有啟動 Gyro，在這裡要重新打開 -->
@@ -141,14 +141,14 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   set(hotspot[topLogoTripod].visible, true);,
   set(hotspot[topLogoTripod].visible, false););
 
-  ${(() => {
+${(() => {
     if (!getIEVersion()) {
       return `if (%5,
       jscall(calc('krpano.hooks.threeJsMovingStop()')); wait(LOAD);,
       wait(LOAD););`
     } else {
       return `wait(LOAD);
-  wait(BLEND);`
+    wait(BLEND);`
     }
   })()}
 

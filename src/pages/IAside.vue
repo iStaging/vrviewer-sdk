@@ -24,7 +24,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import INav from './INav.vue'
-import SvgIcon from '../../components/SvgIcon/index.vue'
+import SvgIcon from '../components/SvgIcon/index.vue'
 
 export default {
   name: 'IAside',

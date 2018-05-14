@@ -111,31 +111,4 @@ export default {
 .icon-arrow-up-black {
   background-image: url('img/arrow-up-black.svg')
 }
-.icon-yc-fullscreen {
-  background-image: url('../../pages/YungChing/img/yc-fullscreen.svg')
-}
-.icon-yc-qrcode {
-  background-image: url('../../pages/YungChing/img/yc-qrcode.svg')
-}
-.icon-yc-louder {
-  background-image: url('../../pages/YungChing/img/yc-louder.svg')
-}
-.icon-yc-quieter {
-  background-image: url('../../pages/YungChing/img/yc-quieter.svg')
-}
-.icon-yc-vrmode {
-  background-image: url('../../pages/YungChing/img/yc-vrmode.svg')
-}
-.icon-yc-zoom-in {
-  background-image: url('../../pages/YungChing/img/yc-zoom-in.svg')
-}
-.icon-yc-zoom-out {
-  background-image: url('../../pages/YungChing/img/yc-zoom-out.svg')
-}
-.icon-floorplan-add {
-  background-image: url('../../common/Floorplan/img/add.svg')
-}
-.icon-floorplan-minus {
-  background-image: url('../../common/Floorplan/img/minus.svg')
-}
 </style>

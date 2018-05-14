@@ -7,28 +7,17 @@
       :class="{ 'screen-ready': isScreenReady }">
       <profile></profile>
     </div>
-    <div
-      v-if="isUsServer"
-      class="header-center"
-      :class="{ 'screen-ready': isScreenReady }">
-      <social></social>
-    </div>
   </header>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { includes } from '@/api/utils'
-import api from '@/api/index'
-import server from '@/api/server'
-import Profile from '../../common/Profile/index.vue'
-import Social from '../../common/Social/index.vue'
+import Profile from '../common/Profile/index.vue'
 
 export default {
   name: 'IHeader',
   components: {
-    Profile,
-    Social
+    Profile
   },
 
   computed: {
@@ -36,11 +25,7 @@ export default {
       'isFullscreen',
       'isScreenReady',
       'isVrMode'
-    ]),
-
-    isUsServer () {
-      return includes(server.usServers, api.env)
-    }
+    ])
   }
 }
 </script>
