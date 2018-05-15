@@ -8,7 +8,8 @@ export const getters = {
   autoRotateSetting: state => state.setting.autoRotateSetting,
   gyroSetting: state => state.setting.gyroSetting,
   krpanoSetting: state => state.setting.krpanoSetting,
-  tripodSetting: state => state.setting.tripodSetting
+  tripodSetting: state => state.setting.tripodSetting,
+  hideUISetting: state => state.setting.hideUISetting
 }
 
 export const actions = {
@@ -19,7 +20,21 @@ export const actions = {
 
 export const mutations = {
   SET_SETTING (state, setting = {}) {
-    state.setting = setting
+    if (setting.autoRotateSetting) {
+      state.setting.autoRotateSetting = setting.autoRotateSetting
+    }
+    if (setting.gyroSetting) {
+      state.setting.gyroSetting = setting.gyroSetting
+    }
+    if (setting.krpanoSetting) {
+      state.setting.krpanoSetting = setting.krpanoSetting
+    }
+    if (setting.tripodSetting) {
+      state.setting.tripodSetting = setting.tripodSetting
+    }
+    if (setting.hideUISetting) {
+      state.setting.hideUISetting = setting.hideUISetting
+    }
   }
 }
 

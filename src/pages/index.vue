@@ -1,9 +1,8 @@
 <template>
   <div
-    class="default-container theme"
+    class="default-container"
     :class="{
-      'theme-rtl theme-rtl-overlap': isRtl,
-      'transparent': isTransparent
+      'theme-rtl theme-rtl-overlap': isRtl
     }">
     <!--not found liveTour in url-->
     <div
@@ -21,9 +20,9 @@
       </figure>
     </div>
     <template v-else-if="isAppReady">
-      <i-header></i-header>
+      <i-header v-if="!hideUISetting.hideCollectionInfo"></i-header>
       <i-main></i-main>
-      <i-aside></i-aside>
+      <i-aside v-if="!hideUISetting.hideMenu"></i-aside>
       <i-footer></i-footer>
     </template>
     <loading></loading>
@@ -36,7 +35,7 @@ import {
   isRtl
 } from '@/api/helpers'
 import {
-  fakePanoCollectionId
+  fakePanoCollection
 } from '@/api/resources'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
@@ -62,22 +61,17 @@ export default {
   },
 
   beforeMount () {
-    const panoCollectionId = fakePanoCollectionId
+    const panoCollectionId = fakePanoCollection.objectId
     this.fetchPanoCollection(panoCollectionId)
   },
 
   computed: {
     ...mapGetters([
-      'currentPanorama',
       'isAppReady',
       'isPanoCollectionNotFound',
-      'krpanoEl',
-      'panoramas'
-    ]),
-
-    isTransparent () {
-      // return this.$route.query.background === 'transparent'
-    }
+      'panoramas',
+      'hideUISetting'
+    ])
   },
 
   methods: {
@@ -96,17 +90,5 @@ export default {
   height: 100%
   background-color: $black
   overflow: hidden
-
-  &.transparent {
-    background-color: transparent
-  }
-}
-
-.livetour-intro {
-  img {
-    border-radius: 50%
-    width: 100px
-    height: 100px
-  }
 }
 </style>

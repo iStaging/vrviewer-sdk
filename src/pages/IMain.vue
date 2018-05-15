@@ -28,6 +28,7 @@
 
     <!--to show marker point-->
     <viewer-markers-hover
+      v-if="!hideUISetting.hideMarkerInfo"
       :markerPositionX="markerPositionX"
       :markerPositionY="markerPositionY"
       :isMouseOnMarkerInfo="isMouseOnMarkerInfo"
@@ -39,6 +40,7 @@
 
     <!--to show marker memo/tag-->
     <viewer-layer
+      v-if="!hideUISetting.hideMarkerInfo"
       v-show="!isVrMode"
       class="bounce-in"
       :class="{ 'bounce-in-active': isMarkerInfoActive }"
@@ -57,6 +59,7 @@
 
     <!--share-->
     <viewer-layer
+      v-if="!hideUISetting.hideShare"
       v-show="shouldViewerLayerShow && isShareReady"
       class="bounce-in"
       :class="{ 'bounce-in-active': isShareActive }"
@@ -75,6 +78,7 @@
 
     <!--bottom panoramas-->
     <section
+      v-if="!hideUISetting.hidePanoramaList"
       v-show="shouldViewerLayerShow"
       class="viewer-list-wrapper"
       :class="{ 'viewer-list-wrapper-active': shouldPanoramasListShow }">
@@ -93,7 +97,7 @@
 
     <!--floorplan-->
     <section
-      v-if="floorplan && floorplan !== 'none'"
+      v-if="!hideUISetting.hideFloorplan && (floorplan && floorplan !== 'none')"
       v-show="shouldViewerLayerShow"
       class="floorplan-wrapper"
       :class="{
@@ -224,7 +228,8 @@ export default {
       'popupSizeConfig',
       'popupUrl',
       'shareUrl',
-      'gyroSetting'
+      'gyroSetting',
+      'hideUISetting'
     ]),
 
     useResizeAndDraggable () {

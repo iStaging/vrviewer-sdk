@@ -59,5 +59,13 @@ export const DEFAULT_SETTING = {
   tripodSetting: {
     image: 'https://www.istaging.com/sdk/logo-tripod.png',
     size: DEFAULT_LOGO_SIZE
+  },
+  hideUISetting: {
+    hideCollectionInfo: true,
+    hidePanoramaList: true,
+    hideFloorplan: true,
+    hideMarkerInfo: true,
+    hideShare: true,
+    hideMenu: true
   }
 }

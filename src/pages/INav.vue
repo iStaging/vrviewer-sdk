@@ -160,7 +160,8 @@ export default {
       'isMobileMenuActive',
       'isPanoramasListActive',
       'isShareActive',
-      'isVrMode'
+      'isVrMode',
+      'hideUISetting'
     ]),
 
     canDeviceSupportGyro () {
@@ -184,14 +185,14 @@ export default {
         }
       }, {
         name: 'share',
-        // hidden: this.$route.query.share === 'hidden',
+        hidden: this.hideUISetting.hideShare,
         isActive: this.isShareActive,
         method: () => {
           this.toggleShare()
         }
       }, {
         name: 'floorplan',
-        hidden: !(this.floorplan && this.floorplan !== 'none'),
+        hidden: !(!this.hideUISetting.hideFloorplan && (this.floorplan && this.floorplan !== 'none')),
         isActive: this.isFloorplanActive,
         method: () => {
           this.toggleFloorplan()
@@ -199,6 +200,7 @@ export default {
         }
       }, {
         name: 'panoSelect',
+        hidden: this.hideUISetting.hidePanoramaList,
         isActive: this.isPanoramasListActive,
         method: () => {
           this.togglePanoramasList()
@@ -234,6 +236,7 @@ export default {
       let list = [{
         name: 'panoSelect',
         caption: this.$t('panoSelect'),
+        hidden: this.hideUISetting.hidePanoramaList,
         isActive: this.isPanoramasListActive,
         method: () => {
           this.togglePanoramasList()
@@ -241,7 +244,7 @@ export default {
       }, {
         name: 'floorplan',
         caption: this.$t('floorplan'),
-        hidden: !(this.floorplan && this.floorplan !== 'none'),
+        hidden: !(!this.hideUISetting.hideFloorplan && (this.floorplan && this.floorplan !== 'none')),
         isActive: this.isFloorplanActive,
         method: () => {
           this.toggleFloorplan()
@@ -249,7 +252,7 @@ export default {
       }, {
         name: 'share',
         caption: this.$t('share'),
-        // hidden: this.$route.query.share === 'hidden',
+        hidden: this.hideUISetting.hideShare,
         isActive: this.isShareActive,
         method: () => {
           this.toggleShare()
