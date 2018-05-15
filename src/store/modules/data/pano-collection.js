@@ -15,7 +15,6 @@ const state = {
 
 export const getters = {
   currentPanoCollection: state => state.currentPanoCollection,
-  logoSize: state => state.currentPanoCollection.logoSize,
   floorplan: state => state.currentPanoCollection.floorplan
 }
 

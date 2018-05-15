@@ -41,13 +41,6 @@ export const POPUP = {
   WIDTH_PERCENT: 65,
   WIDTH_TYPE: 'percent'
 }
-export const COMPANY = {
-  YUNG_CHING: 'yung-ching',
-  U_TRUST: 'u-trust',
-  TAI_CHING: 'tai-ching',
-  HOUSE_FUN: 'house-fun',
-  ETWARM: 'etwarm'
-}
 export const DEFAULT_LOGO_SIZE = 60
 export const DEFAULT_SETTING = {
   autoRotateSetting: {
@@ -64,7 +57,7 @@ export const DEFAULT_SETTING = {
     focus: false
   },
   tripodSetting: {
-    image: 'http://i.imgur.com/xNNfJiP.jpg',
-    size: 100
+    image: 'https://www.istaging.com/sdk/logo-tripod.png',
+    size: DEFAULT_LOGO_SIZE
   }
 }

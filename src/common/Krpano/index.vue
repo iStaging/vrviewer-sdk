@@ -127,23 +127,18 @@ export default {
 
   computed: {
     ...mapGetters([
-      'currentMarker',
-      'currentPanoCollection',
       'currentPanorama',
       'isGyroEnabled',
-      'isFloorplanActive',
       'isKrpanoActive',
-      'isMarkerInfoActive',
-      'isPanoramasListActive',
       'isShareActive',
       'isVrMode',
       'krpanoEl',
       'krpanoLookAtH',
       'krpanoXOffset',
-      'logoSize',
       'panoramas',
       'krpanoSetting',
-      'autoRotateSetting'
+      'autoRotateSetting',
+      'tripodSetting'
     ]),
 
     krpanoXml () {
@@ -151,11 +146,11 @@ export default {
         return ''
       }
       const startIndex = 0
-      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth } = this
+      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth, tripodSetting } = this
       const stylesXml = getStylesXml(panoramas, vrThumbAth, vrThumbWidth)
       const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov)
       const actionsXml = getActionsXml(this.autoRotateSetting, startIndex, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj)
-      const logoTripodXml = getLogoTripodXml(this.logoTripod, this.logoSize, this.panoramas[0].isTopLogo)
+      const logoTripodXml = getLogoTripodXml(tripodSetting.image, tripodSetting.size, panoramas[0].isTopLogo)
       const xml = `<krpano onstart="startup();">
       ${webVRXml}
       ${gyroXml}
@@ -173,10 +168,6 @@ export default {
     hooks () {
       // startAutoRotate, stopAutoRotate , setProgressCount, setProgressMax, closeProgress, showProgress, setMarkerInfo, setKrpanoLookAtH, exitVrMode
       return hooks(this)
-    },
-
-    logoTripod () {
-      return this.currentPanoCollection.logo || ''
     }
   },
 
