@@ -2,7 +2,7 @@ const state = {
   isAppReady: false,
   isScreenReady: false,
   isPropertyNotFound: false,
-  isBuildingNotFound: false,
+  isPanoCollectionNotFound: false,
   isNoPanoramasFound: false
 }
 
@@ -10,7 +10,7 @@ export const getters = {
   isAppReady: state => state.isAppReady,
   isScreenReady: state => state.isScreenReady,
   isPropertyNotFound: state => state.isPropertyNotFound,
-  isBuildingNotFound: state => state.isBuildingNotFound,
+  isPanoCollectionNotFound: state => state.isPanoCollectionNotFound,
   isNoPanoramasFound: state => state.isNoPanoramasFound
 }
 
@@ -25,10 +25,10 @@ export const actions = {
     commit('SET_PROPERTY_NOT_FOUND', bool)
   },
 
-  setBuildingNotFound ({ commit, state, rootState }, bool = false) {
-    if (state.isBuildingNotFound === false && bool === true) {
+  setPanoCollectionNotFound ({ commit, state, rootState }, bool = false) {
+    if (state.isPanoCollectionNotFound === false && bool === true) {
     }
-    commit('SET_BUILDING_NOT_FOUND', bool)
+    commit('SET_PANO_COLLECTION_NOT_FOUND', bool)
   },
 
   setPanoramasNotFound ({ commit, state, rootState }, bool = false) {
@@ -60,8 +60,8 @@ export const mutations = {
     state.isPropertyNotFound = bool
   },
 
-  SET_BUILDING_NOT_FOUND (state, bool = false) {
-    state.isBuildingNotFound = bool
+  SET_PANO_COLLECTION_NOT_FOUND (state, bool = false) {
+    state.isPanoCollectionNotFound = bool
   },
 
   SET_PANORAMAS_NOT_FOUND (state, bool = false) {

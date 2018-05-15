@@ -151,7 +151,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'currentBuilding',
+      'currentPanoCollection',
       'floorplan',
       'isFloorplanActive',
       'isFullscreen',

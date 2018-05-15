@@ -20,8 +20,8 @@ export const videoImage = `${rootUrl}video.png`
 export const webvrMinJs = `${rootUrl}webvr.min.js`
 export const webvrCursorImage = `${rootUrl}webvr_cursor_80x80_17f.png`
 
-export const fakeBuildingId = '7e548395-f720-49c4-95ce-e31217bd5ae2'
-export const fakeBuilding = {
+export const fakePanoCollectionId = '7e548395-f720-49c4-95ce-e31217bd5ae2'
+export const fakePanoCollection = {
   'createdAt': 1526283327000,
   'description': 'aegbrew',
   'hasPin': false,

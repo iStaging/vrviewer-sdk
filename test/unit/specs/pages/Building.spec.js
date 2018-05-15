@@ -1,22 +1,22 @@
 // import Vue from 'vue'
-// import Building from '@/pages/Buildings'
+// import PanoCollection from '@/pages/PanoCollections'
 //
-// const Constructor = Vue.extend(Building)
+// const Constructor = Vue.extend(PanoCollection)
 // const vm = new Constructor().$mount()
 //
 // // TODO: pending handle with beforeRouteEnter
-// describe('Building.vue page - getPanoramaItemCategory():', () => {
+// describe('PanoCollection.vue page - getPanoramaItemCategory():', () => {
 //   it('should return default category', () => {
 //     // const vm = new Constructor().$mount()
-//     // const building = new Constructor({
-//     //   template: `<building></building>`
+//     // const panoCollection = new Constructor({
+//     //   template: `<panoCollection></panoCollection>`
 //     // }).$mount()
 //     // const panorama = {
 //     //   category: 'livingroom'
 //     // }
-//     // console.log(building.getPanoramaItemCategory())
-//     // console.log(building.getPanoramaItemCategory(panorama))
-//     // console.log(building.methods)
+//     // console.log(panoCollection.getPanoramaItemCategory())
+//     // console.log(panoCollection.getPanoramaItemCategory(panorama))
+//     // console.log(panoCollection.methods)
 //     expect(vm.searchValue).to.equal('')
 //   })
 // })

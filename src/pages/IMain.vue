@@ -3,7 +3,7 @@
     role="main"
     class="i-main">
     <section class="main-krpano-wrapper">
-      <!--has building, but no panoramas-->
+      <!--has panoCollection, but no panoramas-->
       <div
         v-if="isNoPanoramasFound"
         class="full-center error-wrapper">
@@ -208,7 +208,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'currentBuilding',
+      'currentPanoCollection',
       'floorplan',
       'isFloorplanActive',
       'isFullscreen',

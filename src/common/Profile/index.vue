@@ -24,11 +24,11 @@
         {{ profileData('phone') }}
       </p>
     </div>
-    <div class="profile-building-info">
+    <div class="profile-panoCollection-info">
       <h1
-        v-if="currentBuilding.name"
-        class="profile-building-info-title">
-        {{ currentBuilding.name }}
+        v-if="currentPanoCollection.name"
+        class="profile-panoCollection-info-title">
+        {{ currentPanoCollection.name }}
       </h1>
     </div>
   </section>
@@ -56,7 +56,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'currentBuilding'
+      'currentPanoCollection'
     ]),
 
     userAvatar () {
@@ -124,7 +124,7 @@ export default {
   margin-top: 10px
 }
 
-.profile-building-info {
+.profile-panoCollection-info {
   display: none
 }
 
@@ -156,25 +156,25 @@ export default {
   }
 
   .profile-detail {
-    + .profile-building-info {
+    + .profile-panoCollection-info {
       margin-top: 10px
     }
   }
 
-  .profile-building-info {
+  .profile-panoCollection-info {
     position: relative
     display: block
     pointer-events: auto
     margin-top: 10px
   }
 
-  .profile-building-info-title {
+  .profile-panoCollection-info-title {
     font-size: 18px
     line-height: 25px
     font-weight: normal
   }
 
-  .profile-building-info-description {
+  .profile-panoCollection-info-description {
     margin-top: 4px
     font-size: 14px
     line-height: 20px

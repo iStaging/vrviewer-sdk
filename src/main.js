@@ -10,7 +10,7 @@ import App from '@/App.vue'
 // import {
 //   includes
 // } from '@/assets/js/utils'
-import { fakeBuilding, fakePanoramas } from '@/api/resources'
+import { fakePanoCollection, fakePanoramas } from '@/api/resources'
 
 // Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
@@ -36,7 +36,7 @@ class VRViewer {
   }
 
   initData (config) {
-    store.dispatch('importBuilding', config.panoCollection)
+    store.dispatch('importPanoCollection', config.panoCollection)
     store.dispatch('importPanoramas', config.panoramas)
   }
 
@@ -58,7 +58,7 @@ const vrViewer = new VRViewer()
 vrViewer.init({
   el: '#vrviewer-sdk',
   lang: 'zh-cn',
-  panoCollection: fakeBuilding,
+  panoCollection: fakePanoCollection,
   panoramas: fakePanoramas,
   setting: {
     krpanoSetting: {

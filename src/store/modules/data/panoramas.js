@@ -29,7 +29,7 @@ export const actions = {
     storedPanoramas = panoramas
   },
 
-  async fetchPanoramas ({ dispatch, commit, state, rootState }, buildingId = '') {
+  async fetchPanoramas ({ dispatch, commit, state, rootState }, panoCollectionId = '') {
     const panoramasManager = new PanoramasManager({ dispatch, commit, state, rootState })
     const resp = storedPanoramas
     dispatch('setKrpanoActive', false)
@@ -72,7 +72,7 @@ export const actions = {
         await imageIEHack(panorama, keys)
       }
       if (!panorama.cubemapReady || panorama.cubemapReady === false) {
-        // const userId = building.owner ? building.owner.objectId : ''
+        // const userId = panoCollection.owner ? panoCollection.owner.objectId : ''
         // console.log('panorama.rawUrl', panorama.rawUrl)
         if (panorama.rawUrl) {
           api.isPanoramaCubemapReady(panorama.objectId, cubemap.filename).then(bool => {

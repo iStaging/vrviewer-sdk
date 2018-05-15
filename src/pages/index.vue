@@ -7,16 +7,16 @@
     }">
     <!--not found liveTour in url-->
     <div
-      v-if="isBuildingNotFound"
+      v-if="isPanoCollectionNotFound"
       class="full-center error-wrapper">
       <figure
-        ref="buildingNotFound"
+        ref="panoCollectionNotFound"
         class="error-wrapper-container">
         <img
           :src="noPanoramasImage"
           alt="no panoramas">
         <figcaption
-          v-html="$t('buildingNotFound')">
+          v-html="$t('panoCollectionNotFound')">
         </figcaption>
       </figure>
     </div>
@@ -36,7 +36,7 @@ import {
   isRtl
 } from '@/api/helpers'
 import {
-  fakeBuildingId
+  fakePanoCollectionId
 } from '@/api/resources'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
@@ -62,15 +62,15 @@ export default {
   },
 
   beforeMount () {
-    const buildingId = fakeBuildingId
-    this.fetchBuilding(buildingId)
+    const panoCollectionId = fakePanoCollectionId
+    this.fetchPanoCollection(panoCollectionId)
   },
 
   computed: {
     ...mapGetters([
       'currentPanorama',
       'isAppReady',
-      'isBuildingNotFound',
+      'isPanoCollectionNotFound',
       'krpanoEl',
       'panoramas'
     ]),
@@ -82,7 +82,7 @@ export default {
 
   methods: {
     ...mapActions([
-      'fetchBuilding'
+      'fetchPanoCollection'
     ])
   }
 }

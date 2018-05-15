@@ -128,7 +128,7 @@ export default {
   computed: {
     ...mapGetters([
       'currentMarker',
-      'currentBuilding',
+      'currentPanoCollection',
       'currentPanorama',
       'isGyroEnabled',
       'isFloorplanActive',
@@ -175,7 +175,7 @@ export default {
     },
 
     logoTripod () {
-      return this.currentBuilding.logo || ''
+      return this.currentPanoCollection.logo || ''
     }
   },
 

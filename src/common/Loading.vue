@@ -9,7 +9,7 @@
     <h1
       v-show="isProgressActive && !isAppReady"
       class="progress-preview-title">
-      {{ currentBuilding.name }}
+      {{ currentPanoCollection.name }}
     </h1>
     <!--.top-fixed = put the progress bar to top, not in center-->
     <i-progress
@@ -50,7 +50,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'currentBuilding',
+      'currentPanoCollection',
       'isAppReady',
       'isProgressActive',
       'progressMax',
