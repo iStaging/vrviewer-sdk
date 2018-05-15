@@ -7,47 +7,40 @@
     role="banner"
     class="profile">
     <figure
-      class="profile-figure"
-      @click="toggleProfile">
+      class="pano-collection-figure"
+      @click="togglePanoCollection">
       <img
-        class="profile-avatar"
-        :src="userAvatar">
+        class="pano-collection-avatar"
+        :src="panoCollectionLogo">
     </figure>
-    <div class="profile-detail">
-      <h4 class="profile-detail-title">
-        {{ profileData('name') }}
-      </h4>
-      <p class="profile-detail-text">
-        {{ profileData('companyDisplayName') }}
-      </p>
-      <p class="profile-detail-text">
-        {{ profileData('phone') }}
-      </p>
-    </div>
-    <div class="profile-panoCollection-info">
-      <h1
-        v-if="currentPanoCollection.name"
-        class="profile-panoCollection-info-title">
+    <div class="pano-collection-detail">
+      <h1 class="pano-collection-detail-title">
         {{ currentPanoCollection.name }}
       </h1>
+      <p
+        v-show="showInfo"
+        class="pano-collection-detail-text">
+        {{ currentPanoCollection.description }}
+      </p>
     </div>
   </section>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import { iStagingUrl } from '@/api/helpers'
 import Icon from '../../components/Icon/index.vue'
 
 export default {
-  name: 'Profile',
+  name: 'PanoCollectionInfo',
   components: {
     Icon
   },
 
   data () {
     return {
-      defaultAvatar: require('./img/profile-default-avatar.jpg'),
+      showInfo: true,
+      defaultAvatar: require('./img/pano-collection-default-logo.jpg'),
       defaultName: 'iStaging',
       defaultDescription: 'www.istaging.com',
       iStagingUrl: iStagingUrl
@@ -59,23 +52,14 @@ export default {
       'currentPanoCollection'
     ]),
 
-    userAvatar () {
-      // todo: collection logo
-      // return this.user.profileUrl || this.defaultAvatar
+    panoCollectionLogo () {
+      return this.currentPanoCollection.logo || this.defaultAvatar
     }
   },
 
   methods: {
-    ...mapActions([
-      'toggleProfile'
-    ]),
-
-    profileData (key) {
-      // return this.user[key]
-      // todo: collection info data
-    },
-
-    clickBasicDescriptionUrl () {
+    togglePanoCollection () {
+      this.showInfo = !this.showInfo
     }
   }
 }
@@ -96,7 +80,7 @@ export default {
   // word-break: break-all
 }
 
-.profile-avatar {
+.pano-collection-avatar {
   display: block
   $w = 44px
   $h = 44px
@@ -107,28 +91,28 @@ export default {
   background-color: $white
 }
 
-.profile-detail {
+.pano-collection-detail {
   font-size: 14px
   pointer-events: auto
 }
 
-.profile-detail-title {
+.pano-collection-detail-title {
   font-weight: normal
 }
 
-.profile-detail-text {
+.pano-collection-detail-text {
   display: block
 }
 
-.profile-detail-title, .profile-detail-text {
+.pano-collection-detail-title, .pano-collection-detail-text {
   margin-top: 10px
 }
 
-.profile-panoCollection-info {
+.pano-collection-pano-collection-info {
   display: none
 }
 
-.profile-figure {
+.pano-collection-figure {
   display: flex
   overflow: hidden
   border-radius: 50%
@@ -148,33 +132,33 @@ export default {
     align-items: flex-start
   }
 
-  .profile-avatar {
+  .pano-collection-avatar {
     $w = 80px
     $h = 80px
     width: $w
     height: $h
   }
 
-  .profile-detail {
-    + .profile-panoCollection-info {
+  .pano-collection-detail {
+    + .pano-collection-pano-collection-info {
       margin-top: 10px
     }
   }
 
-  .profile-panoCollection-info {
+  .pano-collection-pano-collection-info {
     position: relative
     display: block
     pointer-events: auto
     margin-top: 10px
   }
 
-  .profile-panoCollection-info-title {
+  .pano-collection-pano-collection-info-title {
     font-size: 18px
     line-height: 25px
     font-weight: normal
   }
 
-  .profile-panoCollection-info-description {
+  .pano-collection-pano-collection-info-description {
     margin-top: 4px
     font-size: 14px
     line-height: 20px

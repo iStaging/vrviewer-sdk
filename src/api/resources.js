@@ -22,20 +22,10 @@ export const webvrCursorImage = `${rootUrl}webvr_cursor_80x80_17f.png`
 
 export const fakePanoCollectionId = '7e548395-f720-49c4-95ce-e31217bd5ae2'
 export const fakePanoCollection = {
-  'createdAt': 1526283327000,
   'description': 'aegbrew',
-  'hasPin': false,
-  'logoSize': 50,
   'name': 'awerg43',
   'objectId': '7e548395-f720-49c4-95ce-e31217bd5ae2',
-  'requireVisitorData': false,
-  'showComment': true,
-  'showContactInfo': true,
-  'showPoweredBy': true,
-  'themeColor': 'pink',
-  'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail',
-  'unavailable': false,
-  'updatedAt': 1526283355000
+  'logo': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail'
 }
 
 export const fakePanoramas = [{

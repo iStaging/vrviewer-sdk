@@ -5,19 +5,19 @@
     <div
       class="header-intro"
       :class="{ 'screen-ready': isScreenReady }">
-      <profile></profile>
+      <pano-collection-info></pano-collection-info>
     </div>
   </header>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Profile from '../common/Profile/index.vue'
+import PanoCollectionInfo from '../common/PanoCollectionInfo/index.vue'
 
 export default {
   name: 'IHeader',
   components: {
-    Profile
+    PanoCollectionInfo
   },
 
   computed: {
