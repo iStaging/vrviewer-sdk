@@ -536,41 +536,43 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .icon-close-menu {
-    transform: rotateY(180deg)
-  }
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    .icon-close-menu {
+      transform: rotateY(180deg)
+    }
 
-  .i-nav-mobile-outer {
-    right: auto
-    left: $i-nav-i-nav-mobile-outer-pos
-  }
-
-  .i-nav-mobile-inner {
-    transform: translateX(-($i-nav-i-nav-mobile-inner-animate-x))
-  }
-
-  .i-nav-mobile-inner-active {
-    transform: none
-  }
-
-  .i-nav-mobile-inner .i-repeat-text {
-    margin-right: $i-nav-i-nav-mobile-inner-i-repeat-text-margin
-    margin-left: auto
-  }
-
-  @media screen and (min-width: $response) {
-    .i-nav-pc-tooltip {
+    .i-nav-mobile-outer {
       right: auto
-      left: $i-main-i-nav-pc-tooltip-pos
-      margin-left: $i-main-i-nav-pc-tooltip-margin
-      margin-right: auto
-      text-align: $i-main-i-nav-pc-tooltip-text-align-rtl
+      left: $i-nav-i-nav-mobile-outer-pos
+    }
 
-      &::after {
+    .i-nav-mobile-inner {
+      transform: translateX(-($i-nav-i-nav-mobile-inner-animate-x))
+    }
+
+    .i-nav-mobile-inner-active {
+      transform: none
+    }
+
+    .i-nav-mobile-inner .i-repeat-text {
+      margin-right: $i-nav-i-nav-mobile-inner-i-repeat-text-margin
+      margin-left: auto
+    }
+
+    @media screen and (min-width: $response) {
+      .i-nav-pc-tooltip {
+        right: auto
         left: $i-main-i-nav-pc-tooltip-pos
-        right: $i-main-i-nav-pc-tooltip-after-pos
-        border-color: $i-main-i-nav-pc-tooltip-after-border-color-rtl
+        margin-left: $i-main-i-nav-pc-tooltip-margin
+        margin-right: auto
+        text-align: $i-main-i-nav-pc-tooltip-text-align-rtl
+
+        &::after {
+          left: $i-main-i-nav-pc-tooltip-pos
+          right: $i-main-i-nav-pc-tooltip-after-pos
+          border-color: $i-main-i-nav-pc-tooltip-after-border-color-rtl
+        }
       }
     }
   }

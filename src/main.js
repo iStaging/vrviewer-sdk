@@ -56,15 +56,16 @@ class VRViewer {
 // Vue.config.silent = true
 
 const vrViewer = new VRViewer()
-vrViewer.init({
+let config = {
   el: '#vrviewer-sdk',
   lang: 'zh-cn',
-  panoCollection: fakePanoCollection,
-  panoramas: fakePanoramas,
   setting: DEFAULT_SETTING
-})
-
-document.getElementById('switch-panorama-list').onclick = vrViewer.onTogglePanoramasList
+}
+if (process.env.NODE_ENV === 'development') {
+  config.panoCollection = fakePanoCollection
+  config.panoramas = fakePanoramas
+}
+vrViewer.init(config)
 
 window.VRViewer = VRViewer
 export default VRViewer

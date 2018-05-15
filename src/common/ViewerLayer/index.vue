@@ -194,10 +194,12 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .viewer-layer-close {
-    right: auto
-    left: $viewer-layer-viewer-layer-close
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    .viewer-layer-close {
+      right: auto
+      left: $viewer-layer-viewer-layer-close
+    }
   }
 }
 </style>

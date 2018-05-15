@@ -149,10 +149,12 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .instructions-close {
-    right: auto
-    left: $instructions-instructions-close-pos
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    .instructions-close {
+      right: auto
+      left: $instructions-instructions-close-pos
+    }
   }
 }
 </style>

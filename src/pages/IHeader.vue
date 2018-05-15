@@ -92,32 +92,34 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .header-intro {
-    left: auto
-    right: $i-header-header-intro-pos
-    transform: translateX($i-header-header-intro-pos)
-
-    &.screen-ready {
-      opacity: 1
-      transform: none
-    }
-  }
-
-  .header-center {
-    right: auto
-    left: $i-header-header-center-pos
-  }
-
-  @media screen and (min-width: $response) {
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
     .header-intro {
       left: auto
-      right: $i-header-header-intro-large-pos
+      right: $i-header-header-intro-pos
+      transform: translateX($i-header-header-intro-pos)
+
+      &.screen-ready {
+        opacity: 1
+        transform: none
+      }
     }
 
     .header-center {
-      left: auto
       right: auto
+      left: $i-header-header-center-pos
+    }
+
+    @media screen and (min-width: $response) {
+      .header-intro {
+        left: auto
+        right: $i-header-header-intro-large-pos
+      }
+
+      .header-center {
+        left: auto
+        right: auto
+      }
     }
   }
 }

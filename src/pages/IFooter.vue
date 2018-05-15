@@ -57,10 +57,12 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .footer-powered-text {
-    left: auto
-    right: $footer-footer-powered-text-pos
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    .footer-powered-text {
+      left: auto
+      right: $footer-footer-powered-text-pos
+    }
   }
 }
 </style>

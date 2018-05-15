@@ -349,17 +349,19 @@ function limitPosition (limitW = 0, limitH = 0, x = 0, y = 0) {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  // floorplan no need to be rtl
-  .floorplan-container {
-    direction: ltr
-  }
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    // floorplan no need to be rtl
+    .floorplan-container {
+      direction: ltr
+    }
 
-  .floorplan-zoom-in-container {
-    right: auto
-    left: $floorplan-floorplan-zoom-in-container-pos
-    margin-right: auto
-    margin-left: $floorplan-floorplan-zoom-in-container-margin
+    .floorplan-zoom-in-container {
+      right: auto
+      left: $floorplan-floorplan-zoom-in-container-pos
+      margin-right: auto
+      margin-left: $floorplan-floorplan-zoom-in-container-margin
+    }
   }
 }
 </style>

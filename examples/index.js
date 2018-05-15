@@ -1,8 +1,6 @@
 // Make sure you have already using aframe and vrviewer-sdk js first.
 
 // New and init vrviewer with the element you give and the data(panoramas) which come from vrmaker backend service.
-import { DEFAULT_LOGO_SIZE } from '../src/api/constants'
-
 var vrViewer = new window.VRViewer()
 
 // axios.get('/api/v1/panorama')
@@ -137,3 +135,5 @@ vrViewer.init({
     }
   }
 })
+
+document.getElementById('switch-panorama-list').onclick = vrViewer.onTogglePanoramasList

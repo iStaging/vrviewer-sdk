@@ -114,28 +114,30 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .i-aside {
-    left: $i-aside-i-aside-pos
-    right: auto
-    animation-name: aside-init-animate-rtl
-    transform: translateX(-($i-aside-i-aside-animate-x))
-
-    &.screen-ready {
-      opacity: 1
-      transform: none
-    }
-  }
-
-  .aside-icon-close {
-    right: auto
-    left: $i-aside-aside-icon-close-pos
-  }
-
-  @media screen and (min-width: $response) {
-    .i-nav-parent {
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    .i-aside {
+      left: $i-aside-i-aside-pos
       right: auto
-      left: $i-aside-i-nav-parent-pos
+      animation-name: aside-init-animate-rtl
+      transform: translateX(-($i-aside-i-aside-animate-x))
+
+      &.screen-ready {
+        opacity: 1
+        transform: none
+      }
+    }
+
+    .aside-icon-close {
+      right: auto
+      left: $i-aside-aside-icon-close-pos
+    }
+
+    @media screen and (min-width: $response) {
+      .i-nav-parent {
+        right: auto
+        left: $i-aside-i-nav-parent-pos
+      }
     }
   }
 }

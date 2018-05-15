@@ -1,5 +1,5 @@
 <template>
-  <div id="vrviewer-sdk" class="app">
+  <div id="vrviewer-sdk" class="vrviewer-sdk">
     <template v-if="isBrowserSupport && isWebGlSupport">
       <default-view></default-view>
     </template>
@@ -63,65 +63,67 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import 'stylesheets/global.styl'
 
-.app {
-  height: 100%
-}
+#vrviewer-sdk {
+  .app {
+    height: 100%
+  }
 
-.error-wrapper {
-  background-color: #f1f8fc
-  pointer-events: auto
+  .error-wrapper {
+    background-color: #f1f8fc
+    pointer-events: auto
 
-  .error-wrapper-container {
-    @extend .flex-center-column
-    text-align: center
+    .error-wrapper-container {
+      @extend .flex-center-column
+      text-align: center
 
-    img {
-      margin-bottom: 20px
-    }
-
-    &, p, h3 {
-      color: $black
-      text-shadow: none
-    }
-
-    a {
-      color: $pink-color
-      text-decoration: none
-      display: inline-block
-      padding: 0 3px
-      text-shadow: none
-
-      &:hover {
-        text-decoration: underline
+      img {
+        margin-bottom: 20px
       }
-    }
 
-    h3 {
-      font-size: 18px
-      letter-spacing: -.4px
-    }
+      &, p, h3 {
+        color: $black
+        text-shadow: none
+      }
 
-    p, a {
-      font-size: 14px
-      letter-spacing: -.3px
-    }
+      a {
+        color: $pink-color
+        text-decoration: none
+        display: inline-block
+        padding: 0 3px
+        text-shadow: none
 
-    h3, p, a {
-      margin-top: 7px
-    }
+        &:hover {
+          text-decoration: underline
+        }
+      }
 
-    h3 {
-      font-size: 18px
-      letter-spacing: -.4px
-    }
+      h3 {
+        font-size: 18px
+        letter-spacing: -.4px
+      }
 
-    p, a {
-      font-size: 14px
-      letter-spacing: -.3px
-    }
+      p, a {
+        font-size: 14px
+        letter-spacing: -.3px
+      }
 
-    h3, p, a {
-      margin-top: 7px
+      h3, p, a {
+        margin-top: 7px
+      }
+
+      h3 {
+        font-size: 18px
+        letter-spacing: -.4px
+      }
+
+      p, a {
+        font-size: 14px
+        letter-spacing: -.3px
+      }
+
+      h3, p, a {
+        margin-top: 7px
+      }
     }
   }
 }

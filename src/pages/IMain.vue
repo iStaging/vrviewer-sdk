@@ -505,39 +505,41 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  .icon.icon-collapse-left,
-  .icon.icon-collapse-right {
-    transform: rotateY(180deg)
-  }
-
-  @media screen and (orientation: landscape) {
-    .floorplan-wrapper {
-      right: $i-main-floorplan-wrapper-landscape-pos
-      left: auto
-      transform: translateX($i-main-floorplan-wrapper-landscape-transform-x)
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    .icon.icon-collapse-left,
+    .icon.icon-collapse-right {
+      transform: rotateY(180deg)
     }
 
-    .floorplan-wrapper-active {
-      transform: none
-    }
-  }
+    @media screen and (orientation: landscape) {
+      .floorplan-wrapper {
+        right: $i-main-floorplan-wrapper-landscape-pos
+        left: auto
+        transform: translateX($i-main-floorplan-wrapper-landscape-transform-x)
+      }
 
-  @media screen and (min-width: $response) {
-    .floorplan-wrapper {
-      right: $i-main-floorplan-wrapper-landscape-pos
-      left: auto
-      transform: translateX($i-main-floorplan-wrapper-landscape-transform-x) translateX(-($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2))
-    }
-
-    .floorplan-wrapper-active {
-      transform: none
+      .floorplan-wrapper-active {
+        transform: none
+      }
     }
 
-    .share-container {
-      .share-list {
-        margin-left: 0
-        margin-right: $i-main-share-container-share-list-margin
+    @media screen and (min-width: $response) {
+      .floorplan-wrapper {
+        right: $i-main-floorplan-wrapper-landscape-pos
+        left: auto
+        transform: translateX($i-main-floorplan-wrapper-landscape-transform-x) translateX(-($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2))
+      }
+
+      .floorplan-wrapper-active {
+        transform: none
+      }
+
+      .share-container {
+        .share-list {
+          margin-left: 0
+          margin-right: $i-main-share-container-share-list-margin
+        }
       }
     }
   }

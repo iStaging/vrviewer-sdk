@@ -211,17 +211,19 @@ $image-w = 160px
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.theme-rtl.theme-rtl-overlap {
-  @media screen and (min-width: $response) {
-    .marker-info-large-left {
-      margin-right: auto
-      margin-left: $marker-info-marker-info-large-left-margin
-    }
+#vrviewer-sdk {
+  .theme-rtl.theme-rtl-overlap {
+    @media screen and (min-width: $response) {
+      .marker-info-large-left {
+        margin-right: auto
+        margin-left: $marker-info-marker-info-large-left-margin
+      }
 
-    .marker-info-name,
-    .marker-info-price,
-    .marker-info-action {
-      text-align: $marker-info-marker-info-text-align-rtl
+      .marker-info-name,
+      .marker-info-price,
+      .marker-info-action {
+        text-align: $marker-info-marker-info-text-align-rtl
+      }
     }
   }
 }
