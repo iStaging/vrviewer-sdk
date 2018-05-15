@@ -1,11 +1,14 @@
 import api from '@/api/index'
-import { CATEGORIES } from '@/api/constants'
+import {
+  CATEGORIES
+} from '@/api/constants'
 import {
   imageIEHack
 } from '@/api/helpers'
 import {
   completeAssign,
   getIEVersion,
+  isEmpty,
   sort
 } from '@/api/utils'
 import PanoramasManager from '../../manager/panoramas-manager'
@@ -34,7 +37,7 @@ export const actions = {
     const resp = storedPanoramas
     dispatch('setKrpanoActive', false)
     dispatch('setPanoramasNotFound', false)
-    if (!resp) {
+    if (isEmpty(resp)) {
       panoramasManager.noPanoramasHandler()
       return
     }

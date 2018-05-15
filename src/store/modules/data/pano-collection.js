@@ -1,5 +1,6 @@
 import {
-  addParameter
+  addParameter,
+  isEmpty
 } from '@/api/utils'
 import PanoCollectionManager from '@/store/manager/pano-collection-manager'
 
@@ -30,7 +31,7 @@ export const actions = {
       const resp = storedPanoCollection
       dispatch('setProgressCount', 0)
       dispatch('showProgress')
-      if (!resp) {
+      if (isEmpty(resp)) {
         PanoCollectionManager.noPanoCollectionCallback({ dispatch, commit, state, rootState })
         return
       }
