@@ -4,7 +4,7 @@
       v-for="panorama in panoramas"
       class="floorplan-point"
       :class="{
-        'active': hoveredPanorama.objectId === panorama.objectId
+        'active': hoveredPanorama.panoramaId === panorama.panoramaId
       }"
       :style="{
         transform: pointPosition(panorama)
@@ -89,8 +89,8 @@ export default {
     ]),
 
     selectPanorama (panorama = {}) {
-      if (panorama.objectId !== this.currentPanorama.objectId) {
-        this.krpanoEl.call(`prepare_change_scene(panorama_${panorama.objectId}, ${panorama.objectId}, 'FloorplanDots');`)
+      if (panorama.panoramaId !== this.currentPanorama.panoramaId) {
+        this.krpanoEl.call(`prepare_change_scene(panorama_${panorama.panoramaId}, ${panorama.panoramaId}, 'FloorplanDots');`)
       }
     },
 

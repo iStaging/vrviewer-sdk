@@ -75,7 +75,7 @@ export const actions = {
         // const userId = panoCollection.owner ? panoCollection.owner.objectId : ''
         // console.log('panorama.rawUrl', panorama.rawUrl)
         if (panorama.rawUrl) {
-          api.isPanoramaCubemapReady(panorama.objectId, cubemap.filename).then(bool => {
+          api.isPanoramaCubemapReady(panorama.panoramaId, cubemap.filename).then(bool => {
             panorama.cubemapReady = bool
             if (bool === true) {
               panorama.cubemapPreivewUrl = cubemap.preivewUrl
@@ -98,11 +98,11 @@ export const actions = {
   },
 
   selectPanorama ({ commit, state, rootState }, panorama = {}) {
-    if (state.currentPanorama.objectId === panorama.objectId ||
+    if (state.currentPanorama.panoramaId === panorama.panoramaId ||
       rootState.progress.isProgressActive) {
       return
     }
-    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.objectId || ''}, ${panorama.objectId || ''}, 'PanoramaList');`)
+    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.panoramaId || ''}, ${panorama.panoramaId || ''}, 'PanoramaList');`)
   },
 
   setPanorama ({ commit }, panorama = {}) {
@@ -111,14 +111,14 @@ export const actions = {
 
   updatePanoramaItem ({ commit, state }, panorama = {}) {
     let targetId = ''
-    if (panorama.objectId) {
-      targetId = panorama.objectId
+    if (panorama.panoramaId) {
+      targetId = panorama.panoramaId
     } else {
-      targetId = state.currentPanorama.objectId
+      targetId = state.currentPanorama.panoramaId
       commit('UPDATE_PANORAMA_ITEM', panorama)
     }
 
-    const foundIndex = state.panoramas.map(panorama => panorama.objectId).indexOf(targetId)
+    const foundIndex = state.panoramas.map(panorama => panorama.panoramaId).indexOf(targetId)
     if (foundIndex <= -1) {
       return
     }

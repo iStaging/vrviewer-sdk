@@ -18,8 +18,8 @@ const hooks = vm => {
       })
     },
     prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
-      const oldIndex = vm.panoramas.findIndex(panorama => panorama.objectId === vm.currentPanorama.objectId)
-      const newIndex = vm.panoramas.findIndex(panorama => panorama.objectId === nextPanoramaId)
+      const oldIndex = vm.panoramas.findIndex(panorama => panorama.panoramaId === vm.currentPanorama.panoramaId)
+      const newIndex = vm.panoramas.findIndex(panorama => panorama.panoramaId === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = vm.panoramas[newIndex]
         const oldHLookat = vm.krpanoLookAtH

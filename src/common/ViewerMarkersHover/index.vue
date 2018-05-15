@@ -93,7 +93,7 @@ export default {
       if (isEmpty(this.panoramas) || this.panoramas.length === 0) {
         return {}
       }
-      const nextPanorama = this.panoramas.find(panorama => panorama.objectId === this.currentMarker.nextPanoramaId)
+      const nextPanorama = this.panoramas.find(panorama => panorama.panoramaId === this.currentMarker.nextPanoramaId)
       return nextPanorama || {}
     },
 

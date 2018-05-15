@@ -288,7 +288,7 @@ export default {
       this.setMarker(marker)
       if (marker.type === 'point' && marker.nextPanoramaId) {
         const foundPanorama = this.panoramas.find(panorama =>
-          panorama.objectId === marker.nextPanoramaId
+          panorama.panoramaId === marker.nextPanoramaId
         ) || {}
         this.setHoveredPanorama(foundPanorama)
       }

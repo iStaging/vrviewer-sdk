@@ -9,7 +9,7 @@ const getActionsXml = function (autoRotateSetting, startIndex = 0, panoramas, de
       : ''
   })()}
   ${(() => {
-    return `loadscene(first_panorama_${panoramas[startIndex].objectId});
+    return `loadscene(first_panorama_${panoramas[startIndex].panoramaId});
     planet_view();`
   })()}
   set(plugin[gyro].enabled, false);

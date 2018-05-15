@@ -9,7 +9,7 @@
           :slot="panorama.key"
           class="panoramas-list-a"
           :class="{
-            'active': hoveredPanorama.objectId === panorama.objectId,
+            'active': hoveredPanorama.panoramaId === panorama.panoramaId,
             'icon-disabled': panorama.disabled,
             'panoramas-list-a-active': panorama.isActive
           }"
@@ -99,10 +99,10 @@ export default {
           key: `panorama_${index}`,
           caption: panorama.customCategory || this.$t(panorama.category),
           image: panorama.thumbnail,
-          disabled: this.currentPanorama.objectId === panorama.objectId,
-          isActive: this.currentPanorama.objectId === panorama.objectId,
+          disabled: this.currentPanorama.panoramaId === panorama.panoramaId,
+          isActive: this.currentPanorama.panoramaId === panorama.panoramaId,
           method: () => {
-            if (this.currentPanorama.objectId === panorama.objectId ||
+            if (this.currentPanorama.panoramaId === panorama.panoramaId ||
               this.isProgressActive) {
               return
             }
