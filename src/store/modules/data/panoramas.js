@@ -1,6 +1,5 @@
 import api from '@/api/index'
 import { CATEGORIES } from '@/api/constants'
-import { fakePanoramas } from '@/api/resources'
 import {
   imageIEHack
 } from '@/api/helpers'
@@ -24,11 +23,15 @@ export const getters = {
   hoveredPanorama: state => state.hoveredPanorama
 }
 
+let storedPanoramas = []
 export const actions = {
+  importPanoramas ({ commit }, panoramas) {
+    storedPanoramas = panoramas
+  },
+
   async fetchPanoramas ({ dispatch, commit, state, rootState }, buildingId = '') {
     const panoramasManager = new PanoramasManager({ dispatch, commit, state, rootState })
-    const resp = fakePanoramas
-    console.log(resp)
+    const resp = storedPanoramas
     dispatch('setKrpanoActive', false)
     dispatch('setPanoramasNotFound', false)
     if (!resp) {

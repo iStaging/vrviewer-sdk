@@ -10,6 +10,7 @@ import App from '@/App.vue'
 // import {
 //   includes
 // } from '@/assets/js/utils'
+import { fakeBuilding, fakePanoramas } from '@/api/resources'
 
 // Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
@@ -23,7 +24,8 @@ class VRViewer {
       messages,
       silentTranslationWarn: true
     })
-    this.updateEvents()
+    this.initData(config)
+    this.initConfig(config)
     const app = new Vue({
       el: config.el,
       store,
@@ -33,49 +35,18 @@ class VRViewer {
     console.log('vrviewer app:', app)
   }
 
-  updateEvents () {
-    store.customEvents = {}
-    store.customEvents.onSortPanoramas = this.onSortPanoramas
-    store.customEvents.onDeletePanoramas = this.onDeletePanoramas
-    store.customEvents.onCreatePanoramas = this.onCreatePanoramas
-    store.customEvents.onUpdatePanorama = this.onUpdatePanorama
-    store.customEvents.onSaveMarkerSuccess = this.onSaveMarkerSuccess
-    store.customEvents.onSaveMarkerError = this.onSaveMarkerError
+  initData (config) {
+    store.dispatch('importBuilding', config.panoCollection)
+    store.dispatch('importPanoramas', config.panoramas)
   }
 
-  onSaveMarkerSuccess (data) {
-    console.log('onSaveMarkerSuccess', data)
+  initConfig (config) {
+
   }
 
-  onSaveMarkerError (err) {
-    console.log('onSaveMarkerError', err)
+  onTogglePanoramasList () {
+    store.dispatch('togglePanoramasList')
   }
-
-  onSortPanoramas (data) {
-    console.log('onSortPanoramas', data)
-  }
-
-  onDeletePanoramas (data) {
-    console.log('onDeletePanoramas', data)
-  }
-
-  onCreatePanoramas (data) {
-    console.log('onCreatePanoramas', data)
-  }
-
-  onUpdatePanorama (data) {
-    console.log('onUpdatePanorama', data)
-  }
-  // panoCollection CRUD !?
-  // panorama CRUD !?
-  // marker CRUD !?
-
-  // onUpload(data => { })
-  // onSavePanorama(data => { })
-  //
-  // onCreateMarker(data => { })
-  // onUpdateMarker(data => { })
-  // onDeleteMarker(data => { })
 }
 
 // Vue.config.productionTip = false
@@ -86,34 +57,12 @@ class VRViewer {
 const vrViewer = new VRViewer()
 vrViewer.init({
   el: '#vrviewer-sdk',
-  lang: 'zh-cn'
+  lang: 'zh-cn',
+  panoCollection: fakeBuilding,
+  panoramas: fakePanoramas
 })
 
-vrViewer.onSaveMarker = (data) => {
-  console.log('onSaveMarker', data)
-}
-
-vrViewer.onSaveMarkerSuccess = (data) => {
-  console.log('onSaveMarkerSuccess', data)
-}
-
-vrViewer.onSortPanoramas = (data) => {
-  console.log('onSortPanoramas', data)
-}
-
-vrViewer.onDeletePanoramas = (data) => {
-  console.log('onDeletePanoramas', data)
-}
-
-vrViewer.onCreatePanoramas = (data) => {
-  console.log('onCreatePanoramas', data)
-}
-
-vrViewer.onUpdatePanorama = (data) => {
-  console.log('onUpdatePanorama', data)
-}
-
-vrViewer.updateEvents()
+document.getElementById('switch-panorama-list').onclick = vrViewer.onTogglePanoramasList
 
 window.VRViewer = VRViewer
 export default VRViewer

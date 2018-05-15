@@ -2,9 +2,6 @@ import {
   isDevelopment
 } from '@/api/helpers'
 import {
-  fakeBuilding
-} from '@/api/resources'
-import {
   addParameter
 } from '@/api/utils'
 import BuildingsManager from '@/store/manager/buildings-manager'
@@ -22,14 +19,19 @@ export const getters = {
   floorplan: state => state.currentBuilding.floorplan
 }
 
+let storedBuilding = {}
 export const actions = {
-  async fetchBuilding ({ dispatch, commit, state, rootState }, buildingId = '') { // should have some value to return data null
+  importBuilding ({ commit }, building) {
+    storedBuilding = building
+  },
+
+  async fetchBuilding ({ dispatch, commit, state, rootState }, buildingId = '') {
     if (buildingId) {
       if (buildingId === state.currentBuilding.objectId) {
         // It's the same building, no need to fetch it again
         return
       }
-      const resp = fakeBuilding
+      const resp = storedBuilding
       dispatch('setProgressCount', 0)
       dispatch('showProgress')
       console.log('resp', resp)
