@@ -5,7 +5,7 @@
 <template>
   <section
     role="banner"
-    class="profile">
+    class="pano-collection">
     <figure
       class="pano-collection-figure"
       @click="togglePanoCollection">
@@ -68,7 +68,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/variables.styl'
 
-.profile {
+.pano-collection {
   position: relative
   max-width: 170px
   pointer-events: none
@@ -120,13 +120,13 @@ export default {
 }
 
 @media screen and (orientation: landscape) {
-  .profile {
+  .pano-collection {
     max-width: 200px
   }
 }
 
 @media screen and (min-width: $response) {
-  .profile {
+  .pano-collection {
     max-width: 200px
     flex-direction: column
     align-items: flex-start
