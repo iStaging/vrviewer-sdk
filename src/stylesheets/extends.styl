@@ -1,0 +1,119 @@
+.inline-flex-center {
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  flex-direction: row
+}
+
+.flex-center {
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: row
+}
+
+.flex-center-column {
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+}
+
+.absolute-full {
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+}
+
+.absolute-full-width {
+  position: absolute
+  width: 100%
+  left: 0
+  right: 0
+}
+
+.absolute-full-height {
+  position: absolute
+  height: 100%
+  top: 0
+  bottom: 0
+}
+
+.full {
+  width: 100%
+  height: 100%
+}
+
+.full-width {
+  width: 100%
+}
+
+.full-height {
+  height: 100%
+}
+
+.bg-center {
+  background-repeat: no-repeat
+  background-position: center center
+}
+
+.text-ellipsis {
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+}
+
+bg-size($w, $h) {
+  width: $w
+  height: $h
+  background-size: $w $h
+}
+
+.position-fixed {
+  position: fixed
+  -webkit-backface-visibility: hidden
+}
+
+.overflow-auto {
+  overflow: auto
+  -webkit-overflow-scrolling: touch
+}
+
+.visibility-hidden {
+  opacity: 0
+  visibility: hidden
+}
+
+.visibility-visible {
+  opacity: 1
+  visibility: visible
+}
+
+.clear {
+  &::after {
+    content: ''
+    display: block
+    clear: both
+  }
+}
+
+.btn-no-default {
+  cursor: pointer
+  background-color: transparent
+  border: none
+  padding: 0
+  border-radius: 0
+
+  &:focus {
+    outline: none
+  }
+}
+
+.text-with-gray-bg {
+  color: #fff
+  text-shadow: none
+}
