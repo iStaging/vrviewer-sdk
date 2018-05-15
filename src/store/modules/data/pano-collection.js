@@ -1,7 +1,4 @@
 import {
-  isDevelopment
-} from '@/api/helpers'
-import {
   addParameter
 } from '@/api/utils'
 import PanoCollectionManager from '@/store/manager/pano-collection-manager'
@@ -33,7 +30,6 @@ export const actions = {
       const resp = storedPanoCollection
       dispatch('setProgressCount', 0)
       dispatch('showProgress')
-      console.log('resp', resp)
       if (!resp) {
         PanoCollectionManager.noPanoCollectionCallback({ dispatch, commit, state, rootState })
         return
@@ -49,9 +45,6 @@ export const actions = {
       }
       if (panoCollection.floorplan) {
         panoCollection.floorplan = addParameter(panoCollection.floorplan, `n=${Math.random()}`)
-      }
-      if (isDevelopment) {
-        document.title = panoCollection.name || 'VR Viewer'
       }
       if (shouldSetPanoCollectionNotShow(panoCollection)) {
         PanoCollectionManager.noPanoCollectionCallback({ dispatch, commit, state, rootState })

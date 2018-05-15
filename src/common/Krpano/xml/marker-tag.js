@@ -10,7 +10,7 @@ import {
   xmlString
 } from '@/api/helpers'
 
-const getMarkerTagXml = function (marker, ath, atv, category, useCustomIcon, index, krpanoVrModeObj) {
+const getMarkerTagXml = function (marker, ath, atv, panoramaName, useCustomIcon, index, krpanoVrModeObj) {
   let tag = ''
   tag += `<hotspot
     name="marker_${marker.objectId}"

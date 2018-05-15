@@ -39,10 +39,10 @@ export const actions = {
       return
     }
     let panoramas = resp.map(panorama => {
-      const foundCategory = CATEGORIES.find(category => category.value === panorama.category)
-      if (!foundCategory) {
-        panorama.customCategory = panorama.category
-        panorama.category = 'custom'
+      const foundPanoramaName = CATEGORIES.find(panoramaName => panoramaName.value === panorama.panoramaName)
+      if (!foundPanoramaName) {
+        panorama.customPanoramaName = panorama.panoramaName
+        panorama.panoramaName = 'custom'
       }
       if (!panorama.position) { // should have default position
         panorama.position = {

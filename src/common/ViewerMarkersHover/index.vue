@@ -21,7 +21,7 @@
           </icon>
         </div>
         <p class="viewer-markers-hover-text">
-          {{ nextCategory }}
+          {{ nextPanoramaName }}
         </p>
       </div>
       <div class="decoration"></div>
@@ -117,9 +117,9 @@ export default {
       return {}
     },
 
-    nextCategory () {
+    nextPanoramaName () {
       return this.nextPanorama
-        ? (this.nextPanorama.customCategory || this.$t(this.nextPanorama.category))
+        ? (this.nextPanorama.customPanoramaName || this.$t(this.nextPanorama.panoramaName))
         : ''
     }
   },

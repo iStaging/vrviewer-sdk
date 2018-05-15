@@ -77,7 +77,7 @@ app.get('/api/v1/panorama', function (req, res) {
       'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg'
     ],
     // not ready props
-    'category': 'others',
+    'panoramaName': 'others',
     'createdAt': 1522136180000,
     'updatedAt': 1522136180000
   }, {
@@ -91,7 +91,7 @@ app.get('/api/v1/panorama', function (req, res) {
       'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_782949e8-c37a-4171-a004-54c76937135c.jpg'
     ],
     // not ready props
-    'category': 'others',
+    'panoramaName': 'others',
     'updatedAt': 1522136180000,
     'createdAt': 1522136180000
   }]

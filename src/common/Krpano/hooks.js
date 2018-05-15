@@ -116,7 +116,7 @@ const hooks = vm => {
       //       ath = setCorrectRotation(ath + vm.krpanoXOffset)
       //       const { x, y, z } = coords2dTo3d({ ath, atv })
       //       const distance = Math.sqrt(Math.pow(mX - x, 2) + Math.pow(mY - y, 2) + Math.pow(mZ - z, 2))
-      //       // console.log('point position 3d', x, y, z, vm.nextPanoramaCategoryName(point))
+      //       // console.log('point position 3d', x, y, z, vm.nextPanoramaPanoramaNameName(point))
       //       // console.log('distance', distance)
       //       if (closestDistance > distance) {
       //         closestDistance = distance
@@ -126,7 +126,7 @@ const hooks = vm => {
       //     })
       //     // console.log('closestDistance', closestDistance)
       //     // console.log('closestPoint', closestPoint)
-      //     // console.log('next point', vm.nextPanoramaCategoryName(closestPoint))
+      //     // console.log('next point', vm.nextPanoramaPanoramaNameName(closestPoint))
       //     if (callback && typeof callback === 'function' && callback instanceof Function) {
       //       callback(closestPoint, closestAth)
       //     } else {

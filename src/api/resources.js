@@ -40,7 +40,7 @@ export const fakePanoCollection = {
 
 export const fakePanoramas = [{
   'adjustedRawUrl': '',
-  'category': 'others',
+  'panoramaName': 'others',
   'createdAt': 1526283353000,
   'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/24fb9231-873d-4fbb-85f6-db2bb81b01cb.jpg',
   'cubemapReady': true,
@@ -60,7 +60,7 @@ export const fakePanoramas = [{
   'updatedAt': 1526283355000
 }, {
   'adjustedRawUrl': '',
-  'category': 'others',
+  'panoramaName': 'others',
   'createdAt': 1526283353000,
   'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/47bbd8d6-75b2-4f15-91c0-cfdbb8c7f970.jpg',
   'cubemapReady': true,
@@ -80,7 +80,7 @@ export const fakePanoramas = [{
   'updatedAt': 1526283355000
 }, {
   'adjustedRawUrl': '',
-  'category': 'others',
+  'panoramaName': 'others',
   'createdAt': 1526283353000,
   'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/5cf21b3e-ae20-49e1-9fef-0a4c9cba4564.jpg',
   'cubemapReady': true,
@@ -100,7 +100,7 @@ export const fakePanoramas = [{
   'updatedAt': 1526283355000
 }, {
   'adjustedRawUrl': '',
-  'category': 'others',
+  'panoramaName': 'others',
   'createdAt': 1526283353000,
   'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/b4530a6b-de01-4dba-9795-ab430556ff98.jpg',
   'cubemapReady': true,

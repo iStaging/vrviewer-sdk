@@ -146,9 +146,9 @@ export default {
         return ''
       }
       const startIndex = 0
-      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth, tripodSetting } = this
+      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaPanoramaNameName, defaultFov, vrThumbAth, vrThumbWidth, tripodSetting } = this
       const stylesXml = getStylesXml(panoramas, vrThumbAth, vrThumbWidth)
-      const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov)
+      const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaPanoramaNameName, defaultFov)
       const actionsXml = getActionsXml(this.autoRotateSetting, startIndex, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj)
       const logoTripodXml = getLogoTripodXml(tripodSetting.image, tripodSetting.size, panoramas[0].isTopLogo)
       const xml = `<krpano onstart="startup();">
@@ -205,7 +205,7 @@ export default {
       }
     },
 
-    nextPanoramaCategoryName (marker = {}) {
+    nextPanoramaPanoramaNameName (marker = {}) {
       if (!this.panoramas || this.panoramas.length <= 0) {
         return
       }
@@ -215,7 +215,7 @@ export default {
       if (isEmpty(foundPanorama)) {
         return
       }
-      return xmlString(foundPanorama.customCategory || this.$t(foundPanorama.category))
+      return xmlString(foundPanorama.customPanoramaName || this.$t(foundPanorama.panoramaName))
     },
 
     selectPanorama (nextPanoramaId = '', selectedMethod = '', isMarkerPoint = false, isWebVr = false) {

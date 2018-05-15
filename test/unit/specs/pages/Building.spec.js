@@ -5,17 +5,17 @@
 // const vm = new Constructor().$mount()
 //
 // // TODO: pending handle with beforeRouteEnter
-// describe('PanoCollection.vue page - getPanoramaItemCategory():', () => {
-//   it('should return default category', () => {
+// describe('PanoCollection.vue page - getPanoramaItemPanoramaName():', () => {
+//   it('should return default panoramaName', () => {
 //     // const vm = new Constructor().$mount()
 //     // const panoCollection = new Constructor({
 //     //   template: `<panoCollection></panoCollection>`
 //     // }).$mount()
 //     // const panorama = {
-//     //   category: 'livingroom'
+//     //   panoramaName: 'livingroom'
 //     // }
-//     // console.log(panoCollection.getPanoramaItemCategory())
-//     // console.log(panoCollection.getPanoramaItemCategory(panorama))
+//     // console.log(panoCollection.getPanoramaItemPanoramaName())
+//     // console.log(panoCollection.getPanoramaItemPanoramaName(panorama))
 //     // console.log(panoCollection.methods)
 //     expect(vm.searchValue).to.equal('')
 //   })

@@ -97,7 +97,7 @@ export default {
       this.panoramas.forEach((panorama, index) => {
         const schema = {
           key: `panorama_${index}`,
-          caption: panorama.customCategory || this.$t(panorama.category),
+          caption: panorama.customPanoramaName || this.$t(panorama.panoramaName),
           image: panorama.thumbnail,
           disabled: this.currentPanorama.panoramaId === panorama.panoramaId,
           isActive: this.currentPanorama.panoramaId === panorama.panoramaId,
