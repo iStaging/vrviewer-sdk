@@ -190,11 +190,11 @@ export default {
     this.resizeHandler()
 
     window.setTimeout(() => {
-      // if (this.$route.query.gyro !== 'false') {
-      if (isMobile() && (!isIOS() || ((isIframe() && this.isGyroFromIframe && isIOS()) || !isIframe()))) {
-        this.startGyro() // must after initGyroFromIframe
+      if (this.gyroSetting.active) {
+        if (isMobile() && (!isIOS() || ((isIframe() && this.isGyroFromIframe && isIOS()) || !isIframe()))) {
+          this.startGyro() // must after initGyroFromIframe
+        }
       }
-      // }
     }, 2500)
 
     window.setTimeout(() => {
@@ -223,7 +223,8 @@ export default {
       'panoramas',
       'popupSizeConfig',
       'popupUrl',
-      'shareUrl'
+      'shareUrl',
+      'gyroSetting'
     ]),
 
     useResizeAndDraggable () {
