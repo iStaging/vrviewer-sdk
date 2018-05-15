@@ -16,8 +16,8 @@
       :passQueryParameters="true"
       :hooks="hooks"
       :lazy-load="true"
-      :mwheel="true"
-      :focus="false"
+      :mwheel="krpanoSetting.mwheel"
+      :focus="krpanoSetting.focus"
       @panoCreated="krpanoInit">
       <!--focus=false: avoid when krpano loaded, will auto scroll and focus on the iframe-->
     </krpano>
@@ -139,10 +139,10 @@ export default {
       'isVrMode',
       'krpanoEl',
       'krpanoLookAtH',
-      'krpanoXmlPlugins',
       'krpanoXOffset',
       'logoSize',
-      'panoramas'
+      'panoramas',
+      'krpanoSetting'
     ]),
 
     krpanoXml () {

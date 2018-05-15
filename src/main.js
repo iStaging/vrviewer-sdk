@@ -41,7 +41,7 @@ class VRViewer {
   }
 
   initConfig (config) {
-
+    store.dispatch('importSetting', config.setting)
   }
 
   onTogglePanoramasList () {
@@ -59,7 +59,13 @@ vrViewer.init({
   el: '#vrviewer-sdk',
   lang: 'zh-cn',
   panoCollection: fakeBuilding,
-  panoramas: fakePanoramas
+  panoramas: fakePanoramas,
+  setting: {
+    krpanoSetting: {
+      mwheel: true,
+      focus: false
+    }
+  }
 })
 
 document.getElementById('switch-panorama-list').onclick = vrViewer.onTogglePanoramasList

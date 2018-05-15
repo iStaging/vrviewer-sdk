@@ -12,6 +12,7 @@ import mobileMenu from './modules/mobile-menu'
 import panoramas from './modules/data/panoramas'
 import panoramasList from './modules/panoramas-list'
 import popup from './modules/popup'
+import settings from './modules/data/settings'
 import share from './modules/share'
 import profile from './modules/profile'
 import progress from './modules/progress'
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
     panoramas,
     panoramasList,
     popup,
+    settings,
     share,
     profile,
     progress,
