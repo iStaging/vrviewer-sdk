@@ -1,5 +1,5 @@
 export default class PanoCollectionsHandler {
-  static afterFetchProfileHandler ({ dispatch, panoCollection, panoCollectionId }) {
+  static afterFetchPanoCollectionHandler ({ dispatch, panoCollection, panoCollectionId }) {
     dispatch('fetchPanoramas', panoCollectionId)
   }
 

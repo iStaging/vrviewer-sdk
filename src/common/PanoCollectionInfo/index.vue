@@ -1,5 +1,5 @@
 <docs>
-  Top left's user profile, and group or live tour title name
+  Top left's pano collection info
 </docs>
 
 <template>
