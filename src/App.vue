@@ -86,7 +86,7 @@ export default {
       }
 
       a {
-        color: $pink-color
+        color: $main-color
         text-decoration: none
         display: inline-block
         padding: 0 3px
