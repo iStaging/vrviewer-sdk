@@ -35,7 +35,6 @@ export const CATEGORIES = [{
   value: 'custom',
   text: 'categories.custom'
 }]
-export const AUTO_START_ROTATE_TIMER = 20000
 export const POPUP = {
   WIDTH: 800,
   HEIGHT: 600,
@@ -50,3 +49,22 @@ export const COMPANY = {
   ETWARM: 'etwarm'
 }
 export const DEFAULT_LOGO_SIZE = 60
+export const DEFAULT_SETTING = {
+  autoRotateSetting: {
+    active: true,
+    revert: false,
+    rotateDuration: 200000,
+    restartTime: 20000
+  },
+  gyroSetting: {
+    active: false
+  },
+  krpanoSetting: {
+    mwheel: true,
+    focus: false
+  },
+  tripodSetting: {
+    image: 'http://i.imgur.com/xNNfJiP.jpg',
+    size: 100
+  }
+}

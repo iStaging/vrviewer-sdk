@@ -1,14 +1,14 @@
+import { DEFAULT_SETTING } from '@/api/constants'
+
 const state = {
-  setting: {
-    krpanoSetting: {
-      mwheel: true,
-      focus: false
-    }
-  }
+  setting: DEFAULT_SETTING
 }
 
 export const getters = {
-  krpanoSetting: state => state.setting.krpanoSetting
+  autoRotateSetting: state => state.setting.autoRotateSetting,
+  gyroSetting: state => state.setting.gyroSetting,
+  krpanoSetting: state => state.setting.krpanoSetting,
+  tripodSetting: state => state.setting.tripodSetting
 }
 
 export const actions = {

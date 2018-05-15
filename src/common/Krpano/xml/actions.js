@@ -1,11 +1,7 @@
 import { markerAlpha } from './common'
 import { getIEVersion } from '@/api/utils'
 
-const getActionsXml = function (startIndex = 0, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj) {
-  const autoRotateSettings = {
-    revert: false,
-    rotateDuration: 200000
-  }
+const getActionsXml = function (autoRotateSetting, startIndex = 0, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj) {
   return `<action name="startup">
   ${(() => {
     return process.env.NODE_ENV === 'development'
@@ -52,10 +48,10 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 <!-- start auto rotate -->
   ${(() => {
     let direction = '-'
-    if (autoRotateSettings.revert) {
+    if (autoRotateSetting.revert) {
       direction = '+'
     }
-    return `tween(view.hlookat, calc(view.hlookat ${direction} 360), ${autoRotateSettings.rotateDuration / 1000}, linear, auto_rotate());`
+    return `tween(view.hlookat, calc(view.hlookat ${direction} 360), ${autoRotateSetting.rotateDuration / 1000}, linear, auto_rotate());`
   })()}
 </action>
 

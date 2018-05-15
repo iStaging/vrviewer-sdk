@@ -142,7 +142,8 @@ export default {
       'krpanoXOffset',
       'logoSize',
       'panoramas',
-      'krpanoSetting'
+      'krpanoSetting',
+      'autoRotateSetting'
     ]),
 
     krpanoXml () {
@@ -153,7 +154,7 @@ export default {
       const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov, vrThumbAth, vrThumbWidth } = this
       const stylesXml = getStylesXml(panoramas, vrThumbAth, vrThumbWidth)
       const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaCategoryName, defaultFov)
-      const actionsXml = getActionsXml(startIndex, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj)
+      const actionsXml = getActionsXml(this.autoRotateSetting, startIndex, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj)
       const logoTripodXml = getLogoTripodXml(this.logoTripod, this.logoSize, this.panoramas[0].isTopLogo)
       const xml = `<krpano onstart="startup();">
       ${webVRXml}

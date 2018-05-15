@@ -11,6 +11,7 @@ import App from '@/App.vue'
 //   includes
 // } from '@/assets/js/utils'
 import { fakePanoCollection, fakePanoramas } from '@/api/resources'
+import { DEFAULT_SETTING } from '@/api/constants'
 
 // Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
@@ -60,12 +61,7 @@ vrViewer.init({
   lang: 'zh-cn',
   panoCollection: fakePanoCollection,
   panoramas: fakePanoramas,
-  setting: {
-    krpanoSetting: {
-      mwheel: true,
-      focus: false
-    }
-  }
+  setting: DEFAULT_SETTING
 })
 
 document.getElementById('switch-panorama-list').onclick = vrViewer.onTogglePanoramasList

@@ -2,9 +2,6 @@ import {
   isIframe,
   isIOS
 } from '@/api/utils'
-import {
-  AUTO_START_ROTATE_TIMER
-} from '@/api/constants'
 
 const state = {
   krpanoEl: null,
@@ -44,7 +41,7 @@ export const actions = {
   },
 
   startAutoRotate ({ commit, state, rootState }) {
-    if (process.env.AUTO_ROTATE && rootState.route.query.autorotate !== 'false') {
+    if (rootState.setting.setting.autoRotateSetting.active) {
       if (state.krpanoCamera.isCameraRotating === false &&
         state.krpanoEl &&
         !state.isGyroFromIframe) {
@@ -54,8 +51,8 @@ export const actions = {
     }
   },
 
-  stopAutoRotate ({ dispatch, commit, state, rootState }, { shouldAutoStartRotate = false, duration = AUTO_START_ROTATE_TIMER, stopMethod = '' }) {
-    if (process.env.AUTO_ROTATE) {
+  stopAutoRotate ({ dispatch, commit, state, rootState }, { shouldAutoStartRotate = false, duration = rootState.setting.setting.autoRotateSetting.restartTime, stopMethod = '' }) {
+    if (rootState.setting.setting.autoRotateSetting.active) {
       if (state.krpanoCamera.isCameraRotating === true) {
         state.krpanoEl.call(`stop_auto_rotate();`)
         commit('SET_CAMERA_ROTATING', false)
@@ -162,18 +159,14 @@ export const mutations = {
   },
 
   SET_CAMERA_ROTATING (state, bool = false) {
-    if (process.env.AUTO_ROTATE) {
-      if (state.krpanoCamera) {
-        state.krpanoCamera.isCameraRotating = bool
-      }
+    if (state.krpanoCamera) {
+      state.krpanoCamera.isCameraRotating = bool
     }
   },
 
   SET_AUTO_START_ROTATE_TIMER (state, timer = null) {
-    if (process.env.AUTO_ROTATE) {
-      if (state.krpanoCamera) {
-        state.krpanoCamera.autoStartRotateTimer = timer
-      }
+    if (state.krpanoCamera) {
+      state.krpanoCamera.autoStartRotateTimer = timer
     }
   },
 
