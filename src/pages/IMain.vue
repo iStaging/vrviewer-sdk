@@ -59,7 +59,7 @@
 
     <!--share-->
     <viewer-layer
-      v-if="!hideUISetting.hideShare"
+      v-if="shareSetting.shareUrl"
       v-show="shouldViewerLayerShow && isShareReady"
       class="bounce-in"
       :class="{ 'bounce-in-active': isShareActive }"
@@ -72,6 +72,13 @@
       <div class="viewer-layer-container">
         <div class="share-container">
           <qr-code :url="shareUrl.qrcode"></qr-code>
+        </div>
+        <div class="share-text">
+          <a
+            :href="shareSetting.shareUrl"
+            target="_blank">
+            {{ shareSetting.shareUrl }}
+          </a>
         </div>
       </div>
     </viewer-layer>
@@ -229,13 +236,14 @@ export default {
       'popupUrl',
       'shareUrl',
       'gyroSetting',
-      'hideUISetting'
+      'hideUISetting',
+      'shareSetting'
     ]),
 
     useResizeAndDraggable () {
-      if (process.env.USE_FLOORPLAN_DRAG_AND_RESIZE) {
-        return !isMobile()
-      }
+      // if (process.env.USE_FLOORPLAN_DRAG_AND_RESIZE) {
+      return !isMobile()
+      // }
     },
 
     shouldViewerLayerShow () {
@@ -435,8 +443,18 @@ export default {
 .share-container {
   @extend .flex-center-column
   position: relative
-  width: 240px
   margin: 18px auto 0
+}
+
+.share-container,
+.share-text {
+  width: 260px
+}
+
+.share-text {
+  margin-top: 15px
+  margin-left: auto
+  margin-right: auto
 }
 
 .floorplan-self {
@@ -493,8 +511,7 @@ export default {
   .share-container {
     display: flex
     flex-direction: row
-    width: auto
-    margin-top: 41px
+    margin-top: 30px
 
     .share-list {
       margin-left: $i-main-share-container-share-list-margin

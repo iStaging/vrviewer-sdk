@@ -9,7 +9,8 @@ export const getters = {
   gyroSetting: state => state.setting.gyroSetting,
   krpanoSetting: state => state.setting.krpanoSetting,
   tripodSetting: state => state.setting.tripodSetting,
-  hideUISetting: state => state.setting.hideUISetting
+  hideUISetting: state => state.setting.hideUISetting,
+  shareSetting: state => state.setting.shareSetting
 }
 
 export const actions = {
@@ -34,6 +35,9 @@ export const mutations = {
     }
     if (setting.hideUISetting) {
       state.setting.hideUISetting = setting.hideUISetting
+    }
+    if (setting.shareSetting) {
+      state.setting.shareSetting = setting.shareSetting
     }
   }
 }

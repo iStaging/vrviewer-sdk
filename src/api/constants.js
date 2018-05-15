@@ -61,11 +61,13 @@ export const DEFAULT_SETTING = {
     size: DEFAULT_LOGO_SIZE
   },
   hideUISetting: {
-    hideCollectionInfo: true,
-    hidePanoramaList: true,
-    hideFloorplan: true,
-    hideMarkerInfo: true,
-    hideShare: true,
-    hideMenu: true
+    hideCollectionInfo: false,
+    hidePanoramaList: false,
+    hideFloorplan: false,
+    hideFullscreen: false,
+    hideMarkerInfo: false
+  },
+  shareSetting: {
+    shareUrl: 'https://www.istaging.com/'
   }
 }

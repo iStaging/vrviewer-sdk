@@ -22,7 +22,7 @@
     <template v-else-if="isAppReady">
       <i-header v-if="!hideUISetting.hideCollectionInfo"></i-header>
       <i-main></i-main>
-      <i-aside v-if="!hideUISetting.hideMenu"></i-aside>
+      <i-aside></i-aside>
       <i-footer></i-footer>
     </template>
     <loading></loading>

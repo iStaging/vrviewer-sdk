@@ -161,7 +161,8 @@ export default {
       'isPanoramasListActive',
       'isShareActive',
       'isVrMode',
-      'hideUISetting'
+      'hideUISetting',
+      'shareSetting'
     ]),
 
     canDeviceSupportGyro () {
@@ -171,103 +172,128 @@ export default {
     },
 
     navMobileOuterList () {
-      return [{
-        name: 'showMobileMenu',
-        method: () => {
-          this.showMobileMenu()
-        }
-      }, {
-        name: 'gyro',
-        hidden: !this.canDeviceSupportGyro,
-        isActive: this.isGyroEnabled,
-        method: () => {
-          this.toggleGyro()
-        }
-      }, {
-        name: 'share',
-        hidden: this.hideUISetting.hideShare,
-        isActive: this.isShareActive,
-        method: () => {
-          this.toggleShare()
-        }
-      }, {
-        name: 'floorplan',
-        hidden: !(!this.hideUISetting.hideFloorplan && (this.floorplan && this.floorplan !== 'none')),
-        isActive: this.isFloorplanActive,
-        method: () => {
-          this.toggleFloorplan()
-          this.closePanoramasList()
-        }
-      }, {
-        name: 'panoSelect',
-        hidden: this.hideUISetting.hidePanoramaList,
-        isActive: this.isPanoramasListActive,
-        method: () => {
-          this.togglePanoramasList()
-          this.closeFloorplan()
-        }
-      }]
+      let list = []
+      if (this.navMobileInnerList.length > 0) {
+        list.push({
+          name: 'showMobileMenu',
+          method: () => {
+            this.showMobileMenu()
+          }
+        })
+      }
+      if (this.canDeviceSupportGyro) {
+        list.push({
+          name: 'gyro',
+          hidden: !this.canDeviceSupportGyro,
+          isActive: this.isGyroEnabled,
+          method: () => {
+            this.toggleGyro()
+          }
+        })
+      }
+      if (this.shareSetting.shareUrl) {
+        list.push({
+          name: 'share',
+          isActive: this.isShareActive,
+          method: () => {
+            this.toggleShare()
+          }
+        })
+      }
+      if (!this.hideUISetting.hideFloorplan && (this.floorplan && this.floorplan !== 'none')) {
+        list.push({
+          name: 'floorplan',
+          isActive: this.isFloorplanActive,
+          method: () => {
+            this.toggleFloorplan()
+            this.closePanoramasList()
+          }
+        })
+      }
+      if (!this.hideUISetting.hidePanoramaList) {
+        list.push({
+          name: 'panoSelect',
+          isActive: this.isPanoramasListActive,
+          method: () => {
+            this.togglePanoramasList()
+            this.closeFloorplan()
+          }
+        })
+      }
+      return list
     },
 
     navMobileInnerList () {
-      let list = [{
-        name: 'vrmode',
-        caption: this.$t('vrmode'),
-        hidden: !this.canDeviceSupportGyro,
-        isActive: this.isVrMode,
-        method: () => {
-          this.closeMobileMenu()
-          this.enterVrMode()
-        }
-      }, {
-        name: 'fullscreen',
-        caption: this.$t('fullscreen'),
-        hidden: isIframe() && isMobile() && isIOS(),
-        isActive: this.isFullscreen,
-        method: () => {
-          this.closeMobileMenu()
-          this.enterFullscreen()
-        }
-      }]
+      let list = []
+      if (this.canDeviceSupportGyro) {
+        list.push({
+          name: 'vrmode',
+          caption: this.$t('vrmode'),
+          isActive: this.isVrMode,
+          method: () => {
+            this.closeMobileMenu()
+            this.enterVrMode()
+          }
+        })
+      }
+      if (!(this.hideUISetting.hideFullscreen || (isIframe() && isMobile() && isIOS()))) {
+        list.push({
+          name: 'fullscreen',
+          caption: this.$t('fullscreen'),
+          isActive: this.isFullscreen,
+          method: () => {
+            this.closeMobileMenu()
+            this.enterFullscreen()
+          }
+        })
+      }
       return list
     },
 
     navPcList () {
-      let list = [{
-        name: 'panoSelect',
-        caption: this.$t('panoSelect'),
-        hidden: this.hideUISetting.hidePanoramaList,
-        isActive: this.isPanoramasListActive,
-        method: () => {
-          this.togglePanoramasList()
-        }
-      }, {
-        name: 'floorplan',
-        caption: this.$t('floorplan'),
-        hidden: !(!this.hideUISetting.hideFloorplan && (this.floorplan && this.floorplan !== 'none')),
-        isActive: this.isFloorplanActive,
-        method: () => {
-          this.toggleFloorplan()
-        }
-      }, {
-        name: 'share',
-        caption: this.$t('share'),
-        hidden: this.hideUISetting.hideShare,
-        isActive: this.isShareActive,
-        method: () => {
-          this.toggleShare()
-          this.closeMarkerInfo()
-        }
-      }, {
-        name: 'fullscreen',
-        caption: this.$t('fullscreen'),
-        hidden: isIframe() && isMobile() && isIOS(),
-        isActive: this.isFullscreen,
-        method: () => {
-          this.closeMobileMenu()
-          this.enterFullscreen()
-        }
-      }]
+      let list = []
+      if (!this.hideUISetting.hidePanoramaList) {
+        list.push({
+          name: 'panoSelect',
+          caption: this.$t('panoSelect'),
+          isActive: this.isPanoramasListActive,
+          method: () => {
+            this.togglePanoramasList()
+          }
+        })
+      }
+      if (!this.hideUISetting.hideFloorplan && (this.floorplan && this.floorplan !== 'none')) {
+        list.push({
+          name: 'floorplan',
+          caption: this.$t('floorplan'),
+          isActive: this.isFloorplanActive,
+          method: () => {
+            this.toggleFloorplan()
+          }
+        })
+      }
+      if (this.shareSetting.shareUrl) {
+        list.push({
+          name: 'share',
+          caption: this.$t('share'),
+          isActive: this.isShareActive,
+          method: () => {
+            this.toggleShare()
+            this.closeMarkerInfo()
+          }
+        })
+      }
+      if (!(this.hideUISetting.hideFullscreen || (isIframe() && isMobile() && isIOS()))) {
+        list.push({
+          name: 'fullscreen',
+          caption: this.$t('fullscreen'),
+          isActive: this.isFullscreen,
+          method: () => {
+            this.closeMobileMenu()
+            this.enterFullscreen()
+          }
+        })
+      }
       return list
     }
   },
