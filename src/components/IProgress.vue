@@ -103,7 +103,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     .i-progress-inner {
       transform-origin: $i-progress-i-progress-inner-transform-origin-rtl
