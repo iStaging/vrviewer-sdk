@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import IFooter from '@/pages/Default/IFooter.vue'
+import IFooter from '@/pages/IFooter.vue'
 import store from '@/store'
 const cmp = mount(IFooter, {
   store

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import IAside from '@/pages/Default/IAside'
-import INav from '@/pages/Default/INav'
+import IAside from '@/pages/IAside'
+import INav from '@/pages/INav'
 import Icon from '@/components/Icon'
 import store from '@/store'
 import { i18n } from '@/main'

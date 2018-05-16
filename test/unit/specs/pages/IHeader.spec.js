@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import IHeader from '@/pages/Default/IHeader'
+import IHeader from '@/pages/IHeader'
 import Profile from '@/common/Profile/index'
 import Social from '@/common/Social/index'
 import store from '@/store'

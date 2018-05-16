@@ -82,7 +82,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
 
   it('啟動中的點顏色可自訂', () => {
     const activatedColor = 'rgb(171, 205, 239)'
-    cmp = mount(MarkerInfo, {
+    cmp = mount(FloorplanDots, {
       store,
       propsData: {
         activatedColor
@@ -104,7 +104,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
     const ratioW = 1.3
     const floorplanRatioX = 1.1
     const xOffset = 50
-    cmp = mount(MarkerInfo, {
+    cmp = mount(FloorplanDots, {
       store,
       propsData: {
         ratioW,
@@ -122,7 +122,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
     const ratioH = 1.2
     const floorplanRatioY = 1.5
     const yOffset = -30
-    cmp = mount(MarkerInfo, {
+    cmp = mount(FloorplanDots, {
       store,
       propsData: {
         ratioH,
