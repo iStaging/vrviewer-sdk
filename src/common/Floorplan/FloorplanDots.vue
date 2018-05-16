@@ -7,7 +7,7 @@
         'active': hoveredPanorama.panoramaId === panorama.panoramaId
       }"
       :style="{
-        transform: pointPosition(panorama)
+        '-webkit-transform': pointPosition(panorama)
       }"
       @mouseenter="setHoveredPanorama(panorama)"
       @mouseleave="setHoveredPanorama({})"
@@ -17,7 +17,7 @@
       v-if="currentPanorama.position"
       class="floorplan-activated-point"
       :style="{
-        transform: pointPosition(currentPanorama),
+        '-webkit-transform': pointPosition(currentPanorama),
         backgroundColor: activatedColor
       }">
     </span>

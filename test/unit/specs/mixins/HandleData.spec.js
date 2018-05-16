@@ -10,34 +10,34 @@ describe('HandleData.vue mixin - formatDate():', () => {
     const date2 = '2017/07/07'
     const date3 = '2017-07-07'
     const result = '2017/07/07'
-    expect(vm.formatDate(date1)).to.equal(result)
-    expect(vm.formatDate(date2)).to.equal(result)
-    expect(vm.formatDate(date3)).to.equal(result)
+    expect(vm.formatDate(date1)).toEqual(result)
+    expect(vm.formatDate(date2)).toEqual(result)
+    expect(vm.formatDate(date3)).toEqual(result)
   })
   it('should accept new Date() string value and return YYYY/MM/DD format', () => {
     const date = new Date('2017/07/07')
     const result = '2017/07/07'
-    expect(vm.formatDate(date)).to.equal(result)
+    expect(vm.formatDate(date)).toEqual(result)
   })
   it('should accept timestamp and return YYYY/MM/DD format', () => {
     const date = new Date('2017/07/07').getTime()
     const result = '2017/07/07'
-    expect(vm.formatDate(date)).to.equal(result)
+    expect(vm.formatDate(date)).toEqual(result)
   })
 })
 
 describe('HandleData.vue mixin - isEmpty():', () => {
   it('should return true with empty string', () => {
     const emptyString = ''
-    expect(vm.isEmpty(emptyString)).to.equal(true)
+    expect(vm.isEmpty(emptyString)).toEqual(true)
   })
   it('should return true with empty array', () => {
     const emptyArray = []
-    expect(vm.isEmpty(emptyArray)).to.equal(true)
+    expect(vm.isEmpty(emptyArray)).toEqual(true)
   })
   it('should return true with empty object', () => {
     const emptyObject = {}
-    expect(vm.isEmpty(emptyObject)).to.equal(true)
+    expect(vm.isEmpty(emptyObject)).toEqual(true)
   })
 })
 
@@ -46,24 +46,24 @@ describe('HandleData.vue mixin - generateUpgradePlan():', () => {
     const basicUser = {
       plan: 'Basic'
     }
-    expect(vm.generateUpgradePlan(basicUser)).to.equal('pro')
+    expect(vm.generateUpgradePlan(basicUser)).toEqual('pro')
   })
   it('should pro user return upgrade plan to advanced plan', () => {
     const proUser = {
       plan: 'Pro'
     }
-    expect(vm.generateUpgradePlan(proUser)).to.equal('advanced')
+    expect(vm.generateUpgradePlan(proUser)).toEqual('advanced')
   })
   it('should advanced user return upgrade plan to premium plan', () => {
     const advancedUser = {
       plan: 'Advanced'
     }
-    expect(vm.generateUpgradePlan(advancedUser)).to.equal('premium')
+    expect(vm.generateUpgradePlan(advancedUser)).toEqual('premium')
   })
   it('should premium user return upgrade plan to nothing', () => {
     const premiumUser = {
       plan: 'Premium'
     }
-    expect(vm.generateUpgradePlan(premiumUser)).to.equal('')
+    expect(vm.generateUpgradePlan(premiumUser)).toEqual('')
   })
 })

@@ -27,13 +27,12 @@ class VRViewer {
     })
     this.initData(config)
     this.initConfig(config)
-    const app = new Vue({
+    new Vue({
       el: config.el,
       store,
       i18n,
       render: h => h(App)
     }).$mount(config.el)
-    console.log('vrviewer app:', app)
   }
 
   initData (config) {

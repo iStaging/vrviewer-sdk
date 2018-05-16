@@ -6,9 +6,9 @@ const server = {}
 server.backendUrl = process.env.BACKEND_URL
 server.viewerUrl = process.env.VIEWER_URL
 server.portalUrl = process.env.PORTAL_URL
-for (let item in process.env) {
-  console.log(`${item}:`, process.env[item])
-}
+// for (let item in process.env) {
+//   console.log(`${item}:`, process.env[item])
+// }
 server.usServers = ['devus', 'testus', 'produs']
 server.prodServers = ['prod', 'produs']
 
