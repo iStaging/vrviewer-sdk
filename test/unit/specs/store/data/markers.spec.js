@@ -1,6 +1,5 @@
 import { getters, mutations } from '@/store/modules/data/markers'
 import { testAction } from '../../App.spec'
-import { isEqual } from '../../../../../src/api/utils'
 const actionsInjector = require('inject-loader!@/store/modules/data/markers') // eslint-disable-line
 const {
   currentMarker
@@ -16,6 +15,34 @@ const markerData = {
   Owner: userId
 }
 const { actions } = actionsInjector({
+  'firebase': {
+    database () {
+      return {
+        ref (ref = '') {
+          return {
+            orderByChild () {
+              return this
+            },
+            equalTo () {
+              return this
+            },
+            once (value, cb) {
+              const snapshot = {
+                val () {
+                  return {
+                    keyId: {
+                      data: markerData
+                    }
+                  }
+                }
+              }
+              return cb.bind(this)(snapshot)
+            }
+          }
+        }
+      }
+    }
+  }
 })
 
 describe('store/modules/data/markers', () => {
@@ -24,11 +51,14 @@ describe('store/modules/data/markers', () => {
       currentMarker: {}
     }
     const result = currentMarker(state, { currentMarker })
-    expect(isEqual(result, {})).toBe(true)
+    expect(result).to.deep.equal({})
   })
 
   it('fetchMarkers', done => {
-    testAction(actions.fetchMarkers, { objectId: 'panoramaId' }, {}, [], [{
+    testAction(actions.fetchMarkers, { objectId: 'panoramaId' }, {}, [{
+      type: 'SET_MARKER',
+      payload: {}
+    }], [{
       type: 'addProgressCount',
       payload: 1
     }], done)
@@ -46,6 +76,7 @@ describe('store/modules/data/markers', () => {
       currentMarker: {}
     }
     SET_MARKER(state, { objectId: 'abc' })
-    expect(isEqual(state.currentMarker, { objectId: 'abc' })).toBe(true)
+    expect(state.currentMarker)
+      .to.deep.equal({ objectId: 'abc' })
   })
 })

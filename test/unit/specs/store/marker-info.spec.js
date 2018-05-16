@@ -1,6 +1,5 @@
 import { getters, actions, mutations } from '@/store/modules/marker-info'
 import { testAction } from '../App.spec'
-import { isEqual } from '../../../../src/api/utils'
 const {
   isMarkerInfoActive,
   markerInfoData
@@ -22,7 +21,7 @@ describe('store/modules/marker-info', () => {
       isMarkerInfoActive: false
     }
     const result = isMarkerInfoActive(state, { isMarkerInfoActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('markerInfoData', () => {
@@ -33,7 +32,7 @@ describe('store/modules/marker-info', () => {
       markerInfoData: marker
     }
     const result = markerInfoData(state, { markerInfoData })
-    expect(result).toEqual(marker)
+    expect(result).to.equal(marker)
   })
 
   it('showMarkerInfo', done => {
@@ -81,7 +80,7 @@ describe('store/modules/marker-info', () => {
     }
     SET_MARKER_INFO_ACTIVE(state, true)
     expect(state.isMarkerInfoActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 
   it('SET_MARKER_INFO_DATA', () => {
@@ -92,6 +91,7 @@ describe('store/modules/marker-info', () => {
       markerInfoData: marker
     }
     SET_MARKER_INFO_DATA(state, marker)
-    expect(isEqual(state.markerInfoData, marker)).toBe(true)
+    expect(state.markerInfoData)
+      .to.deep.equal(marker)
   })
 })

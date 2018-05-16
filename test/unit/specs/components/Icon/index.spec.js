@@ -1,95 +1,95 @@
-import { mount } from '@vue/test-utils'
+import Vue from 'vue'
 import Icon from '@/components/Icon/index.vue'
 import { loadImage } from '../../../../../src/api/utils'
+const Constructor = Vue.extend(Icon)
 const image = '/images/120x120.png'
 
 describe('components/Icon/index.vue', () => {
   it('應該要有 className icon', () => {
-    const cmp = mount(Icon)
-    expect(Array.prototype.slice.call(cmp.vm.$el.classList))
-      .toContain('icon')
+    const vm = new Constructor().$mount()
+    expect(Array.prototype.slice.call(vm.$el.classList))
+      .to.include('icon')
   })
 
   it('應該要有 className photo-lazyload 如果參數 hasLazyload 為 true', () => {
     const className = 'photo-lazyload'
-    const cmp = mount(Icon, {
+    const vm = new Constructor({
       propsData: {
         hasLazyload: true
       }
-    })
-    expect(Array.prototype.slice.call(cmp.vm.$el.classList))
-      .toContain(className)
+    }).$mount()
+    expect(Array.prototype.slice.call(vm.$el.classList))
+      .to.include(className)
   })
 
   it('如果有傳入 image，style 應該要有 backgroundImage', function (done) {
-    jest.setTimeout(15000)
-    const cmp = mount(Icon, {
+    this.timeout(15000)
+    const vm = new Constructor({
       propsData: {
         image
       }
-    })
-    const dataSrc = cmp.vm.dataSrc
+    }).$mount()
+    const dataSrc = vm.dataSrc
     expect(dataSrc)
-      .toEqual(image)
+      .to.equal(image)
     window.setTimeout(() => {
       loadImage(image, () => {
-        const backgroundImage = cmp.vm.$el.style.backgroundImage
+        const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage.indexOf(image))
-          .not.toEqual(-1)
-        const dataSrc = cmp.vm.$el.getAttribute('data-src')
+          .not.to.equal(-1)
+        const dataSrc = vm.$el.getAttribute('data-src')
         expect(dataSrc)
-          .toEqual('')
+          .to.equal('')
         done()
       }, () => {}, () => {
         console.log('load image error')
-        const backgroundImage = cmp.vm.$el.style.backgroundImage
+        const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage.indexOf(image))
-          .toEqual(-1)
+          .to.equal(-1)
         done()
       })
     }, 500)
   })
 
   it('若沒有傳入 image，style backgroundImage 應該沒有值', function (done) {
-    jest.setTimeout(5000)
+    this.timeout(5000)
     const image = ''
-    const cmp = mount(Icon, {
+    const vm = new Constructor({
       propsData: {
         image
       }
-    })
-    cmp.vm.loadImage()
-    const backgroundImage = cmp.vm.$el.style.backgroundImage
-    const dataSrc = cmp.vm.$el.getAttribute('data-src')
+    }).$mount()
+    vm.loadImage()
+    const backgroundImage = vm.$el.style.backgroundImage
+    const dataSrc = vm.$el.getAttribute('data-src')
     expect(backgroundImage)
-      .toEqual('')
+      .to.equal('')
     expect(dataSrc)
-      .toEqual('')
+      .to.equal('')
     done()
   })
 
   it('應該要監聽 image 如果有任何改變', function (done) {
-    jest.setTimeout(15000)
-    const cmp = mount(Icon, {
+    this.timeout(15000)
+    const vm = new Constructor({
       propsData: {
         image
       }
-    })
-    cmp.vm.loadImage()
-    const dataSrc = cmp.vm.dataSrc
+    }).$mount()
+    vm.loadImage()
+    const dataSrc = vm.dataSrc
     expect(dataSrc)
-      .toEqual(image)
+      .to.equal(image)
 
     const watchHandler = () => {
-      cmp.vm.image = ''
-      cmp.vm._watcher.run()
+      vm.image = ''
       window.setTimeout(() => {
-        const backgroundImage = cmp.vm.$el.style.backgroundImage
+        const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage)
-          .toEqual('')
-        const dataSrc = cmp.vm.$el.getAttribute('data-src')
+          .to.equal('')
+        const dataSrc = vm.$el.getAttribute('data-src')
         expect(dataSrc)
-          .toEqual('')
+          .to.equal('')
         // console.log('get here')
         done()
       }, 500)
@@ -97,25 +97,25 @@ describe('components/Icon/index.vue', () => {
 
     window.setTimeout(() => {
       loadImage(image, () => {
-        const backgroundImage = cmp.vm.$el.style.backgroundImage
+        const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage.indexOf(image))
-          .not.toEqual(-1)
-        const dataSrc = cmp.vm.$el.getAttribute('data-src')
+          .not.to.equal(-1)
+        const dataSrc = vm.$el.getAttribute('data-src')
         expect(dataSrc)
-          .toEqual('')
+          .to.equal('')
         watchHandler()
       })
     }, 500)
   })
 
   // it('should slot be rendered', () => {
-  //   const cmp = mount(Icon, {
+  //   const vm = new Constructor({
   //     slots: () => {
   //       return '<p>Hello</p>'
   //     }
-  //   })
-  //   console.log(cmp.vm.$slots)
-  //   console.log(cmp.vm.$el)
-  //   expect(cmp.vm.$el).to.have.html('<p>Hello</p>')
+  //   }).$mount()
+  //   console.log(vm.$slots)
+  //   console.log(vm.$el)
+  //   expect(vm.$el).to.have.html('<p>Hello</p>')
   // })
 })

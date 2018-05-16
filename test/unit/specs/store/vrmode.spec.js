@@ -17,7 +17,7 @@ describe('store/modules/vrmode', () => {
       isVrMode: false
     }
     const result = isVrMode(state, { isVrMode })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('enterVrMode', done => {
@@ -44,6 +44,6 @@ describe('store/modules/vrmode', () => {
     }
     SET_VR_MODE(state, true)
     expect(state.isVrMode)
-      .toEqual(true)
+      .to.equal(true)
   })
 })

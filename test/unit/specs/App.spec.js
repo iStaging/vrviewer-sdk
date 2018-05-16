@@ -1,6 +1,16 @@
 // import App from '@/App.vue'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+import VueI18n from 'vue-i18n'
 import store from '@/store'
-import { isEqual } from '../../../src/api/utils'
+import router from '@/router'
+import { sync } from 'vuex-router-sync'
+const unsync = sync(store, router)
+Vue.use(VueRouter)
+Vue.use(VueResource)
+Vue.use(VueI18n)
+unsync()
 // describe('App.vue', () => {
 // })
 
@@ -17,9 +27,9 @@ export const testAction = async (action, payload, state = {}, expectedMutations 
     // console.log('payload', payload)
     // console.log('type', type)
     try {
-      expect(mutation.type).toEqual(type)
+      expect(mutation.type).to.equal(type)
       if (payload !== undefined) {
-        expect(isEqual(mutation.payload, payload)).toBe(true)
+        expect(mutation.payload).to.deep.equal(payload)
       }
     } catch (error) {
       done(error)
@@ -37,9 +47,9 @@ export const testAction = async (action, payload, state = {}, expectedMutations 
     // console.log('payload', payload)
     // console.log('type', type)
     try {
-      expect(dispatch.type).toEqual(type)
+      expect(dispatch.type).to.equal(type)
       if (payload !== undefined) {
-        expect(isEqual(dispatch.payload, payload)).toBe(true)
+        expect(dispatch.payload).to.deep.equal(payload)
       }
     } catch (error) {
       done(error)
@@ -60,7 +70,7 @@ export const testAction = async (action, payload, state = {}, expectedMutations 
 
   // check if no mutations should have been dispatched
   if (expectedMutations.length === 0 && expectedDispatches.length === 0) {
-    expect(mutationsCount + dispatchesCount).toEqual(0)
+    expect(mutationsCount + dispatchesCount).to.equal(0)
     done()
   }
 }

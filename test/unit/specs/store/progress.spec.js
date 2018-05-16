@@ -25,7 +25,7 @@ describe('store/modules/progress', () => {
       isProgressActive: false
     }
     const result = isProgressActive(state, { isProgressActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('progressValue', () => {
@@ -33,7 +33,7 @@ describe('store/modules/progress', () => {
       progressValue: 10
     }
     const result = progressValue(state, { progressValue })
-    expect(result).toEqual(10)
+    expect(result).to.equal(10)
   })
 
   it('progressMax', () => {
@@ -41,7 +41,7 @@ describe('store/modules/progress', () => {
       progressMax: 25
     }
     const result = progressMax(state, { progressMax })
-    expect(result).toEqual(25)
+    expect(result).to.equal(25)
   })
 
   it('showProgress', done => {
@@ -98,7 +98,7 @@ describe('store/modules/progress', () => {
     }
     SET_PROGRESS_ACTIVE(state, true)
     expect(state.isProgressActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 
   it('ADD_PROGRESS_COUNT', () => {
@@ -107,7 +107,7 @@ describe('store/modules/progress', () => {
     }
     ADD_PROGRESS_COUNT(state, 3)
     expect(state.progressValue)
-      .toEqual(10 + 3)
+      .to.equal(10 + 3)
   })
 
   it('SET_PROGRESS_COUNT', () => {
@@ -116,7 +116,7 @@ describe('store/modules/progress', () => {
     }
     SET_PROGRESS_COUNT(state, 7)
     expect(state.progressValue)
-      .toEqual(7)
+      .to.equal(7)
   })
 
   it('SET_PROGRESS_MAX', () => {
@@ -125,6 +125,6 @@ describe('store/modules/progress', () => {
     }
     SET_PROGRESS_MAX(state, 60)
     expect(state.progressMax)
-      .toEqual(60)
+      .to.equal(60)
   })
 })

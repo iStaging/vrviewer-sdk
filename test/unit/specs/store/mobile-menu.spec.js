@@ -17,7 +17,7 @@ describe('store/modules/mobile-menu', () => {
       isMobileMenuActive: false
     }
     const result = isMobileMenuActive(state, { isMobileMenuActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('showMobileMenu', done => {
@@ -44,6 +44,6 @@ describe('store/modules/mobile-menu', () => {
     }
     SET_MOBILE_MENU_ACTIVE(state, true)
     expect(state.isMobileMenuActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 })

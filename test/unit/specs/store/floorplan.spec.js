@@ -18,7 +18,7 @@ describe('store/modules/floorplan', () => {
       isFloorplanActive: false
     }
     const result = isFloorplanActive(state, { isFloorplanActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('showFloorplan', done => {
@@ -54,6 +54,6 @@ describe('store/modules/floorplan', () => {
     }
     SET_FLOORPLAN_ACTIVE(state, true)
     expect(state.isFloorplanActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 })

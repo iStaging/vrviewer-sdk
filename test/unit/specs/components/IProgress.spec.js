@@ -1,5 +1,6 @@
-import { mount } from '@vue/test-utils'
+import Vue from 'vue'
 import IProgress from '@/components/IProgress'
+const Constructor = Vue.extend(IProgress)
 
 const value = 15
 const max = 60
@@ -18,69 +19,65 @@ function cutHex (h) {
 }
 describe('components/IProgress/index.vue', () => {
   it('應該要有 className i-progress', () => {
-    const cmp = mount(IProgress)
-    expect(Array.prototype.slice.call(cmp.vm.$el.classList))
-      .toContain('i-progress')
+    const vm = new Constructor().$mount()
+    expect(Array.prototype.slice.call(vm.$el.classList))
+      .to.include('i-progress')
   })
 
   it('第一層 DOM 應該要有 className i-progress-inner', () => {
     const className = 'i-progress-inner'
-    const cmp = mount(IProgress)
-    const child = cmp.vm.$el.childNodes[0]
+    const vm = new Constructor().$mount()
+    const child = vm.$el.childNodes[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain(className)
-    const notExistChild = cmp.vm.$el.childNodes[1]
+      .to.include(className)
+    const notExistChild = vm.$el.childNodes[1]
     expect(notExistChild)
-      .toEqual(undefined)
+      .to.equal(undefined)
   })
 
   it('參數 currentRatio 應該等於 value / max', () => {
-    const cmp = mount(IProgress, {
+    const vm = new Constructor({
       propsData: {
         value,
         max
       }
-    })
-    expect(cmp.vm.currentRatio)
-      .toEqual(ratio)
+    }).$mount()
+    expect(vm.currentRatio)
+      .to.equal(ratio)
   })
 
   it('參數 currentRatio 應該讓第一層 DOM style -webkit-transform 改值', () => {
-    const cmp = mount(IProgress, {
+    const vm = new Constructor({
       propsData: {
         value,
         max
       }
-    })
-    const child = cmp.vm.$el.childNodes[0]
+    }).$mount()
+    const child = vm.$el.childNodes[0]
     expect(child.style['-webkit-transform'])
-      .toEqual(`scaleX(${ratio})`)
+      .to.equal(`scaleX(${ratio})`)
   })
 
   it('如果有 color 傳入，第一層 DOM style backgroundColor 應改值', () => {
-    const cmp = mount(IProgress, {
+    const vm = new Constructor({
       propsData: {
         color
       }
-    })
-    cmp.vm._watcher.run()
-    const child = cmp.vm.$el.childNodes[0]
+    }).$mount()
+    const child = vm.$el.childNodes[0]
     expect(child.style.backgroundColor)
-      .toEqual(hexToRgb(color))
+      .to.equal(hexToRgb(color))
   })
 
   it('如果有 color 和 color2 傳入，第一層 DOM style backgroundImage 應改值', () => {
-    const cmp = mount(IProgress, {
+    const vm = new Constructor({
       propsData: {
         color,
         color2
       }
-    })
-    cmp.vm._watcher.run()
-    const child = cmp.vm.$el.childNodes[0]
-    console.log('cmp.vm.$el.childNodes', cmp.vm.$el.childNodes)
-    console.log('child', child)
+    }).$mount()
+    const child = vm.$el.childNodes[0]
     expect(child.style.backgroundImage)
-      .toEqual(`linear-gradient(to right, ${hexToRgb(color)}, ${hexToRgb(color2)})`)
+      .to.equal(`linear-gradient(to right, ${hexToRgb(color)}, ${hexToRgb(color2)})`)
   })
 })

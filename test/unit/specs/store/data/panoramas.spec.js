@@ -1,7 +1,6 @@
 import { getters, mutations } from '@/store/modules/data/panoramas'
 import { testAction } from '../../App.spec'
 import store from '@/store'
-import { isEqual } from '../../../../../src/api/utils'
 const actionsInjector = require('inject-loader!@/store/modules/data/panoramas') // eslint-disable-line
 const {
   panoramas,
@@ -67,7 +66,7 @@ describe('store/modules/data/panoramas', () => {
       panoramas: []
     }
     const result = panoramas(state, { panoramas })
-    expect(isEqual(result, [])).toBe(true)
+    expect(result).to.deep.equal([])
   })
 
   it('currentPanorama', () => {
@@ -75,7 +74,7 @@ describe('store/modules/data/panoramas', () => {
       currentPanorama: {}
     }
     const result = currentPanorama(state, { currentPanorama })
-    expect(isEqual(result, {})).toBe(true)
+    expect(result).to.deep.equal({})
   })
 
   it('fetchPanoramas', function (done) {
@@ -128,7 +127,8 @@ describe('store/modules/data/panoramas', () => {
       panoramas: []
     }
     SET_PANORAMAS(state, [{ objectId: 'abc' }])
-    expect(isEqual(state.panoramas, [{ objectId: 'abc' }])).toBe(true)
+    expect(state.panoramas)
+      .to.deep.equal([{ objectId: 'abc' }])
   })
 
   it('SET_PANORAMA', () => {
@@ -136,6 +136,7 @@ describe('store/modules/data/panoramas', () => {
       currentPanorama: {}
     }
     SET_PANORAMA(state, { objectId: 'def' })
-    expect(isEqual(state.currentPanorama, { objectId: 'def' })).toBe(true)
+    expect(state.currentPanorama)
+      .to.deep.equal({ objectId: 'def' })
   })
 })

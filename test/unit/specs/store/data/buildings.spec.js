@@ -1,7 +1,10 @@
 import { getters, mutations } from '@/store/modules/data/buildings'
 import { testAction } from '../../App.spec'
 import store from '@/store'
-import { isEqual } from '../../../../../src/api/utils'
+import {
+  BUILDING,
+  SOCIAL
+} from '@/api/constants'
 const actionsInjector = require('inject-loader!@/store/modules/data/buildings') // eslint-disable-line
 const {
   buildings,
@@ -13,14 +16,21 @@ const {
   floorplan
 } = getters
 const {
-  SET_PANO_COLLECTIONS,
-  SET_PANO_COLLECTION
+  SET_BUILDINGS,
+  SET_BUILDING
 } = mutations
 const buildingId = 'nnn'
 const userId = 'lll'
+const themeColor = 'brown'
 const buildingData = {
   objectId: buildingId,
-  floorplan: ''
+  showComment: BUILDING.SHOW_COMMENT,
+  showContactInfo: BUILDING.SHOW_CONTACT_INFO,
+  showPoweredBy: BUILDING.SHOW_POWERED_BY,
+  logoSize: BUILDING.LOGO_SIZE,
+  floorplan: '',
+  music: 'none',
+  themeColor
 }
 const buildingsResp = {
   [buildingId]: {
@@ -28,6 +38,10 @@ const buildingsResp = {
     Owner: userId
   }
 }
+const buildingsData = (function () {
+  const buildingIds = Object.keys(buildingsResp)
+  return buildingIds.map(objectId => buildingsResp[objectId].data)
+}())
 const { actions } = actionsInjector({
   'firebase': {
     database () {
@@ -65,7 +79,7 @@ describe('store/modules/data/buildings', () => {
       buildings: []
     }
     const result = buildings(state, { buildings })
-    expect(isEqual(result, [])).toBe(true)
+    expect(result).to.deep.equal([])
   })
 
   it('currentBuilding', () => {
@@ -73,7 +87,7 @@ describe('store/modules/data/buildings', () => {
       currentBuilding: {}
     }
     const result = currentBuilding(state, { currentBuilding })
-    expect(isEqual(result, {})).toBe(true)
+    expect(result).to.deep.equal({})
   })
 
   it('showComment', () => {
@@ -83,7 +97,7 @@ describe('store/modules/data/buildings', () => {
       }
     }
     const result = showComment(state, { showComment })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('showContactInfo', () => {
@@ -93,7 +107,7 @@ describe('store/modules/data/buildings', () => {
       }
     }
     const result = showContactInfo(state, { showContactInfo })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('showPoweredBy', () => {
@@ -103,7 +117,7 @@ describe('store/modules/data/buildings', () => {
       }
     }
     const result = showPoweredBy(state, { showPoweredBy })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('logoSize', () => {
@@ -113,7 +127,7 @@ describe('store/modules/data/buildings', () => {
       }
     }
     const result = logoSize(state, { logoSize })
-    expect(result).toEqual('')
+    expect(result).to.equal('')
   })
 
   it('floorplan', () => {
@@ -123,19 +137,39 @@ describe('store/modules/data/buildings', () => {
       }
     }
     const result = floorplan(state, { floorplan })
-    expect(result).toEqual('')
+    expect(result).to.equal('')
+  })
+
+  it('fetchBuildings', function (done) {
+    store.commit('SET_PROPERTY', {
+      objectId: 'propertyId',
+      buildingIndex: `{"${buildingId}":0}`
+    })
+    testAction(actions.fetchBuildings, 'userId', {}, [{
+      type: 'SET_BUILDINGS',
+      payload: buildingsData
+    }], [{
+      type: 'fetchBuilding',
+      payload: ''
+    }], done)
   })
 
   it('fetchBuilding', function (done) {
     store.commit('SET_HAS_PROPERTY', false)
     testAction(actions.fetchBuilding, buildingId, { currentBuilding: {} }, [{
-      type: 'SET_PANO_COLLECTION',
+      type: 'SET_BUILDING',
       payload: buildingData
+    }, {
+      type: 'SET_USER_ID',
+      payload: userId
     }], [{
       type: 'setProgressCount',
       payload: 0
     }, {
       type: 'showProgress'
+    }, {
+      type: 'setBuildingNotFound',
+      payload: false
     }, {
       type: 'addProgressCount',
       payload: 2
@@ -143,24 +177,41 @@ describe('store/modules/data/buildings', () => {
       type: 'setProgressMax',
       payload: 100
     }, {
+      type: 'fetchPublicProfile',
+      payload: userId
+    }, {
       type: 'fetchPanoramas',
       payload: buildingId
+    }, {
+      type: 'initSocial',
+      payload: buildingId
+    }, {
+      type: 'fetchComments',
+      payload: SOCIAL.FETCH_COMMENTS_COUNTS_EACH_TIME
+    }, {
+      type: 'setAudioEl',
+      payload: null
+    }, {
+      type: 'setThemeColor',
+      payload: themeColor
     }], done)
   })
 
-  it('SET_PANO_COLLECTIONS', () => {
+  it('SET_BUILDINGS', () => {
     const state = {
       buildings: []
     }
-    SET_PANO_COLLECTIONS(state, [{ objectId: 'rty' }])
-    expect(isEqual(state.buildings, [{ objectId: 'rty' }])).toBe(true)
+    SET_BUILDINGS(state, [{ objectId: 'rty' }])
+    expect(state.buildings)
+      .to.deep.equal([{ objectId: 'rty' }])
   })
 
-  it('SET_PANO_COLLECTION', () => {
+  it('SET_BUILDING', () => {
     const state = {
       currentBuilding: {}
     }
-    SET_PANO_COLLECTION(state, { objectId: 'qwe' })
-    expect(isEqual(state.currentBuilding, { objectId: 'qwe' })).toBe(true)
+    SET_BUILDING(state, { objectId: 'qwe' })
+    expect(state.currentBuilding)
+      .to.deep.equal({ objectId: 'qwe' })
   })
 })

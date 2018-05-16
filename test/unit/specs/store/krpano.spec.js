@@ -4,31 +4,32 @@ import store from '@/store'
 const {
   krpanoEl,
   isKrpanoActive,
-  krpanoLookAtH,
+  krpanoLookAt,
+  krpanoLookFov,
   isCameraRotating,
   autoStartRotateTimer,
   krpanoXOffset,
+  krpanoXmlPlugins,
   isGyroEnabled
-  // isGyroFromIframe
 } = getters
 const {
   setKrpanoEl,
   setKrpanoActive,
-  setKrpanoLookAtH,
+  setKrpanoLookAt,
+  setKrpanoFov,
   startAutoRotate,
   stopAutoRotate,
   startGyro,
   stopGyro
-  // initGyroFromIframe
 } = actions
 const {
   SET_KRPANO_EL,
   SET_KRPANO_ACTIVE,
-  SET_KRPANO_LOOK_AT_H,
+  SET_KRPANO_LOOK_AT,
+  SET_KRPANO_FOV,
   SET_CAMERA_ROTATING,
   SET_AUTO_START_ROTATE_TIMER,
   SET_GYRO_ENABLED
-  // SET_GYRO_FROM_IFRAME
 } = mutations
 const Krpano = function () {
   return {
@@ -49,7 +50,7 @@ describe('store/modules/krpano', () => {
       krpanoEl: null
     }
     const result = krpanoEl(state, { krpanoEl })
-    expect(result).toEqual(null)
+    expect(result).to.equal(null)
   })
 
   it('isKrpanoActive', () => {
@@ -57,17 +58,27 @@ describe('store/modules/krpano', () => {
       isKrpanoActive: false
     }
     const result = isKrpanoActive(state, { isKrpanoActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
-  it('krpanoCamera.krpanoLookAtH', () => {
+  it('krpanoLookAt', () => {
     const state = {
       krpanoCamera: {
-        krpanoLookAtH: 30
+        krpanoLookAt: 30
       }
     }
-    const result = krpanoLookAtH(state, { krpanoLookAtH })
-    expect(result).toEqual(30)
+    const result = krpanoLookAt(state, { krpanoLookAt })
+    expect(result).to.equal(30)
+  })
+
+  it('krpanoLookFov', () => {
+    const state = {
+      krpanoCamera: {
+        krpanoLookFov: -25
+      }
+    }
+    const result = krpanoLookFov(state, { krpanoLookFov })
+    expect(result).to.equal(-25)
   })
 
   it('isCameraRotating', () => {
@@ -77,7 +88,7 @@ describe('store/modules/krpano', () => {
       }
     }
     const result = isCameraRotating(state, { isCameraRotating })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('autoStartRotateTimer', () => {
@@ -87,7 +98,7 @@ describe('store/modules/krpano', () => {
       }
     }
     const result = autoStartRotateTimer(state, { autoStartRotateTimer })
-    expect(result).toEqual(null)
+    expect(result).to.equal(null)
   })
 
   it('krpanoXOffset', () => {
@@ -95,7 +106,15 @@ describe('store/modules/krpano', () => {
       krpanoXOffset: 90
     }
     const result = krpanoXOffset(state, { krpanoXOffset })
-    expect(result).toEqual(90)
+    expect(result).to.equal(90)
+  })
+
+  it('krpanoXmlPlugins', () => {
+    const state = {
+      krpanoXmlPlugins: false
+    }
+    const result = krpanoXmlPlugins(state, { krpanoXmlPlugins })
+    expect(result).to.equal(false)
   })
 
   it('isGyroEnabled', () => {
@@ -103,7 +122,7 @@ describe('store/modules/krpano', () => {
       isGyroEnabled: false
     }
     const result = isGyroEnabled(state, { isGyroEnabled })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('setKrpanoEl', done => {
@@ -124,12 +143,39 @@ describe('store/modules/krpano', () => {
     ], undefined, done)
   })
 
-  it('setKrpanoLookAtH', done => {
+  it('setKrpanoLookAt', done => {
     const state = {
-      krpanoLookAtH: false
+      krpanoCamera: {
+        krpanoLookAt: {
+          h: 0,
+          v: 0
+        }
+      }
     }
-    testAction(setKrpanoLookAtH, true, state, [
-      { type: 'SET_KRPANO_LOOK_AT_H', payload: true }
+    testAction(setKrpanoLookAt, { h: 80, v: 15 }, state, [
+      { type: 'SET_KRPANO_LOOK_AT', payload: { h: 80, v: 15 } }
+    ], undefined, done)
+  })
+
+  it('setKrpanoFov', done => {
+    const state = {
+      krpanoCamera: {
+        krpanoLookFov: 0
+      }
+    }
+    testAction(setKrpanoFov, 120, state, [
+      { type: 'SET_KRPANO_FOV', payload: 120 }
+    ], undefined, done)
+  })
+
+  it('setKrpanoFov', done => {
+    const state = {
+      krpanoCamera: {
+        krpanoLookFov: 0
+      }
+    }
+    testAction(setKrpanoFov, 120, state, [
+      { type: 'SET_KRPANO_FOV', payload: 120 }
     ], undefined, done)
   })
 
@@ -166,10 +212,10 @@ describe('store/modules/krpano', () => {
       duration
     })
     expect(store.state.krpano.krpanoCamera.isCameraRotating)
-      .toEqual(false)
+      .to.equal(false)
     window.setTimeout(() => {
       expect(store.state.krpano.krpanoCamera.isCameraRotating)
-        .toEqual(true)
+        .to.equal(true)
       done()
     }, duration + 100)
   })
@@ -200,7 +246,7 @@ describe('store/modules/krpano', () => {
     }
     SET_KRPANO_EL(state, krpano)
     expect(state.krpanoEl)
-      .toEqual(krpano)
+      .to.equal(krpano)
   })
 
   it('SET_KRPANO_ACTIVE', () => {
@@ -209,18 +255,35 @@ describe('store/modules/krpano', () => {
     }
     SET_KRPANO_ACTIVE(state, true)
     expect(state.isKrpanoActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 
-  it('SET_KRPANO_LOOK_AT_H', () => {
+  it('SET_KRPANO_LOOK_AT', () => {
     const state = {
       krpanoCamera: {
-        krpanoLookAtH: false
+        krpanoLookAt: {
+          h: 20,
+          v: 40
+        }
       }
     }
-    SET_KRPANO_LOOK_AT_H(state, true)
-    expect(state.krpanoCamera.krpanoLookAtH)
-      .toEqual(true)
+    SET_KRPANO_LOOK_AT(state, {
+      h: 20,
+      v: 40
+    })
+    expect(state.krpanoCamera.krpanoLookAt)
+      .to.deep.equal({ h: 20, v: 40 })
+  })
+
+  it('SET_KRPANO_FOV', () => {
+    const state = {
+      krpanoCamera: {
+        krpanoLookFov: 0
+      }
+    }
+    SET_KRPANO_FOV(state, 60)
+    expect(state.krpanoCamera.krpanoLookFov)
+      .to.equal(60)
   })
 
   it('SET_CAMERA_ROTATING', () => {
@@ -231,7 +294,7 @@ describe('store/modules/krpano', () => {
     }
     SET_CAMERA_ROTATING(state, true)
     expect(state.krpanoCamera.isCameraRotating)
-      .toEqual(true)
+      .to.equal(true)
   })
 
   it('SET_AUTO_START_ROTATE_TIMER', () => {
@@ -242,7 +305,7 @@ describe('store/modules/krpano', () => {
     }
     SET_AUTO_START_ROTATE_TIMER(state, timer)
     expect(state.krpanoCamera.autoStartRotateTimer)
-      .toEqual(timer)
+      .to.equal(timer)
   })
 
   it('SET_GYRO_ENABLED', () => {
@@ -251,6 +314,6 @@ describe('store/modules/krpano', () => {
     }
     SET_GYRO_ENABLED(state, true)
     expect(state.isGyroEnabled)
-      .toEqual(true)
+      .to.equal(true)
   })
 })

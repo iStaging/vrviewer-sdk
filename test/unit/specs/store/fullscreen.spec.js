@@ -17,7 +17,7 @@ describe('store/modules/fullscreen', () => {
       isFullscreen: false
     }
     const result = isFullscreen(state, { isFullscreen })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('enterFullscreen', done => {
@@ -44,6 +44,6 @@ describe('store/modules/fullscreen', () => {
     }
     SET_FULL_SCREEN(state, true)
     expect(state.isFullscreen)
-      .toEqual(true)
+      .to.equal(true)
   })
 })

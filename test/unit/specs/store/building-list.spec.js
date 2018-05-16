@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/panoramas-list'
+import { getters, actions, mutations } from '@/store/modules/building-list'
 import { testAction } from '../App.spec'
 const {
   isPanoramasListActive
@@ -9,7 +9,7 @@ const {
   closePanoramasList
 } = actions
 const {
-  SET_PANORAMAS_LIST_ACTIVE
+  SET_BUILDINGS_LIST_ACTIVE
 } = mutations
 
 describe('store/modules/building-list', () => {
@@ -18,7 +18,7 @@ describe('store/modules/building-list', () => {
       isPanoramasListActive: false
     }
     const result = isPanoramasListActive(state, { isPanoramasListActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('showPanoramasList', done => {
@@ -26,7 +26,7 @@ describe('store/modules/building-list', () => {
       isPanoramasListActive: false
     }
     testAction(showPanoramasList, undefined, state, [
-      { type: 'SET_PANORAMAS_LIST_ACTIVE', payload: true }
+      { type: 'SET_BUILDINGS_LIST_ACTIVE', payload: true }
     ], undefined, done)
   })
 
@@ -35,7 +35,7 @@ describe('store/modules/building-list', () => {
       isPanoramasListActive: false
     }
     testAction(togglePanoramasList, undefined, state, [
-      { type: 'SET_PANORAMAS_LIST_ACTIVE', payload: !state.isPanoramasListActive }
+      { type: 'SET_BUILDINGS_LIST_ACTIVE', payload: !state.isPanoramasListActive }
     ], undefined, done)
   })
 
@@ -44,16 +44,16 @@ describe('store/modules/building-list', () => {
       isPanoramasListActive: true
     }
     testAction(closePanoramasList, undefined, state, [
-      { type: 'SET_PANORAMAS_LIST_ACTIVE', payload: false }
+      { type: 'SET_BUILDINGS_LIST_ACTIVE', payload: false }
     ], undefined, done)
   })
 
-  it('SET_PANORAMAS_LIST_ACTIVE', () => {
+  it('SET_BUILDINGS_LIST_ACTIVE', () => {
     const state = {
       isPanoramasListActive: false
     }
-    SET_PANORAMAS_LIST_ACTIVE(state, true)
+    SET_BUILDINGS_LIST_ACTIVE(state, true)
     expect(state.isPanoramasListActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 })

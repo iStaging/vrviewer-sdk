@@ -3,7 +3,6 @@ import { testAction } from '../App.spec'
 import {
   POPUP
 } from '../../../../src/api/constants'
-import { isEqual } from '../../../../src/api/utils'
 const {
   isPopupActive,
   popupUrl,
@@ -27,7 +26,7 @@ describe('store/modules/popup', () => {
       isPopupActive: false
     }
     const result = isPopupActive(state, { isPopupActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('popupUrl', () => {
@@ -36,7 +35,7 @@ describe('store/modules/popup', () => {
       popupUrl: url
     }
     const result = popupUrl(state, { popupUrl })
-    expect(result).toEqual(url)
+    expect(result).to.equal(url)
   })
 
   it('popupSizeConfig', () => {
@@ -50,7 +49,7 @@ describe('store/modules/popup', () => {
       popupSizeConfig: config
     }
     const result = popupSizeConfig(state, { popupSizeConfig })
-    expect(isEqual(result, config)).toBe(true)
+    expect(result).to.deep.equal(config)
   })
 
   it('showPopup', done => {
@@ -102,7 +101,7 @@ describe('store/modules/popup', () => {
     }
     SET_POPUP_ACTIVE(state, true)
     expect(state.isPopupActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 
   it('SET_POPUP_URL', () => {
@@ -112,7 +111,7 @@ describe('store/modules/popup', () => {
     }
     SET_POPUP_URL(state, url)
     expect(state.popupUrl)
-      .toEqual(url)
+      .to.equal(url)
   })
 
   it('SET_POPUP_SIZE_CONFIG', () => {
@@ -126,6 +125,7 @@ describe('store/modules/popup', () => {
       popupSizeConfig: config
     }
     SET_POPUP_SIZE_CONFIG(state, config)
-    expect(isEqual(state.popupSizeConfig, config)).toBe(true)
+    expect(state.popupSizeConfig)
+      .to.deep.equal(config)
   })
 })

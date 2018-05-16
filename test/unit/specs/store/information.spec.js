@@ -18,7 +18,7 @@ describe('store/modules/information', () => {
       isInformationActive: false
     }
     const result = isInformationActive(state, { isInformationActive })
-    expect(result).toEqual(false)
+    expect(result).to.equal(false)
   })
 
   it('showInformation', done => {
@@ -54,6 +54,6 @@ describe('store/modules/information', () => {
     }
     SET_INFORMATION_ACTIVE(state, true)
     expect(state.isInformationActive)
-      .toEqual(true)
+      .to.equal(true)
   })
 })
