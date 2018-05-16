@@ -1,11 +1,10 @@
-import Vue from 'vue'
+import { mount } from '@vue/test-utils'
 import FloorplanDots from '@/common/Floorplan/FloorplanDots.vue'
 import store from '@/store'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()
 
-const Constructor = Vue.extend(FloorplanDots)
 const FakeKrpanoEl = function () {
   return {
     call: function (name) {
@@ -33,9 +32,9 @@ const panoramas = [{
   }
 }]
 describe('common/Floorplan/FloorplanDots.vue', () => {
-  const vm = new Constructor({
+  const cmp = mount(, {
     store
-  }).$mount()
+  })
 
   it('應該要有 className floorplan-dots', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
@@ -83,12 +82,12 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
 
   it('啟動中的點顏色可自訂', () => {
     const activatedColor = 'rgb(171, 205, 239)'
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       propsData: {
         activatedColor
       }
-    }).$mount()
+    })
     const pointEl = vm.$el.querySelector('.floorplan-activated-point')
     expect(pointEl.style.backgroundColor)
       .toEqual(activatedColor)
@@ -105,14 +104,14 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
     const ratioW = 1.3
     const floorplanRatioX = 1.1
     const xOffset = 50
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       propsData: {
         ratioW,
         floorplanRatioX,
         xOffset
       }
-    }).$mount()
+    })
     const pointEl = vm.$el.querySelector('.floorplan-activated-point')
     const x = store.state.panoramas.currentPanorama.position.x * ratioW * floorplanRatioX + xOffset
     expect(pointEl.style['-webkit-transform'])
@@ -123,14 +122,14 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
     const ratioH = 1.2
     const floorplanRatioY = 1.5
     const yOffset = -30
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       propsData: {
         ratioH,
         floorplanRatioY,
         yOffset
       }
-    }).$mount()
+    })
     const pointEl = vm.$el.querySelector('.floorplan-activated-point')
     const y = store.state.panoramas.currentPanorama.position.y * ratioH * floorplanRatioY + yOffset
     console.log('pointEl.style', pointEl.style)

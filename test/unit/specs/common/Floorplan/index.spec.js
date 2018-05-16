@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { mount } from '@vue/test-utils'
 import Floorplan from '@/common/Floorplan/index.vue'
 import FloorplanDots from '@/common/Floorplan/FloorplanDots.vue'
 import FloorplanRange from '@/common/Floorplan/FloorplanRange.vue'
@@ -6,7 +6,6 @@ import Icon from '@/components/Icon/index.vue'
 import IRepeat from '@/components/IRepeat.vue'
 import store from '@/store'
 
-const Constructor = Vue.extend(Floorplan)
 const panoCollection = {
   floorplan: '/images/120x120.png'
 }
@@ -30,7 +29,7 @@ describe('common/Floorplan/index.vue', () => {
   store.commit('SET_PANORAMAS', panoramas)
   store.commit('SET_PANORAMA', panoramas[0])
   store.commit('SET_PANO_COLLECTION', panoCollection)
-  const vm = new Constructor({
+  const cmp = mount(, {
     store,
     components: {
       FloorplanDots,
@@ -38,7 +37,7 @@ describe('common/Floorplan/index.vue', () => {
       Icon,
       IRepeat
     }
-  }).$mount()
+  })
 
   it('應該要有 className floorplan', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
@@ -60,7 +59,7 @@ describe('common/Floorplan/index.vue', () => {
   })
 
   it('子 DOM 在 isResizable = true 時應該要有 className floorplan-overflow-hidden', () => {
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       components: {
         FloorplanDots,
@@ -71,14 +70,14 @@ describe('common/Floorplan/index.vue', () => {
       propsData: {
         isResizable: true
       }
-    }).$mount()
+    })
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
       .toContain('floorplan-overflow-hidden')
   })
 
   it('子 DOM 在 isDraggable = true 時應該要有 className floorplan-overflow-hidden', () => {
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       components: {
         FloorplanDots,
@@ -89,7 +88,7 @@ describe('common/Floorplan/index.vue', () => {
       propsData: {
         isDraggable: true
       }
-    }).$mount()
+    })
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
       .toContain('floorplan-overflow-hidden')
@@ -125,7 +124,7 @@ describe('common/Floorplan/index.vue', () => {
   })
 
   it('isResizable = true 時 handleScroll 會改變 floorplanZ', () => {
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       components: {
         FloorplanDots,
@@ -136,7 +135,7 @@ describe('common/Floorplan/index.vue', () => {
       propsData: {
         isResizable: true
       }
-    }).$mount()
+    })
     const floorplanZ = vm.floorplanZ
     vm.handleScroll(e)
     expect(vm.floorplanZ)
@@ -152,7 +151,7 @@ describe('common/Floorplan/index.vue', () => {
   })
 
   it('isDraggable = true 時 handleDragStart 不做事', () => {
-    const vm = new Constructor({
+    const cmp = mount(, {
       store,
       components: {
         FloorplanDots,
@@ -163,7 +162,7 @@ describe('common/Floorplan/index.vue', () => {
       propsData: {
         isDraggable: true
       }
-    }).$mount()
+    })
     vm.handleDragStart(e)
     expect(vm.isDragging)
       .toEqual(true)

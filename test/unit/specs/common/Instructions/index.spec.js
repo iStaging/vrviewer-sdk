@@ -11,7 +11,7 @@ const FakeKrpanoEl = function () {
 }
 
 describe('common/Instructions/index.vue', () => {
-  const vm = mount(Instructions, {
+  const cmp = mount(Instructions, {
     i18n,
     store,
     components: {
@@ -20,16 +20,16 @@ describe('common/Instructions/index.vue', () => {
   })
 
   it('應該要有 className instructions', () => {
-    expect(Array.prototype.slice.call(vm.$el.classList))
+    expect(Array.prototype.slice.call(cmp.vm.$el.classList))
       .toContain('instructions')
   })
 
   it('要有隱藏的 class 如果 isInstructionsActive = true 及 isVrMode = true', () => {
-    vm.isInstructionsActive = true
+    cmp.vm.isInstructionsActive = true
     store.dispatch('setKrpanoEl', new FakeKrpanoEl())
     store.dispatch('enterVrMode')
-    vm._watcher.run()
-    expect(vm.$el.style.display)
+    cmp.vm._watcher.run()
+    expect(cmp.vm.$el.style.display)
       .not.toEqual('none')
   })
 })
