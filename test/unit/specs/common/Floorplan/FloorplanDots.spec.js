@@ -32,25 +32,25 @@ const panoramas = [{
   }
 }]
 describe('common/Floorplan/FloorplanDots.vue', () => {
-  const cmp = mount(, {
+  let cmp = mount(FloorplanDots, {
     store
   })
 
   it('應該要有 className floorplan-dots', () => {
-    expect(Array.prototype.slice.call(vm.$el.classList))
+    expect(Array.prototype.slice.call(cmp.vm.$el.classList))
       .toContain('floorplan-dots')
   })
 
   it('panoramas 有幾個就要正確產生幾個點', () => {
     store.commit('SET_PANORAMAS', panoramas)
-    vm._watcher.run()
-    const pointsEl = vm.$el.querySelectorAll('.floorplan-point')
+    cmp.vm._watcher.run()
+    const pointsEl = cmp.vm.$el.querySelectorAll('.floorplan-point')
     expect(pointsEl.length)
       .toEqual(store.state.panoramas.panoramas.length)
   })
 
   it('各個點有自己的位置', () => {
-    const pointsEl = vm.$el.querySelectorAll('.floorplan-point')
+    const pointsEl = cmp.vm.$el.querySelectorAll('.floorplan-point')
     panoramas.forEach((panorama, index) => {
       const { x, y } = panorama.position
       expect(pointsEl[index].style['-webkit-transform'])
@@ -61,8 +61,8 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
   it('各個點都可以觸發 krpano 事件', () => {
     const krpanoEl = new FakeKrpanoEl()
     store.commit('SET_KRPANO_EL', krpanoEl)
-    vm._watcher.run()
-    const pointsEl = vm.$el.querySelectorAll('.floorplan-point')
+    cmp.vm._watcher.run()
+    const pointsEl = cmp.vm.$el.querySelectorAll('.floorplan-point')
     panoramas.forEach((panorama, index) => {
       const spy = sinon.spy()
       emitter.on(`prepare_change_scene(panorama_${panorama.objectId}, ${panorama.objectId});`, spy)
@@ -74,27 +74,27 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
 
   it('有一個點產生自 currentPanorama', () => {
     store.commit('SET_PANORAMA', panoramas[0])
-    vm._watcher.run()
-    const pointEl = vm.$el.querySelector('.floorplan-activated-point')
+    cmp.vm._watcher.run()
+    const pointEl = cmp.vm.$el.querySelector('.floorplan-activated-point')
     expect(pointEl)
       .not.toEqual(null)
   })
 
   it('啟動中的點顏色可自訂', () => {
     const activatedColor = 'rgb(171, 205, 239)'
-    const cmp = mount(, {
+    cmp = mount(MarkerInfo, {
       store,
       propsData: {
         activatedColor
       }
     })
-    const pointEl = vm.$el.querySelector('.floorplan-activated-point')
+    const pointEl = cmp.vm.$el.querySelector('.floorplan-activated-point')
     expect(pointEl.style.backgroundColor)
       .toEqual(activatedColor)
   })
 
   it('啟動中的點有自己的位置', () => {
-    const pointEl = vm.$el.querySelector('.floorplan-activated-point')
+    const pointEl = cmp.vm.$el.querySelector('.floorplan-activated-point')
     const { x, y } = store.state.panoramas.currentPanorama.position
     expect(pointEl.style['-webkit-transform'])
       .toEqual(`translate(${x}px, ${y}px)`)
@@ -104,7 +104,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
     const ratioW = 1.3
     const floorplanRatioX = 1.1
     const xOffset = 50
-    const cmp = mount(, {
+    cmp = mount(MarkerInfo, {
       store,
       propsData: {
         ratioW,
@@ -112,7 +112,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
         xOffset
       }
     })
-    const pointEl = vm.$el.querySelector('.floorplan-activated-point')
+    const pointEl = cmp.vm.$el.querySelector('.floorplan-activated-point')
     const x = store.state.panoramas.currentPanorama.position.x * ratioW * floorplanRatioX + xOffset
     expect(pointEl.style['-webkit-transform'])
       .toEqual(`translate(${x}px, ${store.state.panoramas.currentPanorama.position.y}px)`)
@@ -122,7 +122,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
     const ratioH = 1.2
     const floorplanRatioY = 1.5
     const yOffset = -30
-    const cmp = mount(, {
+    cmp = mount(MarkerInfo, {
       store,
       propsData: {
         ratioH,
@@ -130,7 +130,7 @@ describe('common/Floorplan/FloorplanDots.vue', () => {
         yOffset
       }
     })
-    const pointEl = vm.$el.querySelector('.floorplan-activated-point')
+    const pointEl = cmp.vm.$el.querySelector('.floorplan-activated-point')
     const y = store.state.panoramas.currentPanorama.position.y * ratioH * floorplanRatioY + yOffset
     console.log('pointEl.style', pointEl.style)
     expect(pointEl.style['-webkit-transform'])

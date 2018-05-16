@@ -6,7 +6,7 @@ const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()
 
 const innerClassName = 'aoswuifhaweg'
-const cmp = mount(, {
+const cmp = mount(ViewerLayer, {
   i18n,
   propsData: {
     closeEvent: () => {

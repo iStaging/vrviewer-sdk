@@ -6,7 +6,7 @@ import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()
 
-const cmp = mount(, {
+const cmp = mount(MarkerInfo, {
   i18n,
   store
 })

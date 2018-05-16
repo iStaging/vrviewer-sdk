@@ -110,7 +110,7 @@ describe('common/ViewerList/Panoramas.vue', () => {
         Icon,
         IRepeat
       }
-    })
+    }).render()
     const buttons = cmp.vm.$el.querySelectorAll('.panoramas-list-a')
     expect(buttons[index].disabled)
       .toEqual(true)

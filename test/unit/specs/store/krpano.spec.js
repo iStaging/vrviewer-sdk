@@ -4,6 +4,7 @@ import store from '@/store'
 const {
   krpanoEl,
   isKrpanoActive,
+  krpanoLookAtH,
   isCameraRotating,
   autoStartRotateTimer,
   krpanoXOffset,
@@ -13,7 +14,7 @@ const {
 const {
   setKrpanoEl,
   setKrpanoActive,
-  setKrpanoLookAt,
+  setKrpanoLookAtH,
   startAutoRotate,
   stopAutoRotate,
   startGyro,
@@ -23,6 +24,7 @@ const {
 const {
   SET_KRPANO_EL,
   SET_KRPANO_ACTIVE,
+  SET_KRPANO_LOOK_AT_H,
   SET_CAMERA_ROTATING,
   SET_AUTO_START_ROTATE_TIMER,
   SET_GYRO_ENABLED
@@ -58,24 +60,14 @@ describe('store/modules/krpano', () => {
     expect(result).toEqual(false)
   })
 
-  it('krpanoLookAt', () => {
+  it('krpanoCamera.krpanoLookAtH', () => {
     const state = {
       krpanoCamera: {
-        krpanoLookAt: 30
+        krpanoLookAtH: 30
       }
     }
-    const result = krpanoLookAt(state, { krpanoLookAt })
+    const result = krpanoLookAtH(state, { krpanoLookAtH })
     expect(result).toEqual(30)
-  })
-
-  it('krpanoLookFov', () => {
-    const state = {
-      krpanoCamera: {
-        krpanoLookFov: -25
-      }
-    }
-    const result = krpanoLookFov(state, { krpanoLookFov })
-    expect(result).toEqual(-25)
   })
 
   it('isCameraRotating', () => {
@@ -106,14 +98,6 @@ describe('store/modules/krpano', () => {
     expect(result).toEqual(90)
   })
 
-  it('krpanoXmlPlugins', () => {
-    const state = {
-      krpanoXmlPlugins: false
-    }
-    const result = krpanoXmlPlugins(state, { krpanoXmlPlugins })
-    expect(result).toEqual(false)
-  })
-
   it('isGyroEnabled', () => {
     const state = {
       isGyroEnabled: false
@@ -137,6 +121,15 @@ describe('store/modules/krpano', () => {
     }
     testAction(setKrpanoActive, true, state, [
       { type: 'SET_KRPANO_ACTIVE', payload: true }
+    ], undefined, done)
+  })
+
+  it('setKrpanoLookAtH', done => {
+    const state = {
+      krpanoLookAtH: false
+    }
+    testAction(setKrpanoLookAtH, true, state, [
+      { type: 'SET_KRPANO_LOOK_AT_H', payload: true }
     ], undefined, done)
   })
 
@@ -216,6 +209,17 @@ describe('store/modules/krpano', () => {
     }
     SET_KRPANO_ACTIVE(state, true)
     expect(state.isKrpanoActive)
+      .toEqual(true)
+  })
+
+  it('SET_KRPANO_LOOK_AT_H', () => {
+    const state = {
+      krpanoCamera: {
+        krpanoLookAtH: false
+      }
+    }
+    SET_KRPANO_LOOK_AT_H(state, true)
+    expect(state.krpanoCamera.krpanoLookAtH)
       .toEqual(true)
   })
 

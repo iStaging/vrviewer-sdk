@@ -67,12 +67,12 @@ describe('common/Floorplan/FloorplanRange.vue', () => {
       .toEqual(`translate(${store.state.panoramas.currentPanorama.position.x}px, ${y}px)`)
   })
 
-  it('角度產生自 currentPanorama 的 floorplanRotation，krpanoCamera.krpanoLookAt.h、krpanoXOffset、currentPanorama.panoramaRotation.y 會影響結果', () => {
+  it('角度產生自 currentPanorama 的 floorplanRotation，krpanoCamera.krpanoLookAtH、krpanoXOffset、currentPanorama.panoramaRotation.y 會影響結果', () => {
     store.commit('SET_KRPANO_LOOK_AT', { h: 45 })
     cmp.vm._watcher.run()
     const { floorplanRotation } = store.state.panoramas.currentPanorama
     const rangeEl = cmp.vm.$el.querySelector('.floorplan-range-inner')
-    const cameraMoving = store.state.krpano.krpanoCamera.krpanoLookAt.h - store.state.krpano.krpanoXOffset + store.state.panoramas.currentPanorama.panoramaRotation.y
+    const cameraMoving = store.state.krpano.krpanoCamera.krpanoLookAtH - store.state.krpano.krpanoXOffset + store.state.panoramas.currentPanorama.panoramaRotation.y
     expect(rangeEl.style['-webkit-transform'])
       .toEqual(`rotateZ(${floorplanRotation + cameraMoving}deg)`)
   })
