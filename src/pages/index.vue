@@ -25,7 +25,7 @@
       <i-aside></i-aside>
       <i-footer></i-footer>
     </template>
-    <loading></loading>
+    <loading v-if="!hideUISetting.hideLoading"></loading>
   </div>
 </template>
 

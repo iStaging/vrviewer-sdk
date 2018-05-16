@@ -65,6 +65,7 @@ export const DEFAULT_SETTING = {
     hidePanoramaList: false,
     hideFloorplan: false,
     hideFullscreen: false,
+    hideLoading: true,
     hideMarkerInfo: false
   },
   shareSetting: {
