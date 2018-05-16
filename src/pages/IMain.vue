@@ -68,7 +68,11 @@
       </ul>
       <div class="viewer-layer-container">
         <div class="share-container">
-          <qr-code :url="shareUrl.qrcode"></qr-code>
+          <qr-code
+            :height="200"
+            :width="200"
+            :url="shareUrl.qrcode">
+          </qr-code>
         </div>
       </div>
     </viewer-layer>

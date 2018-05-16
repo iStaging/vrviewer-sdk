@@ -1,9 +1,8 @@
-import Vue from 'vue'
+import { mount } from '@vue/test-utils'
 import Instructions from '@/common/Instructions/index'
 import Icon from '@/components/Icon'
 import store from '@/store'
 import { i18n } from '@/main'
-const Constructor = Vue.extend(Instructions)
 
 const FakeKrpanoEl = function () {
   return {
@@ -12,13 +11,13 @@ const FakeKrpanoEl = function () {
 }
 
 describe('common/Instructions/index.vue', () => {
-  const vm = new Constructor({
+  const vm = mount(Instructions, {
     i18n,
     store,
     components: {
       Icon
     }
-  }).$mount()
+  })
 
   it('應該要有 className instructions', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))

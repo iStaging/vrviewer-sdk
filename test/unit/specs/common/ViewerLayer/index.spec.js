@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import ViewerLayer from '@/common/ViewerLayer/index.vue'
+import { i18n } from '@/main'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()
@@ -7,6 +8,7 @@ const emitter = new EventEmitter()
 const Constructor = Vue.extend(ViewerLayer)
 const innerClassName = 'aoswuifhaweg'
 const vm = new Constructor({
+  i18n,
   propsData: {
     closeEvent: () => {
       emitter.emit('closeEvent')

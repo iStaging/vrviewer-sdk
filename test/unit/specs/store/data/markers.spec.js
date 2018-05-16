@@ -16,34 +16,6 @@ const markerData = {
   Owner: userId
 }
 const { actions } = actionsInjector({
-  'firebase': {
-    database () {
-      return {
-        ref (ref = '') {
-          return {
-            orderByChild () {
-              return this
-            },
-            equalTo () {
-              return this
-            },
-            once (value, cb) {
-              const snapshot = {
-                val () {
-                  return {
-                    keyId: {
-                      data: markerData
-                    }
-                  }
-                }
-              }
-              return cb.bind(this)(snapshot)
-            }
-          }
-        }
-      }
-    }
-  }
 })
 
 describe('store/modules/data/markers', () => {
@@ -56,10 +28,7 @@ describe('store/modules/data/markers', () => {
   })
 
   it('fetchMarkers', done => {
-    testAction(actions.fetchMarkers, { objectId: 'panoramaId' }, {}, [{
-      type: 'SET_MARKER',
-      payload: {}
-    }], [{
+    testAction(actions.fetchMarkers, { objectId: 'panoramaId' }, {}, [], [{
       type: 'addProgressCount',
       payload: 1
     }], done)

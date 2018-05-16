@@ -23,7 +23,7 @@ describe('components/Icon/index.vue', () => {
   })
 
   it('如果有傳入 image，style 應該要有 backgroundImage', function (done) {
-    this.timeout(15000)
+    jest.setTimeout(15000)
     const vm = new Constructor({
       propsData: {
         image
@@ -52,7 +52,7 @@ describe('components/Icon/index.vue', () => {
   })
 
   it('若沒有傳入 image，style backgroundImage 應該沒有值', function (done) {
-    this.timeout(5000)
+    jest.setTimeout(5000)
     const image = ''
     const vm = new Constructor({
       propsData: {
@@ -70,7 +70,7 @@ describe('components/Icon/index.vue', () => {
   })
 
   it('應該要監聽 image 如果有任何改變', function (done) {
-    this.timeout(15000)
+    jest.setTimeout(15000)
     const vm = new Constructor({
       propsData: {
         image
@@ -83,6 +83,7 @@ describe('components/Icon/index.vue', () => {
 
     const watchHandler = () => {
       vm.image = ''
+      vm._watcher.run()
       window.setTimeout(() => {
         const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage)

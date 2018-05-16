@@ -39,7 +39,7 @@ export default {
     return {
       isBrowserSupport: false,
       isWebGlSupport: false,
-      noSupportedImage: require('img/error.png')
+      noSupportedImage: require('@/images/error.png')
     }
   },
 

@@ -126,7 +126,6 @@ describe('store/modules/popup', () => {
       popupSizeConfig: config
     }
     SET_POPUP_SIZE_CONFIG(state, config)
-    expect(state.popupSizeConfig)
-      .to.deep.equal(config)
+    expect(isEqual(state.popupSizeConfig, config)).toBe(true)
   })
 })
