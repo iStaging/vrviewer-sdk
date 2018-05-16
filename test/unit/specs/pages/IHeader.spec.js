@@ -1,7 +1,6 @@
 import Vue from 'vue'
-import IHeader from '@/pages/Default/IHeader'
+import IHeader from '@/pages/IHeader'
 import Profile from '@/common/Profile/index'
-import Social from '@/common/Social/index'
 import store from '@/store'
 import { i18n } from '@/main'
 
@@ -12,8 +11,7 @@ describe('Default/IHeader.vue', () => {
     i18n,
     store,
     components: {
-      Profile,
-      Social
+      Profile
     }
   }).$mount()
 

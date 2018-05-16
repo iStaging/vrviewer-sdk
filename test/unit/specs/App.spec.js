@@ -1,16 +1,8 @@
 // import App from '@/App.vue'
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'
 import VueI18n from 'vue-i18n'
 import store from '@/store'
-import router from '@/router'
-import { sync } from 'vuex-router-sync'
-const unsync = sync(store, router)
-Vue.use(VueRouter)
-Vue.use(VueResource)
 Vue.use(VueI18n)
-unsync()
 // describe('App.vue', () => {
 // })
 

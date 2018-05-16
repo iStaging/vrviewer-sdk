@@ -1,11 +1,7 @@
-import { getters, mutations } from '@/store/modules/data/buildings'
+import { getters, mutations } from '@/store/modules/data/pano-collection'
 import { testAction } from '../../App.spec'
 import store from '@/store'
-import {
-  BUILDING,
-  SOCIAL
-} from '@/api/constants'
-const actionsInjector = require('inject-loader!@/store/modules/data/buildings') // eslint-disable-line
+const actionsInjector = require('inject-loader!@/store/modules/data/pano-collection') // eslint-disable-line
 const {
   buildings,
   currentBuilding,
@@ -21,16 +17,9 @@ const {
 } = mutations
 const buildingId = 'nnn'
 const userId = 'lll'
-const themeColor = 'brown'
 const buildingData = {
   objectId: buildingId,
-  showComment: BUILDING.SHOW_COMMENT,
-  showContactInfo: BUILDING.SHOW_CONTACT_INFO,
-  showPoweredBy: BUILDING.SHOW_POWERED_BY,
-  logoSize: BUILDING.LOGO_SIZE,
-  floorplan: '',
-  music: 'none',
-  themeColor
+  floorplan: ''
 }
 const buildingsResp = {
   [buildingId]: {
@@ -43,34 +32,6 @@ const buildingsData = (function () {
   return buildingIds.map(objectId => buildingsResp[objectId].data)
 }())
 const { actions } = actionsInjector({
-  'firebase': {
-    database () {
-      return {
-        ref (ref = '') {
-          return {
-            orderByChild () {
-              return this
-            },
-            equalTo () {
-              return this
-            },
-            once (value, cb) {
-              const snapshot = {
-                val () {
-                  if (ref.indexOf(`/buildings/${buildingId}`) > -1) {
-                    return buildingsResp[buildingId]
-                  } else if (ref.indexOf('/buildings') > -1) {
-                    return buildingsResp
-                  }
-                }
-              }
-              return cb.bind(this)(snapshot)
-            }
-          }
-        }
-      }
-    }
-  }
 })
 
 describe('store/modules/data/buildings', () => {
@@ -182,18 +143,6 @@ describe('store/modules/data/buildings', () => {
     }, {
       type: 'fetchPanoramas',
       payload: buildingId
-    }, {
-      type: 'initSocial',
-      payload: buildingId
-    }, {
-      type: 'fetchComments',
-      payload: SOCIAL.FETCH_COMMENTS_COUNTS_EACH_TIME
-    }, {
-      type: 'setAudioEl',
-      payload: null
-    }, {
-      type: 'setThemeColor',
-      payload: themeColor
     }], done)
   })
 

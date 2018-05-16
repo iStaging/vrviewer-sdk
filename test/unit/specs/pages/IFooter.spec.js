@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import IFooter from '@/pages/Default/IFooter.vue'
+import IFooter from '@/pages/IFooter.vue'
 import store from '@/store'
 const Constructor = Vue.extend(IFooter)
 const vm = new Constructor({

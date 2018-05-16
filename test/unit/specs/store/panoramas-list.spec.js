@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/building-list'
+import { getters, actions, mutations } from '@/store/modules/panoramas-list'
 import { testAction } from '../App.spec'
 const {
   isPanoramasListActive
@@ -12,7 +12,7 @@ const {
   SET_BUILDINGS_LIST_ACTIVE
 } = mutations
 
-describe('store/modules/building-list', () => {
+describe('store/modules/panoramas-list', () => {
   it('isPanoramasListActive', () => {
     const state = {
       isPanoramasListActive: false

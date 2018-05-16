@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import INav from '@/pages/Default/INav'
+import INav from '@/pages/INav'
 import Icon from '@/components/Icon'
 import IRepeat from '@/components/IRepeat'
 import store from '@/store'

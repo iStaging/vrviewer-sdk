@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import ViewerList from '@/common/ViewerList/index.vue'
-import Groups from '@/common/ViewerList/Groups.vue'
 import Panoramas from '@/common/ViewerList/Panoramas.vue'
 import store from '@/store'
 import { i18n } from '@/main'
@@ -12,7 +11,6 @@ describe('common/ViewerList/index.vue', () => {
     i18n,
     store,
     components: {
-      Groups,
       Panoramas
     }
   }).$mount()
