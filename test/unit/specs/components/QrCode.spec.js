@@ -45,6 +45,7 @@ describe('components/QrCode.vue', () => {
     }).$mount()
 
     const canvas = vm.$el.querySelector('canvas')
+    console.log('vm.$el', vm.$el)
     expect(canvas.width)
       .toEqual(width)
     expect(canvas.height)

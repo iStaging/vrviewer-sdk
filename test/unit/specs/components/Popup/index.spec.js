@@ -89,7 +89,7 @@ describe('components/Popup/index.vue', () => {
     }).$mount()
     window.setTimeout(() => {
       expect(vm.isIFrameNoSupportTimeout)
-        .toEqual(true)
+        .toBe(true)
       done()
     }, 2000)
   })
