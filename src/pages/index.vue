@@ -35,9 +35,6 @@ import { mapActions, mapGetters } from 'vuex'
 import {
   isRtl
 } from '@/api/helpers'
-import {
-  fakePanoCollectionId
-} from '@/api/resources'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
 import IAside from './IAside.vue'
@@ -62,16 +59,13 @@ export default {
   },
 
   beforeMount () {
-    const panoCollectionId = fakePanoCollectionId
-    this.fetchPanoCollection(panoCollectionId)
+    this.fetchPanoCollection()
   },
 
   computed: {
     ...mapGetters([
-      'currentPanorama',
       'isAppReady',
       'isPanoCollectionNotFound',
-      'krpanoEl',
       'panoramas'
     ]),
 
