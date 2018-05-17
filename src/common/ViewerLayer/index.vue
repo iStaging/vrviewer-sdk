@@ -152,7 +152,7 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 
 .viewer-layer-li-active {
   &::after {
-    background-color: $pink-color
+    background-color: $main-color
     height: 4px
   }
 }
