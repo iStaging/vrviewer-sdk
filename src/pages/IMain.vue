@@ -163,6 +163,7 @@ import QrCode from '../components/QrCode.vue'
 import ViewerLayer from '../common/ViewerLayer/index.vue'
 import ViewerList from '../common/ViewerList/index.vue'
 import ViewerMarkersHover from '../common/ViewerMarkersHover/index.vue'
+import noPanoramasImage from '../images/trash-can.png'
 
 export default {
   name: 'IMain',
@@ -190,7 +191,7 @@ export default {
       isFloorplanReady: false,
       markerPositionX: 0,
       markerPositionY: 0,
-      noPanoramasImage: require('img/trash-can.svg')
+      noPanoramasImage
     }
   },
 

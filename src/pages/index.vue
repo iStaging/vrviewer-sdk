@@ -42,6 +42,7 @@ import IMain from './IMain.vue'
 import IAside from './IAside.vue'
 import IFooter from './IFooter.vue'
 import Loading from '../common/Loading.vue'
+import noPanoramasImage from '../images/trash-can.png'
 
 export default {
   name: 'Default',
@@ -56,7 +57,7 @@ export default {
   data () {
     return {
       isRtl: isRtl(),
-      noPanoramasImage: require('img/trash-can.svg')
+      noPanoramasImage
     }
   },
 
