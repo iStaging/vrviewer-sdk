@@ -21,21 +21,11 @@ export const webvrMinJs = `${rootUrl}webvr.min.js`
 export const webvrCursorImage = `${rootUrl}webvr_cursor_80x80_17f.png`
 
 export const fakePanoCollection = {
-  'createdAt': 1526283327000,
   'description': 'aegbrew',
   'floorplan': 'https://storage.googleapis.com/vrcam-dev-5a815-images/8974b9da-190d-4b53-b1ad-65855c0486c1/302a0746-bdd2-4742-9cdc-3634dc5e2a42/floorplan',
-  'hasPin': false,
-  'logoSize': 50,
   'name': 'awerg43',
   'objectId': '7e548395-f720-49c4-95ce-e31217bd5ae2',
-  'requireVisitorData': false,
-  'showComment': true,
-  'showContactInfo': true,
-  'showPoweredBy': true,
-  'themeColor': 'pink',
-  'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail',
-  'unavailable': false,
-  'updatedAt': 1526283355000
+  'logo': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail'
 }
 
 export const fakePanoramas = [{
