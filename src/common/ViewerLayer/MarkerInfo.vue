@@ -211,7 +211,7 @@ $image-w = 160px
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     @media screen and (min-width: $response) {
       .marker-info-large-left {

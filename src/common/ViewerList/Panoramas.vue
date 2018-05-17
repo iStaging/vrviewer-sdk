@@ -262,7 +262,7 @@ $w = 120px
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     .panoramas .i-repeat-li + .i-repeat-li {
       margin-left: auto

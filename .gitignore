@@ -2,6 +2,8 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+dist/vrviewer-sdk.css.map
+dist/vrviewer-sdk.js.map
 
 # Editor directories and files
 .idea
@@ -9,3 +11,5 @@ yarn-error.log
 *.ntvs*
 *.njsproj
 *.sln
+package-lock.json
+test/unit/coverage/
