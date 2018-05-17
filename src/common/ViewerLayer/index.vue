@@ -152,7 +152,7 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 
 .viewer-layer-li-active {
   &::after {
-    background-color: $pink-color
+    background-color: $main-color
     height: 4px
   }
 }
@@ -194,7 +194,7 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     .viewer-layer-close {
       right: auto

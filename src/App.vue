@@ -1,5 +1,11 @@
 <template>
-  <div id="vrviewer-sdk" class="vrviewer-sdk">
+  <div
+    id="vrviewer-sdk"
+    class="vrviewer-sdk"
+    :class="{
+      'vrviewer-sdk-fullscreen': isFullscreen,
+      'vrviewer-sdk-vrmode': isVrMode
+    }">
     <template v-if="isBrowserSupport && isWebGlSupport">
       <default-view></default-view>
     </template>
@@ -27,6 +33,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import DefaultView from './pages/index.vue'
 
 export default {
@@ -41,6 +48,13 @@ export default {
       isWebGlSupport: false,
       noSupportedImage: require('img/error.png')
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      'isFullscreen',
+      'isVrMode'
+    ])
   },
 
   mounted () {
@@ -60,10 +74,11 @@ export default {
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-@import 'stylesheets/global.styl'
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+@import 'stylesheets/extends.styl'
+@import 'stylesheets/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .app {
     height: 100%
   }
@@ -86,7 +101,7 @@ export default {
       }
 
       a {
-        color: $pink-color
+        color: $main-color
         text-decoration: none
         display: inline-block
         padding: 0 3px
@@ -127,4 +142,20 @@ export default {
     }
   }
 }
+
+.vrviewer-sdk-fullscreen,
+.vrviewer-sdk-vrmode {
+  @extend .position-fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 1
+}
+</style>
+
+<style lang="stylus" rel="stylesheet/stylus">
+@import 'stylesheets/global.styl'
 </style>

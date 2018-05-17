@@ -349,7 +349,7 @@ function limitPosition (limitW = 0, limitH = 0, x = 0, y = 0) {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     // floorplan no need to be rtl
     .floorplan-container {

@@ -177,7 +177,7 @@ export default {
 
   .panoramas-list-a-active {
     .panoramas-list-icon-wrapper {
-      border-color: $pink-color
+      border-color: $main-color
     }
   }
 
@@ -227,7 +227,7 @@ $w = 120px
       &.active, &:hover {
         &:not(.panoramas-list-a-active) {
           .panoramas-list-icon-wrapper {
-            border-color: $light-pink-color
+            border-color: $light-gray-color
           }
 
           .panoramas-list-icon {
@@ -262,7 +262,7 @@ $w = 120px
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     .panoramas .i-repeat-li + .i-repeat-li {
       margin-left: auto

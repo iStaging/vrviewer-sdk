@@ -1,9 +1,8 @@
 <template>
   <div
-    class="default-container theme"
+    class="default-container"
     :class="{
-      'theme-rtl theme-rtl-overlap': isRtl,
-      'transparent': isTransparent
+      'theme-rtl theme-rtl-overlap': isRtl
     }">
     <!--not found liveTour in url-->
     <div
@@ -21,12 +20,12 @@
       </figure>
     </div>
     <template v-else-if="isAppReady">
-      <i-header></i-header>
+      <i-header v-if="!hideUISetting.hideCollectionInfo"></i-header>
       <i-main></i-main>
       <i-aside></i-aside>
       <i-footer></i-footer>
     </template>
-    <loading></loading>
+    <loading v-if="!hideUISetting.hideLoading"></loading>
   </div>
 </template>
 
@@ -66,12 +65,9 @@ export default {
     ...mapGetters([
       'isAppReady',
       'isPanoCollectionNotFound',
-      'panoramas'
-    ]),
-
-    isTransparent () {
-      // return this.$route.query.background === 'transparent'
-    }
+      'panoramas',
+      'hideUISetting'
+    ])
   },
 
   methods: {
@@ -90,17 +86,5 @@ export default {
   height: 100%
   background-color: $black
   overflow: hidden
-
-  &.transparent {
-    background-color: transparent
-  }
-}
-
-.livetour-intro {
-  img {
-    border-radius: 50%
-    width: 100px
-    height: 100px
-  }
 }
 </style>
