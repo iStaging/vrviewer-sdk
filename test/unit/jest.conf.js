@@ -10,8 +10,6 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '.+\\.(css|styl|less|sass|scss|png|jpg|svg|ttf|woff|woff2)$': 'jest-transform-stub'
-    // '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/test/unit/assetsTransformer.js',
-    // '\\.(css|less|styl)$': '<rootDir>/test/unit/assetsTransformer.js'
   },
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',

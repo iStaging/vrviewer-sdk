@@ -420,28 +420,28 @@ export default {
     $w = $i-main-arrow-collapse-short-side
     $h = 25px
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-left.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-left.png')
   }
 
   &.icon-collapse-right {
     $w = $i-main-arrow-collapse-short-side
     $h = 25px
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-right.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-right.png')
   }
 
   &.icon-collapse-up {
     $w = 25px
     $h = $i-main-arrow-collapse-short-side
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-up.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-up.png')
   }
 
   &.icon-collapse-down {
     $w = 25px
     $h = $i-main-arrow-collapse-short-side
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-down.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-down.png')
   }
 }
 

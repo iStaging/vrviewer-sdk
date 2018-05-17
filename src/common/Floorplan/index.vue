@@ -56,6 +56,7 @@
           :key="button.name"
           :slot="button.name"
           :class="button.className"
+          image=""
           @click.native="button.method">
         </icon>
       </i-repeat>

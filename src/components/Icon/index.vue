@@ -22,7 +22,7 @@ export default {
       }
     },
     image: {
-      type: String,
+      type: [String, Object],
       default () {
         return ''
       }
@@ -100,15 +100,15 @@ export default {
 }
 
 .icon-close-info-white {
-  background-image: url('img/close-info-white.svg')
+  background-image: url('./img/close-info-white.png')
 }
 .icon-close-info-black {
-  background-image: url('img/close-info-black.svg')
+  background-image: url('./img/close-info-black.png')
 }
 .icon-arrow-down-black {
-  background-image: url('img/arrow-down-black.svg')
+  background-image: url('./img/arrow-down-black.png')
 }
 .icon-arrow-up-black {
-  background-image: url('img/arrow-up-black.svg')
+  background-image: url('./img/arrow-up-black.png')
 }
 </style>

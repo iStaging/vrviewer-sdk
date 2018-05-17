@@ -1,10 +1,10 @@
 <template>
   <span
     class="floorplan-range"
-    :style="{ transform: floorplanPosition }">
+    :style="{ 'webkit-transform': floorplanPosition }">
     <span
       class="floorplan-range-inner"
-      :style="{ transform: floorplanRotation }">
+      :style="{ 'webkit-transform': floorplanRotation }">
     </span>
   </span>
 </template>
