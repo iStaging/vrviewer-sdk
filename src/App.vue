@@ -35,6 +35,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import DefaultView from './pages/index.vue'
+import noSupportedImage from '@/images/error.png'
 
 export default {
   name: 'app',
@@ -46,7 +47,7 @@ export default {
     return {
       isBrowserSupport: false,
       isWebGlSupport: false,
-      noSupportedImage: require('@/images/error.png')
+      noSupportedImage
     }
   },
 

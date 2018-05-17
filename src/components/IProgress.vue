@@ -2,8 +2,9 @@
   <div class="i-progress">
     <span
       class="i-progress-inner"
+      style="background-image: linear-gradient(to right, #111, #222);"
       :style="{
-        transform: `scaleX(${currentRatio})`,
+        'webkit-transform': `scaleX(${currentRatio})`,
         backgroundColor: color,
         backgroundImage
       }">

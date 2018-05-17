@@ -54,7 +54,7 @@ describe('components/IProgress/index.vue', () => {
       }
     }).$mount()
     const child = vm.$el.childNodes[0]
-    expect(child.style['-webkit-transform'])
+    expect(child.style._values['-webkit-transform'])
       .toEqual(`scaleX(${ratio})`)
   })
 
@@ -76,8 +76,7 @@ describe('components/IProgress/index.vue', () => {
         color2
       }
     }).$mount()
-    const child = vm.$el.childNodes[0]
-    expect(child.style.backgroundImage)
-      .toEqual(`linear-gradient(to right, ${hexToRgb(color)}, ${hexToRgb(color2)})`)
+    expect(vm.backgroundImage) // can't test child.style.backgroundImage is linear-gradient
+      .toEqual(`linear-gradient(to right, ${color}, ${color2})`)
   })
 })

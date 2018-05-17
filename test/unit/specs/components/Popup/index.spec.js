@@ -83,7 +83,7 @@ describe('components/Popup/index.vue', () => {
   })
 
   it('2 秒後，isIFrameNoSupportTimeout 將會從 false 變成 true', function (done) {
-    this.timeout(2500)
+    jest.setTimeout(2500)
     const vm = new Constructor({
       i18n
     }).$mount()
