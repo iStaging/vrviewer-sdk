@@ -21,7 +21,7 @@ describe('components/IProgress/index.vue', () => {
   it('應該要有 className i-progress', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .to.include('i-progress')
+      .toContain('i-progress')
   })
 
   it('第一層 DOM 應該要有 className i-progress-inner', () => {
@@ -29,10 +29,10 @@ describe('components/IProgress/index.vue', () => {
     const vm = new Constructor().$mount()
     const child = vm.$el.childNodes[0]
     expect(Array.prototype.slice.call(child.classList))
-      .to.include(className)
+      .toContain(className)
     const notExistChild = vm.$el.childNodes[1]
     expect(notExistChild)
-      .to.equal(undefined)
+      .toEqual(undefined)
   })
 
   it('參數 currentRatio 應該等於 value / max', () => {
@@ -43,7 +43,7 @@ describe('components/IProgress/index.vue', () => {
       }
     }).$mount()
     expect(vm.currentRatio)
-      .to.equal(ratio)
+      .toEqual(ratio)
   })
 
   it('參數 currentRatio 應該讓第一層 DOM style -webkit-transform 改值', () => {
@@ -55,7 +55,7 @@ describe('components/IProgress/index.vue', () => {
     }).$mount()
     const child = vm.$el.childNodes[0]
     expect(child.style['-webkit-transform'])
-      .to.equal(`scaleX(${ratio})`)
+      .toEqual(`scaleX(${ratio})`)
   })
 
   it('如果有 color 傳入，第一層 DOM style backgroundColor 應改值', () => {
@@ -66,7 +66,7 @@ describe('components/IProgress/index.vue', () => {
     }).$mount()
     const child = vm.$el.childNodes[0]
     expect(child.style.backgroundColor)
-      .to.equal(hexToRgb(color))
+      .toEqual(hexToRgb(color))
   })
 
   it('如果有 color 和 color2 傳入，第一層 DOM style backgroundImage 應改值', () => {
@@ -78,6 +78,6 @@ describe('components/IProgress/index.vue', () => {
     }).$mount()
     const child = vm.$el.childNodes[0]
     expect(child.style.backgroundImage)
-      .to.equal(`linear-gradient(to right, ${hexToRgb(color)}, ${hexToRgb(color2)})`)
+      .toEqual(`linear-gradient(to right, ${hexToRgb(color)}, ${hexToRgb(color2)})`)
   })
 })

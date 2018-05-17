@@ -6,7 +6,7 @@ describe('components/QrCode.vue', () => {
   it('應該要有 className qr-code', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .to.include('qr-code')
+      .toContain('qr-code')
   })
 
   it('innerClass 應該要能在 qrCode 的 className 中', () => {
@@ -17,7 +17,7 @@ describe('components/QrCode.vue', () => {
       }
     }).$mount()
     expect(Array.prototype.slice.call(vm.$refs.qrCode.classList))
-      .to.include(innerClass)
+      .toContain(innerClass)
   })
 
   it('應該要成功產生 qr code', () => {
@@ -28,7 +28,7 @@ describe('components/QrCode.vue', () => {
     }).$mount()
 
     expect(vm.$el.querySelector('canvas'))
-      .not.to.equal(null)
+      .not.toEqual(null)
   })
 
   it('應該要正確設定 qr code 的寬高', () => {
@@ -46,8 +46,8 @@ describe('components/QrCode.vue', () => {
 
     const canvas = vm.$el.querySelector('canvas')
     expect(canvas.width)
-      .to.equal(width)
+      .toEqual(width)
     expect(canvas.height)
-      .to.equal(height)
+      .toEqual(height)
   })
 })

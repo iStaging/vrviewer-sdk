@@ -10,7 +10,7 @@ describe('components/Popup/index.vue', () => {
       i18n
     }).$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .to.include('popup')
+      .toContain('popup')
   })
 
   it('第一層 DOM 應該要有 className popup-inner', () => {
@@ -18,7 +18,7 @@ describe('components/Popup/index.vue', () => {
       i18n
     }).$mount()
     expect(vm.$el.querySelector('.popup-inner'))
-      .not.to.equal(null)
+      .not.toEqual(null)
   })
 
   it('第二層 DOM 應該要有 className popup-iframe-container', () => {
@@ -27,7 +27,7 @@ describe('components/Popup/index.vue', () => {
     }).$mount()
     const child = vm.$el.querySelector('.popup-inner')
     expect(child.querySelector('.popup-iframe-container'))
-      .not.to.equal(null)
+      .not.toEqual(null)
   })
 
   it('如果 prop 傳進來的 widthType 是 pixel，.popup-inner 應含 width: auto', () => {
@@ -38,7 +38,7 @@ describe('components/Popup/index.vue', () => {
       }
     }).$mount()
     expect(vm.$el.querySelector('.popup-inner').style.width)
-      .to.equal('auto')
+      .toEqual('auto')
   })
 
   it('如果 prop 傳進來的 widthType 是 pixel，.popup-iframe-container 應含 padding-bottom: 0', () => {
@@ -49,7 +49,7 @@ describe('components/Popup/index.vue', () => {
       }
     }).$mount()
     expect(vm.$el.querySelector('.popup-iframe-container').style.paddingBottom)
-      .to.equal('0px')
+      .toEqual('0px')
   })
 
   it('如果 prop 傳進來的 widthType 是 pixel，使用 width 和 height 參數', () => {
@@ -64,9 +64,9 @@ describe('components/Popup/index.vue', () => {
       }
     }).$mount()
     expect(vm.$el.querySelector('.popup-iframe-container').style.width)
-      .to.equal(`${width}px`)
+      .toEqual(`${width}px`)
     expect(vm.$el.querySelector('.popup-iframe-container').style.height)
-      .to.equal(`${height}px`)
+      .toEqual(`${height}px`)
   })
 
   it('如果 prop 傳進來的 widthType 是 percent，使用 widthPercent 參數', () => {
@@ -79,7 +79,7 @@ describe('components/Popup/index.vue', () => {
       }
     }).$mount()
     expect(vm.$el.querySelector('.popup-inner').style.width)
-      .to.equal(`${widthPercent}%`)
+      .toEqual(`${widthPercent}%`)
   })
 
   it('2 秒後，isIFrameNoSupportTimeout 將會從 false 變成 true', function (done) {
@@ -89,7 +89,7 @@ describe('components/Popup/index.vue', () => {
     }).$mount()
     window.setTimeout(() => {
       expect(vm.isIFrameNoSupportTimeout)
-        .to.equal(true)
+        .toEqual(true)
       done()
     }, 2000)
   })

@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Icon from '@/components/Icon/index.vue'
 import { loadImage } from '../../../../../src/api/utils'
 const Constructor = Vue.extend(Icon)
-const image = '/images/120x120.png'
+const image = 'https://www.istaging.com/sdk/logo-tripod.png'
 
 describe('components/Icon/index.vue', () => {
   it('應該要有 className icon', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .to.include('icon')
+      .toContain('icon')
   })
 
   it('應該要有 className photo-lazyload 如果參數 hasLazyload 為 true', () => {
@@ -19,11 +19,11 @@ describe('components/Icon/index.vue', () => {
       }
     }).$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .to.include(className)
+      .toContain(className)
   })
 
   it('如果有傳入 image，style 應該要有 backgroundImage', function (done) {
-    this.timeout(15000)
+    jest.setTimeout(2500)
     const vm = new Constructor({
       propsData: {
         image
@@ -31,28 +31,28 @@ describe('components/Icon/index.vue', () => {
     }).$mount()
     const dataSrc = vm.dataSrc
     expect(dataSrc)
-      .to.equal(image)
+      .toEqual(image)
     window.setTimeout(() => {
       loadImage(image, () => {
         const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage.indexOf(image))
-          .not.to.equal(-1)
+          .not.toEqual(-1)
         const dataSrc = vm.$el.getAttribute('data-src')
         expect(dataSrc)
-          .to.equal('')
+          .toEqual(null)
         done()
       }, () => {}, () => {
         console.log('load image error')
         const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage.indexOf(image))
-          .to.equal(-1)
+          .toEqual(-1)
         done()
       })
     }, 500)
   })
 
   it('若沒有傳入 image，style backgroundImage 應該沒有值', function (done) {
-    this.timeout(5000)
+    jest.setTimeout(2500)
     const image = ''
     const vm = new Constructor({
       propsData: {
@@ -63,14 +63,14 @@ describe('components/Icon/index.vue', () => {
     const backgroundImage = vm.$el.style.backgroundImage
     const dataSrc = vm.$el.getAttribute('data-src')
     expect(backgroundImage)
-      .to.equal('')
+      .toEqual('')
     expect(dataSrc)
-      .to.equal('')
+      .toEqual(null)
     done()
   })
 
   it('應該要監聽 image 如果有任何改變', function (done) {
-    this.timeout(15000)
+    jest.setTimeout(2500)
     const vm = new Constructor({
       propsData: {
         image
@@ -79,17 +79,17 @@ describe('components/Icon/index.vue', () => {
     vm.loadImage()
     const dataSrc = vm.dataSrc
     expect(dataSrc)
-      .to.equal(image)
+      .toEqual(image)
 
     const watchHandler = () => {
       vm.image = ''
       window.setTimeout(() => {
         const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage)
-          .to.equal('')
+          .toEqual('')
         const dataSrc = vm.$el.getAttribute('data-src')
         expect(dataSrc)
-          .to.equal('')
+          .toEqual(null)
         // console.log('get here')
         done()
       }, 500)
@@ -99,10 +99,10 @@ describe('components/Icon/index.vue', () => {
       loadImage(image, () => {
         const backgroundImage = vm.$el.style.backgroundImage
         expect(backgroundImage.indexOf(image))
-          .not.to.equal(-1)
+          .not.toEqual(-1)
         const dataSrc = vm.$el.getAttribute('data-src')
         expect(dataSrc)
-          .to.equal('')
+          .toEqual(null)
         watchHandler()
       })
     }, 500)

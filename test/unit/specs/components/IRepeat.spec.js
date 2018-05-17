@@ -6,7 +6,7 @@ describe('components/IRepeat.vue', () => {
   it('應該要有 className i-repeat', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .to.include('i-repeat')
+      .toContain('i-repeat')
   })
 
   it('第一層 DOM li 應該要有 className i-repeat-li', () => {
@@ -16,7 +16,7 @@ describe('components/IRepeat.vue', () => {
       }
     }).$mount()
     expect(Array.prototype.slice.call(vm.$el.querySelector('li').classList))
-      .to.include('i-repeat-li')
+      .toContain('i-repeat-li')
   })
 
   it('liClass 應該要能產生在第一層 DOM 的 className 裡', () => {
@@ -28,7 +28,7 @@ describe('components/IRepeat.vue', () => {
       }
     }).$mount()
     expect(Array.prototype.slice.call(vm.$el.querySelector('li').classList))
-      .to.include(liClass)
+      .toContain(liClass)
   })
 
   it('第一層 DOM li 的數量應等於陣列 model 的數量', () => {
@@ -39,6 +39,6 @@ describe('components/IRepeat.vue', () => {
       }
     }).$mount()
     expect(vm.$el.querySelectorAll('li').length)
-      .to.equal(model.length)
+      .toEqual(model.length)
   })
 })
