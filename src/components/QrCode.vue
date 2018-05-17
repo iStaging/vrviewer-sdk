@@ -63,6 +63,7 @@ export default {
 function generateQrCode (qrCodeEl = null, url = '', config = {}) {
   const qrCode = new QrCode(qrCodeEl, config)
   if (qrCode) {
+    qrCode.clear()
     qrCode.makeCode(url)
   }
 }

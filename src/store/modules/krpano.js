@@ -54,6 +54,8 @@ export const actions = {
   stopAutoRotate ({ dispatch, commit, state, rootState }, { shouldAutoStartRotate = false, duration = rootState.setting.setting.autoRotateSetting.restartTime, stopMethod = '' }) {
     if (rootState.setting.setting.autoRotateSetting.active) {
       if (state.krpanoCamera.isCameraRotating === true) {
+        console.log('state', state)
+        console.log('state.krpanoEl', state.krpanoEl)
         state.krpanoEl.call(`stop_auto_rotate();`)
         commit('SET_CAMERA_ROTATING', false)
         if (stopMethod) {

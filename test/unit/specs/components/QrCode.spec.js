@@ -26,28 +26,7 @@ describe('components/QrCode.vue', () => {
         url: 'fake-url'
       }
     }).$mount()
-
-    expect(vm.$el.querySelector('canvas'))
+    expect(vm.$el.querySelector('table')) // test 裏產生 table tr td，但畫面上產生 canvas and image @@
       .not.toEqual(null)
-  })
-
-  it('應該要正確設定 qr code 的寬高', () => {
-    const width = 301
-    const height = 362
-    const vm = new Constructor({
-      propsData: {
-        url: 'fake-url',
-        width,
-        height,
-        colorDark: '#000',
-        colorLight: '#fff'
-      }
-    }).$mount()
-
-    const canvas = vm.$el.querySelector('canvas')
-    expect(canvas.width)
-      .toEqual(width)
-    expect(canvas.height)
-      .toEqual(height)
   })
 })

@@ -17,7 +17,7 @@ export const actions = {
     }
   },
 
-  toggleMarkerInfo ({ dispatch }) {
+  toggleMarkerInfo ({ dispatch, state }) {
     if (state.isMarkerInfoActive === true) {
       dispatch('closeMarkerInfo')
     } else {

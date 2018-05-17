@@ -35,10 +35,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import DefaultView from './pages/index.vue'
-import noSupportedImage from '@/images/error.png'
+import noSupportedImage from './images/error.png'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     DefaultView
   },
