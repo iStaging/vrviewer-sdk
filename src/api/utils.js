@@ -190,12 +190,21 @@ export const getIEVersion = () => {
 }
 
 export const isEqual = (a, b) => {
-  const aKeys = Object.getOwnPropertyNames(a)
-  const bKeys = Object.getOwnPropertyNames(b)
-  if (aKeys.length !== bKeys.length) {
-    return
+  let aKeys
+  if (a) {
+    aKeys = Object.getOwnPropertyNames(a)
   }
-  return aKeys.every(key => a[key] === b[key])
+  let bKeys
+  if (b) {
+    bKeys = Object.getOwnPropertyNames(b)
+  }
+  if (aKeys && bKeys) {
+    if (aKeys.length !== bKeys.length) {
+      return
+    }
+    return aKeys.every(key => a[key] === b[key])
+  }
+  return aKeys === bKeys
 }
 
 export const isObject = (obj = {}) => {

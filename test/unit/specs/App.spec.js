@@ -5,7 +5,9 @@ import store from '@/store'
 import { isEqual } from '../../../src/api/utils'
 Vue.use(VueI18n)
 describe('App.vue', () => {
-  expect(0).toEqual(0)
+  it('app.vue', () => {
+    expect(0).toEqual(0)
+  })
 })
 
 // helper for testing action with expected mutations

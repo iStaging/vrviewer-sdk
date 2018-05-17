@@ -2,6 +2,10 @@ import { actions, getters, mutations } from '@/store/modules/data/pano-collectio
 import { testAction } from '../../App.spec'
 import { isEqual } from '../../../../../src/api/utils'
 const {
+  importPanoCollection,
+  fetchPanoCollection
+} = actions
+const {
   currentPanoCollection,
   floorplan
 } = getters
@@ -9,7 +13,6 @@ const {
   SET_PANO_COLLECTION
 } = mutations
 const buildingId = 'nnn'
-const userId = 'lll'
 const buildingData = {
   objectId: buildingId,
   floorplan: ''
@@ -35,40 +38,20 @@ describe('store/modules/data/pano-collection', () => {
   })
 
   it('importPanoCollection', function () {
-    testAction(actions.importPanoCollection, buildingData)
+    testAction(importPanoCollection, buildingData)
   })
 
   it('fetchPanoCollection', function (done) {
-    testAction(actions.fetchPanoCollection, buildingId, {
+    testAction(fetchPanoCollection, 'fake-collection-id', {
       currentPanoCollection: buildingData
     }, [{
-      type: 'setProgressCount',
-      payload: 0
-    }, {
-      type: 'showProgress'
-    }, {
-      type: 'addProgressCount',
-      payload: 2
-    }, {
-      type: 'setProgressMax',
-      payload: 100
-    }, {
-      type: 'fetchPanoramas',
-      payload: buildingId
-    }], [{
       type: 'SET_PANO_COLLECTION',
       payload: buildingData
-    }, {
-      type: 'SET_PANORAMAS',
-      payload: userId
     }], [{
       type: 'setProgressCount',
       payload: 0
     }, {
       type: 'showProgress'
-    }, {
-      type: 'setBuildingNotFound',
-      payload: false
     }, {
       type: 'addProgressCount',
       payload: 2
@@ -77,7 +60,10 @@ describe('store/modules/data/pano-collection', () => {
       payload: 100
     }, {
       type: 'fetchPanoramas',
-      payload: buildingId
+      payload: 'fake-collection-id'
+    }, {
+      type: 'setPanoCollectionNotFound',
+      payload: false
     }], done)
   })
 

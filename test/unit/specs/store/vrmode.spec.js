@@ -1,5 +1,6 @@
 import { getters, actions, mutations } from '@/store/modules/vrmode'
 import { testAction } from '../App.spec'
+import store from '@/store'
 const {
   isVrMode
 } = getters
@@ -10,6 +11,15 @@ const {
 const {
   SET_VR_MODE
 } = mutations
+const Krpano = function () {
+  return {
+    set: function (name, value) {
+    },
+    call: function (name) {
+    }
+  }
+}
+const krpano = new Krpano()
 
 describe('store/modules/vrmode', () => {
   it('isVrMode', () => {
@@ -21,20 +31,24 @@ describe('store/modules/vrmode', () => {
   })
 
   it('enterVrMode', done => {
+    store.dispatch('setKrpanoEl', krpano)
     const state = {
       isVrMode: false
     }
     testAction(enterVrMode, undefined, state, [
-      { type: 'SET_VR_MODE', payload: true }
+      { type: 'SET_VR_MODE', payload: true },
+      { type: 'SET_CAMERA_ROTATING', payload: false }
     ], undefined, done)
   })
 
   it('exitVrMode', done => {
+    store.dispatch('setKrpanoEl', krpano)
     const state = {
       isVrMode: true
     }
     testAction(exitVrMode, undefined, state, [
-      { type: 'SET_VR_MODE', payload: false }
+      { type: 'SET_VR_MODE', payload: false },
+      { type: 'SET_CAMERA_ROTATING', payload: true }
     ], undefined, done)
   })
 

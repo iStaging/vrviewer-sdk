@@ -56,45 +56,49 @@ describe('store/modules/app', () => {
     const state = {
       isAppReady: false
     }
-    testAction(setAppReady, true, state, [
-      { type: 'SET_APP_READY', payload: true }
-    ], undefined, done)
+    testAction(setAppReady, true, state, [{
+      type: 'SET_APP_READY', payload: true
+    }], undefined, done)
   })
 
   it('setScreenReady', done => {
     const state = {
       isScreenReady: false
     }
-    testAction(setScreenReady, true, state, [
-      { type: 'SET_SCREEN_READY', payload: true }
-    ], [
-      { type: 'showPanoramasList' }
-    ], done)
+    testAction(setScreenReady, true, state, [{
+      type: 'SET_SCREEN_READY',
+      payload: true
+    }], [{
+      type: 'showPanoramasList'
+    }], done)
 
     state.isScreenReady = true
-    testAction(setScreenReady, false, state, [
-      { type: 'SET_SCREEN_READY', payload: true }
-    ], [
-      { type: 'closePanoramasList' }
-    ], done)
+    testAction(setScreenReady, false, state, [{
+      type: 'SET_SCREEN_READY',
+      payload: false
+    }], [{
+      type: 'closePanoramasList'
+    }], done)
   })
 
   it('setPanoCollectionNotFound', done => {
     const state = {
       setPanoCollectionNotFound: false
     }
-    testAction(setPanoCollectionNotFound, true, state, [
-      { type: 'SET_PANO_COLLECTION_NOT_FOUND', payload: true }
-    ], undefined, done)
+    testAction(setPanoCollectionNotFound, true, state, [{
+      type: 'SET_PANO_COLLECTION_NOT_FOUND',
+      payload: true
+    }], undefined, done)
   })
 
   it('setPanoramasNotFound', done => {
     const state = {
       setPanoramasNotFound: false
     }
-    testAction(setPanoramasNotFound, true, state, [
-      { type: 'SET_PANORAMAS_NOT_FOUND', payload: true }
-    ], undefined, done)
+    testAction(setPanoramasNotFound, true, state, [{
+      type: 'SET_PANORAMAS_NOT_FOUND',
+      payload: true
+    }], undefined, done)
   })
 
   it('SET_APP_READY', () => {

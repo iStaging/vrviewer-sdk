@@ -6,7 +6,6 @@ import {
   imageIEHack
 } from '@/api/helpers'
 import {
-  completeAssign,
   getIEVersion,
   isEmpty,
   sort
@@ -110,25 +109,6 @@ export const actions = {
 
   setPanorama ({ commit }, panorama = {}) {
     commit('SET_PANORAMA', panorama)
-  },
-
-  updatePanoramaItem ({ commit, state }, panorama = {}) {
-    let targetId = ''
-    if (panorama.panoramaId) {
-      targetId = panorama.panoramaId
-    } else {
-      targetId = state.currentPanorama.panoramaId
-      commit('UPDATE_PANORAMA_ITEM', panorama)
-    }
-
-    const foundIndex = state.panoramas.map(panorama => panorama.panoramaId).indexOf(targetId)
-    if (foundIndex <= -1) {
-      return
-    }
-    const newPanorama = completeAssign({}, state.panoramas[foundIndex], panorama)
-    const newPanoramas = state.panoramas.slice()
-    newPanoramas.splice(foundIndex, 1, newPanorama)
-    commit('SET_PANORAMAS', newPanoramas)
   },
 
   setHoveredPanorama ({ commit }, panorama = {}) {

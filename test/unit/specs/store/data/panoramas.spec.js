@@ -3,12 +3,21 @@ import { testAction } from '../../App.spec'
 import store from '@/store'
 import { isEqual } from '../../../../../src/api/utils'
 const {
+  importPanoramas,
+  fetchPanoramas,
+  // selectPanorama,
+  setPanorama,
+  setHoveredPanorama
+} = actions
+const {
   panoramas,
-  currentPanorama
+  currentPanorama,
+  hoveredPanorama
 } = getters
 const {
   SET_PANORAMAS,
-  SET_PANORAMA
+  SET_PANORAMA,
+  SET_HOVERED_PANORAMA
 } = mutations
 const panoramaId = 'eee'
 const userId = 'kkk'
@@ -28,6 +37,15 @@ const panoramasData = (function () {
   const panoramaIds = Object.keys(panoramasResp)
   return panoramaIds.map(panoramaId => panoramasResp[panoramaId].data)
 }())
+// const Krpano = function () {
+//   return {
+//     set: function (name, value) {
+//     },
+//     call: function (name) {
+//     }
+//   }
+// }
+// const krpano = new Krpano()
 
 describe('store/modules/data/panoramas', () => {
   it('panoramas', () => {
@@ -40,16 +58,28 @@ describe('store/modules/data/panoramas', () => {
 
   it('currentPanorama', () => {
     const state = {
-      currentPanorama: {}
+      currentPanorama: { z: 5 }
     }
     const result = currentPanorama(state, { currentPanorama })
-    expect(isEqual(result, {})).toBe(true)
+    expect(isEqual(result, { z: 5 })).toBe(true)
+  })
+
+  it('hoveredPanorama', () => {
+    const state = {
+      hoveredPanorama: { a: 2 }
+    }
+    const result = hoveredPanorama(state, { hoveredPanorama })
+    expect(isEqual(result, { a: 2 })).toBe(true)
+  })
+
+  it('importPanoramas', function () {
+    testAction(importPanoramas, panoramasData)
   })
 
   it('fetchPanoramas', function (done) {
     store.commit('SET_PROGRESS_MAX', panoramasData.length + 12)
     store.commit('SET_PROGRESS_COUNT', 100)
-    testAction(actions.fetchPanoramas, 'buildingId', {}, [{
+    testAction(fetchPanoramas, 'buildingId', { panoramas: panoramasData }, [{
       type: 'SET_PANORAMAS',
       payload: panoramasData
     }, {
@@ -74,19 +104,32 @@ describe('store/modules/data/panoramas', () => {
       type: 'addProgressCount',
       payload: 1
     }, {
-      type: 'closeProgress'
-    }, {
       type: 'setAppReady',
       payload: true
     }, {
       type: 'setKrpanoActive',
       payload: true
+    }, {
+      type: 'closeProgress'
     }], done)
   })
 
+  // todo
+  // it('selectPanorama', done => {
+  //   store.dispatch('setKrpanoEl', krpano)
+  //   store.dispatch('closeProgress')
+  // })
+
   it('setPanorama', done => {
-    testAction(actions.setPanorama, panoramaData, {}, [{
+    testAction(setPanorama, panoramaData, {}, [{
       type: 'SET_PANORAMA',
+      payload: panoramaData
+    }], undefined, done)
+  })
+
+  it('setHoveredPanorama', done => {
+    testAction(setHoveredPanorama, panoramaData, {}, [{
+      type: 'SET_HOVERED_PANORAMA',
       payload: panoramaData
     }], undefined, done)
   })
@@ -105,5 +148,13 @@ describe('store/modules/data/panoramas', () => {
     }
     SET_PANORAMA(state, { panoramaId: 'def' })
     expect(isEqual(state.currentPanorama.panoramaId, 'def')).toBe(true)
+  })
+
+  it('SET_HOVERED_PANORAMA', () => {
+    const state = {
+      hoveredPanorama: {}
+    }
+    SET_HOVERED_PANORAMA(state, { panoramaId: 'xdre' })
+    expect(isEqual(state.hoveredPanorama.panoramaId, 'xdre')).toBe(true)
   })
 })
