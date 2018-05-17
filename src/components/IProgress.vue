@@ -91,8 +91,8 @@ export default {
 .i-progress-inner {
   display: block
   height: 100%
-  background-color: mix($purple-color, $pink-color)
-  background-image: linear-gradient(to right, $purple-color, $pink-color)
+  background-color: mix($sub-color, $main-color)
+  background-image: linear-gradient(to right, $sub-color, $main-color)
   position: relative
   overflow: hidden
   transition: transform .05s linear
