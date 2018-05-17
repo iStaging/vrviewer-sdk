@@ -122,7 +122,7 @@ export default {
 .marker-info-button {
   @extend .text-with-gray-bg
   display: inline-block
-  background-color: $pink-color
+  background-color: $main-color
   line-height: 25px
   text-align: center
   border-radius: 5px
@@ -135,7 +135,7 @@ export default {
   }
 
   &:hover, &:focus, &:active {
-    background-color: darken($pink-color, 10%)
+    background-color: darken($main-color, 10%)
   }
 }
 
@@ -211,7 +211,7 @@ $image-w = 160px
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     @media screen and (min-width: $response) {
       .marker-info-large-left {

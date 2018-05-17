@@ -25,5 +25,5 @@ switch (env) {
   default:
     server.cdnUrlStart = 'https://vrcam-dev-cdn.istaging.com/'
 }
-server.cnImageServer = `http://vrcam-cn-storage.oss-cn-shanghai.aliyuncs.com/`
+server.cnImageServer = 'http://vrcam-cn-storage.oss-cn-shanghai.aliyuncs.com/'
 export default server

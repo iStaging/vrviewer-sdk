@@ -58,7 +58,7 @@ export const actions = {
       // console.log('panoramaIds:', panoramaIds)
       console.log('panoCollection:', panoCollection)
       commit('SET_PANO_COLLECTION', panoCollection)
-      PanoCollectionManager.afterFetchProfileHandler({ dispatch, panoCollection, panoCollectionId })
+      PanoCollectionManager.afterFetchPanoCollectionHandler({ dispatch, panoCollection, panoCollectionId })
       dispatch('setPanoCollectionNotFound', false)
     } else {
       PanoCollectionManager.noPanoCollectionCallback({ dispatch, commit, state, rootState })

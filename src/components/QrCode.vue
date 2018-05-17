@@ -75,8 +75,8 @@ function generateQrCode (qrCodeEl = null, url = '', config = {}) {
 .qr-code {
   @extend .flex-center-column
   position: relative
-  width: 237px
-  height: 237px
+  width: 260px
+  height: 260px
   background-color: $white
 
   &.is-transparent {

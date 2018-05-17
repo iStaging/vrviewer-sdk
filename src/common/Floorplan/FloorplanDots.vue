@@ -113,7 +113,7 @@ export default {
   transition: transform .25s ease-out
 
   &.active, &:hover {
-    background-color: $light-pink-color
+    background-color: $light-gray-color
   }
 }
 
@@ -132,6 +132,6 @@ export default {
 }
 
 .floorplan-activated-point {
-  background-color: alpha($pink-color, .9)
+  background-color: alpha($main-color, .9)
 }
 </style>

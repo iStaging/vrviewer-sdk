@@ -28,6 +28,7 @@
 
     <!--to show marker point-->
     <viewer-markers-hover
+      v-if="!hideUISetting.hideMarkerInfo"
       :markerPositionX="markerPositionX"
       :markerPositionY="markerPositionY"
       :isMouseOnMarkerInfo="isMouseOnMarkerInfo"
@@ -39,6 +40,7 @@
 
     <!--to show marker memo/tag-->
     <viewer-layer
+      v-if="!hideUISetting.hideMarkerInfo"
       v-show="!isVrMode"
       class="bounce-in"
       :class="{ 'bounce-in-active': isMarkerInfoActive }"
@@ -57,6 +59,7 @@
 
     <!--share-->
     <viewer-layer
+      v-if="shareSetting.shareUrl"
       v-show="shouldViewerLayerShow && isShareReady"
       class="bounce-in"
       :class="{ 'bounce-in-active': isShareActive }"
@@ -74,11 +77,19 @@
             :url="shareUrl.qrcode">
           </qr-code>
         </div>
+        <div class="share-text">
+          <a
+            :href="shareSetting.shareUrl"
+            target="_blank">
+            {{ shareSetting.shareUrl }}
+          </a>
+        </div>
       </div>
     </viewer-layer>
 
     <!--bottom panoramas-->
     <section
+      v-if="!hideUISetting.hidePanoramaList"
       v-show="shouldViewerLayerShow"
       class="viewer-list-wrapper"
       :class="{ 'viewer-list-wrapper-active': shouldPanoramasListShow }">
@@ -97,7 +108,7 @@
 
     <!--floorplan-->
     <section
-      v-if="floorplan && floorplan !== 'none'"
+      v-if="!hideUISetting.hideFloorplan && (floorplan && floorplan !== 'none')"
       v-show="shouldViewerLayerShow"
       class="floorplan-wrapper"
       :class="{
@@ -228,13 +239,15 @@ export default {
       'popupSizeConfig',
       'popupUrl',
       'shareUrl',
-      'gyroSetting'
+      'gyroSetting',
+      'hideUISetting',
+      'shareSetting'
     ]),
 
     useResizeAndDraggable () {
-      if (process.env.USE_FLOORPLAN_DRAG_AND_RESIZE) {
-        return !isMobile()
-      }
+      // if (process.env.USE_FLOORPLAN_DRAG_AND_RESIZE) {
+      return !isMobile()
+      // }
     },
 
     shouldViewerLayerShow () {
@@ -434,8 +447,18 @@ export default {
 .share-container {
   @extend .flex-center-column
   position: relative
-  width: 240px
   margin: 18px auto 0
+}
+
+.share-container,
+.share-text {
+  width: 260px
+}
+
+.share-text {
+  margin-top: 15px
+  margin-left: auto
+  margin-right: auto
 }
 
 .floorplan-self {
@@ -492,8 +515,7 @@ export default {
   .share-container {
     display: flex
     flex-direction: row
-    width: auto
-    margin-top: 41px
+    margin-top: 30px
 
     .share-list {
       margin-left: $i-main-share-container-share-list-margin
@@ -509,7 +531,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-#vrviewer-sdk {
+.vrviewer-sdk {
   .theme-rtl.theme-rtl-overlap {
     .icon.icon-collapse-left,
     .icon.icon-collapse-right {
