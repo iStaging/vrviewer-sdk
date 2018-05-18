@@ -22,12 +22,12 @@ describe('common/ViewerMarkersHover/index.vue', () => {
     store
   }).$mount()
 
-  it('應該要有 className viewer-markers-hover', () => {
+  it('應該要有 className vrsdk-viewer-markers-hover', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('viewer-markers-hover')
+      .toContain('vrsdk-viewer-markers-hover')
   })
 
-  it('應該要有 className viewer-markers-hover', () => {
+  it('應該要有 className vrsdk-viewer-markers-hover', () => {
     store.commit('SET_PANORAMAS', panoramas)
     store.commit('SET_MARKER', marker)
     vm._watcher.run()

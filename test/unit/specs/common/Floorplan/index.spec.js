@@ -43,26 +43,26 @@ describe('common/Floorplan/index.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className floorplan', () => {
+  it('應該要有 className vrsdk-floorplan', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('floorplan')
+      .toContain('vrsdk-floorplan')
   })
 
-  it('子 DOM 應該要有 className floorplan-container', () => {
+  it('子 DOM 應該要有 className vrsdk-floorplan-container', () => {
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-container')
+      .toContain('vrsdk-floorplan-container')
   })
 
-  it('子 DOM 在 isDragging = true 時應該要有 className floorplan-dragging', () => {
+  it('子 DOM 在 isDragging = true 時應該要有 className vrsdk-floorplan-dragging', () => {
     vm.isDragging = true
     vm._watcher.run()
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-dragging')
+      .toContain('vrsdk-floorplan-dragging')
   })
 
-  it('子 DOM 在 isResizable = true 時應該要有 className floorplan-overflow-hidden', () => {
+  it('子 DOM 在 isResizable = true 時應該要有 className vrsdk-floorplan-overflow-hidden', () => {
     const vm = new Constructor({
       store,
       components: {
@@ -77,10 +77,10 @@ describe('common/Floorplan/index.vue', () => {
     }).$mount()
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-overflow-hidden')
+      .toContain('vrsdk-floorplan-overflow-hidden')
   })
 
-  it('子 DOM 在 isDraggable = true 時應該要有 className floorplan-overflow-hidden', () => {
+  it('子 DOM 在 isDraggable = true 時應該要有 className vrsdk-floorplan-overflow-hidden', () => {
     const vm = new Constructor({
       store,
       components: {
@@ -95,7 +95,7 @@ describe('common/Floorplan/index.vue', () => {
     }).$mount()
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-overflow-hidden')
+      .toContain('vrsdk-floorplan-overflow-hidden')
   })
 
   it('setFloorplanZ 應該要正確改變 floorplanZ 的值', () => {

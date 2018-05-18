@@ -7,18 +7,18 @@ const vm = new Constructor({
 }).$mount()
 
 describe('IFooter.vue', () => {
-  it('應該要有 className i-footer', () => {
+  it('應該要有 className vrsdk-i-footer', () => {
     store.commit('SET_PANO_COLLECTION', {
       showPoweredBy: true
     })
     vm._watcher.run()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('i-footer')
+      .toContain('vrsdk-i-footer')
   })
 
   it('應該包含 powered text', () => {
     const text = 'Powered by iStaging'
-    const textEl = vm.$el.querySelector('.footer-powered-text')
+    const textEl = vm.$el.querySelector('.vrsdk-footer-powered-text')
     expect(textEl.textContent)
       .toContain(text)
   })
@@ -29,7 +29,7 @@ describe('IFooter.vue', () => {
   })
 
   it('要有隱藏的 class 如果 isPanoramasListActive = true', () => {
-    const className = 'fade-in-out-active'
+    const className = 'vrsdk-fade-in-out-active'
     store.dispatch('closePanoramasList')
     vm._watcher.run()
     expect(Array.prototype.slice.call(vm.$el.classList))

@@ -15,8 +15,8 @@ describe('common/ViewerList/index.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className viewer-list', () => {
+  it('應該要有 className vrsdk-viewer-list', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('viewer-list')
+      .toContain('vrsdk-viewer-list')
   })
 })

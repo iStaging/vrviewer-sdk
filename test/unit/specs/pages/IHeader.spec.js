@@ -15,9 +15,9 @@ describe('IHeader.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className i-header', () => {
+  it('應該要有 className vrsdk-i-header', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('i-header')
+      .toContain('vrsdk-i-header')
   })
 
   it('是 VR Mode 或是全螢幕模式要隱藏整個 header', () => {

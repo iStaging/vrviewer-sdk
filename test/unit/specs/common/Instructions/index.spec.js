@@ -20,9 +20,9 @@ describe('common/Instructions/index.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className instructions', () => {
+  it('應該要有 className vrsdk-instructions', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('instructions')
+      .toContain('vrsdk-instructions')
   })
 
   it('要有隱藏的 class 如果 isInstructionsActive = true 及 isVrMode = true', () => {

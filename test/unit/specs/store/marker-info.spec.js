@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/vrsdk-marker-info'
+import { getters, actions, mutations } from '../../../../src/store/modules/marker-info'
 import { testAction } from '../App.spec'
 import { isEqual } from '../../../../src/api/utils'
 const {

@@ -43,9 +43,9 @@ describe('common/ViewerList/Panoramas.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className panoramas', () => {
+  it('應該要有 className vrsdk-panoramas', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('panoramas')
+      .toContain('vrsdk-panoramas')
   })
 
   it('在 Panoramas 數量 10 個，視窗大於等於 768 時要有寬度 1800', () => {
@@ -112,21 +112,21 @@ describe('common/ViewerList/Panoramas.vue', () => {
         IRepeat
       }
     }).$mount()
-    const buttons = vm.$el.querySelectorAll('.panoramas-list-a')
+    const buttons = vm.$el.querySelectorAll('.vrsdk-panoramas-list-a')
     expect(buttons[index].disabled)
       .toEqual(true)
   })
 
-  it('當前 panorama disabled 時要有 className icon-disabled', () => {
-    const buttons = vm.$el.querySelectorAll('.panoramas-list-a')
+  it('當前 panorama disabled 時要有 className vrsdk-icon-disabled', () => {
+    const buttons = vm.$el.querySelectorAll('.vrsdk-panoramas-list-a')
     expect(Array.prototype.slice.call(buttons[index].classList))
-      .toContain('icon-disabled')
+      .toContain('vrsdk-icon-disabled')
   })
 
-  it('當前 panorama disabled 時要有 className panoramas-list-a-active', () => {
-    const buttons = vm.$el.querySelectorAll('.panoramas-list-a')
+  it('當前 panorama disabled 時要有 className vrsdk-panoramas-list-a-active', () => {
+    const buttons = vm.$el.querySelectorAll('.vrsdk-panoramas-list-a')
     expect(Array.prototype.slice.call(buttons[index].classList))
-      .toContain('panoramas-list-a-active')
+      .toContain('vrsdk-panoramas-list-a-active')
   })
 
   it('panoramasList 裡的 image 要正確使用 image', () => {
@@ -142,7 +142,7 @@ describe('common/ViewerList/Panoramas.vue', () => {
     const spy = sinon.spy()
     emitter.on(`prepare_change_scene(panorama_${panorama.panoramaId}, ${panorama.panoramaId}, 'PanoramaList');`, spy)
     vm._watcher.run()
-    const buttons = vm.$el.querySelectorAll('.panoramas-list-a')
+    const buttons = vm.$el.querySelectorAll('.vrsdk-panoramas-list-a')
     buttons[4].click()
     expect(spy.called)
       .toEqual(true)
@@ -154,7 +154,7 @@ describe('common/ViewerList/Panoramas.vue', () => {
     const spy = sinon.spy()
     emitter.on(`prepare_change_scene(panorama_${panorama.panoramaId}, ${panorama.panoramaId}, 'PanoramaList');`, spy)
     vm._watcher.run()
-    const buttons = vm.$el.querySelectorAll('.panoramas-list-a')
+    const buttons = vm.$el.querySelectorAll('.vrsdk-panoramas-list-a')
     buttons[index].click()
     expect(spy.called)
       .toEqual(false)
@@ -163,7 +163,7 @@ describe('common/ViewerList/Panoramas.vue', () => {
   it('點下與 currentPanorama 不同的 button 時觸發事件，會將多數的 layer 關閉', () => {
     const i = 2
     vm._watcher.run()
-    const buttons = vm.$el.querySelectorAll('.panoramas-list-a')
+    const buttons = vm.$el.querySelectorAll('.vrsdk-panoramas-list-a')
     buttons[i].click()
     expect(store.state.share.isShareActive)
       .toEqual(false)

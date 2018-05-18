@@ -23,13 +23,13 @@ describe('IAside.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className i-aside', () => {
+  it('應該要有 className vrsdk-i-aside', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('i-aside')
+      .toContain('vrsdk-i-aside')
   })
 
   it('要渲染 i-nav', () => {
-    expect(vm.$el.querySelector('.i-nav'))
+    expect(vm.$el.querySelector('.vrsdk-i-nav'))
       .not.toEqual(null)
   })
 
@@ -38,7 +38,7 @@ describe('IAside.vue', () => {
     store.dispatch('exitVrMode')
     store.dispatch('exitFullscreen')
     vm._watcher.run()
-    const iNavEl = vm.$el.querySelector('.i-nav')
+    const iNavEl = vm.$el.querySelector('.vrsdk-i-nav')
     expect(iNavEl.style.display)
       .not.toEqual('none')
 
@@ -63,7 +63,7 @@ describe('IAside.vue', () => {
     store.dispatch('exitVrMode')
     store.dispatch('exitFullscreen')
     vm._watcher.run()
-    const closeButton = vm.$el.querySelector('.aside-icon-close')
+    const closeButton = vm.$el.querySelector('.vrsdk-aside-icon-close')
     expect(closeButton.style.display)
       .toEqual('none')
 
@@ -87,7 +87,7 @@ describe('IAside.vue', () => {
   it('關閉按鈕要可以觸發離開全螢幕', () => {
     store.dispatch('enterVrMode')
     store.dispatch('enterFullscreen')
-    const closeButton = vm.$el.querySelector('.aside-icon-close')
+    const closeButton = vm.$el.querySelector('.vrsdk-aside-icon-close')
     const clickEvent = new window.Event('click')
     closeButton.dispatchEvent(clickEvent)
     vm._watcher.run()

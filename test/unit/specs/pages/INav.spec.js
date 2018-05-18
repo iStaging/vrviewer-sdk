@@ -17,25 +17,25 @@ describe('INav.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className i-nav', () => {
+  it('應該要有 className vrsdk-i-nav', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('i-nav')
+      .toContain('vrsdk-i-nav')
   })
 
-  it('should one of children has className i-nav-mobile-outer', () => {
-    const mobileOuter = vm.$el.querySelector('.i-nav-mobile-outer')
+  it('should one of children has className vrsdk-i-nav-mobile-outer', () => {
+    const mobileOuter = vm.$el.querySelector('.vrsdk-i-nav-mobile-outer')
     expect(mobileOuter)
       .not.toEqual(null)
   })
 
-  it('should one of children has className i-nav-mobile-inner', () => {
-    const mobileInner = vm.$el.querySelector('.i-nav-mobile-inner')
+  it('should one of children has className vrsdk-i-nav-mobile-inner', () => {
+    const mobileInner = vm.$el.querySelector('.vrsdk-i-nav-mobile-inner')
     expect(mobileInner)
       .not.toEqual(null)
   })
 
-  it('should one of children has className i-nav-pc', () => {
-    const pc = vm.$el.querySelector('.i-nav-pc')
+  it('should one of children has className vrsdk-i-nav-pc', () => {
+    const pc = vm.$el.querySelector('.vrsdk-i-nav-pc')
     expect(pc)
       .not.toEqual(null)
   })
