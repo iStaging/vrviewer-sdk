@@ -15,18 +15,18 @@ describe('common/PanoCollectionInfo/index.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className pano-collection', () => {
+  it('應該要有 className vrsdk-pano-collection', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('pano-collection')
+      .toContain('vrsdk-pano-collection')
   })
 
-  it('應該要有一個區塊 className pano-collection-figure', () => {
-    expect(vm.$el.querySelector('.pano-collection-figure'))
+  it('應該要有一個區塊 className vrsdk-pano-collection-figure', () => {
+    expect(vm.$el.querySelector('.vrsdk-pano-collection-figure'))
       .not.toEqual(null)
   })
 
-  it('應該要有一個區塊 className pano-collection-detail', () => {
-    expect(vm.$el.querySelector('.pano-collection-detail'))
+  it('應該要有一個區塊 className vrsdk-pano-collection-detail', () => {
+    expect(vm.$el.querySelector('.vrsdk-pano-collection-detail'))
       .not.toEqual(null)
   })
 })

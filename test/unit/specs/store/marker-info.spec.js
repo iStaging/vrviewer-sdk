@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/marker-info'
+import { getters, actions, mutations } from '@/store/modules/vrsdk-marker-info'
 import { testAction } from '../App.spec'
 import { isEqual } from '../../../../src/api/utils'
 const {
@@ -16,7 +16,7 @@ const {
   SET_MARKER_INFO_DATA
 } = mutations
 
-describe('store/modules/marker-info', () => {
+describe('store/modules/vrsdk-marker-info', () => {
   it('isMarkerInfoActive', () => {
     const state = {
       isMarkerInfoActive: false

@@ -13,9 +13,9 @@ const vm = new Constructor({
 }).$mount()
 
 describe('common/ViewerLayer/MarkerInfo.vue', () => {
-  it('應該要有 className marker-info', () => {
+  it('應該要有 className vrsdk-marker-info', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('marker-info')
+      .toContain('vrsdk-marker-info')
   })
 
   it('type = \'memo\' 時，顯示 description', () => {
@@ -24,7 +24,7 @@ describe('common/ViewerLayer/MarkerInfo.vue', () => {
       description: 'description'
     })
     vm._watcher.run()
-    const el = vm.$el.querySelector('.marker-info-description')
+    const el = vm.$el.querySelector('.vrsdk-marker-info-description')
     expect(el.textContent)
       .toContain('description')
   })
@@ -40,43 +40,43 @@ describe('common/ViewerLayer/MarkerInfo.vue', () => {
       photo: '/images/120x120.png'
     })
     vm._watcher.run()
-    const el = vm.$el.querySelector('.marker-info-name')
+    const el = vm.$el.querySelector('.vrsdk-marker-info-name')
     expect(el.textContent)
       .toContain('name')
   })
 
   it('type = \'tag\' 時，顯示 price', () => {
-    const el = vm.$el.querySelector('.marker-info-price')
+    const el = vm.$el.querySelector('.vrsdk-marker-info-price')
     expect(el.textContent)
       .toContain('price')
   })
 
   it('type = \'tag\' 時，顯示 description', () => {
-    const el = vm.$el.querySelector('.marker-info-description')
+    const el = vm.$el.querySelector('.vrsdk-marker-info-description')
     expect(el.textContent)
       .toContain('description')
   })
 
   it('type = \'tag\' 時，顯示 action', () => {
-    const el = vm.$el.querySelector('.marker-info-action')
+    const el = vm.$el.querySelector('.vrsdk-marker-info-action')
     expect(el.textContent)
       .toContain('action')
   })
 
   it('type = \'tag\' 時，顯示 photo', () => {
-    const img = vm.$el.querySelector('.marker-info-image')
+    const img = vm.$el.querySelector('.vrsdk-marker-info-image')
     expect(img.src.indexOf('/images/120x120.png'))
       .not.toEqual(-1)
   })
 
-  it('DOM marker-info-button 按下去要觸發事件', () => {
+  it('DOM vrsdk-marker-info-button 按下去要觸發事件', () => {
     vm.clickTagAction = () => {
       emitter.emit('clickTagAction')
     }
     vm._watcher.run()
     const spy = sinon.spy()
     emitter.on('clickTagAction', spy)
-    const el = vm.$el.querySelector('.marker-info-button')
+    const el = vm.$el.querySelector('.vrsdk-marker-info-button')
     el.click()
     expect(spy.called)
       .toEqual(true)

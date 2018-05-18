@@ -1,29 +1,31 @@
 <template>
   <nav
     role="navigation"
-    class="i-nav">
+    class="vrsdk-i-nav">
     <div
-      class="i-nav-mobile-outer"
-      :class="{ 'i-nav-mobile-outer-active': !isMobileMenuActive }">
+      class="vrsdk-i-nav-mobile-outer"
+      :class="{
+        'vrsdk-i-nav-mobile-outer-active': !isMobileMenuActive
+       }">
       <i-repeat
-        class="i-nav-mobile-outer-icon-wrapper"
+        class="vrsdk-i-nav-mobile-outer-icon-wrapper"
         :model="filterItem(navMobileOuterList, 'name')">
         <button
           role="button"
           v-for="item in navMobileOuterList"
           :key="item.name"
           :slot="item.name"
-          class="i-repeat-a"
+          class="vrsdk-i-repeat-a"
           :class="{
-            'icon-disabled': item.disabled,
-            'i-repeat-a-active': item.isActive
+            'vrsdk-icon-disabled': item.disabled,
+            'vrsdk-i-repeat-a-active': item.isActive
           }"
           @click.prevent="item.method"
           :aria-label="item.caption">
-          <span class="i-repeat-icon-wrapper">
+          <span class="vrsdk-i-repeat-icon-wrapper">
             <svg-icon
               :name="item.name"
-              :class="`i-repeat-icon icon-${item.name}${item.isActive ? ' icon-active' : ''}`"
+              :class="`vrsdk-i-repeat-icon vrsdk-icon-${item.name}${item.isActive ? ' vrsdk-icon-active' : ''}`"
               :color="item.isActive ? mainColor : icon[item.name].color">
             </svg-icon>
           </span>
@@ -31,74 +33,76 @@
       </i-repeat>
     </div>
     <div
-      class="i-nav-mobile-inner"
-      :class="{ 'i-nav-mobile-inner-active': isMobileMenuActive }">
-      <div class="i-nav-mobile-inner-collapse-menu-wrapper">
+      class="vrsdk-i-nav-mobile-inner"
+      :class="{
+        'vrsdk-i-nav-mobile-inner-active': isMobileMenuActive
+      }">
+      <div class="vrsdk-i-nav-mobile-inner-collapse-menu-wrapper">
         <button
           :aria-label="$t('close')"
           @click="closeMobileMenu">
           <svg-icon
             name="closeMobileMenu"
-            class="icon-close-menu"
+            class="vrsdk-vrsdk-icon-close-menu"
             :color="defaultColor">
           </svg-icon>
         </button>
       </div>
       <i-repeat
-        class="i-nav-mobile-inner-icon-wrapper"
+        class="vrsdk-i-nav-mobile-inner-icon-wrapper"
         :model="filterItem(navMobileInnerList, 'name')">
         <button
           role="button"
           v-for="item in navMobileInnerList"
           :key="item.name"
           :slot="item.name"
-          class="i-repeat-a"
+          class="vrsdk-i-repeat-a"
           :class="{
-            'icon-disabled': item.disabled,
-            'i-repeat-a-active': item.isActive
+            'vrsdk-icon-disabled': item.disabled,
+            'vrsdk-i-repeat-a-active': item.isActive
           }"
           @click.prevent="item.method"
           :aria-label="item.caption">
-          <span class="i-repeat-icon-wrapper">
+          <span class="vrsdk-i-repeat-icon-wrapper">
             <svg-icon
               :name="item.name"
-              :class="`i-repeat-icon icon-${item.name}${item.isActive ? ' icon-active' : ''}`"
+              :class="`vrsdk-i-repeat-icon vrsdk-icon-${item.name}${item.isActive ? ' vrsdk-icon-active' : ''}`"
               :color="item.isActive ? mainColor : icon[item.name].color">
             </svg-icon>
           </span>
-          <span class="i-repeat-text">{{ item.caption }}</span>
+          <span class="vrsdk-i-repeat-text">{{ item.caption }}</span>
         </button>
       </i-repeat>
     </div>
-    <div class="i-nav-pc">
+    <div class="vrsdk-i-nav-pc">
       <i-repeat
-        class="i-nav-pc-icon-wrapper"
+        class="vrsdk-i-nav-pc-icon-wrapper"
         :model="filterItem(navPcList, 'name')">
         <div
           v-for="item in navPcList"
           :key="item.name"
           :slot="item.name"
-          class="i-nav-pc-li-inner">
+          class="vrsdk-i-nav-pc-li-inner">
           <button
             role="button"
-            class="i-repeat-a i-repeat-a-horizontal"
+            class="vrsdk-i-repeat-a vrsdk-i-repeat-a-horizontal"
             :class="{
-              'icon-disabled': item.disabled,
-              'i-repeat-a-active': item.isActive
+              'vrsdk-icon-disabled': item.disabled,
+              'vrsdk-i-repeat-a-active': item.isActive
             }"
             :aria-label="item.caption"
             @click.prevent="item.method"
             @mouseenter="changeColor(icon[item.name], mainColor)"
             @mouseleave="changeColor(icon[item.name], defaultColor)">
-            <span class="i-repeat-icon-wrapper">
+            <span class="vrsdk-i-repeat-icon-wrapper">
               <svg-icon
                 :name="item.name"
-                :class="`i-repeat-icon icon-${item.name}${item.isActive ? ' icon-active' : ''}`"
+                :class="`vrsdk-i-repeat-icon vrsdk-icon-${item.name}${item.isActive ? ' vrsdk-icon-active' : ''}`"
                 :color="item.isActive ? mainColor : icon[item.name].color">
               </svg-icon>
             </span>
           </button>
-          <span class="i-nav-pc-tooltip">
+          <span class="vrsdk-i-nav-pc-tooltip">
             {{ item.caption }}
           </span>
         </div>
@@ -342,17 +346,17 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.i-nav {
+.vrsdk-i-nav {
   position: relative
   height: 100%
 
-  .i-repeat-icon {
+  .vrsdk-i-repeat-icon {
     width: 20px
     height: 20px
   }
 }
 
-.i-nav-mobile-outer {
+.vrsdk-i-nav-mobile-outer {
   position: absolute
   top: 20px
   right: $i-nav-i-nav-mobile-outer-pos
@@ -361,15 +365,15 @@ export default {
   transition: opacity .25s ease-out, visibility 0s linear .25s
 }
 
-.i-nav-mobile-outer-active {
+.vrsdk-i-nav-mobile-outer-active {
   opacity: 1
   visibility: visible
   transition: opacity .25s ease-out .25s
 }
 
-.i-nav-mobile-inner {
-  @extend .absolute-full
-  @extend .overflow-auto
+.vrsdk-i-nav-mobile-inner {
+  @extend .vrsdk-absolute-full
+  @extend .vrsdk-overflow-auto
   background-color: alpha($dark-gray, 60%)
   background-image: linear-gradient(120deg, rgba(58, 58, 60, .4), rgba(118, 118, 120, .4))
   background-blend-mode: hard-light
@@ -378,22 +382,22 @@ export default {
   transition: transform .25s cubic-bezier(0, 1, .63, 1)
   padding-bottom: 40px
 
-  .i-repeat-a {
+  .vrsdk-i-repeat-a {
     margin: 0 12px
   }
 
-  .i-repeat-icon {
+  .vrsdk-i-repeat-icon {
     width: 24px
     height: 24px
   }
 
-  .i-repeat-text {
-    @extend .text-with-gray-bg
+  .vrsdk-i-repeat-text {
+    @extend .vrsdk-text-with-gray-bg
     font-size: 14px
     margin-left: $i-nav-i-nav-mobile-inner-i-repeat-text-margin
   }
 
-  >>> .i-repeat-li {
+  >>> .vrsdk-i-repeat-li {
     position: relative
     height: 55px
     overflow: hidden
@@ -410,11 +414,11 @@ export default {
   }
 }
 
-.i-nav-mobile-inner-active {
+.vrsdk-i-nav-mobile-inner-active {
   transform: none
 }
 
-.i-nav-mobile-inner-collapse-menu-wrapper {
+.vrsdk-i-nav-mobile-inner-collapse-menu-wrapper {
   position: relative
   height: 70px
   display: flex
@@ -424,55 +428,55 @@ export default {
   padding: 0 12px
 
   button {
-    @extend .btn-no-default
+    @extend .vrsdk-btn-no-default
   }
 }
 
-.i-repeat-icon-wrapper {
-  @extend .flex-center
+.vrsdk-i-repeat-icon-wrapper {
+  @extend .vrsdk-flex-center
   position: relative
 }
 
-.i-nav-mobile-outer-icon-wrapper {
-  .i-repeat-icon-wrapper {
+.vrsdk-i-nav-mobile-outer-icon-wrapper {
+  .vrsdk-i-repeat-icon-wrapper {
     background-color: alpha($dark-gray, 60%)
     background-image: linear-gradient(35deg, rgba(58, 58, 60, .4), rgba(118, 118, 120, .4))
     background-blend-mode: screen
     border-radius: 5px
   }
 
-  .i-repeat-icon {
+  .vrsdk-i-repeat-icon {
     width: 30px
     height: 30px
     pointer-events: auto
     padding: 5px
   }
 
-  >>> .i-repeat-li {
-    + .i-repeat-li {
+  >>> .vrsdk-i-repeat-li {
+    + .vrsdk-i-repeat-li {
       margin-top: 20px
     }
   }
 }
 
-.i-nav-pc {
+.vrsdk-i-nav-pc {
   display: none
 }
 
 @media screen and (min-width: $response) {
-  .i-nav {
+  .vrsdk-i-nav {
     width: 200px
     height: 100%
   }
 
-  .i-nav-mobile-outer,
-  .i-nav-mobile-inner,
-  .i-nav-mobile-outer-bottom {
+  .vrsdk-i-nav-mobile-outer,
+  .vrsdk-i-nav-mobile-inner,
+  .vrsdk-i-nav-mobile-outer-bottom {
     display: none
   }
 
-  .i-nav-pc-tooltip {
-    @extend .text-with-gray-bg
+  .vrsdk-i-nav-pc-tooltip {
+    @extend .vrsdk-text-with-gray-bg
     pointer-events: none
     position: absolute
     right: $i-main-i-nav-pc-tooltip-pos
@@ -502,12 +506,12 @@ export default {
     }
   }
 
-  .i-nav-pc-li-inner {
+  .vrsdk-i-nav-pc-li-inner {
     display: flex
     align-items: center
   }
 
-  .i-nav-pc-icon-wrapper {
+  .vrsdk-i-nav-pc-icon-wrapper {
     display: flex
     flex-direction: column
     align-items: flex-end
@@ -517,33 +521,33 @@ export default {
     width: 100%
   }
 
-  .i-nav-pc {
+  .vrsdk-i-nav-pc {
     position: relative
     display: block
     margin: 0
     height: 100%
     width: 100%
 
-    .i-repeat-icon-wrapper {
+    .vrsdk-i-repeat-icon-wrapper {
       background-color: alpha($dark-gray, 80%)
       border-radius: 5px
     }
 
-    .i-repeat-a {
+    .vrsdk-i-repeat-a {
       &:hover {
-        + .i-nav-pc-tooltip {
+        + .vrsdk-i-nav-pc-tooltip {
           opacity: 1
           transform: none
         }
       }
     }
 
-    .i-repeat-a {
+    .vrsdk-i-repeat-a {
       font-size: 12px
       line-height: 20px
     }
 
-    .i-repeat-icon {
+    .vrsdk-i-repeat-icon {
       $w = 22px
       $h = 22px
       $p = 6.5px
@@ -551,10 +555,10 @@ export default {
       height: $h + $p * 2
     }
 
-    >>> .i-repeat-li {
+    >>> .vrsdk-i-repeat-li {
       pointer-events: auto
 
-      + .i-repeat-li {
+      + .vrsdk-i-repeat-li {
         margin-top: 20px
       }
     }
@@ -566,31 +570,31 @@ export default {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .icon-close-menu {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-icon-close-menu {
       transform: rotateY(180deg)
     }
 
-    .i-nav-mobile-outer {
+    .vrsdk-i-nav-mobile-outer {
       right: auto
       left: $i-nav-i-nav-mobile-outer-pos
     }
 
-    .i-nav-mobile-inner {
+    .vrsdk-i-nav-mobile-inner {
       transform: translateX(-($i-nav-i-nav-mobile-inner-animate-x))
     }
 
-    .i-nav-mobile-inner-active {
+    .vrsdk-i-nav-mobile-inner-active {
       transform: none
     }
 
-    .i-nav-mobile-inner .i-repeat-text {
+    .vrsdk-i-nav-mobile-inner .vrsdk-i-repeat-text {
       margin-right: $i-nav-i-nav-mobile-inner-i-repeat-text-margin
       margin-left: auto
     }
 
     @media screen and (min-width: $response) {
-      .i-nav-pc-tooltip {
+      .vrsdk-i-nav-pc-tooltip {
         right: auto
         left: $i-main-i-nav-pc-tooltip-pos
         margin-left: $i-main-i-nav-pc-tooltip-margin

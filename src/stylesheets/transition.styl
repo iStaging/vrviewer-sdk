@@ -1,6 +1,6 @@
 $fade-timing-function = ease-out
 $fade-duration = .25s
-.fade-in-out {
+.vrsdk-fade-in-out {
   opacity: 0
   visibility: hidden
   transition:
@@ -8,7 +8,7 @@ $fade-duration = .25s
     visibility 0s $fade-timing-function $fade-duration
 }
 
-.fade-in-out-active {
+.vrsdk-fade-in-out-active {
   opacity: 1
   visibility: visible
   transition: opacity $fade-duration $fade-timing-function
@@ -16,7 +16,7 @@ $fade-duration = .25s
 
 $bounce-timing-function = cubic-bezier(0, 1, .25, 1)
 $bounce-duration = .5s
-.bounce-in {
+.vrsdk-bounce-in {
   opacity: 0
   visibility: hidden
   transform: scale(.85)
@@ -27,7 +27,7 @@ $bounce-duration = .5s
   pointer-events: none
 }
 
-.bounce-in-active {
+.vrsdk-bounce-in-active {
   opacity: 1
   visibility: visible
   transform: scale(1)

@@ -1,5 +1,5 @@
 <template>
-  <div class="qr-code">
+  <div class="vrsdk-qr-code">
     <div ref="qrCode" :class="innerClass"></div>
     <slot></slot>
   </div>
@@ -73,19 +73,19 @@ function generateQrCode (qrCodeEl = null, url = '', config = {}) {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.qr-code {
-  @extend .flex-center-column
+.vrsdk-qr-code {
+  @extend .vrsdk-flex-center-column
   position: relative
   width: 260px
   height: 260px
   background-color: $white
 
-  &.is-transparent {
+  &.vrsdk-is-transparent {
     background-color: transparent
   }
 }
 
-.qr-code-inner {
+.vrsdk-qr-code-inner {
   padding: 5px
   background-color: $white
 }

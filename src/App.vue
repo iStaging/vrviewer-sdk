@@ -89,7 +89,7 @@ export default {
     pointer-events: auto
 
     .error-wrapper-container {
-      @extend .flex-center-column
+      @extend .vrsdk-flex-center-column
       text-align: center
 
       img {
@@ -146,7 +146,7 @@ export default {
 
 .vrviewer-sdk-fullscreen,
 .vrviewer-sdk-vrmode {
-  @extend .position-fixed
+  @extend .vrsdk-position-fixed
   top: 0
   right: 0
   bottom: 0

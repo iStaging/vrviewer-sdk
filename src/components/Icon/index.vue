@@ -1,8 +1,8 @@
 <template>
   <span
     ref="icon"
-    class="icon"
-    :class="{ 'photo-lazyload': hasLazyload }"
+    class="vrsdk-icon"
+    :class="{ 'vrsdk-photo-lazyload': hasLazyload }"
     :style="{ backgroundImage }"
     :data-src="dataSrc">
     <slot></slot>
@@ -74,11 +74,11 @@ export default {
 @import '~css/extends.styl'
 @import '~css/variables.styl'
 
-.photo-lazyload {
+.vrsdk-photo-lazyload {
   position: relative
 
   &::before {
-    @extend .absolute-full
+    @extend .vrsdk-absolute-full
     content: ''
     background-color: #efefef
     z-index: $photo-lazyload-before-z
@@ -94,21 +94,27 @@ export default {
   }
 }
 
-.icon {
-  @extend .bg-center
+.vrsdk-icon {
+  @extend .vrsdk-bg-center
   display: inline-flex
 }
 
-.icon-close-info-white {
+.vrsdk-icon-close-info-white {
   background-image: url('./img/close-info-white.png')
 }
-.icon-close-info-black {
+.vrsdk-icon-close-info-black {
   background-image: url('./img/close-info-black.png')
 }
-.icon-arrow-down-black {
+.vrsdk-icon-arrow-down-black {
   background-image: url('./img/arrow-down-black.png')
 }
-.icon-arrow-up-black {
+.vrsdk-icon-arrow-up-black {
   background-image: url('./img/arrow-up-black.png')
+}
+.vrsdk-icon-floorplan-add {
+  background-image: url('../../common/Floorplan/img/add.png')
+}
+.vrsdk-icon-floorplan-minus {
+  background-image: url('../../common/Floorplan/img/minus.png')
 }
 </style>

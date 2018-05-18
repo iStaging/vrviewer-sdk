@@ -1,5 +1,5 @@
 <template>
-  <span class="svg-icon">
+  <span class="vrsdk-svg-icon">
     <svg-pano-select
       v-if="name === 'panoSelect'"
       :color="color">
@@ -90,7 +90,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/extends.styl'
 
-.svg-icon {
-  @extend .flex-center
+.vrsdk-svg-icon {
+  @extend .vrsdk-flex-center
 }
 </style>

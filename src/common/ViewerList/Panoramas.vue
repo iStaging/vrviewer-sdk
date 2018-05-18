@@ -1,5 +1,5 @@
 <template>
-  <div class="panoramas">
+  <div class="vrsdk-panoramas">
     <div :style="{ width: panoramasWidth }">
       <i-repeat
         :model="filterItem(panoramasList, 'key')">
@@ -7,26 +7,26 @@
           v-for="panorama in panoramasList"
           :key="panorama.key"
           :slot="panorama.key"
-          class="panoramas-list-a"
+          class="vrsdk-panoramas-list-a"
           :class="{
-            'active': hoveredPanorama.panoramaId === panorama.panoramaId,
-            'icon-disabled': panorama.disabled,
-            'panoramas-list-a-active': panorama.isActive
+            'vrsdk-active': hoveredPanorama.panoramaId === panorama.panoramaId,
+            'vrsdk-icon-disabled': panorama.disabled,
+            'vrsdk-panoramas-list-a-active': panorama.isActive
           }"
           :disabled="panorama.disabled"
           @mouseenter="setHoveredPanorama(panorama)"
           @mouseleave="setHoveredPanorama({})"
           @click.prevent="panorama.method">
-          <span class="panoramas-list-icon-wrapper">
+          <span class="vrsdk-panoramas-list-icon-wrapper">
             <icon
-              class="panoramas-list-icon"
-              :class="[{ 'icon-active': panorama.isActive }, panorama.className]"
+              class="vrsdk-panoramas-list-icon"
+              :class="[{ 'vrsdk-icon-active': panorama.isActive }, panorama.className]"
               :image="panorama.image"
               :style="{ backgroundPosition: getPanoramaPosition(panorama) }"
               :hasLazyload="true">
             </icon>
           </span>
-          <span class="panoramas-list-text">
+          <span class="vrsdk-panoramas-list-text">
             {{ panorama.caption }}
           </span>
         </button>
@@ -156,7 +156,7 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.panoramas {
+.vrsdk-panoramas {
   position: relative
   padding: 10px 20px
   // min-height: 113px
@@ -167,15 +167,15 @@ export default {
   background-color: alpha($dark-gray, 70%)
   z-index: $panoramas-z
 
-  .panoramas-list-a {
-    @extend .flex-center-column
-    @extend .btn-no-default
+  .vrsdk-panoramas-list-a {
+    @extend .vrsdk-flex-center-column
+    @extend .vrsdk-btn-no-default
     text-align: center
     padding: 0
     margin: 0
   }
 
-  .panoramas-list-a-active {
+  .vrsdk-panoramas-list-a-active {
     .panoramas-list-icon-wrapper {
       border-color: $main-color
     }
@@ -183,7 +183,7 @@ export default {
 
   $w = 120px
   $h = 60px
-  .panoramas-list-icon-wrapper {
+  .vrsdk-panoramas-list-icon-wrapper {
     width: $w
     height: $h
     display: flex
@@ -193,25 +193,25 @@ export default {
     overflow: hidden
   }
 
-  .panoramas-list-icon {
-    @extend .full
+  .vrsdk-panoramas-list-icon {
+    @extend .vrsdk-full
     background-size: $w $h
     background-repeat: repeat
   }
 
-  >>> .i-repeat-li {
+  >>> .vrsdk-i-repeat-li {
     display: inline-flex
 
-    & + .i-repeat-li {
+    & + .vrsdk-i-repeat-li {
       margin-left: $panoramas-i-repeat-li-margin
     }
   }
 }
 
 $w = 120px
-.panoramas-list-text {
-  @extend .text-ellipsis
-  @extend .text-with-gray-bg
+.vrsdk-panoramas-list-text {
+  @extend .vrsdk-text-ellipsis
+  @extend .vrsdk-text-with-gray-bg
   position: relative
   display: block
   font-size: 12px
@@ -219,18 +219,18 @@ $w = 120px
 }
 
 @media screen and (min-width: $response) {
-  .panoramas {
+  .vrsdk-panoramas {
     padding: 14px 20px
     min-height: 146px
 
-    .panoramas-list-a {
-      &.active, &:hover {
+    .vrsdk-panoramas-list-a {
+      &.vrsdk-active, &:hover {
         &:not(.panoramas-list-a-active) {
-          .panoramas-list-icon-wrapper {
+          .vrsdk-panoramas-list-icon-wrapper {
             border-color: $light-gray-color
           }
 
-          .panoramas-list-icon {
+          .vrsdk-panoramas-list-icon {
             transform: scale(1.1)
           }
         }
@@ -239,18 +239,18 @@ $w = 120px
 
     $w = 160px
     $h = 98px
-    .panoramas-list-icon-wrapper {
+    .vrsdk-panoramas-list-icon-wrapper {
       width: $w
       height: $h
     }
 
-    .panoramas-list-icon {
+    .vrsdk-panoramas-list-icon {
       background-size: $w $h
       z-index: $panoramas-list-icon-z
       transition: transform .25s ease-out
     }
 
-    .panoramas-list-text {
+    .vrsdk-panoramas-list-text {
       max-width: $w
       line-height: 20px
       font-size: 13px
@@ -263,8 +263,8 @@ $w = 120px
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .panoramas .i-repeat-li + .i-repeat-li {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-panoramas .vrsdk-i-repeat-li + .vrsdk-i-repeat-li {
       margin-left: auto
       margin-right: $panoramas-i-repeat-li-margin
     }

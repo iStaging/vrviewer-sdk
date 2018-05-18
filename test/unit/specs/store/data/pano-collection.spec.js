@@ -1,4 +1,4 @@
-import { actions, getters, mutations } from '@/store/modules/data/pano-collection'
+import { actions, getters, mutations } from '@/store/modules/data/vrsdk-pano-collection'
 import { testAction } from '../../App.spec'
 import { isEqual } from '../../../../../src/api/utils'
 const {
@@ -18,7 +18,7 @@ const buildingData = {
   floorplan: ''
 }
 
-describe('store/modules/data/pano-collection', () => {
+describe('store/modules/data/vrsdk-pano-collection', () => {
   it('currentPanoCollection', () => {
     const state = {
       currentPanoCollection: {}

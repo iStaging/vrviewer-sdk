@@ -1,10 +1,10 @@
 <template>
-  <div class="floorplan-dots">
+  <div class="vrsdk-floorplan-dots">
     <span
       v-for="panorama in panoramas"
-      class="floorplan-point"
+      class="vrsdk-floorplan-point"
       :class="{
-        'active': hoveredPanorama.panoramaId === panorama.panoramaId
+        'vrsdk-active': hoveredPanorama.panoramaId === panorama.panoramaId
       }"
       :style="{
         'webkit-transform': pointPosition(panorama)
@@ -15,7 +15,7 @@
     </span>
     <span
       v-if="currentPanorama.position"
-      class="floorplan-activated-point"
+      class="vrsdk-floorplan-activated-point"
       :style="{
         'webkit-transform': pointPosition(currentPanorama),
         backgroundColor: activatedColor
@@ -106,24 +106,24 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/variables.styl'
 
-.floorplan-point {
+.vrsdk-floorplan-point {
   cursor: pointer
   background-color: alpha($white, 40%)
   box-shadow: 0 1px 10px alpha($dark-gray, .8)
   transition: transform .25s ease-out
 
-  &.active, &:hover {
+  &.vrsdk-active, &:hover {
     background-color: $light-gray-color
   }
 }
 
-.floorplan-activated-point {
+.vrsdk-floorplan-activated-point {
   opacity: .9
   transition: transform .8s ease-out
 }
 
-.floorplan-point,
-.floorplan-activated-point {
+.vrsdk-floorplan-point,
+.vrsdk-floorplan-activated-point {
   position: absolute
   display: flex
   width: 20px
@@ -131,7 +131,7 @@ export default {
   border-radius: 50%
 }
 
-.floorplan-activated-point {
+.vrsdk-floorplan-activated-point {
   background-color: alpha($main-color, .9)
 }
 </style>
