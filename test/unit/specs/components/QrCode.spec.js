@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import QrCode from '@/components/QrCode'
+import QrCode from '../../../../src/components/QrCode'
 const Constructor = Vue.extend(QrCode)
 
 describe('components/QrCode.vue', () => {

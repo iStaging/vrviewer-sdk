@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import Panoramas from '@/common/ViewerList/Panoramas'
-import Icon from '@/components/Icon/index'
-import IRepeat from '@/components/IRepeat'
-import store from '@/store'
-import { i18n } from '@/main'
+import Panoramas from '../../../../../src/common/ViewerList/Panoramas'
+import Icon from '../../../../../src/components/Icon/index'
+import IRepeat from '../../../../../src/components/IRepeat'
+import store from '../../../../../src/store'
+import { i18n } from '../../../../../src/main'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()

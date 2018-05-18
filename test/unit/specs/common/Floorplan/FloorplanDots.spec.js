@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import FloorplanDots from '@/common/Floorplan/FloorplanDots.vue'
-import store from '@/store'
+import FloorplanDots from '../../../../../src/common/Floorplan/FloorplanDots.vue'
+import store from '../../../../../src/store'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()

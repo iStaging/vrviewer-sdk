@@ -1,11 +1,11 @@
 /* eslint-disable no-compare-neg-zero */
 import Vue from 'vue'
-import Floorplan from '@/common/Floorplan/index.vue'
-import FloorplanDots from '@/common/Floorplan/FloorplanDots.vue'
-import FloorplanRange from '@/common/Floorplan/FloorplanRange.vue'
-import Icon from '@/components/Icon/index.vue'
-import IRepeat from '@/components/IRepeat.vue'
-import store from '@/store'
+import Floorplan from '../../../../../src/common/Floorplan/index.vue'
+import FloorplanDots from '../../../../../src/common/Floorplan/FloorplanDots.vue'
+import FloorplanRange from '../../../../../src/common/Floorplan/FloorplanRange.vue'
+import Icon from '../../../../../src/components/Icon/index.vue'
+import IRepeat from '../../../../../src/components/IRepeat.vue'
+import store from '../../../../../src/store'
 import fakeFloorplanSquareImage from '../../../images/120x120.png'
 import fakeFloorplanRectangleImage from '../../../images/240x180.svg'
 

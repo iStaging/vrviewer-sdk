@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import ViewerLayer from '@/common/ViewerLayer/index.vue'
-import { i18n } from '@/main'
+import ViewerLayer from '../../../../../src/common/ViewerLayer/index.vue'
+import { i18n } from '../../../../../src/main'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Icon from '@/components/Icon/index.vue'
+import Icon from '../../../../../src/components/Icon/index.vue'
 import { loadImage } from '../../../../../src/api/utils'
 const Constructor = Vue.extend(Icon)
 const image = 'https://www.istaging.com/sdk/logo-tripod.png'

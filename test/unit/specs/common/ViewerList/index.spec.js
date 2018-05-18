@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import ViewerList from '@/common/ViewerList/index.vue'
-import Panoramas from '@/common/ViewerList/Panoramas.vue'
-import store from '@/store'
-import { i18n } from '@/main'
+import ViewerList from '../../../../../src/common/ViewerList/index.vue'
+import Panoramas from '../../../../../src/common/ViewerList/Panoramas.vue'
+import store from '../../../../../src/store'
+import { i18n } from '../../../../../src/main'
 
 const Constructor = Vue.extend(ViewerList)
 

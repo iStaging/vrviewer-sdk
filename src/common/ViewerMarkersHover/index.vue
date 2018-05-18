@@ -21,7 +21,7 @@
           </icon>
         </div>
         <p class="vrsdk-viewer-markers-hover-text">
-          {{ nextPanoramaName }}
+          {{ nextPanorama.panoramaName }}
         </p>
       </div>
       <div class="vrsdk-decoration"></div>
@@ -115,12 +115,6 @@ export default {
         }
       }
       return {}
-    },
-
-    nextPanoramaName () {
-      return this.nextPanorama
-        ? (this.nextPanorama.customPanoramaName || this.$t(this.nextPanorama.panoramaName))
-        : ''
     }
   },
 

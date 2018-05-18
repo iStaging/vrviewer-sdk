@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import IProgress from '@/components/IProgress'
+import IProgress from '../../../../src/components/IProgress'
 const Constructor = Vue.extend(IProgress)
 
 const value = 15

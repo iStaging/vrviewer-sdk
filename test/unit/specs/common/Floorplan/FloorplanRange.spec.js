@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import FloorplanRange from '@/common/Floorplan/FloorplanRange.vue'
-import store from '@/store'
+import FloorplanRange from '../../../../../src/common/Floorplan/FloorplanRange.vue'
+import store from '../../../../../src/store'
 
 const Constructor = Vue.extend(FloorplanRange)
 const panorama = {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import IFooter from '@/pages/IFooter.vue'
-import store from '@/store'
+import IFooter from '../../../../src/pages/IFooter.vue'
+import store from '../../../../src/store'
 const Constructor = Vue.extend(IFooter)
 const vm = new Constructor({
   store

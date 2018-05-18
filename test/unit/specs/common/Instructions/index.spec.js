@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Instructions from '@/common/Instructions/index'
-import Icon from '@/components/Icon'
-import store from '@/store'
-import { i18n } from '@/main'
+import Instructions from '../../../../../src/common/Instructions/index'
+import Icon from '../../../../../src/components/Icon'
+import store from '../../../../../src/store'
+import { i18n } from '../../../../../src/main'
 const Constructor = Vue.extend(Instructions)
 
 const FakeKrpanoEl = function () {

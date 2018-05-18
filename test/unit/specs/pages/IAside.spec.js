@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import IAside from '@/pages/IAside'
-import INav from '@/pages/INav'
-import Icon from '@/components/Icon'
-import store from '@/store'
-import { i18n } from '@/main'
+import IAside from '../../../../src/pages/IAside'
+import INav from '../../../../src/pages/INav'
+import Icon from '../../../../src/components/Icon'
+import store from '../../../../src/store'
+import { i18n } from '../../../../src/main'
 
 const Constructor = Vue.extend(IAside)
 

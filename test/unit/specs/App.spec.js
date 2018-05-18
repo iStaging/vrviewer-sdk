@@ -1,7 +1,7 @@
 // import App from '@/App.vue'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import store from '@/store'
+import store from '../../../src/store'
 import { isEqual } from '../../../src/api/utils'
 Vue.use(VueI18n)
 describe('App.vue', () => {

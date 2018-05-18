@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import INav from '@/pages/INav'
-import Icon from '@/components/Icon'
-import IRepeat from '@/components/IRepeat'
-import store from '@/store'
-import { i18n } from '@/main'
+import INav from '../../../../src/pages/INav'
+import Icon from '../../../../src/components/Icon'
+import IRepeat from '../../../../src/components/IRepeat'
+import store from '../../../../src/store'
+import { i18n } from '../../../../src/main'
 
 const Constructor = Vue.extend(INav)
 

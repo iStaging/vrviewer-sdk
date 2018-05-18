@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import index from '@/pages/index'
-import IHeader from '@/pages/IHeader'
-import IMain from '@/pages/IMain'
-import IAside from '@/pages/IAside'
-import IFooter from '@/pages/IFooter'
-import IProgress from '@/components/IProgress'
-import store from '@/store'
-import { i18n } from '@/main'
+import index from '../../../../src/pages/index'
+import IHeader from '../../../../src/pages/IHeader'
+import IMain from '../../../../src/pages/IMain'
+import IAside from '../../../../src/pages/IAside'
+import IFooter from '../../../../src/pages/IFooter'
+import IProgress from '../../../../src/components/IProgress'
+import store from '../../../../src/store'
+import { i18n } from '../../../../src/main'
 
 const Constructor = Vue.extend(index)
 const vm = new Constructor({

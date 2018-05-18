@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import Popup from '@/components/Popup'
-import { i18n } from '@/main'
+import Popup from '../../../../../src/components/Popup'
+import { i18n } from '../../../../../src/main'
 
 const Constructor = Vue.extend(Popup)
 

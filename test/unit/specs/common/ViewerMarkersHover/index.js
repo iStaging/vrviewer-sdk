@@ -1,8 +1,7 @@
 import Vue from 'vue'
-import ViewerMarkersHover from '@/common/ViewerMarkersHover/index.vue'
-import store from '@/store'
-import { i18n } from '@/main'
-import { isMobile } from '@/api/utils'
+import ViewerMarkersHover from '../../../../../src/common/ViewerMarkersHover/index.vue'
+import store from '../../../../../src/store'
+import { isMobile } from '../../../../../src/api/utils'
 
 const Constructor = Vue.extend(ViewerMarkersHover)
 const panoramas = [{
@@ -18,7 +17,6 @@ const marker = {
 }
 describe('common/ViewerMarkersHover/index.vue', () => {
   const vm = new Constructor({
-    i18n,
     store
   }).$mount()
 

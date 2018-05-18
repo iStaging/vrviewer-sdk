@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import IHeader from '@/pages/IHeader'
-import PanoCollectionInfo from '@/common/PanoCollectionInfo/index'
-import store from '@/store'
-import { i18n } from '@/main'
+import IHeader from '../../../../src/pages/IHeader'
+import PanoCollectionInfo from '../../../../src/common/PanoCollectionInfo/index'
+import store from '../../../../src/store'
+import { i18n } from '../../../../src/main'
 
 const Constructor = Vue.extend(IHeader)
 

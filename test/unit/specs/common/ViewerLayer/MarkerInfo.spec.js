@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import MarkerInfo from '@/common/ViewerLayer/MarkerInfo.vue'
-import store from '@/store'
-import { i18n } from '@/main'
+import MarkerInfo from '../../../../../src/common/ViewerLayer/MarkerInfo.vue'
+import store from '../../../../../src/store'
+import { i18n } from '../../../../../src/main'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter
 const emitter = new EventEmitter()

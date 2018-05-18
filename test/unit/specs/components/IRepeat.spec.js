@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import IRepeat from '@/components/IRepeat'
+import IRepeat from '../../../../src/components/IRepeat'
 const Constructor = Vue.extend(IRepeat)
 
 describe('components/IRepeat.vue', () => {
