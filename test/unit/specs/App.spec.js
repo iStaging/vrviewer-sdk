@@ -1,73 +1,69 @@
-// import App from '@/App.vue'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import App from '../../../src/App.vue'
+import DefaultView from '../../../src/pages/index.vue'
 import store from '../../../src/store'
-import { isEqual } from '../../../src/api/utils'
+import { i18n } from '../../../src/main'
 Vue.use(VueI18n)
+
+const Constructor = Vue.extend(App)
+
 describe('App.vue', () => {
-  it('app.vue', () => {
-    expect(0).toEqual(0)
+  const vm = new Constructor({
+    i18n,
+    store,
+    components: {
+      DefaultView
+    }
+  }).$mount()
+
+  it('必須要有 id vrviewer-sdk', () => {
+    expect(vm.$el.id)
+      .toEqual('vrviewer-sdk')
   })
+
+  it('必須要有 className vrviewer-sdk', () => {
+    expect(Array.prototype.slice.call(vm.$el.classList))
+      .toContain('vrviewer-sdk')
+  })
+
+  it('瀏覽器不支援時不產生 default view', () => {
+    vm.isBrowserSupport = true
+    vm.isWebGlSupport = true
+    vm._watcher.run()
+    let defaultViewEl = vm.$el.querySelector('.vrsdk-default-container')
+    expect(defaultViewEl)
+      .not.toEqual(null)
+
+    vm.isBrowserSupport = false
+    vm._watcher.run()
+    defaultViewEl = vm.$el.querySelector('.vrsdk-default-container')
+    expect(defaultViewEl)
+      .toEqual(null)
+
+    vm.isBrowserSupport = true
+    vm.isWebGlSupport = false
+    vm._watcher.run()
+    defaultViewEl = vm.$el.querySelector('.vrsdk-default-container')
+    expect(defaultViewEl)
+      .toEqual(null)
+
+    vm.isBrowserSupport = false
+    vm.isWebGlSupport = false
+    vm._watcher.run()
+    defaultViewEl = vm.$el.querySelector('.vrsdk-default-container')
+    expect(defaultViewEl)
+      .toEqual(null)
+  })
+
+  // it('瀏覽器不支援時產生錯誤畫面', () => {
+  //   vm.isBrowserSupport = false
+  //   vm.isWebGlSupport = true
+  //   vm._watcher.run()
+  //   let errorContainerEl = vm.$el.querySelector('.error-wrapper-container')
+  //   const text = parseHTML(vm.$t('browserNoSupport'))
+  //   console.log('text', text)
+  //   expect(errorContainerEl.textContent)
+  //     .toContain(text)
+  // })
 })
-
-// helper for testing action with expected mutations
-const rootState = store.state
-export const testAction = async (action, payload, state = {}, expectedMutations = [], expectedDispatches = [], done) => {
-  let mutationsCount = 0
-  let dispatchesCount = 0
-  // console.log('state', state)
-
-  // mock commit
-  const commit = (type, payload) => {
-    const mutation = expectedMutations[mutationsCount]
-    // console.log('mutation', mutation, mutationsCount)
-    // console.log('payload', payload)
-    // console.log('type', type)
-    try {
-      expect(mutation.type).toEqual(type)
-      if (payload !== undefined) {
-        expect(isEqual(mutation.payload, payload)).toBe(true)
-      }
-    } catch (error) {
-      done(error)
-    }
-
-    mutationsCount++
-    if (mutationsCount + dispatchesCount >= expectedMutations.length + expectedDispatches.length) {
-      done()
-    }
-  }
-
-  const dispatch = (type, payload) => {
-    const dispatch = expectedDispatches[dispatchesCount]
-    // console.log('dispatch', dispatch, dispatchesCount)
-    // console.log('payload', payload)
-    // console.log('type', type)
-    try {
-      expect(dispatch.type).toEqual(type)
-      if (payload !== undefined) {
-        expect(isEqual(dispatch.payload, payload)).toBe(true)
-      }
-    } catch (error) {
-      done(error)
-    }
-
-    dispatchesCount++
-    if (dispatchesCount + mutationsCount >= expectedMutations.length + expectedDispatches.length) {
-      done()
-    }
-  }
-
-  // call the action with mocked store and arguments
-  try {
-    await action({ dispatch, commit, state, rootState }, payload)
-  } catch (error) {
-    console.error('testAction action error', error)
-  }
-
-  // check if no mutations should have been dispatched
-  if (expectedMutations.length === 0 && expectedDispatches.length === 0) {
-    expect(mutationsCount + dispatchesCount).toEqual(0)
-    done()
-  }
-}
