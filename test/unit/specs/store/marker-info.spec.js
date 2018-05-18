@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/marker-info'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 import { isEqual } from '../../../../src/api/utils'
 const {
   isMarkerInfoActive,

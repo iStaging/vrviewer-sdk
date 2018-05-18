@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/krpano'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 import store from '../../../../src/store'
 import sinon from 'sinon'
 const EventEmitter = require('events').EventEmitter

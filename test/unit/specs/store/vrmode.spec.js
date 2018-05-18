@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/vrmode'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 import store from '../../../../src/store'
 const {
   isVrMode

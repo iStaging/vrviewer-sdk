@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/mobile-menu'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 const {
   isMobileMenuActive
 } = getters

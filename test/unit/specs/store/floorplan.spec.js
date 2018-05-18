@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/floorplan'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 const {
   isFloorplanActive
 } = getters

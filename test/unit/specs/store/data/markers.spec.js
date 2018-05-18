@@ -1,5 +1,5 @@
 import { actions, getters, mutations } from '../../../../../src/store/modules/data/markers'
-import { testAction } from '../../App.spec'
+import { testAction } from '../../main.spec'
 import { isEqual } from '../../../../../src/api/utils'
 const {
   currentMarker

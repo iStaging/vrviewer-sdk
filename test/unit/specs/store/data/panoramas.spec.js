@@ -1,5 +1,5 @@
 import { actions, getters, mutations } from '../../../../../src/store/modules/data/panoramas'
-import { testAction } from '../../App.spec'
+import { testAction } from '../../main.spec'
 import store from '../../../../../src/store'
 import { isEqual } from '../../../../../src/api/utils'
 import sinon from 'sinon'

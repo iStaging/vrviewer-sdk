@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/panoramas-list'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 const {
   isPanoramasListActive
 } = getters

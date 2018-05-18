@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/share'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 import { isEqual } from '../../../../src/api/utils'
 const {
   isShareActive,

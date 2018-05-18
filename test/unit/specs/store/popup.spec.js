@@ -1,5 +1,5 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/popup'
-import { testAction } from '../App.spec'
+import { testAction } from '../main.spec'
 import {
   POPUP
 } from '../../../../src/api/constants'
