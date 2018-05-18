@@ -4,6 +4,7 @@ import App from '../../../src/App.vue'
 import DefaultView from '../../../src/pages/index.vue'
 import store from '../../../src/store'
 import { i18n } from '../../../src/main'
+import { text2html } from '../../../src/api/utils'
 Vue.use(VueI18n)
 
 const Constructor = Vue.extend(App)
@@ -25,6 +26,21 @@ describe('App.vue', () => {
   it('必須要有 className vrviewer-sdk', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
       .toContain('vrviewer-sdk')
+  })
+
+  it('全螢幕模式時有 className vrviewer-sdk-fullscreen', () => {
+    store.commit('SET_FULL_SCREEN', true)
+    vm._watcher.run()
+    expect(Array.prototype.slice.call(vm.$el.classList))
+      .toContain('vrviewer-sdk-fullscreen')
+  })
+
+  it('VR 模式時有 className vrviewer-sdk-vrmode', () => {
+    store.commit('SET_FULL_SCREEN', false)
+    store.commit('SET_VR_MODE', true)
+    vm._watcher.run()
+    expect(Array.prototype.slice.call(vm.$el.classList))
+      .toContain('vrviewer-sdk-vrmode')
   })
 
   it('瀏覽器不支援時不產生 default view', () => {
@@ -56,14 +72,23 @@ describe('App.vue', () => {
       .toEqual(null)
   })
 
-  // it('瀏覽器不支援時產生錯誤畫面', () => {
-  //   vm.isBrowserSupport = false
-  //   vm.isWebGlSupport = true
-  //   vm._watcher.run()
-  //   let errorContainerEl = vm.$el.querySelector('.error-wrapper-container')
-  //   const text = parseHTML(vm.$t('browserNoSupport'))
-  //   console.log('text', text)
-  //   expect(errorContainerEl.textContent)
-  //     .toContain(text)
-  // })
+  it('瀏覽器不支援時產生錯誤畫面', () => {
+    vm.isBrowserSupport = false
+    vm.isWebGlSupport = true
+    vm._watcher.run()
+    let errorContainerEl = vm.$el.querySelector('.error-wrapper-container')
+    const textEl = text2html(vm.$t('browserNoSupport'))
+    expect(errorContainerEl.textContent)
+      .toContain(textEl.textContent)
+  })
+
+  it('WebGL不支援時產生錯誤畫面', () => {
+    vm.isBrowserSupport = true
+    vm.isWebGlSupport = false
+    vm._watcher.run()
+    let errorContainerEl = vm.$el.querySelector('.error-wrapper-container')
+    const textEl = text2html(vm.$t('webGlNoSupport'))
+    expect(errorContainerEl.textContent)
+      .toContain(textEl.textContent)
+  })
 })

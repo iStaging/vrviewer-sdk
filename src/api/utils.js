@@ -230,3 +230,9 @@ export const xhr = (url, type = 'get') => {
     }
   })
 }
+
+export const text2html = (text) => {
+  const htmlObject = document.createElement('div')
+  htmlObject.innerHTML = text
+  return htmlObject
+}
