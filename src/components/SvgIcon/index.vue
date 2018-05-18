@@ -40,15 +40,15 @@
 </template>
 
 <script>
-import SvgClose from './img/SvgClose.vue'
-import SvgCloseMobileMenu from './img/SvgCloseMobileMenu.vue'
-import SvgFloorplan from './img/SvgFloorplan.vue'
-import SvgFullscreen from './img/SvgFullscreen.vue'
-import SvgGyro from './img/SvgGyro.vue'
-import SvgPanoSelect from './img/SvgPanoSelect.vue'
-import SvgShare from './img/SvgShare.vue'
-import SvgShowMobileMenu from './img/SvgShowMobileMenu.vue'
-import SvgVrmode from './img/SvgVrmode.vue'
+import SvgClose from './svgs/SvgClose.vue'
+import SvgCloseMobileMenu from './svgs/SvgCloseMobileMenu.vue'
+import SvgFloorplan from './svgs/SvgFloorplan.vue'
+import SvgFullscreen from './svgs/SvgFullscreen.vue'
+import SvgGyro from './svgs/SvgGyro.vue'
+import SvgPanoSelect from './svgs/SvgPanoSelect.vue'
+import SvgShare from './svgs/SvgShare.vue'
+import SvgShowMobileMenu from './svgs/SvgShowMobileMenu.vue'
+import SvgVrmode from './svgs/SvgVrmode.vue'
 
 export default {
   name: 'SvgIcon',
