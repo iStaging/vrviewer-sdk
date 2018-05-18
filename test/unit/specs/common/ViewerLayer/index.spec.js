@@ -71,4 +71,28 @@ describe('common/ViewerLayer/index.vue', () => {
     expect(Array.prototype.slice.call(el.classList))
       .toContain(innerClassName)
   })
+
+  it('viewerLayerKeydown 模擬按下 esc 鍵時觸發 closeEvent', () => {
+    const vm = new Constructor({
+      i18n,
+      propsData: {
+        closeEvent: () => {
+          emitter.emit('closeEvent')
+        }
+      }
+    }).$mount()
+    const spy = sinon.spy()
+    emitter.on('closeEvent', spy)
+    vm.viewerLayerKeydown({
+      keyCode: 26
+    })
+    expect(spy.called)
+      .toEqual(false)
+
+    vm.viewerLayerKeydown({
+      keyCode: 27
+    })
+    expect(spy.called)
+      .toEqual(true)
+  })
 })

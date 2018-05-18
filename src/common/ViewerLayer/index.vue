@@ -5,16 +5,16 @@
 <template>
   <section class="vrsdk-viewer-layer">
     <div
-      :aria-label="$t('close')"
       class="vrsdk-viewer-layer-close-bg"
+      :aria-label="$t('close')"
       @click="closeEvent">
     </div>
     <div
       class="vrsdk-viewer-layer-inner"
       :class="innerClassName">
       <button
-        :aria-label="$t('close')"
         class="vrsdk-viewer-layer-close"
+        :aria-label="$t('close')"
         @click="closeEvent">
         <icon class="vrsdk-icon-close-info-white"></icon>
       </button>
