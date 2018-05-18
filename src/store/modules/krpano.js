@@ -89,7 +89,7 @@ export const actions = {
     }
   },
 
-  toggleGyro ({ dispatch, state, rootState }) {
+  toggleGyro ({ dispatch, state }) {
     if (state.isGyroEnabled === true) {
       dispatch('stopGyro')
     } else {
@@ -97,7 +97,7 @@ export const actions = {
     }
   },
 
-  stopGyro ({ commit, state, rootState }) {
+  stopGyro ({ commit, state }) {
     if (state.isGyroEnabled === true && state.krpanoEl) {
       if (state.isGyroFromIframe) {
         const gyroMessage = state.krpanoEl.get('plugin[gyroMessage]')

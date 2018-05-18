@@ -7,13 +7,13 @@ export const getters = {
 }
 
 export const actions = {
-  showMobileMenu ({ commit, state, rootState }) {
+  showMobileMenu ({ commit, state }) {
     if (state.isMobileMenuActive === false) {
       commit('SET_MOBILE_MENU_ACTIVE', true)
     }
   },
 
-  closeMobileMenu ({ commit, state, rootState }) {
+  closeMobileMenu ({ commit, state }) {
     if (state.isMobileMenuActive === true) {
       commit('SET_MOBILE_MENU_ACTIVE', false)
     }

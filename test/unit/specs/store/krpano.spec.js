@@ -1,13 +1,18 @@
 import { getters, actions, mutations } from '../../../../src/store/modules/krpano'
 import { testAction } from '../App.spec'
 import store from '../../../../src/store'
+import sinon from 'sinon'
+const EventEmitter = require('events').EventEmitter
+const emitter = new EventEmitter()
 const {
   krpanoEl,
   isKrpanoActive,
   krpanoLookAtH,
   isCameraRotating,
   autoStartRotateTimer,
-  isGyroEnabled
+  krpanoXOffset,
+  isGyroEnabled,
+  isGyroFromIframe
 } = getters
 const {
   setKrpanoEl,
@@ -16,6 +21,7 @@ const {
   startAutoRotate,
   stopAutoRotate,
   startGyro,
+  toggleGyro,
   stopGyro
 } = actions
 const {
@@ -24,13 +30,15 @@ const {
   SET_KRPANO_LOOK_AT_H,
   SET_CAMERA_ROTATING,
   SET_AUTO_START_ROTATE_TIMER,
-  SET_GYRO_ENABLED
+  SET_GYRO_ENABLED,
+  SET_GYRO_FROM_IFRAME
 } = mutations
 const Krpano = function () {
   return {
     set: function (name, value) {
     },
     call: function (name) {
+      emitter.emit(name)
     }
   }
 }
@@ -86,11 +94,27 @@ describe('store/modules/krpano', () => {
     expect(result).toEqual(null)
   })
 
+  it('krpanoXOffset', () => {
+    const state = {
+      krpanoXOffset: 90
+    }
+    const result = krpanoXOffset(state, { krpanoXOffset })
+    expect(result).toEqual(90)
+  })
+
   it('isGyroEnabled', () => {
     const state = {
       isGyroEnabled: false
     }
     const result = isGyroEnabled(state, { isGyroEnabled })
+    expect(result).toEqual(false)
+  })
+
+  it('isGyroFromIframe', () => {
+    const state = {
+      isGyroFromIframe: false
+    }
+    const result = isGyroFromIframe(state, { isGyroFromIframe })
     expect(result).toEqual(false)
   })
 
@@ -170,9 +194,24 @@ describe('store/modules/krpano', () => {
       krpanoEl: krpano,
       isGyroEnabled: false
     }
-    testAction(startGyro, undefined, state, [
-      { type: 'SET_GYRO_ENABLED', payload: true }
-    ], undefined, done)
+    testAction(startGyro, undefined, state, [{
+      type: 'SET_GYRO_ENABLED', payload: true
+    }], undefined, done)
+  })
+
+  it('toggleGyro', done => {
+    const state = {
+      krpanoEl: krpano,
+      isGyroEnabled: false
+    }
+    testAction(toggleGyro, undefined, state, undefined, [{
+      type: 'startGyro'
+    }], done)
+
+    state.isGyroEnabled = true
+    testAction(toggleGyro, undefined, state, undefined, [{
+      type: 'stopGyro'
+    }], done)
   })
 
   it('stopGyro', done => {
@@ -180,9 +219,25 @@ describe('store/modules/krpano', () => {
       krpanoEl: krpano,
       isGyroEnabled: true
     }
-    testAction(stopGyro, undefined, state, [
-      { type: 'SET_GYRO_ENABLED', payload: false }
-    ], undefined, done)
+    testAction(stopGyro, undefined, state, [{
+      type: 'SET_GYRO_ENABLED', payload: false
+    }], undefined, done)
+  })
+
+  it('zoomIn', () => {
+    const spy = sinon.spy()
+    emitter.on('zoom_in();', spy)
+    store.dispatch('zoomIn')
+    expect(spy.called)
+      .toEqual(true)
+  })
+
+  it('zoomOut', () => {
+    const spy = sinon.spy()
+    emitter.on('zoom_out();', spy)
+    store.dispatch('zoomOut')
+    expect(spy.called)
+      .toEqual(true)
   })
 
   it('SET_KRPANO_EL', () => {
@@ -242,6 +297,15 @@ describe('store/modules/krpano', () => {
     }
     SET_GYRO_ENABLED(state, true)
     expect(state.isGyroEnabled)
+      .toEqual(true)
+  })
+
+  it('SET_GYRO_FROM_IFRAME', () => {
+    const state = {
+      isGyroFromIframe: false
+    }
+    SET_GYRO_FROM_IFRAME(state, true)
+    expect(state.isGyroFromIframe)
       .toEqual(true)
   })
 })

@@ -7,7 +7,7 @@ export const getters = {
 }
 
 export const actions = {
-  showPanoramasList ({ commit, state, rootState }) {
+  showPanoramasList ({ commit, state }) {
     if (state.isPanoramasListActive === false) {
       commit('SET_PANORAMAS_LIST_ACTIVE', true)
     }
@@ -21,7 +21,7 @@ export const actions = {
     }
   },
 
-  closePanoramasList ({ commit, state, rootState }) {
+  closePanoramasList ({ commit, state }) {
     if (state.isPanoramasListActive === true) {
       commit('SET_PANORAMAS_LIST_ACTIVE', false)
     }
