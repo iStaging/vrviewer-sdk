@@ -23,7 +23,7 @@ describe('components/Icon/index.vue', () => {
   })
 
   it('如果有傳入 image，style 應該要有 backgroundImage', function (done) {
-    jest.setTimeout(2500)
+    jest.setTimeout(4000)
     const vm = new Constructor({
       propsData: {
         image

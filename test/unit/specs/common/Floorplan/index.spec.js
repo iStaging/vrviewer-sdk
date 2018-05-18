@@ -172,6 +172,36 @@ describe('common/Floorplan/index.vue', () => {
       .toEqual(true)
   })
 
+  it('isDragging = false 時執行 handleDragging 不做事', () => {
+    vm.isDragging = false
+    vm.handleDragging()
+    vm.interactX = 50
+    vm.interactY = 50
+    expect(vm.interactX)
+      .toEqual(50)
+    expect(vm.interactY)
+      .toEqual(50)
+  })
+
+  it('isDragging = true 時執行 handleDragging 會改變 interactX, interactY', () => {
+    vm.isDragging = true
+    const e = {
+      pageX: -50,
+      pageY: 40
+    }
+    vm.interactX = 60
+    vm.interactY = 60
+    vm.floorplanWidth = 400
+    vm.floorplanHeight = 400
+    vm.lastX = -30
+    vm.lastY = 60
+    vm.handleDragging(e)
+    expect(vm.interactX)
+      .not.toEqual(60)
+    expect(vm.interactY)
+      .not.toEqual(60)
+  })
+
   it('執行 handleDragStop 後 isDragging = false', () => {
     vm.isDragging = true
     vm.handleDragStop()
