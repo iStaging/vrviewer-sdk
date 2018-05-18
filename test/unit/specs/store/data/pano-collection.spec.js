@@ -1,6 +1,7 @@
-import { actions, getters, mutations } from '@/store/modules/data/pano-collection'
+import { actions, getters, mutations } from '../../../../../src/store/modules/data/pano-collection'
 import { testAction } from '../../App.spec'
 import { isEqual } from '../../../../../src/api/utils'
+
 const {
   importPanoCollection,
   fetchPanoCollection

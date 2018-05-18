@@ -1,6 +1,6 @@
-import { getters, actions, mutations } from '@/store/modules/vrmode'
+import { getters, actions, mutations } from '../../../../src/store/modules/vrmode'
 import { testAction } from '../App.spec'
-import store from '@/store'
+import store from '../../../../src/store'
 const {
   isVrMode
 } = getters

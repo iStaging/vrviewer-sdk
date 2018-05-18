@@ -1,6 +1,6 @@
-import { actions, getters, mutations } from '@/store/modules/data/panoramas'
+import { actions, getters, mutations } from '../../../../../src/store/modules/data/panoramas'
 import { testAction } from '../../App.spec'
-import store from '@/store'
+import store from '../../../../../src/store'
 import { isEqual } from '../../../../../src/api/utils'
 const {
   importPanoramas,

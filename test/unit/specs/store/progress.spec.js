@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/progress'
+import { getters, actions, mutations } from '../../../../src/store/modules/progress'
 import { testAction } from '../App.spec'
 const {
   isProgressActive,

@@ -1,6 +1,6 @@
-import { getters, actions, mutations } from '@/store/modules/krpano'
+import { getters, actions, mutations } from '../../../../src/store/modules/krpano'
 import { testAction } from '../App.spec'
-import store from '@/store'
+import store from '../../../../src/store'
 const {
   krpanoEl,
   isKrpanoActive,

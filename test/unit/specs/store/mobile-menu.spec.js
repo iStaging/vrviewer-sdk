@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/mobile-menu'
+import { getters, actions, mutations } from '../../../../src/store/modules/mobile-menu'
 import { testAction } from '../App.spec'
 const {
   isMobileMenuActive

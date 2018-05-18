@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/popup'
+import { getters, actions, mutations } from '../../../../src/store/modules/popup'
 import { testAction } from '../App.spec'
 import {
   POPUP

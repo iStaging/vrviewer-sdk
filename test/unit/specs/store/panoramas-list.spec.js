@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/panoramas-list'
+import { getters, actions, mutations } from '../../../../src/store/modules/panoramas-list'
 import { testAction } from '../App.spec'
 const {
   isPanoramasListActive

@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/fullscreen'
+import { getters, actions, mutations } from '../../../../src/store/modules/fullscreen'
 import { testAction } from '../App.spec'
 const {
   isFullscreen

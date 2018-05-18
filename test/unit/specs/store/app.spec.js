@@ -1,4 +1,4 @@
-import { getters, actions, mutations } from '@/store/modules/app'
+import { getters, actions, mutations } from '../../../../src/store/modules/app'
 import { testAction } from '../App.spec'
 const {
   isAppReady,
