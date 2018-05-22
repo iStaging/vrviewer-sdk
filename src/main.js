@@ -55,17 +55,17 @@ class VRViewer {
 // Vue.config.devtools = false
 // Vue.config.silent = true
 
-const vrViewer = new VRViewer()
-let config = {
-  el: '#vrviewer-sdk',
-  lang: 'zh-cn',
-  setting: DEFAULT_SETTING
-}
 if (process.env.NODE_ENV === 'development') {
-  config.panoCollection = fakePanoCollection
-  config.panoramas = fakePanoramas
+  const vrViewer = new VRViewer()
+  let config = {
+    el: '#vrviewer-sdk',
+    lang: 'zh-cn',
+    setting: DEFAULT_SETTING,
+    panoCollection: fakePanoCollection,
+    panoramas: fakePanoramas
+  }
+  vrViewer.init(config)
 }
-vrViewer.init(config)
 
-window.VRViewer = VRViewer
+window.VRViewer = new VRViewer()
 export default VRViewer
