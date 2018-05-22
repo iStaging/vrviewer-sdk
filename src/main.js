@@ -79,10 +79,6 @@ if (process.env.NODE_ENV === 'development') {
     panoramas: fakePanoramas
   }
   vrViewer.init(config)
-
-  window.setTimeout(() => {
-    vrViewer.destroy()
-  }, 5000)
 }
 
 window.VRViewer = new VRViewer()
