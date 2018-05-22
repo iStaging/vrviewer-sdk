@@ -35,6 +35,17 @@ window.VRViewer.init({
     tripodSetting: {
       image: 'https://www.istaging.com/sdk/logo-tripod.png',
       size: 60
+    },
+    hideUISetting: {
+      hideCollectionInfo: false,
+      hidePanoramaList: false,
+      hideFloorplan: false,
+      hideFullscreen: false,
+      hideLoading: false,
+      hideMarkerInfo: false
+    },
+    shareSetting: {
+      shareUrl: 'https://www.istaging.com/'
     }
   }
 })
@@ -50,8 +61,40 @@ window.VRViewer.init({
 <script>
 VRViewer.init({
   el: '#vrviewer-sdk',
+  lang: 'zh-cn',
   panoCollection: fakePanoCollection,
-  panoramas: fakePanoramas
+  panoramas: fakePanoramas,
+  setting: {
+    autoRotateSetting: {
+      active: true,
+      revert: false,
+      rotateDuration: 200000,
+      restartTime: 20000
+    },
+    gyroSetting: {
+      active: false
+    },
+    krpanoSetting: {
+      mwheel: true,
+      focus: false
+    },
+    tripodSetting: {
+      image: 'https://www.istaging.com/sdk/logo-tripod.png',
+      size: 60
+    },
+    hideUISetting: {
+      hideCollectionInfo: false,
+      hidePanoramaList: false,
+      hideFloorplan: false,
+      hideFullscreen: false,
+      hideLoading: false,
+      hideMarkerInfo: false
+    },
+    shareSetting: {
+      shareUrl: 'https://www.istaging.com/'
+    }
+  }
+})
 </script>
 ```
 

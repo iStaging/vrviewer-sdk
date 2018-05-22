@@ -127,6 +127,17 @@ window.VRViewer.init({
     tripodSetting: {
       image: 'https://www.istaging.com/sdk/logo-tripod.png',
       size: 60
+    },
+    hideUISetting: {
+      hideCollectionInfo: false,
+      hidePanoramaList: false,
+      hideFloorplan: false,
+      hideFullscreen: false,
+      hideLoading: false,
+      hideMarkerInfo: false
+    },
+    shareSetting: {
+      shareUrl: 'https://www.istaging.com/'
     }
   }
 })
