@@ -101,8 +101,8 @@ export default {
       if (this.currentMarker.type === 'point') {
         const baseRotation = 0.833 // 300 / 360 // same to stylus variable: $width
         const positionOffset = 90 // fix a-frame panorama rotation offset
-        const nextRotation = this.currentMarker.nextRotation ? this.currentMarker.nextRotation.y : 0
-        const calcPosition = (nextRotation * baseRotation) - positionOffset
+        const nextRotation = this.currentMarker.nextRotation || { y: 0 }
+        const calcPosition = (nextRotation.y * baseRotation) - positionOffset
         return `${calcPosition}px 0px`
       }
     },
