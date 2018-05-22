@@ -17,6 +17,10 @@ import { DEFAULT_SETTING } from '@/api/constants'
 Vue.use(VueI18n)
 
 class VRViewer {
+  constructor () {
+    this.app = null
+  }
+
   init (config) {
     console.log('config:', config)
     const i18n = new VueI18n({
@@ -27,13 +31,23 @@ class VRViewer {
     })
     this.initData(config)
     this.initConfig(config)
-    const app = new Vue({
+    this.app = new Vue({
       el: config.el,
       store,
       i18n,
       render: h => h(App)
-    }).$mount(config.el)
-    console.log('vrviewer app:', app)
+    }).$mount()
+    console.log('vrviewer app:', this.app)
+  }
+
+  destroy () {
+    if (this.app) {
+      this.app.$destroy()
+      this.app.$el.childNodes.forEach(childNode => {
+        childNode.remove()
+      })
+      this.app = null
+    }
   }
 
   initData (config) {
@@ -65,6 +79,10 @@ if (process.env.NODE_ENV === 'development') {
     panoramas: fakePanoramas
   }
   vrViewer.init(config)
+
+  window.setTimeout(() => {
+    vrViewer.destroy()
+  }, 5000)
 }
 
 window.VRViewer = new VRViewer()
