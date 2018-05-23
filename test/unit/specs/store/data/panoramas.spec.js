@@ -1,11 +1,14 @@
-import { actions, getters, mutations } from '@/store/modules/data/panoramas'
-import { testAction } from '../../App.spec'
-import store from '@/store'
+import { actions, getters, mutations } from '../../../../../src/store/modules/data/panoramas'
+import { testAction } from '../../main.spec'
+import store from '../../../../../src/store'
 import { isEqual } from '../../../../../src/api/utils'
+import sinon from 'sinon'
+const EventEmitter = require('events').EventEmitter
+const emitter = new EventEmitter()
 const {
   importPanoramas,
   fetchPanoramas,
-  // selectPanorama,
+  selectPanorama,
   setPanorama,
   setHoveredPanorama
 } = actions
@@ -37,15 +40,16 @@ const panoramasData = (function () {
   const panoramaIds = Object.keys(panoramasResp)
   return panoramaIds.map(panoramaId => panoramasResp[panoramaId].data)
 }())
-// const Krpano = function () {
-//   return {
-//     set: function (name, value) {
-//     },
-//     call: function (name) {
-//     }
-//   }
-// }
-// const krpano = new Krpano()
+const Krpano = function () {
+  return {
+    set: function (name, value) {
+    },
+    call: function (name) {
+      emitter.emit(name)
+    }
+  }
+}
+const krpano = new Krpano()
 
 describe('store/modules/data/panoramas', () => {
   it('panoramas', () => {
@@ -114,11 +118,24 @@ describe('store/modules/data/panoramas', () => {
     }], done)
   })
 
-  // todo
-  // it('selectPanorama', done => {
-  //   store.dispatch('setKrpanoEl', krpano)
-  //   store.dispatch('closeProgress')
-  // })
+  it('selectPanorama', done => {
+    store.dispatch('setKrpanoEl', krpano)
+    const state = {
+      currentPanorama: { panoramaId: '552' },
+      panoramas: [{ panoramaId: '552' }, panoramaData]
+    }
+    let spy = sinon.spy()
+    emitter.on(`prepare_change_scene(panorama_${panoramaData.panoramaId}, ${panoramaData.panoramaId}, 'PanoramaList');`, spy)
+    store.dispatch('showProgress')
+    testAction(selectPanorama, panoramaData, state, undefined, undefined, done)
+    expect(spy.called)
+      .toEqual(false)
+
+    store.dispatch('closeProgress')
+    testAction(selectPanorama, panoramaData, state, undefined, undefined, done)
+    expect(spy.called)
+      .toEqual(true)
+  })
 
   it('setPanorama', done => {
     testAction(setPanorama, panoramaData, {}, [{

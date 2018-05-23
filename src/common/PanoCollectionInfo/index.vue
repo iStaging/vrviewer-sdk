@@ -40,10 +40,9 @@ export default {
   data () {
     return {
       showInfo: true,
-      defaultAvatar: require('./img/pano-collection-default-logo.jpg'),
       defaultName: 'iStaging',
       defaultDescription: 'www.istaging.com',
-      iStagingUrl: iStagingUrl
+      iStagingUrl
     }
   },
 
@@ -53,7 +52,7 @@ export default {
     ]),
 
     panoCollectionLogo () {
-      return this.currentPanoCollection.logo || this.defaultAvatar
+      return this.currentPanoCollection.logoUrl
     }
   },
 

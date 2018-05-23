@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import Popup from '@/components/Popup'
-import { i18n } from '@/main'
+import Popup from '../../../../../src/components/Popup'
+import { i18n } from '../../../../../src/main'
 
 const Constructor = Vue.extend(Popup)
 
@@ -10,45 +10,45 @@ describe('components/Popup/index.vue', () => {
       i18n
     }).$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('popup')
+      .toContain('vrsdk-popup')
   })
 
-  it('第一層 DOM 應該要有 className popup-inner', () => {
+  it('第一層 DOM 應該要有 className vrsdk-popup-inner', () => {
     const vm = new Constructor({
       i18n
     }).$mount()
-    expect(vm.$el.querySelector('.popup-inner'))
+    expect(vm.$el.querySelector('.vrsdk-popup-inner'))
       .not.toEqual(null)
   })
 
-  it('第二層 DOM 應該要有 className popup-iframe-container', () => {
+  it('第二層 DOM 應該要有 className vrsdk-popup-iframe-container', () => {
     const vm = new Constructor({
       i18n
     }).$mount()
-    const child = vm.$el.querySelector('.popup-inner')
-    expect(child.querySelector('.popup-iframe-container'))
+    const child = vm.$el.querySelector('.vrsdk-popup-inner')
+    expect(child.querySelector('.vrsdk-popup-iframe-container'))
       .not.toEqual(null)
   })
 
-  it('如果 prop 傳進來的 widthType 是 pixel，.popup-inner 應含 width: auto', () => {
+  it('如果 prop 傳進來的 widthType 是 pixel，.vrsdk-popup-inner 應含 width: auto', () => {
     const vm = new Constructor({
       i18n,
       propsData: {
         widthType: 'pixel'
       }
     }).$mount()
-    expect(vm.$el.querySelector('.popup-inner').style.width)
+    expect(vm.$el.querySelector('.vrsdk-popup-inner').style.width)
       .toEqual('auto')
   })
 
-  it('如果 prop 傳進來的 widthType 是 pixel，.popup-iframe-container 應含 padding-bottom: 0', () => {
+  it('如果 prop 傳進來的 widthType 是 pixel，.vrsdk-popup-iframe-container 應含 padding-bottom: 0', () => {
     const vm = new Constructor({
       i18n,
       propsData: {
         widthType: 'pixel'
       }
     }).$mount()
-    expect(vm.$el.querySelector('.popup-iframe-container').style.paddingBottom)
+    expect(vm.$el.querySelector('.vrsdk-popup-iframe-container').style.paddingBottom)
       .toEqual('0px')
   })
 
@@ -63,9 +63,9 @@ describe('components/Popup/index.vue', () => {
         height
       }
     }).$mount()
-    expect(vm.$el.querySelector('.popup-iframe-container').style.width)
+    expect(vm.$el.querySelector('.vrsdk-popup-iframe-container').style.width)
       .toEqual(`${width}px`)
-    expect(vm.$el.querySelector('.popup-iframe-container').style.height)
+    expect(vm.$el.querySelector('.vrsdk-popup-iframe-container').style.height)
       .toEqual(`${height}px`)
   })
 
@@ -78,7 +78,7 @@ describe('components/Popup/index.vue', () => {
         widthPercent
       }
     }).$mount()
-    expect(vm.$el.querySelector('.popup-inner').style.width)
+    expect(vm.$el.querySelector('.vrsdk-popup-inner').style.width)
       .toEqual(`${widthPercent}%`)
   })
 

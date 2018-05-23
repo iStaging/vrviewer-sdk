@@ -1,6 +1,8 @@
 <template>
   <div class="vrsdk-marker-info">
-    <div v-show="markerInfoData.type === 'memo'">
+    <div
+      v-show="markerInfoData.type === 'memo'"
+      class="vrsdk-marker-info-memo">
       <div class="vrsdk-marker-info-large-bottom">
         <div class="vrsdk-marker-info-description">
           <pre class="vrsdk-pre-custom">{{ markerInfoData.description }}</pre>
@@ -81,8 +83,8 @@ export default {
   watch: {
     currentPanorama: {
       handler () {
-        this.setMarkerInfoData({})
         this.closeMarkerInfo()
+        this.setMarkerInfoData({})
       },
       deep: true
     }

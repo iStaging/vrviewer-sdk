@@ -1,5 +1,5 @@
-import { getters, actions, mutations } from '@/store/modules/app'
-import { testAction } from '../App.spec'
+import { getters, actions, mutations } from '../../../../src/store/modules/app'
+import { testAction } from '../main.spec'
 const {
   isAppReady,
   isScreenReady,

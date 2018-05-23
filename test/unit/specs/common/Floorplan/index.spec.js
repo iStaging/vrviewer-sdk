@@ -1,11 +1,11 @@
 /* eslint-disable no-compare-neg-zero */
 import Vue from 'vue'
-import Floorplan from '@/common/Floorplan/index.vue'
-import FloorplanDots from '@/common/Floorplan/FloorplanDots.vue'
-import FloorplanRange from '@/common/Floorplan/FloorplanRange.vue'
-import Icon from '@/components/Icon/index.vue'
-import IRepeat from '@/components/IRepeat.vue'
-import store from '@/store'
+import Floorplan from '../../../../../src/common/Floorplan/index.vue'
+import FloorplanDots from '../../../../../src/common/Floorplan/FloorplanDots.vue'
+import FloorplanRange from '../../../../../src/common/Floorplan/FloorplanRange.vue'
+import Icon from '../../../../../src/components/Icon/index.vue'
+import IRepeat from '../../../../../src/components/IRepeat.vue'
+import store from '../../../../../src/store'
 import fakeFloorplanSquareImage from '../../../images/120x120.png'
 import fakeFloorplanRectangleImage from '../../../images/240x180.svg'
 
@@ -43,26 +43,26 @@ describe('common/Floorplan/index.vue', () => {
     }
   }).$mount()
 
-  it('應該要有 className floorplan', () => {
+  it('應該要有 className vrsdk-floorplan', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('floorplan')
+      .toContain('vrsdk-floorplan')
   })
 
-  it('子 DOM 應該要有 className floorplan-container', () => {
+  it('子 DOM 應該要有 className vrsdk-floorplan-container', () => {
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-container')
+      .toContain('vrsdk-floorplan-container')
   })
 
-  it('子 DOM 在 isDragging = true 時應該要有 className floorplan-dragging', () => {
+  it('子 DOM 在 isDragging = true 時應該要有 className vrsdk-floorplan-dragging', () => {
     vm.isDragging = true
     vm._watcher.run()
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-dragging')
+      .toContain('vrsdk-floorplan-dragging')
   })
 
-  it('子 DOM 在 isResizable = true 時應該要有 className floorplan-overflow-hidden', () => {
+  it('子 DOM 在 isResizable = true 時應該要有 className vrsdk-floorplan-overflow-hidden', () => {
     const vm = new Constructor({
       store,
       components: {
@@ -77,10 +77,10 @@ describe('common/Floorplan/index.vue', () => {
     }).$mount()
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-overflow-hidden')
+      .toContain('vrsdk-floorplan-overflow-hidden')
   })
 
-  it('子 DOM 在 isDraggable = true 時應該要有 className floorplan-overflow-hidden', () => {
+  it('子 DOM 在 isDraggable = true 時應該要有 className vrsdk-floorplan-overflow-hidden', () => {
     const vm = new Constructor({
       store,
       components: {
@@ -95,7 +95,7 @@ describe('common/Floorplan/index.vue', () => {
     }).$mount()
     const child = vm.$el.children[0]
     expect(Array.prototype.slice.call(child.classList))
-      .toContain('floorplan-overflow-hidden')
+      .toContain('vrsdk-floorplan-overflow-hidden')
   })
 
   it('setFloorplanZ 應該要正確改變 floorplanZ 的值', () => {
@@ -170,6 +170,36 @@ describe('common/Floorplan/index.vue', () => {
     vm.handleDragStart(e)
     expect(vm.isDragging)
       .toEqual(true)
+  })
+
+  it('isDragging = false 時執行 handleDragging 不做事', () => {
+    vm.isDragging = false
+    vm.handleDragging()
+    vm.interactX = 50
+    vm.interactY = 50
+    expect(vm.interactX)
+      .toEqual(50)
+    expect(vm.interactY)
+      .toEqual(50)
+  })
+
+  it('isDragging = true 時執行 handleDragging 會改變 interactX, interactY', () => {
+    vm.isDragging = true
+    const e = {
+      pageX: -50,
+      pageY: 40
+    }
+    vm.interactX = 60
+    vm.interactY = 60
+    vm.floorplanWidth = 400
+    vm.floorplanHeight = 400
+    vm.lastX = -30
+    vm.lastY = 60
+    vm.handleDragging(e)
+    expect(vm.interactX)
+      .not.toEqual(60)
+    expect(vm.interactY)
+      .not.toEqual(60)
   })
 
   it('執行 handleDragStop 後 isDragging = false', () => {

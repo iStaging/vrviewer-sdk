@@ -1,5 +1,5 @@
-import { actions, getters, mutations } from '@/store/modules/data/vrsdk-pano-collection'
-import { testAction } from '../../App.spec'
+import { actions, getters, mutations } from '../../../../../src/store/modules/data/pano-collection'
+import { testAction } from '../../main.spec'
 import { isEqual } from '../../../../../src/api/utils'
 const {
   importPanoCollection,
@@ -15,10 +15,12 @@ const {
 const buildingId = 'nnn'
 const buildingData = {
   objectId: buildingId,
-  floorplan: ''
+  thumbnail: 'https://www.istaging.com/sdk/logo-tripod.png',
+  logo: 'https://www.istaging.com/sdk/logo-tripod.png',
+  floorplan: 'https://www.istaging.com/sdk/logo-tripod.png'
 }
 
-describe('store/modules/data/vrsdk-pano-collection', () => {
+describe('store/modules/data/pano-collection', () => {
   it('currentPanoCollection', () => {
     const state = {
       currentPanoCollection: {}
@@ -64,6 +66,21 @@ describe('store/modules/data/vrsdk-pano-collection', () => {
     }, {
       type: 'setPanoCollectionNotFound',
       payload: false
+    }], done)
+  })
+
+  it('fetchPanoCollection with not found handle', function (done) {
+    testAction(fetchPanoCollection, '', undefined, [{
+      type: 'SET_PANO_COLLECTION',
+      payload: {}
+    }, {
+      type: 'SET_PANORAMAS',
+      payload: []
+    }], [{
+      type: 'closeProgress'
+    }, {
+      type: 'setPanoCollectionNotFound',
+      payload: true
     }], done)
   })
 

@@ -1,18 +1,18 @@
 import Vue from 'vue'
-import Icon from '@/components/Icon/index.vue'
+import Icon from '../../../../../src/components/Icon/index.vue'
 import { loadImage } from '../../../../../src/api/utils'
 const Constructor = Vue.extend(Icon)
 const image = 'https://www.istaging.com/sdk/logo-tripod.png'
 
 describe('components/Icon/index.vue', () => {
-  it('應該要有 className icon', () => {
+  it('應該要有 className vrsdk-icon', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('icon')
+      .toContain('vrsdk-icon')
   })
 
-  it('應該要有 className photo-lazyload 如果參數 hasLazyload 為 true', () => {
-    const className = 'photo-lazyload'
+  it('應該要有 className vrsdk-photo-lazyload 如果參數 hasLazyload 為 true', () => {
+    const className = 'vrsdk-photo-lazyload'
     const vm = new Constructor({
       propsData: {
         hasLazyload: true
@@ -23,7 +23,7 @@ describe('components/Icon/index.vue', () => {
   })
 
   it('如果有傳入 image，style 應該要有 backgroundImage', function (done) {
-    jest.setTimeout(2500)
+    jest.setTimeout(4000)
     const vm = new Constructor({
       propsData: {
         image

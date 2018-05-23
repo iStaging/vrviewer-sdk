@@ -1,26 +1,26 @@
 import Vue from 'vue'
-import IRepeat from '@/components/IRepeat'
+import IRepeat from '../../../../src/components/IRepeat'
 const Constructor = Vue.extend(IRepeat)
 
 describe('components/IRepeat.vue', () => {
-  it('應該要有 className i-repeat', () => {
+  it('應該要有 className vrsdk-i-repeat', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('i-repeat')
+      .toContain('vrsdk-i-repeat')
   })
 
-  it('第一層 DOM li 應該要有 className i-repeat-li', () => {
+  it('第一層 DOM li 應該要有 className vrsdk-i-repeat-li', () => {
     const vm = new Constructor({
       propsData: {
         model: ['test']
       }
     }).$mount()
     expect(Array.prototype.slice.call(vm.$el.querySelector('li').classList))
-      .toContain('i-repeat-li')
+      .toContain('vrsdk-i-repeat-li')
   })
 
   it('liClass 應該要能產生在第一層 DOM 的 className 裡', () => {
-    const liClass = 'test'
+    const liClass = 'vrsdk-test'
     const vm = new Constructor({
       propsData: {
         model: ['test'],

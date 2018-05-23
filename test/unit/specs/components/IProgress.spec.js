@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import IProgress from '@/components/IProgress'
+import IProgress from '../../../../src/components/IProgress'
 const Constructor = Vue.extend(IProgress)
 
 const value = 15
@@ -18,14 +18,14 @@ function cutHex (h) {
   return (h.charAt(0) === '#') ? h.substring(1, 7) : h
 }
 describe('components/IProgress/index.vue', () => {
-  it('應該要有 className i-progress', () => {
+  it('應該要有 className vrsdk-i-progress', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('i-progress')
+      .toContain('vrsdk-i-progress')
   })
 
-  it('第一層 DOM 應該要有 className i-progress-inner', () => {
-    const className = 'i-progress-inner'
+  it('第一層 DOM 應該要有 className vrsdk-i-progress-inner', () => {
+    const className = 'vrsdk-i-progress-inner'
     const vm = new Constructor().$mount()
     const child = vm.$el.childNodes[0]
     expect(Array.prototype.slice.call(child.classList))

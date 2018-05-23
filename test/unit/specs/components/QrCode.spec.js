@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import QrCode from '@/components/QrCode'
+import QrCode from '../../../../src/components/QrCode'
 const Constructor = Vue.extend(QrCode)
 
 describe('components/QrCode.vue', () => {
-  it('應該要有 className qr-code', () => {
+  it('應該要有 className vrsdk-qr-code', () => {
     const vm = new Constructor().$mount()
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('qr-code')
+      .toContain('vrsdk-qr-code')
   })
 
   it('innerClass 應該要能在 qrCode 的 className 中', () => {

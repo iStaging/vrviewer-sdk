@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import FloorplanRange from '@/common/Floorplan/FloorplanRange.vue'
-import store from '@/store'
+import FloorplanRange from '../../../../../src/common/Floorplan/FloorplanRange.vue'
+import store from '../../../../../src/store'
 
 const Constructor = Vue.extend(FloorplanRange)
 const panorama = {
@@ -21,9 +21,9 @@ describe('common/Floorplan/FloorplanRange.vue', () => {
     store
   }).$mount()
 
-  it('應該要有 className floorplan-range', () => {
+  it('應該要有 className vrsdk-floorplan-range', () => {
     expect(Array.prototype.slice.call(vm.$el.classList))
-      .toContain('floorplan-range')
+      .toContain('vrsdk-floorplan-range')
   })
 
   it('位置產生自 currentPanorama 的 position', () => {
@@ -72,7 +72,7 @@ describe('common/Floorplan/FloorplanRange.vue', () => {
     store.commit('SET_KRPANO_LOOK_AT_H', 45)
     vm._watcher.run()
     const { floorplanRotation } = store.state.panoramas.currentPanorama
-    const rangeEl = vm.$el.querySelector('.floorplan-range-inner')
+    const rangeEl = vm.$el.querySelector('.vrsdk-floorplan-range-inner')
     const cameraMoving = store.state.krpano.krpanoCamera.krpanoLookAtH - store.state.krpano.krpanoXOffset + store.state.panoramas.currentPanorama.panoramaRotation.y
     expect(rangeEl.style._values['-webkit-transform'])
       .toEqual(`rotateZ(${floorplanRotation + cameraMoving}deg)`)

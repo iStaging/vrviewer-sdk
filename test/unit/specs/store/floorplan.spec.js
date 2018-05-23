@@ -1,5 +1,5 @@
-import { getters, actions, mutations } from '@/store/modules/floorplan'
-import { testAction } from '../App.spec'
+import { getters, actions, mutations } from '../../../../src/store/modules/floorplan'
+import { testAction } from '../main.spec'
 const {
   isFloorplanActive
 } = getters
@@ -25,32 +25,32 @@ describe('store/modules/floorplan', () => {
     const state = {
       isFloorplanActive: false
     }
-    testAction(showFloorplan, undefined, state, [
-      { type: 'SET_FLOORPLAN_ACTIVE', payload: true }
-    ], undefined, done)
+    testAction(showFloorplan, undefined, state, [{
+      type: 'SET_FLOORPLAN_ACTIVE', payload: true
+    }], undefined, done)
   })
 
   it('toggleFloorplan', done => {
     const state = {
       isFloorplanActive: false
     }
-    testAction(toggleFloorplan, undefined, state, undefined, [
-      { type: 'showFloorplan' }
-    ], done)
+    testAction(toggleFloorplan, undefined, state, undefined, [{
+      type: 'showFloorplan'
+    }], done)
 
     state.isFloorplanActive = true
-    testAction(toggleFloorplan, undefined, state, undefined, [
-      { type: 'closeFloorplan' }
-    ], done)
+    testAction(toggleFloorplan, undefined, state, undefined, [{
+      type: 'closeFloorplan'
+    }], done)
   })
 
   it('closeFloorplan', done => {
     const state = {
       isFloorplanActive: true
     }
-    testAction(closeFloorplan, undefined, state, [
-      { type: 'SET_FLOORPLAN_ACTIVE', payload: false }
-    ], undefined, done)
+    testAction(closeFloorplan, undefined, state, [{
+      type: 'SET_FLOORPLAN_ACTIVE', payload: false
+    }], undefined, done)
   })
 
   it('SET_FLOORPLAN_ACTIVE', () => {
