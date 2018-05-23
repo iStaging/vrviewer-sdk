@@ -35,9 +35,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import DefaultView from './pages/index.vue'
+import noSupportedImage from './images/error.png'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     DefaultView
   },
@@ -46,7 +47,7 @@ export default {
     return {
       isBrowserSupport: false,
       isWebGlSupport: false,
-      noSupportedImage: require('img/error.png')
+      noSupportedImage
     }
   },
 
@@ -88,7 +89,7 @@ export default {
     pointer-events: auto
 
     .error-wrapper-container {
-      @extend .flex-center-column
+      @extend .vrsdk-flex-center-column
       text-align: center
 
       img {
@@ -145,7 +146,7 @@ export default {
 
 .vrviewer-sdk-fullscreen,
 .vrviewer-sdk-vrmode {
-  @extend .position-fixed
+  @extend .vrsdk-position-fixed
   top: 0
   right: 0
   bottom: 0

@@ -5,21 +5,21 @@
 <template>
   <section
     role="banner"
-    class="pano-collection">
+    class="vrsdk-pano-collection">
     <figure
-      class="pano-collection-figure"
+      class="vrsdk-pano-collection-figure"
       @click="togglePanoCollection">
       <img
-        class="pano-collection-avatar"
+        class="vrsdk-pano-collection-avatar"
         :src="panoCollectionLogo">
     </figure>
-    <div class="pano-collection-detail">
-      <h1 class="pano-collection-detail-title">
+    <div class="vrsdk-pano-collection-detail">
+      <h1 class="vrsdk-pano-collection-detail-title">
         {{ currentPanoCollection.name }}
       </h1>
       <p
         v-show="showInfo"
-        class="pano-collection-detail-text">
+        class="vrsdk-pano-collection-detail-text">
         {{ currentPanoCollection.description }}
       </p>
     </div>
@@ -68,7 +68,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/variables.styl'
 
-.pano-collection {
+.vrsdk-pano-collection {
   position: relative
   max-width: 170px
   pointer-events: none
@@ -80,7 +80,7 @@ export default {
   // word-break: break-all
 }
 
-.pano-collection-avatar {
+.vrsdk-pano-collection-avatar {
   display: block
   $w = 44px
   $h = 44px
@@ -91,28 +91,29 @@ export default {
   background-color: $white
 }
 
-.pano-collection-detail {
+.vrsdk-pano-collection-detail {
   font-size: 14px
   pointer-events: auto
 }
 
-.pano-collection-detail-title {
+.vrsdk-pano-collection-detail-title {
   font-weight: normal
 }
 
-.pano-collection-detail-text {
+.vrsdk-pano-collection-detail-text {
   display: block
 }
 
-.pano-collection-detail-title, .pano-collection-detail-text {
+.vrsdk-pano-collection-detail-title,
+.vrsdk-pano-collection-detail-text {
   margin-top: 10px
 }
 
-.pano-collection-pano-collection-info {
+.vrsdk-pano-collection-info {
   display: none
 }
 
-.pano-collection-figure {
+.vrsdk-pano-collection-figure {
   display: flex
   overflow: hidden
   border-radius: 50%
@@ -120,45 +121,45 @@ export default {
 }
 
 @media screen and (orientation: landscape) {
-  .pano-collection {
+  .vrsdk-pano-collection {
     max-width: 200px
   }
 }
 
 @media screen and (min-width: $response) {
-  .pano-collection {
+  .vrsdk-pano-collection {
     max-width: 200px
     flex-direction: column
     align-items: flex-start
   }
 
-  .pano-collection-avatar {
+  .vrsdk-pano-collection-avatar {
     $w = 80px
     $h = 80px
     width: $w
     height: $h
   }
 
-  .pano-collection-detail {
-    + .pano-collection-pano-collection-info {
+  .vrsdk-pano-collection-detail {
+    + .vrsdk-pano-collection-info {
       margin-top: 10px
     }
   }
 
-  .pano-collection-pano-collection-info {
+  .vrsdk-pano-collection-info {
     position: relative
     display: block
     pointer-events: auto
     margin-top: 10px
   }
 
-  .pano-collection-pano-collection-info-title {
+  .vrsdk-pano-collection-info-title {
     font-size: 18px
     line-height: 25px
     font-weight: normal
   }
 
-  .pano-collection-pano-collection-info-description {
+  .vrsdk-pano-collection-info-description {
     margin-top: 4px
     font-size: 14px
     line-height: 20px

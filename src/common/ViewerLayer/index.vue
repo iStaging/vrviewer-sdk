@@ -3,20 +3,20 @@
 </docs>
 
 <template>
-  <section class="viewer-layer">
+  <section class="vrsdk-viewer-layer">
     <div
       :aria-label="$t('close')"
-      class="viewer-layer-close-bg"
+      class="vrsdk-viewer-layer-close-bg"
       @click="closeEvent">
     </div>
     <div
-      class="viewer-layer-inner"
+      class="vrsdk-viewer-layer-inner"
       :class="innerClassName">
       <button
         :aria-label="$t('close')"
-        class="viewer-layer-close"
+        class="vrsdk-viewer-layer-close"
         @click="closeEvent">
-        <icon class="icon-close-info-white"></icon>
+        <icon class="vrsdk-icon-close-info-white"></icon>
       </button>
       <slot></slot>
     </div>
@@ -72,16 +72,16 @@ $tabs-text-lh = 20px
 $tabs-text-pd = 7px
 $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 
-.viewer-layer {
-  @extend .absolute-full
-  @extend .flex-center
-  z-index: $viewer-layer-m-z
+.vrsdk-viewer-layer {
+  @extend .vrsdk-absolute-full
+  @extend .vrsdk-flex-center
+  z-index: $vrsdk-viewer-layer-m-z
   color: $white
 }
 
-.viewer-layer-inner {
-  @extend .full
-  @extend .overflow-auto
+.vrsdk-viewer-layer-inner {
+  @extend .vrsdk-full
+  @extend .vrsdk-overflow-auto
   position: relative
   padding: 48px 20px 20px
   max-height: 100%
@@ -90,47 +90,47 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
   pointer-events: auto
 }
 
-.viewer-layer-close {
-  @extend .flex-center
-  @extend .btn-no-default
+.vrsdk-viewer-layer-close {
+  @extend .vrsdk-flex-center
+  @extend .vrsdk-btn-no-default
   position: fixed
-  right: $viewer-layer-viewer-layer-close
+  right: $vrsdk-viewer-layer-vrsdk-viewer-layer-close
   top: 7px
   padding: 10px
-  z-index: $viewer-layer-close-z
+  z-index: $vrsdk-viewer-layer-close-z
 
-  .icon-close-info-white {
+  .vrsdk-icon-close-info-white {
     $w = 20px
     $h = 20px
     bg-size($w, $h)
   }
 }
 
-.viewer-layer-second-inner {
+.vrsdk-viewer-layer-second-inner {
   padding: 25px 0 0
 }
 
-.viewer-layer-tabs {
-  @extend .flex-center
+.vrsdk-viewer-layer-tabs {
+  @extend .vrsdk-flex-center
   position: relative
   overflow: hidden
   height: $tabs-height
 }
 
-.viewer-layer-container {
+.vrsdk-viewer-layer-container {
   position: relative
   height: "calc(100% - %s)" % $tabs-height
   overflow: auto
 }
 
-.viewer-layer-li {
-  @extend .flex-center
+.vrsdk-viewer-layer-li {
+  @extend .vrsdk-flex-center
   position: relative
-  z-index: $viewer-layer-li-z
+  z-index: $vrsdk-viewer-layer-li-z
   min-width: 50%
 
   &::after {
-    @extend .absolute-full-width
+    @extend .vrsdk-absolute-full-width
     content: ''
     bottom: 0
     height: 1px
@@ -150,17 +150,17 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
   }
 }
 
-.viewer-layer-li-active {
+.vrsdk-viewer-layer-li-active {
   &::after {
     background-color: $main-color
     height: 4px
   }
 }
 
-.viewer-layer-text {
-  @extend .text-ellipsis
-  @extend .btn-no-default
-  @extend .text-with-gray-bg
+.vrsdk-viewer-layer-text {
+  @extend .vrsdk-text-ellipsis
+  @extend .vrsdk-btn-no-default
+  @extend .vrsdk-text-with-gray-bg
   padding: $tabs-text-pd 0
   line-height: $tabs-text-lh
   position: relative
@@ -169,23 +169,23 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
   width: 100%
 }
 
-.viewer-layer-close-bg {
-  @extend .absolute-full
+.vrsdk-viewer-layer-close-bg {
+  @extend .vrsdk-absolute-full
 }
 
 @media screen and (min-width: $response) {
-  .viewer-layer-close {
+  .vrsdk-viewer-layer-close {
     position: absolute
   }
 
-  .viewer-layer-inner {
+  .vrsdk-viewer-layer-inner {
     max-width: 700px
     max-height: 450px
     padding: 50px 30px 30px
     border-radius: 8px
   }
 
-  .viewer-layer-second-inner {
+  .vrsdk-viewer-layer-second-inner {
     padding: 50px 30px 10px
   }
 }
@@ -195,10 +195,10 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .viewer-layer-close {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-viewer-layer-close {
       right: auto
-      left: $viewer-layer-viewer-layer-close
+      left: $vrsdk-viewer-layer-vrsdk-viewer-layer-close
     }
   }
 }

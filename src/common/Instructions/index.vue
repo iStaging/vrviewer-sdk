@@ -5,20 +5,23 @@
 <template>
   <div
     v-show="isInstructionsActive && isVrMode"
-    class="instructions">
+    class="vrsdk-instructions">
     <a
       href="javascript:"
-      class="instructions-close"
+      class="vrsdk-instructions-close"
       @click="exitVrMode">
       <svg-icon
         name="close"
-        class="icon-close">
+        class="vrsdk-icon-close">
       </svg-icon>
     </a>
-    <div class="instructions-inner">
-      <icon class="icon-mobile"></icon>
-      <icon class="icon-cardboard"></icon>
-      <p class="instructions-text" v-html="$t('vrInstructions')"></p>
+    <div class="vrsdk-instructions-inner">
+      <icon class="vrsdk-icon-mobile"></icon>
+      <icon class="vrsdk-icon-cardboard"></icon>
+      <p
+        class="vrsdk-instructions-text"
+        v-html="$t('vrInstructions')">
+      </p>
     </div>
   </div>
 </template>
@@ -74,14 +77,14 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.instructions {
-  @extend .flex-center
-  @extend .absolute-full
+.vrsdk-instructions {
+  @extend .vrsdk-flex-center
+  @extend .vrsdk-absolute-full
   z-index: $instructions-z
   background: #4d4d4d
   color: $white
 
-  .icon-mobile {
+  .vrsdk-icon-mobile {
     $w = 70px
     $h = 70px
     position: absolute
@@ -107,7 +110,7 @@ export default {
     }
   }
 
-  .icon-cardboard {
+  .vrsdk-icon-cardboard {
     $w = 80px
     $h = 80px
     position: relative
@@ -119,19 +122,19 @@ export default {
   }
 }
 
-.instructions-close {
+.vrsdk-instructions-close {
   position: absolute
   top: 15px
   right: $instructions-instructions-close-pos
 }
 
-.instructions-inner {
-  @extend .flex-center-column
+.vrsdk-instructions-inner {
+  @extend .vrsdk-flex-center-column
   position: relative
 }
 
 .instructions-text {
-  @extend .text-with-gray-bg
+  @extend .vrsdk-text-with-gray-bg
   margin-top: 10px
 
   strong {
@@ -149,9 +152,9 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~css/variables.styl'
 
-.vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .instructions-close {
+.vrsdk-vrviewer-sdk {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-instructions-close {
       right: auto
       left: $instructions-instructions-close-pos
     }

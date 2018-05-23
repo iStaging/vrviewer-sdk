@@ -9,7 +9,7 @@
     @mouseup="handleMouseUp">
     <krpano
       v-if="isKrpanoActive"
-      class="krpano-wrapper"
+      class="vrsdk-krpano-wrapper"
       xml=""
       html5="webgl+only"
       :webglsettings="{ depth: true }"
@@ -375,8 +375,8 @@ export default {
 @import '~css/extends.styl'
 @import '~css/variables.styl'
 
-.krpano-wrapper {
-  @extend .absolute-full
+.vrsdk-krpano-wrapper {
+  @extend .vrsdk-absolute-full
   z-index: $krpano-wrapper-z
 }
 </style>

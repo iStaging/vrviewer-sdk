@@ -1,21 +1,21 @@
 <template>
   <aside
-    class="i-aside"
+    class="vrsdk-i-aside"
     :class="{
-      'screen-ready': isScreenReady
+      'vrsdk-screen-ready': isScreenReady
     }">
     <i-nav
-      class="i-nav-parent"
+      class="vrsdk-i-nav-parent"
       v-show="!(isVrMode || isFullscreen)">
     </i-nav>
     <button
       role="button"
       v-show="isVrMode || isFullscreen"
-      class="aside-icon-close"
+      class="vrsdk-aside-icon-close"
       @click="handleExitFullscreen()">
       <svg-icon
         name="close"
-        class="icon-close">
+        class="vrsdk-vrsdk-icon-close">
       </svg-icon>
     </button>
   </aside>
@@ -64,8 +64,8 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.i-aside {
-  @extend .absolute-full-height
+.vrsdk-i-aside {
+  @extend .vrsdk-absolute-full-height
   width: 180px
   right: $i-aside-i-aside-pos
   z-index: $i-aside-m-z
@@ -74,20 +74,20 @@ export default {
   transform: translateX($i-aside-i-aside-animate-x)
   transition: .3s opacity ease-out, .3s transform ease-out
 
-  &.screen-ready {
+  &.vrsdk-screen-ready {
     opacity: 1
     transform: none
   }
 
-  .icon-close {
+  .vrsdk-icon-close {
     width: 20px
     height: 20px
     pointer-events: auto
   }
 }
 
-.aside-icon-close {
-  @extend .btn-no-default
+.vrsdk-aside-icon-close {
+  @extend .vrsdk-btn-no-default
   position: absolute
   display: flex
   top: 15px
@@ -96,7 +96,7 @@ export default {
 }
 
 @media screen and (min-width: $response) {
-  .i-aside {
+  .vrsdk-i-aside {
     z-index: $i-aside-z
     // don't use extend or it will be replaced
     display: flex
@@ -105,7 +105,7 @@ export default {
     width: auto
   }
 
-  .i-nav-parent {
+  .vrsdk-i-nav-parent {
     right: $i-aside-i-nav-parent-pos
   }
 }
@@ -115,26 +115,26 @@ export default {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .i-aside {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-i-aside {
       left: $i-aside-i-aside-pos
       right: auto
       animation-name: aside-init-animate-rtl
       transform: translateX(-($i-aside-i-aside-animate-x))
 
-      &.screen-ready {
+      &.vrsdk-screen-ready {
         opacity: 1
         transform: none
       }
     }
 
-    .aside-icon-close {
+    .vrsdk-aside-icon-close {
       right: auto
       left: $i-aside-aside-icon-close-pos
     }
 
     @media screen and (min-width: $response) {
-      .i-nav-parent {
+      .vrsdk-i-nav-parent {
         right: auto
         left: $i-aside-i-nav-parent-pos
       }

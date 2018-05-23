@@ -4,7 +4,7 @@
       "targets": {
         "node": "current"
       }
-    }]
+    }], "es2015"
   ],
   "plugins": ["transform-object-rest-spread"]
 }

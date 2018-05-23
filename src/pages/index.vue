@@ -1,16 +1,16 @@
 <template>
   <div
-    class="default-container"
+    class="vrsdk-default-container"
     :class="{
-      'theme-rtl theme-rtl-overlap': isRtl
+      'vrsdk-theme-rtl vrsdk-theme-rtl-overlap': isRtl
     }">
     <!--not found liveTour in url-->
     <div
       v-if="isPanoCollectionNotFound"
-      class="full-center error-wrapper">
+      class="vrsdk-full-center vrsdk-error-wrapper">
       <figure
         ref="panoCollectionNotFound"
-        class="error-wrapper-container">
+        class="vrsdk-error-wrapper-container">
         <img
           :src="noPanoramasImage"
           alt="no panoramas">
@@ -42,6 +42,7 @@ import IMain from './IMain.vue'
 import IAside from './IAside.vue'
 import IFooter from './IFooter.vue'
 import Loading from '../common/Loading.vue'
+import noPanoramasImage from '../images/trash-can.png'
 
 export default {
   name: 'Default',
@@ -56,7 +57,7 @@ export default {
   data () {
     return {
       isRtl: isRtl(),
-      noPanoramasImage: require('img/trash-can.svg')
+      noPanoramasImage
     }
   },
 
@@ -85,7 +86,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/variables.styl'
 
-.default-container {
+.vrsdk-default-container {
   position: relative
   height: 100%
   background-color: $black

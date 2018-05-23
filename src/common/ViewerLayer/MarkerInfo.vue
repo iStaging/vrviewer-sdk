@@ -1,35 +1,35 @@
 <template>
-  <div class="marker-info">
+  <div class="vrsdk-marker-info">
     <div v-show="markerInfoData.type === 'memo'">
-      <div class="marker-info-large-bottom">
-        <div class="marker-info-description">
-          <pre class="pre-custom">{{ markerInfoData.description }}</pre>
+      <div class="vrsdk-marker-info-large-bottom">
+        <div class="vrsdk-marker-info-description">
+          <pre class="vrsdk-pre-custom">{{ markerInfoData.description }}</pre>
         </div>
       </div>
     </div>
     <div
       v-show="markerInfoData.type === 'tag'"
-      class="marker-info-tag">
-      <div class="marker-info-large-top">
-        <div class="marker-info-large-right">
-          <h4 class="marker-info-text marker-info-name">
-            <span class="text-inner">
+      class="vrsdk-marker-info-tag">
+      <div class="vrsdk-marker-info-large-top">
+        <div class="vrsdk-marker-info-large-right">
+          <h4 class="vrsdk-marker-info-text vrsdk-marker-info-name">
+            <span class="vrsdk-text-inner">
               {{ markerInfoData.name }}
             </span>
           </h4>
           <h4
             v-show="markerInfoData.price"
-            class="marker-info-text marker-info-price">
-            <span class="text-inner">
+            class="vrsdk-marker-info-text vrsdk-marker-info-price">
+            <span class="vrsdk-text-inner">
               {{ markerInfoData.price }}
             </span>
           </h4>
           <div
             v-show="markerInfoData.action"
-            class="marker-info-text marker-info-action">
+            class="vrsdk-marker-info-text vrsdk-marker-info-action">
             <a
               :href="markerInfoData.actionLink"
-              class="marker-info-button"
+              class="vrsdk-marker-info-button"
               target="_blank"
               @click="clickTagAction"
               rel="noopener">
@@ -39,17 +39,17 @@
         </div>
         <div
           v-show="markerInfoData.photo"
-          class="marker-info-large-left">
+          class="vrsdk-marker-info-large-left">
           <!--when large layout, max image width is 180-->
           <img
-            class="marker-info-image"
+            class="vrsdk-marker-info-image"
             :src="markerInfoData.photo"
             :alt="markerInfoData.name">
         </div>
       </div>
-      <div class="marker-info-large-bottom">
-        <div class="marker-info-description">
-          <pre class="pre-custom">{{ markerInfoData.description }}</pre>
+      <div class="vrsdk-marker-info-large-bottom">
+        <div class="vrsdk-marker-info-description">
+          <pre class="vrsdk-pre-custom">{{ markerInfoData.description }}</pre>
         </div>
       </div>
     </div>
@@ -94,33 +94,33 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.marker-info {
+.vrsdk-marker-info {
   position: relative
   margin-top: 20px
 
   h4 {
-    @extend .text-with-gray-bg
+    @extend .vrsdk-text-with-gray-bg
     font-size: 18px
     margin-bottom: 20px
     font-weight: normal
   }
 
-  .text-inner {
+  .vrsdk-text-inner {
     display: inline-block
   }
 }
 
-.marker-info-image {
+.vrsdk-marker-info-image {
   width: 100%
   max-width: 100%
 }
 
-.marker-info-large-left {
+.vrsdk-marker-info-large-left {
   margin: 10px 0
 }
 
-.marker-info-button {
-  @extend .text-with-gray-bg
+.vrsdk-marker-info-button {
+  @extend .vrsdk-text-with-gray-bg
   display: inline-block
   background-color: $main-color
   line-height: 25px
@@ -139,70 +139,70 @@ export default {
   }
 }
 
-.marker-info-text {
+.vrsdk-marker-info-text {
   text-align: center
 }
 
 $image-w = 160px
 @media screen and (min-width: $response) {
-  .marker-info {
+  .vrsdk-marker-info {
     margin-top: 0
   }
 
-  .marker-info-tag {
+  .vrsdk-marker-info-tag {
     display: flex
     flex-direction: column
   }
 
-  .marker-info-large-left {
+  .vrsdk-marker-info-large-left {
     order: 1
     margin: 0
-    margin-right: $marker-info-marker-info-large-left-margin
+    margin-right: $marker-info-large-left-margin
   }
 
-  .marker-info-large-right {
+  .vrsdk-marker-info-large-right {
     order: 2
     display: flex
     flex-direction: column
     width: calc(100% - 200px)
   }
 
-  .marker-info-large-top {
+  .vrsdk-marker-info-large-top {
     order: 1
     display: flex
   }
 
-  .marker-info-large-bottom {
+  .vrsdk-marker-info-large-bottom {
     order: 2
     margin-top: 20px
   }
 
-  .marker-info-image {
+  .vrsdk-marker-info-image {
     order: 1
     width: $image-w
   }
 
-  .marker-info-name {
-    text-align: $marker-info-marker-info-text-align
+  .vrsdk-marker-info-name {
+    text-align: $marker-info-text-align
     order: 2
   }
 
-  .marker-info-price {
-    text-align: $marker-info-marker-info-text-align
+  .vrsdk-marker-info-price {
+    text-align: $marker-info-text-align
     order: 3
   }
 
-  .marker-info-action {
-    text-align: $marker-info-marker-info-text-align
+  .vrsdk-marker-info-action {
+    text-align: $marker-info-text-align
     order: 4
   }
 
-  .marker-info-description {
+  .vrsdk-marker-info-description {
     clear: both
     order: 5
   }
 
-  .marker-info-button {
+  .vrsdk-marker-info-button {
     margin-bottom: 0
   }
 }
@@ -212,17 +212,17 @@ $image-w = 160px
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
     @media screen and (min-width: $response) {
-      .marker-info-large-left {
+      .vrsdk-marker-info-large-left {
         margin-right: auto
-        margin-left: $marker-info-marker-info-large-left-margin
+        margin-left: $marker-info-large-left-margin
       }
 
-      .marker-info-name,
-      .marker-info-price,
-      .marker-info-action {
-        text-align: $marker-info-marker-info-text-align-rtl
+      .vrsdk-marker-info-name,
+      .vrsdk-marker-info-price,
+      .vrsdk-marker-info-action {
+        text-align: $marker-info-text-align-rtl
       }
     }
   }

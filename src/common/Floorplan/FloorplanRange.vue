@@ -1,10 +1,10 @@
 <template>
   <span
-    class="floorplan-range"
-    :style="{ transform: floorplanPosition }">
+    class="vrsdk-floorplan-range"
+    :style="{ 'webkit-transform': floorplanPosition }">
     <span
-      class="floorplan-range-inner"
-      :style="{ transform: floorplanRotation }">
+      class="vrsdk-floorplan-range-inner"
+      :style="{ 'webkit-transform': floorplanRotation }">
     </span>
   </span>
 </template>
@@ -85,7 +85,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/extends.styl'
 
-.floorplan-range {
+.vrsdk-floorplan-range {
   transition: transform .8s ease-out
   position: absolute
   display: flex
@@ -95,8 +95,8 @@ export default {
   opacity: .9
 }
 
-.floorplan-range-inner {
-  @extend .bg-center
+.vrsdk-floorplan-range-inner {
+  @extend .vrsdk-bg-center
   $w = 86px
   $h = 50px
   bg-size($w, $h)
