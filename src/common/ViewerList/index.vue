@@ -3,7 +3,7 @@
 </docs>
 
 <template>
-  <div class="viewer-list">
+  <div class="vrsdk-viewer-list">
     <panoramas></panoramas>
   </div>
 </template>
@@ -23,8 +23,8 @@ export default {
 @import '~css/extends.styl'
 @import '~css/variables.styl'
 
-.viewer-list {
-  @extend .flex-center-column
+.vrsdk-viewer-list {
+  @extend .vrsdk-flex-center-column
   position: relative
   width: 100%
   z-index: $viewer-list-z

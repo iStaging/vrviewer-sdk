@@ -26,7 +26,7 @@ export const actions = {
       //   markers = markers.filter(marker => marker.type !== 'tag')
       // }
       // console.log('markers', markers)
-      // commit('SET_MARKER', {})
+      commit('SET_MARKER', {})
       dispatch('addProgressCount', 1)
       // resolve(markers)
       resolve([])

@@ -7,7 +7,7 @@ export const getters = {
 }
 
 export const actions = {
-  showFloorplan ({ commit, state, rootState }) {
+  showFloorplan ({ commit, state }) {
     if (state.isFloorplanActive === false) {
       commit('SET_FLOORPLAN_ACTIVE', true)
     }
@@ -21,7 +21,7 @@ export const actions = {
     }
   },
 
-  closeFloorplan ({ commit, state, rootState }) {
+  closeFloorplan ({ commit, state }) {
     if (state.isFloorplanActive === true) {
       commit('SET_FLOORPLAN_ACTIVE', false)
     }

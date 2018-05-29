@@ -5,26 +5,26 @@
 <template>
   <div
     v-show="shouldShowMarkerInfo"
-    class="viewer-markers-hover"
+    class="vrsdk-viewer-markers-hover"
     :style="markerInfoPosition">
     <div
-      class="viewer-markers-hover-inner"
+      class="vrsdk-viewer-markers-hover-inner"
       @mouseover="htmlMarkerMousein"
       @mouseleave="htmlMarkerMouseout">
       <div v-show="currentMarker.type === 'point'">
-        <div class="viewer-markers-hover-thumbnail">
+        <div class="vrsdk-viewer-markers-hover-thumbnail">
           <icon
-            class="viewer-markers-hover-thumbnail-inner"
+            class="vrsdk-viewer-markers-hover-thumbnail-inner"
             :image="nextPanorama.thumbnail"
             :style="{ backgroundPosition: nextThumbnailPosition }"
             :hasLazyload="true">
           </icon>
         </div>
-        <p class="viewer-markers-hover-text">
-          {{ nextPanoramaName }}
+        <p class="vrsdk-viewer-markers-hover-text">
+          {{ nextPanorama.panoramaName }}
         </p>
       </div>
-      <div class="decoration"></div>
+      <div class="vrsdk-decoration"></div>
     </div>
   </div>
 </template>
@@ -101,8 +101,8 @@ export default {
       if (this.currentMarker.type === 'point') {
         const baseRotation = 0.833 // 300 / 360 // same to stylus variable: $width
         const positionOffset = 90 // fix a-frame panorama rotation offset
-        const nextRotation = this.currentMarker.nextRotation ? this.currentMarker.nextRotation.y : 0
-        const calcPosition = (nextRotation * baseRotation) - positionOffset
+        const nextRotation = this.currentMarker.nextRotation || { y: 0 }
+        const calcPosition = (nextRotation.y * baseRotation) - positionOffset
         return `${calcPosition}px 0px`
       }
     },
@@ -115,12 +115,6 @@ export default {
         }
       }
       return {}
-    },
-
-    nextPanoramaName () {
-      return this.nextPanorama
-        ? (this.nextPanorama.customPanoramaName || this.$t(this.nextPanorama.panoramaName))
-        : ''
     }
   },
 
@@ -152,19 +146,19 @@ export default {
 
 $width = 300px
 $height = 145.8px
-.viewer-markers-hover {
+.vrsdk-viewer-markers-hover {
   position: absolute
   height: auto
   color: $white
   max-width: 660px
   max-height: 80%
   font-size: 20px
-  z-index: $viewer-markers-hover-z
+  z-index: $vrsdk-viewer-markers-hover-z
   transform: translate(-50%, -100%)
 }
 
-.viewer-markers-hover-inner {
-  @extend .clear
+.vrsdk-viewer-markers-hover-inner {
+  @extend .vrsdk-clear
   position: relative
   display: flex
   flex-direction: column
@@ -172,22 +166,22 @@ $height = 145.8px
   padding: 10px
   align-self: center
   max-height: 80%
-  z-index: $viewer-markers-hover-z
+  z-index: $vrsdk-viewer-markers-hover-z
   border-radius: 4px
 }
 
-.viewer-markers-hover-thumbnail {
+.vrsdk-viewer-markers-hover-thumbnail {
   position: relative
   width: $width
   height: $height
   overflow: hidden
 
-  .viewer-markers-hover-thumbnail-inner {
+  .vrsdk-viewer-markers-hover-thumbnail-inner {
     background-repeat: repeat
   }
 }
 
-.viewer-markers-hover-thumbnail-inner {
+.vrsdk-viewer-markers-hover-thumbnail-inner {
   width: inherit
   height: inherit
   background-size: $width $height
@@ -206,8 +200,8 @@ $height = 145.8px
   }
 }
 
-.viewer-markers-hover-text {
-  @extend .text-with-gray-bg
+.vrsdk-viewer-markers-hover-text {
+  @extend .vrsdk-text-with-gray-bg
   position: relative
   line-height: 20px
   font-size: 14px
@@ -217,7 +211,7 @@ $height = 145.8px
   margin: 5px 0 0
 }
 
-.decoration {
+.vrsdk-decoration {
   $bd = 10px
   position: absolute
   bottom: 0

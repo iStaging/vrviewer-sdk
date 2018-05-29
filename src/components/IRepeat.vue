@@ -1,7 +1,7 @@
 <template>
-  <ul class="i-repeat">
+  <ul class="vrsdk-i-repeat">
     <li
-      class="i-repeat-li"
+      class="vrsdk-i-repeat-li"
       v-for="name in model"
       :class="liClass">
       <slot :name="name"></slot>
@@ -33,14 +33,14 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/extends.styl'
 
-.i-repeat-li {
+.vrsdk-i-repeat-li {
   display: flex
   align-items: center
 }
 
-.i-repeat-a {
-  @extend .full
-  @extend .btn-no-default
+.vrsdk-i-repeat-a {
+  @extend .vrsdk-full
+  @extend .vrsdk-btn-no-default
   padding: 0
   position: relative
   display: flex
@@ -48,7 +48,7 @@ export default {
   pointer-events: auto
 }
 
-.i-repeat-a-horizontal {
+.vrsdk-i-repeat-a-horizontal {
   flex-direction: column
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <header
     v-show="!isVrMode && !isFullscreen"
-    class="i-header">
+    class="vrsdk-i-header">
     <div
-      class="header-intro"
-      :class="{ 'screen-ready': isScreenReady }">
+      class="vrsdk-header-intro"
+      :class="{ 'vrsdk-screen-ready': isScreenReady }">
       <pano-collection-info></pano-collection-info>
     </div>
   </header>
@@ -33,14 +33,14 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/variables.styl'
 
-.i-header {
+.vrsdk-i-header {
   position: absolute
   width: 100%
   z-index: $i-header-m-z
   pointer-events: none
 }
 
-.header-intro {
+.vrsdk-header-intro {
   position: absolute
   left: $i-header-header-intro-pos
   top: 15px
@@ -48,13 +48,13 @@ export default {
   transform: translateX(-($i-header-header-intro-pos))
   transition: .3s opacity ease-out, .3s transform ease-out
 
-  &.screen-ready {
+  &.vrsdk-screen-ready {
     opacity: 1
     transform: none
   }
 }
 
-.header-center {
+.vrsdk-header-center {
   display: none
   position: absolute
   top: 27px
@@ -63,23 +63,23 @@ export default {
   opacity: 0
   transform: translateY(-20px)
 
-  &.screen-ready {
+  &.vrsdk-screen-ready {
     opacity: 1
     transform: none
   }
 }
 
 @media screen and (min-width: $response) {
-  .i-header {
+  .vrsdk-i-header {
     z-index: $i-header-z
   }
 
-  .header-intro {
+  .vrsdk-header-intro {
     left: $i-header-header-intro-large-pos
     top: 28px
   }
 
-  .header-center {
+  .vrsdk-header-center {
     width: 100%
     left: auto
     right: auto
@@ -93,30 +93,30 @@ export default {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .header-intro {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-header-intro {
       left: auto
       right: $i-header-header-intro-pos
       transform: translateX($i-header-header-intro-pos)
 
-      &.screen-ready {
+      &.vrsdk-screen-ready {
         opacity: 1
         transform: none
       }
     }
 
-    .header-center {
+    .vrsdk-header-center {
       right: auto
       left: $i-header-header-center-pos
     }
 
     @media screen and (min-width: $response) {
-      .header-intro {
+      .vrsdk-header-intro {
         left: auto
         right: $i-header-header-intro-large-pos
       }
 
-      .header-center {
+      .vrsdk-header-center {
         left: auto
         right: auto
       }

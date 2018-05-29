@@ -15,7 +15,12 @@ import { DEFAULT_SETTING } from '@/api/constants'
 
 // Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
-
+export let i18n = new VueI18n({
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages,
+  silentTranslationWarn: true
+})
 class VRViewer {
   constructor () {
     this.app = null
@@ -23,7 +28,7 @@ class VRViewer {
 
   init (config) {
     console.log('config:', config)
-    const i18n = new VueI18n({
+    i18n = new VueI18n({
       locale: config.lang,
       fallbackLocale: 'en',
       messages,

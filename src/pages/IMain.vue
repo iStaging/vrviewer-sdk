@@ -1,13 +1,13 @@
 <template>
   <main
     role="main"
-    class="i-main">
-    <section class="main-krpano-wrapper">
+    class="vrsdk-i-main">
+    <section class="vrsdk-main-krpano-wrapper">
       <!--has panoCollection, but no panoramas-->
       <div
         v-if="isNoPanoramasFound"
-        class="full-center error-wrapper">
-        <figure class="error-wrapper-container">
+        class="vrsdk-full-center vrsdk-error-wrapper">
+        <figure class="vrsdk-error-wrapper-container">
           <img
             :src="noPanoramasImage"
             alt="no panoramas">
@@ -42,17 +42,17 @@
     <viewer-layer
       v-if="!hideUISetting.hideMarkerInfo"
       v-show="!isVrMode"
-      class="bounce-in"
-      :class="{ 'bounce-in-active': isMarkerInfoActive }"
+      class="vrsdk-bounce-in"
+      :class="{ 'vrsdk-bounce-in-active': isMarkerInfoActive }"
       :closeEvent="closeMarkerInfo">
       <ul
         v-show="markerInfoData.type === 'memo'"
-        class="viewer-layer-tabs">
-        <li class="viewer-layer-li full-width">
-          <span class="viewer-layer-text">{{ $t('memo') }}</span>
+        class="vrsdk-viewer-layer-tabs">
+        <li class="vrsdk-viewer-layer-li full-width">
+          <span class="vrsdk-viewer-layer-text">{{ $t('memo') }}</span>
         </li>
       </ul>
-      <div class="viewer-layer-container">
+      <div class="vrsdk-viewer-layer-container">
         <marker-info></marker-info>
       </div>
     </viewer-layer>
@@ -61,19 +61,23 @@
     <viewer-layer
       v-if="shareSetting.shareUrl"
       v-show="shouldViewerLayerShow && isShareReady"
-      class="bounce-in"
-      :class="{ 'bounce-in-active': isShareActive }"
+      class="vrsdk-bounce-in"
+      :class="{ 'vrsdk-bounce-in-active': isShareActive }"
       :closeEvent="closeShare">
-      <ul class="viewer-layer-tabs">
-        <li class="viewer-layer-li viewer-layer-li-active">
-          <span class="viewer-layer-text">{{ $t('share') }}</span>
+      <ul class="vrsdk-viewer-layer-tabs">
+        <li class="vrsdk-viewer-layer-li vrsdk-viewer-layer-li-active">
+          <span class="vrsdk-viewer-layer-text">{{ $t('share') }}</span>
         </li>
       </ul>
-      <div class="viewer-layer-container">
-        <div class="share-container">
-          <qr-code :url="shareUrl.qrcode"></qr-code>
+      <div class="vrsdk-viewer-layer-container">
+        <div class="vrsdk-share-container">
+          <qr-code
+            :height="200"
+            :width="200"
+            :url="shareUrl.qrcode">
+          </qr-code>
         </div>
-        <div class="share-text">
+        <div class="vrsdk-share-text">
           <a
             :href="shareSetting.shareUrl"
             target="_blank">
@@ -87,15 +91,15 @@
     <section
       v-if="!hideUISetting.hidePanoramaList"
       v-show="shouldViewerLayerShow"
-      class="viewer-list-wrapper"
-      :class="{ 'viewer-list-wrapper-active': shouldPanoramasListShow }">
+      class="vrsdk-viewer-list-wrapper"
+      :class="{ 'vrsdk-viewer-list-wrapper-active': shouldPanoramasListShow }">
       <span
-        class="viewer-list-wrapper-collapse"
+        class="vrsdk-viewer-list-wrapper-collapse"
         @click="togglePanoramasList">
         <icon
           :class="{
-            'icon-collapse-up': !isPanoramasListActive,
-            'icon-collapse-down': isPanoramasListActive
+            'vrsdk-icon-collapse-up': !isPanoramasListActive,
+            'vrsdk-icon-collapse-down': isPanoramasListActive
           }">
         </icon>
       </span>
@@ -106,25 +110,25 @@
     <section
       v-if="!hideUISetting.hideFloorplan && (floorplan && floorplan !== 'none')"
       v-show="shouldViewerLayerShow"
-      class="floorplan-wrapper"
+      class="vrsdk-floorplan-wrapper"
       :class="{
-        'floorplan-wrapper-active': shouldFloorplanShow
+        'vrsdk-floorplan-wrapper-active': shouldFloorplanShow
       }">
       <floorplan
         v-show="isFloorplanReady"
         :floorplanContainerWidth="floorplanContainerWidth"
         :floorplanContainerHeight="floorplanContainerHeight"
-        class="floorplan-self"
+        class="vrsdk-floorplan-self"
         :isResizable="useResizeAndDraggable"
         :isDraggable="useResizeAndDraggable">
       </floorplan>
       <span
-        class="floorplan-wrapper-collapse"
+        class="vrsdk-floorplan-wrapper-collapse"
         @click="toggleFloorplan">
         <icon
           :class="{
-            'icon-collapse-right': !isFloorplanActive,
-            'icon-collapse-left': isFloorplanActive
+            'vrsdk-icon-collapse-right': !isFloorplanActive,
+            'vrsdk-icon-collapse-left': isFloorplanActive
           }">
         </icon>
       </span>
@@ -159,6 +163,7 @@ import QrCode from '../components/QrCode.vue'
 import ViewerLayer from '../common/ViewerLayer/index.vue'
 import ViewerList from '../common/ViewerList/index.vue'
 import ViewerMarkersHover from '../common/ViewerMarkersHover/index.vue'
+import noPanoramasImage from '../images/trash-can.png'
 
 export default {
   name: 'IMain',
@@ -186,7 +191,7 @@ export default {
       isFloorplanReady: false,
       markerPositionX: 0,
       markerPositionY: 0,
-      noPanoramasImage: require('img/trash-can.svg')
+      noPanoramasImage
     }
   },
 
@@ -357,17 +362,17 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.i-main {
-  @extend .absolute-full
+.vrsdk-i-main {
+  @extend .vrsdk-absolute-full
 }
 
-.main-krpano-wrapper {
+.vrsdk-main-krpano-wrapper {
   z-index: $main-krpano-wrapper-z
 }
 
-.viewer-list-wrapper {
-  @extend .absolute-full-width
-  @extend .flex-center-column
+.vrsdk-viewer-list-wrapper {
+  @extend .vrsdk-absolute-full-width
+  @extend .vrsdk-flex-center-column
   bottom: 0
   z-index: $viewer-list-wrapper-z
   pointer-events: none
@@ -380,18 +385,18 @@ export default {
   }
 }
 
-.viewer-list-wrapper-active {
+.vrsdk-viewer-list-wrapper-active {
   opacity: 1
   transform: none
 }
 
-.viewer-list-wrapper-collapse {
+.vrsdk-viewer-list-wrapper-collapse {
   display: none
 }
 
-.floorplan-wrapper {
-  @extend .absolute-full-width
-  @extend .flex-center
+.vrsdk-floorplan-wrapper {
+  @extend .vrsdk-absolute-full-width
+  @extend .vrsdk-flex-center
   bottom: 0
   z-index: $floorplan-wrapper-z
   opacity: 0
@@ -404,68 +409,68 @@ export default {
   }
 }
 
-.floorplan-wrapper-active {
+.vrsdk-floorplan-wrapper-active {
   opacity: 1
   transform: none
 }
 
-.floorplan-wrapper-collapse {
+.vrsdk-floorplan-wrapper-collapse {
   display: none
 }
 
-.icon {
-  &.icon-collapse-left {
+.vrsdk-icon {
+  &.vrsdk-icon-collapse-left {
     $w = $i-main-arrow-collapse-short-side
     $h = 25px
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-left.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-left.png')
   }
 
-  &.icon-collapse-right {
+  &.vrsdk-icon-collapse-right {
     $w = $i-main-arrow-collapse-short-side
     $h = 25px
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-right.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-right.png')
   }
 
-  &.icon-collapse-up {
+  &.vrsdk-icon-collapse-up {
     $w = 25px
     $h = $i-main-arrow-collapse-short-side
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-up.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-up.png')
   }
 
-  &.icon-collapse-down {
+  &.vrsdk-icon-collapse-down {
     $w = 25px
     $h = $i-main-arrow-collapse-short-side
     bg-size($w, $h)
-    background-image: url('../components/Icon/img/collapse-arrow/collapse-down.svg')
+    background-image: url('../components/Icon/img/collapse-arrow/collapse-down.png')
   }
 }
 
-.share-container {
-  @extend .flex-center-column
+.vrsdk-share-container {
+  @extend .vrsdk-flex-center-column
   position: relative
   margin: 18px auto 0
 }
 
-.share-container,
-.share-text {
+.vrsdk-share-container,
+.vrsdk-share-text {
   width: 260px
 }
 
-.share-text {
+.vrsdk-share-text {
   margin-top: 15px
   margin-left: auto
   margin-right: auto
 }
 
-.floorplan-self {
+.vrsdk-floorplan-self {
   padding: 10px
 }
 
 @media screen and (orientation: landscape) {
-  .floorplan-wrapper {
+  .vrsdk-floorplan-wrapper {
     position: absolute
     height: 100%
     top: 0
@@ -476,18 +481,18 @@ export default {
     transform: translateX(-($i-main-floorplan-wrapper-landscape-transform-x))
   }
 
-  .floorplan-wrapper-active {
+  .vrsdk-floorplan-wrapper-active {
     transform: none
   }
 }
 
 @media screen and (min-width: $response) {
-  .viewer-list-wrapper {
+  .vrsdk-viewer-list-wrapper {
     opacity: 1
     transform: translateY(100%) translateY(-($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2))
   }
 
-  .floorplan-wrapper {
+  .vrsdk-floorplan-wrapper {
     width: auto
     height: auto
     top: auto
@@ -498,30 +503,30 @@ export default {
     transform: translateX(-($i-main-floorplan-wrapper-landscape-transform-x)) translateX($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2)
   }
 
-  .viewer-list-wrapper-collapse,
-  .floorplan-wrapper-collapse {
+  .vrsdk-viewer-list-wrapper-collapse,
+  .vrsdk-floorplan-wrapper-collapse {
     position: relative
     display: flex
     padding: $i-main-arrow-collapse-pd
     cursor: pointer
   }
 
-  .viewer-list-wrapper-active,
-  .floorplan-wrapper-active {
+  .vrsdk-viewer-list-wrapper-active,
+  .vrsdk-floorplan-wrapper-active {
     transform: none
   }
 
-  .share-container {
+  .vrsdk-share-container {
     display: flex
     flex-direction: row
     margin-top: 30px
 
-    .share-list {
+    .vrsdk-share-list {
       margin-left: $i-main-share-container-share-list-margin
     }
   }
 
-  .floorplan-self {
+  .vrsdk-floorplan-self {
     padding: 20px
   }
 }
@@ -531,37 +536,37 @@ export default {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .icon.icon-collapse-left,
-    .icon.icon-collapse-right {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-icon.vrsdk-icon-collapse-left,
+    .vrsdk-icon.vrsdk-icon-collapse-right {
       transform: rotateY(180deg)
     }
 
     @media screen and (orientation: landscape) {
-      .floorplan-wrapper {
+      .vrsdk-floorplan-wrapper {
         right: $i-main-floorplan-wrapper-landscape-pos
         left: auto
         transform: translateX($i-main-floorplan-wrapper-landscape-transform-x)
       }
 
-      .floorplan-wrapper-active {
+      .vrsdk-floorplan-wrapper-active {
         transform: none
       }
     }
 
     @media screen and (min-width: $response) {
-      .floorplan-wrapper {
+      .vrsdk-floorplan-wrapper {
         right: $i-main-floorplan-wrapper-landscape-pos
         left: auto
         transform: translateX($i-main-floorplan-wrapper-landscape-transform-x) translateX(-($i-main-arrow-collapse-short-side + $i-main-arrow-collapse-pd * 2))
       }
 
-      .floorplan-wrapper-active {
+      .vrsdk-floorplan-wrapper-active {
         transform: none
       }
 
-      .share-container {
-        .share-list {
+      .vrsdk-share-container {
+        .vrsdk-share-list {
           margin-left: 0
           margin-right: $i-main-share-container-share-list-margin
         }
