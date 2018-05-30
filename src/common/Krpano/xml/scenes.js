@@ -9,7 +9,7 @@ import getMarkerMemoXml from './marker-memo'
 import getMarkerPointXml from './marker-point'
 import getMarkerTagXml from './marker-tag'
 
-const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaPanoramaNameName, defaultFov) => {
+const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaNameName, defaultFov) => {
   let scene = ''
   let startupScene = ''
   panoramas.forEach((panorama, index) => {
@@ -23,16 +23,16 @@ const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nex
         switch (marker.type) {
           case 'point':
             krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
-            const panoramaName = nextPanoramaPanoramaNameName(marker)
+            const name = nextPanoramaNameName(marker)
             const isMarkerPoint = true
-            hotspot += getMarkerPointXml(marker, ath, atv, panoramaName, useCustomIcon, index, isMarkerPoint, krpanoXOffset)
+            hotspot += getMarkerPointXml(marker, ath, atv, name, useCustomIcon, index, isMarkerPoint, krpanoXOffset)
             break
           case 'memo':
             krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
-            hotspot += getMarkerMemoXml(marker, ath, atv, panoramaName, useCustomIcon, index)
+            hotspot += getMarkerMemoXml(marker, ath, atv, name, useCustomIcon, index)
             break
           case 'tag':
-            hotspot += getMarkerTagXml(marker, ath, atv, panoramaName, useCustomIcon, index, krpanoVrModeObj)
+            hotspot += getMarkerTagXml(marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj)
             break
           case 'popup':
             krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.objectId}`)
@@ -47,15 +47,15 @@ visible="true" scale="1" zorder="1" ath="${ath}" atv="${atv}" />`
 
     if (index === startIndex) {
       // for planet view init look at
-      startupScene = `<scene name="first_panorama_${panorama.panoramaId}" isTopLogo="${panorama.isTopLogo}">
+      startupScene = `<scene name="first_panorama_${panorama.id}" isTopLogo="${panorama.isTopLogo}">
     <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoXOffset}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${defaultFov}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
   ${(() => {
     if (panorama.cubemapReady) {
-      return `<preview url="${panorama.cubemapPreivewUrl ? xmlUrlString(panorama.cubemapPreivewUrl) : ''}" />
-<image><cube url="${panorama.cubemapUrl ? xmlUrlString(panorama.cubemapUrl) : ''}" /></image>`
+      return `<preview url="${panorama.cubemapLinkPreview ? xmlUrlString(panorama.cubemapLinkPreview) : ''}" />
+<image><cube url="${panorama.cubemapLink ? xmlUrlString(panorama.cubemapLink) : ''}" /></image>`
     } else {
-      return `<image><sphere url="${panorama.desktopUrl ? xmlUrlString(panorama.desktopUrl) : ''}" /></image>`
+      return `<image><sphere url="${panorama.resizeUrl ? xmlUrlString(panorama.resizeUrl) : ''}" /></image>`
     }
   })()}
 ${hotspot}</scene>`
@@ -68,15 +68,15 @@ ${hotspot}</scene>`
 
 const getSceneXml = function (panorama, hotspot, defaultFov, krpanoXOffset) {
   let sceneXml = ''
-  sceneXml += `<scene name="panorama_${panorama.panoramaId}" title="${xmlString(panorama.name)}" panoramId="${panorama.panoramaId}" isTopLogo="${panorama.isTopLogo}">
+  sceneXml += `<scene name="panorama_${panorama.id}" title="${xmlString(panorama.name)}" panoramId="${panorama.id}" isTopLogo="${panorama.isTopLogo}">
     <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoXOffset}" vlookat="0" fovtype="MFOV" fov="${defaultFov}" fovmin="30" fovmax="${defaultFov}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
     ${(() => {
     if (panorama.cubemapReady) {
-      return `<preview url="${panorama.cubemapPreivewUrl ? xmlUrlString(panorama.cubemapPreivewUrl) : ''}" />
-<image><cube url="${panorama.cubemapUrl ? xmlUrlString(panorama.cubemapUrl) : ''}" /></image>`
+      return `<preview url="${panorama.cubemapLinkPreview ? xmlUrlString(panorama.cubemapLinkPreview) : ''}" />
+<image><cube url="${panorama.cubemapLink ? xmlUrlString(panorama.cubemapLink) : ''}" /></image>`
     } else {
-      return `<image><sphere url="${panorama.desktopUrl ? xmlUrlString(panorama.desktopUrl) : ''}" /></image>`
+      return `<image><sphere url="${panorama.resizeUrl ? xmlUrlString(panorama.resizeUrl) : ''}" /></image>`
     }
   })()}
     ${hotspot}</scene>`

@@ -1,4 +1,3 @@
-import api from '@/api/index'
 import {
   CATEGORIES
 } from '@/api/constants'
@@ -11,7 +10,6 @@ import {
   sort
 } from '@/api/utils'
 import PanoramasManager from '../../manager/panoramas-manager'
-import Cubemap from '../../manager/cubemap'
 
 const state = {
   panoramas: [],
@@ -41,10 +39,10 @@ export const actions = {
       return
     }
     let panoramas = resp.map(panorama => {
-      const foundPanoramaName = CATEGORIES.find(panoramaName => panoramaName.value === panorama.panoramaName)
-      if (!foundPanoramaName) {
-        panorama.customPanoramaName = panorama.panoramaName
-        panorama.panoramaName = 'custom'
+      const foundName = CATEGORIES.find(name => name.value === panorama.name)
+      if (!foundName) {
+        panorama.customName = panorama.name
+        panorama.name = 'custom'
       }
       if (!panorama.position) { // should have default position
         panorama.position = {
@@ -66,45 +64,21 @@ export const actions = {
 
     panoramas.forEach(async panorama => {
       // const cubemap = new Cubemap(panorama, rootState.user.userId)
-      const cubemap = new Cubemap(panorama)
-      cubemap.init()
       panorama.markers = await dispatch('fetchMarkers', panorama)
       if (getIEVersion() === 11) {
-        const keys = ['thumbnail', 'desktopUrl', 'mobileUrl']
+        const keys = ['thumbnail', 'resizeUrl', 'mobileUrl']
         await imageIEHack(panorama, keys)
       }
-      if (!panorama.cubemapReady || panorama.cubemapReady === false) {
-        // const userId = panoCollection.owner ? panoCollection.owner.objectId : ''
-        // console.log('panorama.rawUrl', panorama.rawUrl)
-        if (panorama.rawUrl) {
-          api.isPanoramaCubemapReady(panorama.panoramaId, cubemap.filename).then(bool => {
-            panorama.cubemapReady = bool
-            if (bool === true) {
-              panorama.cubemapPreivewUrl = cubemap.preivewUrl
-              panorama.cubemapUrl = cubemap.cubeUrl
-            }
-            panoramasManager.panoramaMarkersReadyHandler(panoramas)
-          })
-        } else {
-          panorama.cubemapReady = false
-          panoramasManager.panoramaMarkersReadyHandler(panoramas)
-        }
-      } else {
-        if (panorama.cubemapReady === true) {
-          panorama.cubemapPreivewUrl = cubemap.preivewUrl
-          panorama.cubemapUrl = cubemap.cubeUrl
-        }
-        panoramasManager.panoramaMarkersReadyHandler(panoramas)
-      }
+      panoramasManager.panoramaMarkersReadyHandler(panoramas)
     })
   },
 
   selectPanorama ({ commit, state, rootState }, panorama = {}) {
-    if (state.currentPanorama.panoramaId === panorama.panoramaId ||
+    if (state.currentPanorama.id === panorama.id ||
       rootState.progress.isProgressActive) {
       return
     }
-    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.panoramaId || ''}, ${panorama.panoramaId || ''}, 'PanoramaList');`)
+    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.id || ''}, ${panorama.id || ''}, 'PanoramaList');`)
   },
 
   setPanorama ({ commit }, panorama = {}) {

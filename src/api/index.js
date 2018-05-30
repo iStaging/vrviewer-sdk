@@ -9,20 +9,6 @@ api.asyncRequest = async (urlEnd, type, payload = {}) => Vue.http[type](server.b
 api.sendHeaders = (headerName, sessionToken) => {
   Vue.http.headers.common[headerName] = sessionToken
 }
-api.isPanoramaCubemapReady = async (panoramaId = '', filename = '') => {
-  try {
-    const IS_PANORAMA_CUBEMAP_URL = `${server.backendUrl}/v2/panoramas/${panoramaId}/cubemapReady?fileName=${filename}`
-    const resp = await Vue.http.get(IS_PANORAMA_CUBEMAP_URL)
-    // console.log('api.isPanoramaCubemapReady', resp)
-    if (resp.status === 200 && resp.data) {
-      return resp.data.cubeMapReady
-    } else {
-      return false
-    }
-  } catch (e) {
-    return false
-  }
-}
 /* eslint-disable */
 if (process.env.USE_GOOGLE_MAP) {
   (function (d, s, id) {
