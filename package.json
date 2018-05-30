@@ -3,7 +3,6 @@
   "version": "1.0.5",
   "description": "VRViewer sdk help you to create and edit your VR content more easily.",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
-  "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "node examples/app.js",
