@@ -9,7 +9,7 @@ const getActionsXml = function (autoRotateSetting, startIndex = 0, panoramas, de
       : ''
   })()}
   ${(() => {
-    return `loadscene(first_panorama_${panoramas[startIndex].panoramaId});
+    return `loadscene(first_panorama_${panoramas[startIndex].id});
     planet_view();`
   })()}
   set(plugin[gyro].enabled, false);
@@ -63,7 +63,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 <action name="prepare_change_scene">
 <!-- 儲存當前仰角 All javascript call this action to trigger change scene here first
   %1 = next scene name
-  %2 = next scene panoramaId
+  %2 = next scene id
   %3 = next scene hlookat offset (for marker)
   %4 = is clicked from marker point
   %5 = marker ath

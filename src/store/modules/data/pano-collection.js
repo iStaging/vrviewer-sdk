@@ -54,8 +54,8 @@ export const actions = {
       // init progress count with unreal number
       dispatch('addProgressCount', 2)
       dispatch('setProgressMax', 100)
-      // const panoramaIds = Object.keys(resp.Panoramas)
-      // console.log('panoramaIds:', panoramaIds)
+      // const ids = Object.keys(resp.Panoramas)
+      // console.log('ids:', ids)
       console.log('panoCollection:', panoCollection)
       commit('SET_PANO_COLLECTION', panoCollection)
       PanoCollectionManager.afterFetchPanoCollectionHandler({ dispatch, panoCollection, panoCollectionId })
