@@ -1,7 +1,4 @@
 import {
-  CATEGORIES
-} from '@/api/constants'
-import {
   imageIEHack
 } from '@/api/helpers'
 import {
@@ -39,11 +36,7 @@ export const actions = {
       return
     }
     let panoramas = resp.map(panorama => {
-      const foundName = CATEGORIES.find(name => name.value === panorama.name)
-      if (!foundName) {
-        panorama.customName = panorama.name
-        panorama.name = 'custom'
-      }
+      panorama.name = 'custom'
       if (!panorama.position) { // should have default position
         panorama.position = {
           x: 0,

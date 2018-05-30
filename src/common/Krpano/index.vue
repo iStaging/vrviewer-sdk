@@ -215,7 +215,7 @@ export default {
       if (isEmpty(foundPanorama)) {
         return
       }
-      return xmlString(foundPanorama.customName || this.$t(foundPanorama.name))
+      return xmlString(foundPanorama.name)
     },
 
     selectPanorama (nextPanoramaId = '', selectedMethod = '', isMarkerPoint = false, isWebVr = false) {
