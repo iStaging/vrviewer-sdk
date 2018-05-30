@@ -21,7 +21,7 @@
           </icon>
         </div>
         <p class="vrsdk-viewer-markers-hover-text">
-          {{ nextPanorama.panoramaName }}
+          {{ nextPanorama.name }}
         </p>
       </div>
       <div class="vrsdk-decoration"></div>
@@ -93,7 +93,7 @@ export default {
       if (isEmpty(this.panoramas) || this.panoramas.length === 0) {
         return {}
       }
-      const nextPanorama = this.panoramas.find(panorama => panorama.panoramaId === this.currentMarker.nextPanoramaId)
+      const nextPanorama = this.panoramas.find(panorama => panorama.id === this.currentMarker.nextPanoramaId)
       return nextPanorama || {}
     },
 

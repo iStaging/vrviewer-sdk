@@ -9,7 +9,7 @@
           :slot="panorama.key"
           class="vrsdk-panoramas-list-a"
           :class="{
-            'vrsdk-active': hoveredPanorama.panoramaId === panorama.panoramaId,
+            'vrsdk-active': hoveredPanorama.id === panorama.id,
             'vrsdk-icon-disabled': panorama.disabled,
             'vrsdk-panoramas-list-a-active': panorama.isActive
           }"
@@ -97,12 +97,12 @@ export default {
       this.panoramas.forEach((panorama, index) => {
         const schema = {
           key: `panorama_${index}`,
-          caption: panorama.customPanoramaName || this.$t(panorama.panoramaName),
+          caption: panorama.name,
           image: panorama.thumbnail,
-          disabled: this.currentPanorama.panoramaId === panorama.panoramaId,
-          isActive: this.currentPanorama.panoramaId === panorama.panoramaId,
+          disabled: this.currentPanorama.id === panorama.id,
+          isActive: this.currentPanorama.id === panorama.id,
           method: () => {
-            if (this.currentPanorama.panoramaId === panorama.panoramaId ||
+            if (this.currentPanorama.id === panorama.id ||
               this.isProgressActive) {
               return
             }

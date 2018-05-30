@@ -17,22 +17,22 @@ const hooks = vm => {
         shouldAutoStartRotate: bool
       })
     },
-    prepareChangeScene (nextPanoramaName = '', nextPanoramaId = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
-      const oldIndex = vm.panoramas.findIndex(panorama => panorama.panoramaId === vm.currentPanorama.panoramaId)
-      const newIndex = vm.panoramas.findIndex(panorama => panorama.panoramaId === nextPanoramaId)
+    prepareChangeScene (nextName = '', nextPanoramaId = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
+      const oldIndex = vm.panoramas.findIndex(panorama => panorama.id === vm.currentPanorama.id)
+      const newIndex = vm.panoramas.findIndex(panorama => panorama.id === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = vm.panoramas[newIndex]
         const oldHLookat = vm.krpanoLookAtH
         if (foundPanorama.cubemapReady) {
-          vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${nextPanoramaRotation},
+          vm.krpanoEl.call(`change_scene(${nextName}, ${nextPanoramaId}, ${nextPanoramaRotation},
            ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
         } else {
           vm.setProgressCount(0)
           vm.setProgressMax(100)
           vm.showProgress()
-          loadImage(foundPanorama.desktopUrl, () => {
+          loadImage(foundPanorama.resizeUrl, () => {
             vm.closeProgress()
-            vm.krpanoEl.call(`change_scene(${nextPanoramaName}, ${nextPanoramaId}, ${nextPanoramaRotation},
+            vm.krpanoEl.call(`change_scene(${nextName}, ${nextPanoramaId}, ${nextPanoramaRotation},
              ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
           }, (e) => {
             vm.setProgressCount(e * 2)
@@ -116,7 +116,7 @@ const hooks = vm => {
       //       ath = setCorrectRotation(ath + vm.krpanoXOffset)
       //       const { x, y, z } = coords2dTo3d({ ath, atv })
       //       const distance = Math.sqrt(Math.pow(mX - x, 2) + Math.pow(mY - y, 2) + Math.pow(mZ - z, 2))
-      //       // console.log('point position 3d', x, y, z, vm.nextPanoramaPanoramaNameName(point))
+      //       // console.log('point position 3d', x, y, z, vm.nextPanoramaNameName(point))
       //       // console.log('distance', distance)
       //       if (closestDistance > distance) {
       //         closestDistance = distance
@@ -126,7 +126,7 @@ const hooks = vm => {
       //     })
       //     // console.log('closestDistance', closestDistance)
       //     // console.log('closestPoint', closestPoint)
-      //     // console.log('next point', vm.nextPanoramaPanoramaNameName(closestPoint))
+      //     // console.log('next point', vm.nextPanoramaNameName(closestPoint))
       //     if (callback && typeof callback === 'function' && callback instanceof Function) {
       //       callback(closestPoint, closestAth)
       //     } else {

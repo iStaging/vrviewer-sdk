@@ -2,7 +2,7 @@ import {
   hotspotIcon
 } from '@/api/helpers'
 
-const getMarkerPointXml = function (marker, ath, atv, panoramaName, useCustomIcon, index, isMarkerPoint, krpanoXOffset) {
+const getMarkerPointXml = function (marker, ath, atv, name, useCustomIcon, index, isMarkerPoint, krpanoXOffset) {
   return `<hotspot
   name="markerInfo_${marker.objectId}"
   style="markerInfo"
@@ -13,7 +13,7 @@ const getMarkerPointXml = function (marker, ath, atv, panoramaName, useCustomIco
   enabled="false"
   zorder="2"
   type="text"
-  html="${panoramaName}" />
+  html="${name}" />
     <hotspot
   name="marker_${marker.objectId}"
   style="${hotspotIcon(marker, useCustomIcon)}"

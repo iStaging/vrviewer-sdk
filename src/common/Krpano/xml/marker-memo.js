@@ -5,7 +5,7 @@ import {
   xmlString
 } from '@/api/helpers'
 
-const getMarkerMemoXml = function (marker, ath, atv, panoramaName, useCustomIcon, index) {
+const getMarkerMemoXml = function (marker, ath, atv, name, useCustomIcon, index) {
   let memo = ''
   if (marker.description && marker.description.length >= 120) {
     memo += `<hotspot
