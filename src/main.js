@@ -22,6 +22,10 @@ export let i18n = new VueI18n({
   silentTranslationWarn: true
 })
 class VRViewer {
+  constructor () {
+    this.app = null
+  }
+
   init (config) {
     console.log('config:', config)
     i18n = new VueI18n({
@@ -32,12 +36,23 @@ class VRViewer {
     })
     this.initData(config)
     this.initConfig(config)
-    new Vue({
+    this.app = new Vue({
       el: config.el,
       store,
       i18n,
       render: h => h(App)
-    }).$mount(config.el)
+    }).$mount()
+    console.log('vrviewer app:', this.app)
+  }
+
+  destroy () {
+    if (this.app) {
+      this.app.$destroy()
+      this.app.$el.childNodes.forEach(childNode => {
+        childNode.remove()
+      })
+      this.app = null
+    }
   }
 
   initData (config) {
@@ -59,17 +74,17 @@ class VRViewer {
 // Vue.config.devtools = false
 // Vue.config.silent = true
 
-const vrViewer = new VRViewer()
-let config = {
-  el: '#vrviewer-sdk',
-  lang: 'zh-cn',
-  setting: DEFAULT_SETTING
-}
 if (process.env.NODE_ENV === 'development') {
-  config.panoCollection = fakePanoCollection
-  config.panoramas = fakePanoramas
+  const vrViewer = new VRViewer()
+  let config = {
+    el: '#vrviewer-sdk',
+    lang: 'zh-cn',
+    setting: DEFAULT_SETTING,
+    panoCollection: fakePanoCollection,
+    panoramas: fakePanoramas
+  }
+  vrViewer.init(config)
 }
-vrViewer.init(config)
 
-window.VRViewer = VRViewer
+window.VRViewer = new VRViewer()
 export default VRViewer

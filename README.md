@@ -1,69 +1,115 @@
-# VRMaker
+# VR Viewer
 
-VRMaker js sdk help you to create your 360 panorama viewer more easily by aframe or krpano.
+VR Viewer SDK helps you creating a panorama easily on website.
 
-## documation
+## SDK documents
 [https://istaging.gitbook.io/vr-maker-sdk](https://istaging.gitbook.io/vr-maker-sdk)
-
-- viewer
-  - KrpanoViewer (recommend)
-    - vr mode
-    - auto rotation
-    - change animation
-    - support cubemap
-  - AframeViewer
-    - vr mode
-    - auto rotation
 
 ## How to use
 
 ### ES6:
 
-``` bash
-npm install vrmaker
-import VRMaker from 'vrmaker'
+```javascript
+npm install vrviewer
+import 'vrviewer'
 
-// init krpano viewer (recommended)
-new VRMaker.krpanoViewer()
-...
-
-// init aframe viewer
-new VRMaker.AframeViewer()
-...
-
-// check more in documation or examples, dev folder
+window.VRViewer.init({
+  el: '#vrviewer-sdk',
+  lang: 'zh-cn',
+  panoCollection: fakePanoCollection,
+  panoramas: fakePanoramas,
+  setting: {
+    autoRotateSetting: {
+      active: true,
+      revert: false,
+      rotateDuration: 200000,
+      restartTime: 20000
+    },
+    gyroSetting: {
+      active: false
+    },
+    krpanoSetting: {
+      mwheel: true,
+      focus: false
+    },
+    tripodSetting: {
+      image: 'https://www.istaging.com/sdk/logo-tripod.png',
+      size: 60
+    },
+    hideUISetting: {
+      hideCollectionInfo: false,
+      hidePanoramaList: false,
+      hideFloorplan: false,
+      hideFullscreen: false,
+      hideLoading: false,
+      hideMarkerInfo: false
+    },
+    shareSetting: {
+      shareUrl: 'https://www.istaging.com/'
+    }
+  }
+})
 ```
 
 ### Use cdn:
 
-``` bash
+```html
 // include script
-<script src="https://www.istaging.com/sdk/vrmaker.js">
+<script src="https://www.istaging.com/sdk/vrviewer.js"></script>
 
-// init krpano viewer (recommended)
-new VRMaker.krpanoViewer()
-...
-
-// init aframe viewer
-new VRMaker.AframeViewer()
-...
-
-// check more in documation or examples, dev folder
+<div id="vrviewer-sdk"></div>
+<script>
+VRViewer.init({
+  el: '#vrviewer-sdk',
+  lang: 'zh-cn',
+  panoCollection: fakePanoCollection,
+  panoramas: fakePanoramas,
+  setting: {
+    autoRotateSetting: {
+      active: true,
+      revert: false,
+      rotateDuration: 200000,
+      restartTime: 20000
+    },
+    gyroSetting: {
+      active: false
+    },
+    krpanoSetting: {
+      mwheel: true,
+      focus: false
+    },
+    tripodSetting: {
+      image: 'https://www.istaging.com/sdk/logo-tripod.png',
+      size: 60
+    },
+    hideUISetting: {
+      hideCollectionInfo: false,
+      hidePanoramaList: false,
+      hideFloorplan: false,
+      hideFullscreen: false,
+      hideLoading: false,
+      hideMarkerInfo: false
+    },
+    shareSetting: {
+      shareUrl: 'https://www.istaging.com/'
+    }
+  }
+})
+</script>
 ```
 
-Warning: use aframe will not support change animation and cubemap.
-
-## Work with istaging vrmaker solution which can upload your panorama with cubemap, auto hotspot, edit your marker like point, tag..etc. Get the data from vrmaker backend server.
-Use node express sample server to get the access key to upload your panoramas by vrmaker backend server api and init the data by krpano or aframe.
-Check in the examples folder.
+### VR Viewer SDK is easily bind with VR Editor SDK
+iStaging VR Viewer is a WebVR solution for developers, you can fetch data from VR Editor, and import data into VR Viewer
+check out node sample server to explore what we do it
+Check out the examples folder.
 
 ``` bash
 npm start
 ```
 
-## If you only want to use vrmaker 360 viewer..
-Following the data structure, you can also only use your own data without istaging api to create 360 viewer.
-Check in the dev folder.
+## If you want just use VR Viewer without VR Editor
+Following the data structure, you can just use your own data without VR Editor to create 360 viewer.
+Check out the src folder.
 
 ``` bash
 npm run dev

@@ -219,6 +219,9 @@ export default {
   },
 
   beforeDestroy () {
+    document.removeEventListener('fullscreenchange', this.fullscreenChangeHandler, false)
+    document.removeEventListener('webkitfullscreenchange', this.fullscreenChangeHandler, false)
+    document.removeEventListener('mozfullscreenchange', this.fullscreenChangeHandler, false)
     window.removeEventListener('resize', this.resizeHandler)
   },
 
