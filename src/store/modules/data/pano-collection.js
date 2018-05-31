@@ -38,11 +38,11 @@ export const actions = {
       const panoCollection = resp
       panoCollection.id = panoCollectionId
       // to prevent cache, trigger force fetch latest photo
-      if (panoCollection.thumbnail) {
-        panoCollection.thumbnail = addParameter(panoCollection.thumbnail, `n=${Math.random()}`)
+      if (panoCollection.resizeUrl) {
+        panoCollection.resizeUrl = addParameter(panoCollection.resizeUrl, `n=${Math.random()}`)
       }
-      if (panoCollection.logo) {
-        panoCollection.logo = addParameter(panoCollection.logo, `n=${Math.random()}`)
+      if (panoCollection.logoUrl) {
+        panoCollection.logoUrl = addParameter(panoCollection.logoUrl, `n=${Math.random()}`)
       }
       if (panoCollection.floorplan) {
         panoCollection.floorplan = addParameter(panoCollection.floorplan, `n=${Math.random()}`)

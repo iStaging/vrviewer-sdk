@@ -56,7 +56,7 @@ export default class PanoramasManager {
         const initPanorama = panoramas[startIndex]
         panoramas.forEach(panorama => {
           console.log('cubemapReady:', panorama.cubemapReady)
-          loadImage([panorama.cubemapLinkPreview, panorama.thumbnail], () => {
+          loadImage([panorama.cubemapLinkPreview, panorama.resizeUrl], () => {
             this.previewImageLoadFinished(panoramas, initPanorama)
           }, undefined, () => {
             this.previewImageLoadFinished(panoramas, initPanorama)
