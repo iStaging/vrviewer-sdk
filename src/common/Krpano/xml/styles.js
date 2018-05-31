@@ -57,7 +57,7 @@ width="60" height="60" ox="+20" onover="vr_menu_over(); delayedcall(0,tween(alph
     // vr mode thumbnail
     let oy = (-(vrThumbWidth / 2 + 30) * 1.5) + (vrThumbWidth / 2 + 30) * (verticalCount)
     vrThumbAth = vrThumbAth * horizontalCount
-    styles += `<hotspot name="vr_panorama_${index}" style="vr_panorama_style" zorder="6" url="${xmlUrlString(panorama.thumbnail)}" vr_timeout="2000"
+    styles += `<hotspot name="vr_panorama_${index}" style="vr_panorama_style" zorder="6" url="${xmlUrlString(panorama.resizeUrl)}" vr_timeout="2000"
 ath="${vrThumbAth}" oy="${oy}"
 width="${vrThumbWidth}" height="${vrThumbWidth / 2}" onclick="prepare_change_scene(panorama_${panorama.id}, ${panorama.id}, VrModeThumbnail)" />
 <hotspot name="vr_panorama_text_${index}" css="font-family:Arial; color:#fff; font-size:12px; text-align: center; line-height: 18px;"

@@ -24,7 +24,7 @@ export const actions = {
 
   async fetchPanoCollection ({ dispatch, commit, state, rootState }, panoCollectionId = '') {
     if (panoCollectionId) {
-      if (panoCollectionId === state.currentPanoCollection.objectId) {
+      if (panoCollectionId === state.currentPanoCollection.id) {
         // It's the same panoCollection, no need to fetch it again
         return
       }
@@ -36,13 +36,13 @@ export const actions = {
         return
       }
       const panoCollection = resp
-      panoCollection.objectId = panoCollectionId
+      panoCollection.id = panoCollectionId
       // to prevent cache, trigger force fetch latest photo
-      if (panoCollection.thumbnail) {
-        panoCollection.thumbnail = addParameter(panoCollection.thumbnail, `n=${Math.random()}`)
+      if (panoCollection.resizeUrl) {
+        panoCollection.resizeUrl = addParameter(panoCollection.resizeUrl, `n=${Math.random()}`)
       }
-      if (panoCollection.logo) {
-        panoCollection.logo = addParameter(panoCollection.logo, `n=${Math.random()}`)
+      if (panoCollection.logoUrl) {
+        panoCollection.logoUrl = addParameter(panoCollection.logoUrl, `n=${Math.random()}`)
       }
       if (panoCollection.floorplan) {
         panoCollection.floorplan = addParameter(panoCollection.floorplan, `n=${Math.random()}`)
