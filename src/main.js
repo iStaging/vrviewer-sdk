@@ -27,7 +27,7 @@ class VRViewer {
   }
 
   init (config) {
-    console.log('config:', config)
+    // console.log('config:', config)
     i18n = new VueI18n({
       locale: config.lang,
       fallbackLocale: 'en',
@@ -42,7 +42,7 @@ class VRViewer {
       i18n,
       render: h => h(App)
     }).$mount()
-    console.log('vrviewer app:', this.app)
+    // console.log('vrviewer app:', this.app)
   }
 
   destroy () {
@@ -56,6 +56,9 @@ class VRViewer {
   }
 
   initData (config) {
+    if (typeof store.resetState === 'function') {
+      store.resetState()
+    }
     store.dispatch('importPanoCollection', config.panoCollection)
     store.dispatch('importPanoramas', config.panoramas)
   }
