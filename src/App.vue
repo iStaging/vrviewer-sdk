@@ -12,7 +12,7 @@
     <template v-else>
       <div class="full-center error-wrapper">
         <div v-if="!isBrowserSupport">
-          <figure class="error-wrapper-container">
+          <figure class="vrsdk-error-wrapper-container">
             <img
               :src="noSupportedImage"
               alt="browser no support">
@@ -20,7 +20,7 @@
           </figure>
         </div>
         <div v-else-if="!isWebGlSupport">
-          <figure class="error-wrapper-container">
+          <figure class="vrsdk-error-wrapper-container">
             <img
               :src="noSupportedImage"
               alt="webgl no support">
@@ -80,68 +80,7 @@ export default {
 @import 'stylesheets/variables.styl'
 
 .vrviewer-sdk {
-  .app {
-    height: 100%
-  }
-
-  .error-wrapper {
-    background-color: #f1f8fc
-    pointer-events: auto
-
-    .error-wrapper-container {
-      @extend .vrsdk-flex-center-column
-      text-align: center
-
-      img {
-        margin-bottom: 20px
-      }
-
-      &, p, h3 {
-        color: $black
-        text-shadow: none
-      }
-
-      a {
-        color: $main-color
-        text-decoration: none
-        display: inline-block
-        padding: 0 3px
-        text-shadow: none
-
-        &:hover {
-          text-decoration: underline
-        }
-      }
-
-      h3 {
-        font-size: 18px
-        letter-spacing: -.4px
-      }
-
-      p, a {
-        font-size: 14px
-        letter-spacing: -.3px
-      }
-
-      h3, p, a {
-        margin-top: 7px
-      }
-
-      h3 {
-        font-size: 18px
-        letter-spacing: -.4px
-      }
-
-      p, a {
-        font-size: 14px
-        letter-spacing: -.3px
-      }
-
-      h3, p, a {
-        margin-top: 7px
-      }
-    }
-  }
+  height: 100%
 }
 
 .vrviewer-sdk-fullscreen,
@@ -159,4 +98,63 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import 'stylesheets/global.styl'
+
+.vrsdk-error-wrapper {
+  background-color: #f1f8fc
+  pointer-events: auto
+
+  .vrsdk-error-wrapper-container {
+    @extend .vrsdk-flex-center-column
+    text-align: center
+
+    img {
+      margin-bottom: 20px
+    }
+
+    &, p, h3 {
+      color: $black
+      text-shadow: none
+    }
+
+    a {
+      color: $main-color
+      text-decoration: none
+      display: inline-block
+      padding: 0 3px
+      text-shadow: none
+
+      &:hover {
+        text-decoration: underline
+      }
+    }
+
+    h3 {
+      font-size: 18px
+      letter-spacing: -.4px
+    }
+
+    p, a {
+      font-size: 14px
+      letter-spacing: -.3px
+    }
+
+    h3, p, a {
+      margin-top: 7px
+    }
+
+    h3 {
+      font-size: 18px
+      letter-spacing: -.4px
+    }
+
+    p, a {
+      font-size: 14px
+      letter-spacing: -.3px
+    }
+
+    h3, p, a {
+      margin-top: 7px
+    }
+  }
+}
 </style>

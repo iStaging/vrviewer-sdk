@@ -31,6 +31,7 @@ export const actions = {
     const resp = storedPanoramas
     dispatch('setKrpanoActive', false)
     dispatch('setPanoramasNotFound', false)
+    console.log('res', resp)
     if (isEmpty(resp)) {
       panoramasManager.noPanoramasHandler()
       return
@@ -45,8 +46,6 @@ export const actions = {
       }
       return panorama
     }) || []
-
-    panoramas = panoramas.filter(panorama => panorama.rawUrl) // app maybe create a panorama but not upload photo yet
     if (panoramas.length <= 0) {
       panoramasManager.noPanoramasHandler()
       return
@@ -54,7 +53,6 @@ export const actions = {
     console.log('panoramas', panoramas)
     sort(panoramas, 'index')
     dispatch('setProgressMax', panoramas.length + 12)
-
     panoramas.forEach(async panorama => {
       // const cubemap = new Cubemap(panorama, rootState.user.userId)
       panorama.markers = await dispatch('fetchMarkers', panorama)

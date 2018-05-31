@@ -62,7 +62,7 @@ export default {
   },
 
   beforeMount () {
-    const panoCollectionId = fakePanoCollection.objectId
+    const panoCollectionId = fakePanoCollection.id
     this.fetchPanoCollection(panoCollectionId)
   },
 
