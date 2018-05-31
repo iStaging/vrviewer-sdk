@@ -123,6 +123,7 @@ export default {
 
   beforeDestroy () {
     window.removeEventListener('keydown', this.keydownHandler)
+    removepano(this.krpanoEl.id) // eslint-disable-line
   },
 
   computed: {

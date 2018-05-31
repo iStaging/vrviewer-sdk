@@ -31,7 +31,6 @@ export const actions = {
     const resp = storedPanoramas
     dispatch('setKrpanoActive', false)
     dispatch('setPanoramasNotFound', false)
-    console.log('res', resp)
     if (isEmpty(resp)) {
       panoramasManager.noPanoramasHandler()
       return
