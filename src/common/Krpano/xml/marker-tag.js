@@ -13,7 +13,7 @@ import {
 const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj) {
   let tag = ''
   tag += `<hotspot
-    name="marker_${marker.objectId}"
+    name="marker_${marker.id}"
     style="${hotspotIcon(marker, useCustomIcon)}"
     scale="1"
     ath="${ath}"

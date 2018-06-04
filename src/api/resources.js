@@ -29,10 +29,10 @@ export const fakePanoCollection = {
   'logoUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail'
 }
 export const fakePanoramas = [{
-  'id': 'p_11cfc54c-818f-4745-9900-e6a443667932',
+  'id': 'p_04c0c888-e5e5-48db-99a5-6cb3da3c2bd2',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_11cfc54c-818f-4745-9900-e6a443667932.jpg',
-  'name': 'cc',
-  'index': 99,
+  'name': 'has markers',
+  'index': 0,
   'cubemapReady': false,
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',

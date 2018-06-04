@@ -23,7 +23,7 @@ export const actions = {
   },
 
   async fetchPanoCollection ({ dispatch, commit, state, rootState }) {
-    const panoCollectionId = storedPanoCollection.objectId
+    const panoCollectionId = storedPanoCollection.id
     if (panoCollectionId) {
       if (panoCollectionId === state.currentPanoCollection.id) {
         // It's the same panoCollection, no need to fetch it again

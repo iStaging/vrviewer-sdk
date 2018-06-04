@@ -277,7 +277,7 @@ export const getCorrectRotation = (value) => {
 
 export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
   if (useCustomIcon) {
-    return `markerCustomIcon_${marker.objectId}`
+    return `markerCustomIcon_${marker.id}`
   } else {
     switch (marker.type) {
       case 'point':
