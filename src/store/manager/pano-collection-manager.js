@@ -3,7 +3,7 @@ export default class PanoCollectionsHandler {
     dispatch('fetchPanoramas', panoCollectionId)
   }
 
-  static noPanoCollectionCallback ({ dispatch, commit, state, rootState }) {
+  static noPanoCollectionCallback ({ dispatch, commit }) {
     dispatch('closeProgress')
     dispatch('setPanoCollectionNotFound', true)
     commit('SET_PANO_COLLECTION', {})

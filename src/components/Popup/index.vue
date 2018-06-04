@@ -1,21 +1,25 @@
 <template>
   <section
-    class="popup"
+    class="vrsdk-popup"
     @click="closePopup">
-    <div class="popup-inner" :style="popupInnerStyle">
-      <div class="popup-iframe-container" :style="popupContainerStyle">
+    <div
+      class="vrsdk-popup-inner"
+      :style="popupInnerStyle">
+      <div
+        class="vrsdk-popup-iframe-container"
+        :style="popupContainerStyle">
         <a
           href="javascript:"
           @click="closePopup">
-          <span class="popup-close"></span>
+          <span class="vrsdk-popup-close"></span>
         </a>
         <div
           v-if="isIFrameNoSupportTimeout"
-          class="popup-iframe-hint">
+          class="vrsdk-popup-iframe-hint">
           {{ $t('urlNoSupportIFrameError') }}
         </div>
         <iframe
-          class="embed-responsive-item"
+          class="vrsdk-embed-responsive-item"
           :src="url"
           frameborder="0"
           allowfullscreen>
@@ -80,7 +84,9 @@ export default {
   computed: {
     popupInnerStyle () {
       return {
-        width: this.widthType === 'percent' ? (`${this.widthPercent || POPUP.WIDTH_PERCENT}%`) : 'auto'
+        width: this.widthType === 'percent'
+          ? (`${this.widthPercent || POPUP.WIDTH_PERCENT}%`)
+          : 'auto'
       }
     },
 
@@ -108,8 +114,8 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.popup {
-  @extend .position-fixed
+.vrsdk-popup {
+  @extend .vrsdk-position-fixed
   top: 0
   right: 0
   bottom: 0
@@ -118,8 +124,8 @@ export default {
   background-color: alpha($black, 70%)
 }
 
-.popup-inner {
-  @extend .flex-center
+.vrsdk-popup-inner {
+  @extend .vrsdk-flex-center
   margin: 0 auto
   position: relative
   min-width: 320px
@@ -127,7 +133,7 @@ export default {
   height: 100%
 }
 
-.popup-iframe-container {
+.vrsdk-popup-iframe-container {
   position: relative
   padding-bottom: 56.25%
   width: calc(100% - 20px)
@@ -136,12 +142,12 @@ export default {
   background-color: $white
 
   iframe {
-    @extend .absolute-full
+    @extend .vrsdk-absolute-full
     border: 0
   }
 }
 
-.popup-close {
+.vrsdk-popup-close {
   bg-size(34px, 34px)
   display: inline-block
   position: absolute
@@ -152,9 +158,9 @@ export default {
   background-image: url('img/close-popup.png')
 }
 
-.popup-iframe-hint {
-  @extend .absolute-full
-  @extend .flex-center
+.vrsdk-popup-iframe-hint {
+  @extend .vrsdk-absolute-full
+  @extend .vrsdk-flex-center
   text-shadow: none
 }
 </style>

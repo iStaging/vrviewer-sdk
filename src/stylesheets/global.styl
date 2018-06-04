@@ -3,7 +3,7 @@
 @import 'transition.styl'
 
 .vrviewer-sdk {
-  @extend .full
+  @extend .vrsdk-full
   position: relative
   margin: 0
   padding: 0
@@ -53,7 +53,7 @@
     padding: 0
   }
 
-  .pre-custom {
+  .vrsdk-pre-custom {
     display: block
     font-size: inherit
     font-family: inherit
@@ -69,31 +69,23 @@
     border-radius: 0
   }
 
-  .por {
-    position: relative
-  }
-
   ::-moz-selection {
-    @extend .text-with-gray-bg
+    @extend .vrsdk-text-with-gray-bg
     background-color: $light-gray-color
   }
 
   ::selection {
-    @extend .text-with-gray-bg
+    @extend .vrsdk-text-with-gray-bg
     background-color: $light-gray-color
   }
 
-  .full-center {
-    @extend .absolute-full
-    @extend .flex-center-column
+  .vrsdk-full-center {
+    @extend .vrsdk-absolute-full
+    @extend .vrsdk-flex-center-column
     pointer-events: none
   }
 
-  .text-center {
-    text-align: center
-  }
-
-  .theme-rtl.theme-rtl-overlap {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
     direction: rtl
   }
 }

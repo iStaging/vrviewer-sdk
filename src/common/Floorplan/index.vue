@@ -3,29 +3,29 @@
 </docs>
 
 <template>
-  <section class="floorplan">
+  <section class="vrsdk-floorplan">
     <div
-      class="floorplan-container"
+      class="vrsdk-floorplan-container"
       :class="{
-        'floorplan-dragging': isDragging,
-        'floorplan-overflow-hidden': isDraggable || isResizable
+        'vrsdk-floorplan-dragging': isDragging,
+        'vrsdk-floorplan-overflow-hidden': isDraggable || isResizable
       }"
       @mousedown="handleDragStart"
       @mousewheel="handleScroll"
       @DOMMouseScroll="handleScroll">
       <span
-        class="floorplan-inner"
+        class="vrsdk-floorplan-inner"
         :style="{
-          transform: `translate(${interactX}px, ${interactY}px)`
+          'webkit-transform': `translate(${interactX}px, ${interactY}px)`
         }">
         <icon
-          class="floorplan-image"
+          class="vrsdk-floorplan-image"
           :hasLazyload="true"
           :image="floorplan"
           :style="{
             width: `${floorplanContainerWidth}px`,
             height: `${floorplanContainerHeight}px`,
-            transform: `translateZ(${floorplanZ}px)`
+            'webkit-transform': `translateZ(${floorplanZ}px)`
           }">
           <floorplan-dots
             :ratioW="ratioW"
@@ -48,14 +48,15 @@
       </span>
       <i-repeat
         v-if="isResizable"
-        class="floorplan-zoom-in-container"
-        liClass="floorplan-zoom-in-item"
+        class="vrsdk-floorplan-zoom-in-container"
+        liClass="vrsdk-floorplan-zoom-in-item"
         :model="filterItem(zoomInButtons, 'name')">
         <icon
           v-for="button in zoomInButtons"
           :key="button.name"
           :slot="button.name"
           :class="button.className"
+          image=""
           @click.native="button.method">
         </icon>
       </i-repeat>
@@ -135,13 +136,13 @@ export default {
       yOffset: 0,
       zoomInButtons: [{
         name: 'zoom-in',
-        className: 'icon-floorplan-add',
+        className: 'vrsdk-icon-floorplan-add',
         method: () => {
           this.setFloorplanZ(75)
         }
       }, {
         name: 'zoom-out',
-        className: 'icon-floorplan-minus',
+        className: 'vrsdk-icon-floorplan-minus',
         method: () => {
           this.setFloorplanZ(-75)
         }
@@ -275,40 +276,40 @@ function limitPosition (limitW = 0, limitH = 0, x = 0, y = 0) {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.floorplan {
-  @extend .full
-  @extend .flex-center
+.vrsdk-floorplan {
+  @extend .vrsdk-full
+  @extend .vrsdk-flex-center
   position: relative
   background-color: alpha($dark-gray, 80%)
 }
 
-.floorplan-image {
-  @extend .bg-center
+.vrsdk-floorplan-image {
+  @extend .vrsdk-bg-center
   position: relative
   background-size: contain
   transition: transform .1s ease-out
 }
 
-.floorplan-container {
-  @extend .flex-center
+.vrsdk-floorplan-container {
+  @extend .vrsdk-flex-center
   position: relative
   background-color: $white
 
-  &.floorplan-overflow-hidden {
+  &.vrsdk-floorplan-overflow-hidden {
     overflow: hidden
   }
 }
 
-.floorplan-dragging {
+.vrsdk-floorplan-dragging {
   cursor: move
 }
 
-.floorplan-inner {
-  @extend .flex-center
+.vrsdk-floorplan-inner {
+  @extend .vrsdk-flex-center
   perspective: 225px
 }
 
-.floorplan-zoom-in-container {
+.vrsdk-floorplan-zoom-in-container {
   position: absolute
   right: $floorplan-floorplan-zoom-in-container-pos
   bottom: 0
@@ -319,14 +320,14 @@ function limitPosition (limitW = 0, limitH = 0, x = 0, y = 0) {
   border-color: alpha(#979797, 80%)
   background-color: alpha($white, 80%)
 
-  .icon {
-    @extend .full
+  .vrsdk-icon {
+    @extend .vrsdk-full
     background-size: 20px 20px
   }
 }
 
->>> .floorplan-zoom-in-item {
-  @extend .flex-center-column
+>>> .vrsdk-floorplan-zoom-in-item {
+  @extend .vrsdk-flex-center-column
   position: relative
   width: 30px
   height: 30px
@@ -350,13 +351,13 @@ function limitPosition (limitW = 0, limitH = 0, x = 0, y = 0) {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
     // floorplan no need to be rtl
-    .floorplan-container {
+    .vrsdk-floorplan-container {
       direction: ltr
     }
 
-    .floorplan-zoom-in-container {
+    .vrsdk-floorplan-zoom-in-container {
       right: auto
       left: $floorplan-floorplan-zoom-in-container-pos
       margin-right: auto

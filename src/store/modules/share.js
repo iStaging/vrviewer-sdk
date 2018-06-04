@@ -12,13 +12,13 @@ export const getters = {
 }
 
 export const actions = {
-  showShare ({ commit, state, rootState }) {
+  showShare ({ commit, state }) {
     if (state.isShareActive === false) {
       commit('SET_SHARE_ACTIVE', true)
     }
   },
 
-  toggleShare ({ dispatch }) {
+  toggleShare ({ dispatch, state }) {
     if (state.isShareActive === true) {
       dispatch('closeShare')
     } else {
@@ -26,7 +26,7 @@ export const actions = {
     }
   },
 
-  closeShare ({ commit, state, rootState }) {
+  closeShare ({ commit, state }) {
     if (state.isShareActive === true) {
       commit('SET_SHARE_ACTIVE', false)
     }

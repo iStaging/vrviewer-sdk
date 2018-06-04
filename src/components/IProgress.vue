@@ -1,9 +1,10 @@
 <template>
-  <div class="i-progress">
+  <div class="vrsdk-i-progress">
     <span
-      class="i-progress-inner"
+      class="vrsdk-i-progress-inner"
+      style="background-image: linear-gradient(to right, #111, #222);"
       :style="{
-        transform: `scaleX(${currentRatio})`,
+        'webkit-transform': `scaleX(${currentRatio})`,
         backgroundColor: color,
         backgroundImage
       }">
@@ -66,7 +67,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '~css/variables.styl'
 
-.i-progress {
+.vrsdk-i-progress {
   position: relative
   height: 6px
   width: 200px
@@ -75,7 +76,7 @@ export default {
   box-shadow: inset 0 -1px 1px alpha($white, 30%)
   overflow: hidden
 
-  &.top-fixed {
+  &.vrsdk-top-fixed {
     position: fixed
     width: 100%
     height: 8px
@@ -88,7 +89,7 @@ export default {
   }
 }
 
-.i-progress-inner {
+.vrsdk-i-progress-inner {
   display: block
   height: 100%
   background-color: mix($sub-color, $main-color)
@@ -104,7 +105,7 @@ export default {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
     .i-progress-inner {
       transform-origin: $i-progress-i-progress-inner-transform-origin-rtl
     }

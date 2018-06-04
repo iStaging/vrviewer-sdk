@@ -15,11 +15,20 @@ import { DEFAULT_SETTING } from '@/api/constants'
 
 // Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
-
+export let i18n = new VueI18n({
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages,
+  silentTranslationWarn: true
+})
 class VRViewer {
+  constructor () {
+    this.app = null
+  }
+
   init (config) {
-    console.log('config:', config)
-    const i18n = new VueI18n({
+    // console.log('config:', config)
+    i18n = new VueI18n({
       locale: config.lang,
       fallbackLocale: 'en',
       messages,
@@ -27,16 +36,29 @@ class VRViewer {
     })
     this.initData(config)
     this.initConfig(config)
-    const app = new Vue({
+    this.app = new Vue({
       el: config.el,
       store,
       i18n,
       render: h => h(App)
-    }).$mount(config.el)
-    console.log('vrviewer app:', app)
+    }).$mount()
+    // console.log('vrviewer app:', this.app)
+  }
+
+  destroy () {
+    if (this.app) {
+      this.app.$destroy()
+      this.app.$el.childNodes.forEach(childNode => {
+        childNode.remove()
+      })
+      this.app = null
+    }
   }
 
   initData (config) {
+    if (typeof store.resetState === 'function') {
+      store.resetState()
+    }
     store.dispatch('importPanoCollection', config.panoCollection)
     store.dispatch('importPanoramas', config.panoramas)
   }
@@ -67,5 +89,5 @@ if (process.env.NODE_ENV === 'development') {
   vrViewer.init(config)
 }
 
-window.VRViewer = VRViewer
+window.VRViewer = new VRViewer()
 export default VRViewer

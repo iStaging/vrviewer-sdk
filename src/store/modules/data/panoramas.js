@@ -1,18 +1,12 @@
-import api from '@/api/index'
-import {
-  CATEGORIES
-} from '@/api/constants'
 import {
   imageIEHack
 } from '@/api/helpers'
 import {
-  completeAssign,
   getIEVersion,
   isEmpty,
   sort
 } from '@/api/utils'
 import PanoramasManager from '../../manager/panoramas-manager'
-import Cubemap from '../../manager/cubemap'
 
 const state = {
   panoramas: [],
@@ -42,11 +36,7 @@ export const actions = {
       return
     }
     let panoramas = resp.map(panorama => {
-      const foundPanoramaName = CATEGORIES.find(panoramaName => panoramaName.value === panorama.panoramaName)
-      if (!foundPanoramaName) {
-        panorama.customPanoramaName = panorama.panoramaName
-        panorama.panoramaName = 'custom'
-      }
+      panorama.name = 'custom'
       if (!panorama.position) { // should have default position
         panorama.position = {
           x: 0,
@@ -55,8 +45,6 @@ export const actions = {
       }
       return panorama
     }) || []
-
-    panoramas = panoramas.filter(panorama => panorama.rawUrl) // app maybe create a panorama but not upload photo yet
     if (panoramas.length <= 0) {
       panoramasManager.noPanoramasHandler()
       return
@@ -64,71 +52,27 @@ export const actions = {
     console.log('panoramas', panoramas)
     sort(panoramas, 'index')
     dispatch('setProgressMax', panoramas.length + 12)
-
     panoramas.forEach(async panorama => {
       // const cubemap = new Cubemap(panorama, rootState.user.userId)
-      const cubemap = new Cubemap(panorama)
-      cubemap.init()
       panorama.markers = await dispatch('fetchMarkers', panorama)
       if (getIEVersion() === 11) {
-        const keys = ['thumbnail', 'desktopUrl', 'mobileUrl']
+        const keys = ['thumbnail', 'resizeUrl', 'mobileUrl']
         await imageIEHack(panorama, keys)
       }
-      if (!panorama.cubemapReady || panorama.cubemapReady === false) {
-        // const userId = panoCollection.owner ? panoCollection.owner.objectId : ''
-        // console.log('panorama.rawUrl', panorama.rawUrl)
-        if (panorama.rawUrl) {
-          api.isPanoramaCubemapReady(panorama.panoramaId, cubemap.filename).then(bool => {
-            panorama.cubemapReady = bool
-            if (bool === true) {
-              panorama.cubemapPreivewUrl = cubemap.preivewUrl
-              panorama.cubemapUrl = cubemap.cubeUrl
-            }
-            panoramasManager.panoramaMarkersReadyHandler(panoramas)
-          })
-        } else {
-          panorama.cubemapReady = false
-          panoramasManager.panoramaMarkersReadyHandler(panoramas)
-        }
-      } else {
-        if (panorama.cubemapReady === true) {
-          panorama.cubemapPreivewUrl = cubemap.preivewUrl
-          panorama.cubemapUrl = cubemap.cubeUrl
-        }
-        panoramasManager.panoramaMarkersReadyHandler(panoramas)
-      }
+      panoramasManager.panoramaMarkersReadyHandler(panoramas)
     })
   },
 
   selectPanorama ({ commit, state, rootState }, panorama = {}) {
-    if (state.currentPanorama.panoramaId === panorama.panoramaId ||
+    if (state.currentPanorama.id === panorama.id ||
       rootState.progress.isProgressActive) {
       return
     }
-    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.panoramaId || ''}, ${panorama.panoramaId || ''}, 'PanoramaList');`)
+    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.id || ''}, ${panorama.id || ''}, 'PanoramaList');`)
   },
 
   setPanorama ({ commit }, panorama = {}) {
     commit('SET_PANORAMA', panorama)
-  },
-
-  updatePanoramaItem ({ commit, state }, panorama = {}) {
-    let targetId = ''
-    if (panorama.panoramaId) {
-      targetId = panorama.panoramaId
-    } else {
-      targetId = state.currentPanorama.panoramaId
-      commit('UPDATE_PANORAMA_ITEM', panorama)
-    }
-
-    const foundIndex = state.panoramas.map(panorama => panorama.panoramaId).indexOf(targetId)
-    if (foundIndex <= -1) {
-      return
-    }
-    const newPanorama = completeAssign({}, state.panoramas[foundIndex], panorama)
-    const newPanoramas = state.panoramas.slice()
-    newPanoramas.splice(foundIndex, 1, newPanorama)
-    commit('SET_PANORAMAS', newPanoramas)
   },
 
   setHoveredPanorama ({ commit }, panorama = {}) {

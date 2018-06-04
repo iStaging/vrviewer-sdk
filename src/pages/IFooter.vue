@@ -1,12 +1,12 @@
 <template>
   <footer
-    class="i-footer fade-in-out"
+    class="vrsdk-i-footer vrsdk-fade-in-out"
     :class="{
-      'fade-in-out-active': !isPanoramasListActive,
-      'screen-ready': isScreenReady
+      'vrsdk-fade-in-out-active': !isPanoramasListActive,
+      'vrsdk-screen-ready': isScreenReady
     }"
     role="contentinfo">
-    <span class="footer-powered-text">
+    <span class="vrsdk-footer-powered-text">
       Powered by iStaging
     </span>
   </footer>
@@ -30,20 +30,20 @@ export default {
 @import '~css/variables.styl'
 @import '~css/extends.styl'
 
-.i-footer {
-  @extend .absolute-full-width
+.vrsdk-i-footer {
+  @extend .vrsdk-absolute-full-width
   bottom: 0
   opacity: 0
   transform: translateY(20px)
   transition: .3s opacity ease-out, .3s transform ease-out
 
-  &.screen-ready {
+  &.vrsdk-screen-ready {
     opacity: 1
     transform: none
   }
 }
 
-.footer-powered-text {
+.vrsdk-footer-powered-text {
   z-index: $footer-powered-text-z
   position: absolute
   display: inline-block
@@ -58,8 +58,8 @@ export default {
 @import '~css/variables.styl'
 
 .vrviewer-sdk {
-  .theme-rtl.theme-rtl-overlap {
-    .footer-powered-text {
+  .vrsdk-theme-rtl.vrsdk-theme-rtl-overlap {
+    .vrsdk-footer-powered-text {
       left: auto
       right: $footer-footer-powered-text-pos
     }

@@ -11,5 +11,4 @@ dist/vrviewer-sdk.js.map
 *.ntvs*
 *.njsproj
 *.sln
-package-lock.json
 test/unit/coverage/

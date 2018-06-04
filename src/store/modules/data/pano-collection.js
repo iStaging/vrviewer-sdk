@@ -25,7 +25,7 @@ export const actions = {
   async fetchPanoCollection ({ dispatch, commit, state, rootState }) {
     const panoCollectionId = storedPanoCollection.objectId
     if (panoCollectionId) {
-      if (panoCollectionId === state.currentPanoCollection.objectId) {
+      if (panoCollectionId === state.currentPanoCollection.id) {
         // It's the same panoCollection, no need to fetch it again
         return
       }
@@ -37,13 +37,13 @@ export const actions = {
         return
       }
       const panoCollection = resp
-      panoCollection.objectId = panoCollectionId
+      panoCollection.id = panoCollectionId
       // to prevent cache, trigger force fetch latest photo
-      if (panoCollection.thumbnail) {
-        panoCollection.thumbnail = addParameter(panoCollection.thumbnail, `n=${Math.random()}`)
+      if (panoCollection.resizeUrl) {
+        panoCollection.resizeUrl = addParameter(panoCollection.resizeUrl, `n=${Math.random()}`)
       }
-      if (panoCollection.logo) {
-        panoCollection.logo = addParameter(panoCollection.logo, `n=${Math.random()}`)
+      if (panoCollection.logoUrl) {
+        panoCollection.logoUrl = addParameter(panoCollection.logoUrl, `n=${Math.random()}`)
       }
       if (panoCollection.floorplan) {
         panoCollection.floorplan = addParameter(panoCollection.floorplan, `n=${Math.random()}`)
@@ -55,8 +55,8 @@ export const actions = {
       // init progress count with unreal number
       dispatch('addProgressCount', 2)
       dispatch('setProgressMax', 100)
-      // const panoramaIds = Object.keys(resp.Panoramas)
-      // console.log('panoramaIds:', panoramaIds)
+      // const ids = Object.keys(resp.Panoramas)
+      // console.log('ids:', ids)
       console.log('panoCollection:', panoCollection)
       commit('SET_PANO_COLLECTION', panoCollection)
       PanoCollectionManager.afterFetchPanoCollectionHandler({ dispatch, panoCollectionId })

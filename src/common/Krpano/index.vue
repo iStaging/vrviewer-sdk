@@ -9,7 +9,7 @@
     @mouseup="handleMouseUp">
     <krpano
       v-if="isKrpanoActive"
-      class="krpano-wrapper"
+      class="vrsdk-krpano-wrapper"
       xml=""
       html5="webgl+only"
       :webglsettings="{ depth: true }"
@@ -123,6 +123,7 @@ export default {
 
   beforeDestroy () {
     window.removeEventListener('keydown', this.keydownHandler)
+    removepano(this.krpanoEl.id) // eslint-disable-line
   },
 
   computed: {
@@ -146,9 +147,9 @@ export default {
         return ''
       }
       const startIndex = 0
-      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaPanoramaNameName, defaultFov, vrThumbAth, vrThumbWidth, tripodSetting } = this
+      const { panoramas, krpanoXOffset, krpanoVrModeObj, nextPanoramaNameName, defaultFov, vrThumbAth, vrThumbWidth, tripodSetting } = this
       const stylesXml = getStylesXml(panoramas, vrThumbAth, vrThumbWidth)
-      const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaPanoramaNameName, defaultFov)
+      const scenesXml = getScenesXml(panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaNameName, defaultFov)
       const actionsXml = getActionsXml(this.autoRotateSetting, startIndex, panoramas, defaultFov, krpanoXOffset, vrThumbAth, krpanoVrModeObj)
       const logoTripodXml = getLogoTripodXml(tripodSetting.image, tripodSetting.size, panoramas[0].isTopLogo)
       const xml = `<krpano onstart="startup();">
@@ -205,22 +206,22 @@ export default {
       }
     },
 
-    nextPanoramaPanoramaNameName (marker = {}) {
+    nextPanoramaNameName (marker = {}) {
       if (!this.panoramas || this.panoramas.length <= 0) {
         return
       }
       const foundPanorama = this.panoramas.find(panorama =>
-        panorama.panoramaId === marker.nextPanoramaId
+        panorama.id === marker.nextPanoramaId
       )
       if (isEmpty(foundPanorama)) {
         return
       }
-      return xmlString(foundPanorama.customPanoramaName || this.$t(foundPanorama.panoramaName))
+      return xmlString(foundPanorama.name)
     },
 
     selectPanorama (nextPanoramaId = '', selectedMethod = '', isMarkerPoint = false, isWebVr = false) {
       let index = this.panoramas.findIndex(panorama =>
-        panorama.panoramaId === nextPanoramaId
+        panorama.id === nextPanoramaId
       )
       const panorama = this.panoramas[index]
       index = convertIndexFromArrayToUrl(index, this.panoramas.length)
@@ -375,8 +376,8 @@ export default {
 @import '~css/extends.styl'
 @import '~css/variables.styl'
 
-.krpano-wrapper {
-  @extend .absolute-full
+.vrsdk-krpano-wrapper {
+  @extend .vrsdk-absolute-full
   z-index: $krpano-wrapper-z
 }
 </style>
