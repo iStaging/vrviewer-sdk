@@ -114,7 +114,9 @@ async function fetchMarkers (panorama) {
       method: 'get',
       url: `${url}/api/v1/marker?panoramaId=${panorama.id}`
     }).then(resp => {
-      resolve(resp.data)
+      const markers = resp.data
+      console.log('markers', markers)
+      resolve(markers)
     }).catch(err => {
       console.error('fetchMarkers failed', err)
       resolve([])
