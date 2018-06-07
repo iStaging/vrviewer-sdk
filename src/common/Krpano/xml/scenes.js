@@ -22,22 +22,22 @@ const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nex
 
         switch (marker.type) {
           case 'point':
-            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
+            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.id}`)
             const name = nextPanoramaNameName(marker)
             const isMarkerPoint = true
             hotspot += getMarkerPointXml(marker, ath, atv, name, useCustomIcon, index, isMarkerPoint, krpanoXOffset)
             break
           case 'memo':
-            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
+            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.id}`)
             hotspot += getMarkerMemoXml(marker, ath, atv, name, useCustomIcon, index)
             break
           case 'tag':
             hotspot += getMarkerTagXml(marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj)
             break
           case 'popup':
-            krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.objectId}`)
-            hotspot += `<hotspot name="marker_${marker.objectId}" style="${hotspotIcon(marker, useCustomIcon)}"
-onclick="handle_show_popup(${index});" onover="marker_mousein(${marker.objectId}, ${index});" onout="marker_mouseout(${marker.objectId}, ${index});"
+            krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.id}`)
+            hotspot += `<hotspot name="marker_${marker.id}" style="${hotspotIcon(marker, useCustomIcon)}"
+onclick="handle_show_popup(${index});" onover="marker_mousein(${marker.id}, ${index});" onout="marker_mouseout(${marker.id}, ${index});"
 visible="true" scale="1" zorder="1" ath="${ath}" atv="${atv}" />`
             break
           default:

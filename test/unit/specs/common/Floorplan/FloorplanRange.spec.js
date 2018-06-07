@@ -4,7 +4,7 @@ import store from '../../../../../src/store'
 
 const Constructor = Vue.extend(FloorplanRange)
 const panorama = {
-  objectId: 'b1',
+  id: 'b1',
   position: {
     x: 175,
     y: 200

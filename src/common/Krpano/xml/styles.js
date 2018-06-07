@@ -71,11 +71,11 @@ width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${pan
       panorama.markers.forEach(marker => {
         if (marker.useCustomIcon && marker.iconUrl) {
           // add custom icon image
-          styles += `<style name="markerCustomIcon_${marker.objectId}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
+          styles += `<style name="markerCustomIcon_${marker.id}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
         }
         if (marker.type === 'tag' && marker.photo) {
           // add tag photo
-          styles += `<style name="markerInfoTagPhoto_${marker.objectId}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
+          styles += `<style name="markerInfoTagPhoto_${marker.id}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
         }
       })
     }

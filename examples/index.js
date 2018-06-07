@@ -12,7 +12,7 @@ const fakePanoCollection = {
   'hasPin': false,
   'logoSize': 50,
   'name': 'awerg43',
-  'objectId': '7e548395-f720-49c4-95ce-e31217bd5ae2',
+  'id': '7e548395-f720-49c4-95ce-e31217bd5ae2',
   'requireVisitorData': false,
   'showComment': true,
   'showContactInfo': true,

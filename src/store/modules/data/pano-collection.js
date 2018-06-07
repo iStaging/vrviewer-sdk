@@ -6,7 +6,7 @@ import PanoCollectionManager from '@/store/manager/pano-collection-manager'
 
 const state = {
   currentPanoCollection: {
-    objectId: '',
+    id: '',
     floorplan: ''
   }
 }
@@ -82,7 +82,7 @@ export default {
 function shouldSetPanoCollectionNotShow (panoCollection) {
   const noShow = panoCollection.isOffline || panoCollection.unavailable
   if (noShow) {
-    console.log('should the panoCollection not show', panoCollection.objectId)
+    console.log('should the panoCollection not show', panoCollection.id)
   }
   return noShow
 }

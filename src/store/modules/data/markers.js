@@ -16,9 +16,9 @@ export const actions = {
       //   return
       // }
       // const markerIds = Object.keys(resp)
-      // let markers = markerIds.map(objectId => {
-      //   const marker = resp[objectId].data
-      //   marker.objectId = objectId
+      // let markers = markerIds.map(id => {
+      //   const marker = resp[id].data
+      //   marker.id = id
       //   return marker
       // }) || []
       //
@@ -26,10 +26,33 @@ export const actions = {
       //   markers = markers.filter(marker => marker.type !== 'tag')
       // }
       // console.log('markers', markers)
+      const markers = [{
+        id: '123',
+        name: 'test nane',
+        action: 'buyNow',
+        actionLink: 'https://www.google.com',
+        description: 'test',
+        height: 600,
+        iconType: 'tag',
+        nextPanoId: '123',
+        nextRotation: {
+          'x': 0,
+          'y': 0,
+          'z': 0
+        },
+        position: {
+          'x': 0,
+          'y': 0,
+          'z': -90
+        },
+        price: '100 USD',
+        type: 'tag',
+        useCustomIcon: false,
+        width: 200
+      }]
       commit('SET_MARKER', {})
       dispatch('addProgressCount', 1)
-      // resolve(markers)
-      resolve([])
+      resolve(markers)
     })
   },
 

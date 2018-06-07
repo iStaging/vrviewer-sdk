@@ -10,7 +10,7 @@ const {
 const markerId = 'mmm'
 const userId = 'uuu'
 const markerData = {
-  objectId: markerId,
+  id: markerId,
   fake: 'test',
   Owner: userId
 }
@@ -25,7 +25,7 @@ describe('store/modules/data/markers', () => {
   })
 
   it('fetchMarkers', done => {
-    testAction(actions.fetchMarkers, { objectId: 'panoramaId' }, {}, [{
+    testAction(actions.fetchMarkers, { id: 'panoramaId' }, {}, [{
       type: 'SET_MARKER',
       payload: {}
     }], [{
@@ -45,7 +45,7 @@ describe('store/modules/data/markers', () => {
     const state = {
       currentMarker: {}
     }
-    SET_MARKER(state, { objectId: 'abc' })
-    expect(isEqual(state.currentMarker, { objectId: 'abc' })).toBe(true)
+    SET_MARKER(state, { id: 'abc' })
+    expect(isEqual(state.currentMarker, { id: 'abc' })).toBe(true)
   })
 })

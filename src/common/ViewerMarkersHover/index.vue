@@ -3,15 +3,15 @@
 </docs>
 
 <template>
+    <!--v-show="shouldShowMarkerInfo"-->
   <div
-    v-show="shouldShowMarkerInfo"
     class="vrsdk-viewer-markers-hover"
     :style="markerInfoPosition">
     <div
       class="vrsdk-viewer-markers-hover-inner"
       @mouseover="htmlMarkerMousein"
       @mouseleave="htmlMarkerMouseout">
-      <div v-show="currentMarker.type === 'point'">
+      <!--<div v-show="currentMarker.type === 'point'">-->
         <div class="vrsdk-viewer-markers-hover-thumbnail">
           <icon
             class="vrsdk-viewer-markers-hover-thumbnail-inner"
@@ -23,7 +23,7 @@
         <p class="vrsdk-viewer-markers-hover-text">
           {{ nextPanorama.name }}
         </p>
-      </div>
+      <!--</div>-->
       <div class="vrsdk-decoration"></div>
     </div>
   </div>

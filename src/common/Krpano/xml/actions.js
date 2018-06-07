@@ -184,7 +184,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
     if(newsceneindex GT lastsceneindex, set(newsceneindex, 1));
     def(selectedMethod, string, 'VrModePrev');
     if(%1 == 1, set(selectedMethod, 'VrModeNext'));
-    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].objectId), get(selectedMethod), 0);
+    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].id), get(selectedMethod), 0);
   );
 </action>
 
