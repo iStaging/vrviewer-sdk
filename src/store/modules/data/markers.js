@@ -28,27 +28,44 @@ export const actions = {
       // console.log('markers', markers)
       const markers = [{
         id: '123',
-        name: 'test nane',
-        action: 'buyNow',
-        actionLink: 'https://www.google.com',
-        description: 'test',
-        height: 600,
-        iconType: 'tag',
-        nextPanoId: '123',
-        nextRotation: {
-          'x': 0,
-          'y': 0,
-          'z': 0
-        },
         position: {
           'x': 0,
           'y': 0,
           'z': -90
         },
-        price: '100 USD',
-        type: 'tag',
-        useCustomIcon: false,
-        width: 200
+        iconType: 'coupon',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }, {
+        id: '124',
+        position: {
+          'x': 20,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'gift',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }, {
+        id: '125',
+        position: {
+          'x': 40,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'shopping',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }, {
+        id: '126',
+        position: {
+          'x': 60,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'stopwatch',
+        type: 'customizedTag',
+        useCustomIcon: false
       }]
       commit('SET_MARKER', {})
       dispatch('addProgressCount', 1)

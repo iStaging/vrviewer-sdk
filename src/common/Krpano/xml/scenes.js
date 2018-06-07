@@ -5,6 +5,7 @@ import {
   xmlString,
   xmlUrlString
 } from '@/api/helpers'
+import getMarkerCustomizedTagXml from './marker-customized-tag'
 import getMarkerMemoXml from './marker-memo'
 import getMarkerPointXml from './marker-point'
 import getMarkerTagXml from './marker-tag'
@@ -30,6 +31,9 @@ const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nex
           case 'memo':
             krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.id}`)
             hotspot += getMarkerMemoXml(marker, ath, atv, name, useCustomIcon, index)
+            break
+          case 'customizedTag':
+            hotspot += getMarkerCustomizedTagXml(marker, ath, atv, name, useCustomIcon, index)
             break
           case 'tag':
             hotspot += getMarkerTagXml(marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj)
