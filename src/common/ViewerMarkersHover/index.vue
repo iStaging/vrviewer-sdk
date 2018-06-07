@@ -3,8 +3,8 @@
 </docs>
 
 <template>
-    <!--v-show="shouldShowMarkerInfo"-->
   <div
+    v-show="shouldShowMarkerInfo"
     class="vrsdk-viewer-markers-hover"
     :style="markerInfoPosition">
     <div
@@ -12,8 +12,7 @@
       @mouseleave="htmlMarkerMouseout">
       <point v-show="currentMarker.type === 'point'"></point>
       <stop-watch
-      >
-        <!--v-show="currentMarker.type === 'customizedTag' && currentMarker.iconType === 'stopwatch'"-->
+        v-show="currentMarker.type === 'customizedTag' && currentMarker.iconType === 'stopwatch'">
       </stop-watch>
     </div>
   </div>
