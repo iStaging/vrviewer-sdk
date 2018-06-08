@@ -98,7 +98,7 @@ export default {
         const schema = {
           key: `panorama_${index}`,
           caption: panorama.name,
-          image: panorama.resizeUrl,
+          image: panorama.thumbnail,
           disabled: this.currentPanorama.id === panorama.id,
           isActive: this.currentPanorama.id === panorama.id,
           method: () => {

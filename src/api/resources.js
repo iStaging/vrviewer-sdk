@@ -37,7 +37,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_11cfc54c-818f-4745-9900-e6a443667932.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_11cfc54c-818f-4745-9900-e6a443667932.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_11cfc54c-818f-4745-9900-e6a443667932.jpg'
 }, {
   'id': 'p_1dfffafe-d847-4981-98ac-1943e7bc56a1',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_1dfffafe-d847-4981-98ac-1943e7bc56a1.jpg',
@@ -47,7 +48,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_1dfffafe-d847-4981-98ac-1943e7bc56a1.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_1dfffafe-d847-4981-98ac-1943e7bc56a1.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_1dfffafe-d847-4981-98ac-1943e7bc56a1.jpg'
 }, {
   'id': 'p_51987a1a-850e-41be-a68b-a1952e5aa3ff',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_51987a1a-850e-41be-a68b-a1952e5aa3ff.jpg',
@@ -57,7 +59,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_51987a1a-850e-41be-a68b-a1952e5aa3ff.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_51987a1a-850e-41be-a68b-a1952e5aa3ff.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_51987a1a-850e-41be-a68b-a1952e5aa3ff.jpg'
 }, {
   'id': 'p_696d63c8-4cb8-4335-8fe6-e60d2e34b4e6',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_696d63c8-4cb8-4335-8fe6-e60d2e34b4e6.jpg',
@@ -67,7 +70,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_696d63c8-4cb8-4335-8fe6-e60d2e34b4e6.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_696d63c8-4cb8-4335-8fe6-e60d2e34b4e6.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_696d63c8-4cb8-4335-8fe6-e60d2e34b4e6.jpg'
 }, {
   'id': 'p_c61d7006-8063-4f1f-addc-1ab7db030054',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c61d7006-8063-4f1f-addc-1ab7db030054.jpg',
@@ -77,7 +81,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c61d7006-8063-4f1f-addc-1ab7db030054.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c61d7006-8063-4f1f-addc-1ab7db030054.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c61d7006-8063-4f1f-addc-1ab7db030054.jpg'
 }, {
   'id': 'p_c905531d-ef57-4664-bb25-f889fae62704',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c905531d-ef57-4664-bb25-f889fae62704.jpg',
@@ -87,7 +92,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c905531d-ef57-4664-bb25-f889fae62704.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c905531d-ef57-4664-bb25-f889fae62704.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_c905531d-ef57-4664-bb25-f889fae62704.jpg'
 }, {
   'id': 'p_d2fd92ee-f015-4041-b8fc-2f691996bf43',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_d2fd92ee-f015-4041-b8fc-2f691996bf43.jpg',
@@ -97,7 +103,8 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_d2fd92ee-f015-4041-b8fc-2f691996bf43.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_d2fd92ee-f015-4041-b8fc-2f691996bf43.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_d2fd92ee-f015-4041-b8fc-2f691996bf43.jpg'
 }, {
   'id': 'p_fe4ab90d-74fb-451b-8bd8-018661edc0b0',
   'downloadUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_fe4ab90d-74fb-451b-8bd8-018661edc0b0.jpg',
@@ -107,5 +114,6 @@ export const fakePanoramas = [{
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
   'cubemapLinkPreview': '',
-  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_fe4ab90d-74fb-451b-8bd8-018661edc0b0.jpg'
+  'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_fe4ab90d-74fb-451b-8bd8-018661edc0b0.jpg',
+  'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_fe4ab90d-74fb-451b-8bd8-018661edc0b0.jpg'
 }]
