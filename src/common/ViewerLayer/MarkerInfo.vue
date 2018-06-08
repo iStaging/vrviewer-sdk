@@ -1,23 +1,27 @@
 <template>
   <div class="vrsdk-marker-info">
+    <customized-tag-gift
+      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'gift'">
+    </customized-tag-gift>
+    <customized-tag-coupon
+      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'coupon'">
+    </customized-tag-coupon>
+    <customized-tag-stop-watch
+      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'stopwatch'">
+    </customized-tag-stop-watch>
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
     <tag
       v-show="markerInfoData.type === 'tag'">
     </tag>
-    <customized-tag-stop-watch
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'stopwatch'">
-    </customized-tag-stop-watch>
-    <customized-tag-coupon
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'coupon'">
-    </customized-tag-coupon>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import CustomizedTagCoupon from './CustomizedTagCoupon'
+import CustomizedTagGift from './CustomizedTagGift'
 import CustomizedTagStopWatch from './CustomizedTagStopWatch'
 import Memo from './Memo'
 import Tag from './Tag'
@@ -26,6 +30,7 @@ export default {
   name: 'MarkerInfo',
   components: {
     CustomizedTagCoupon,
+    CustomizedTagGift,
     CustomizedTagStopWatch,
     Memo,
     Tag

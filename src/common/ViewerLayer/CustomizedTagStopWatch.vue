@@ -26,8 +26,8 @@
         </div>
         <div class="vrsdk-stop-watch-button-container vrsdk-stop-watch-action vrsdk-text-center">
           <a
-            href="http://www.google.com.tw"
             class="vrsdk-stop-watch-button vrsdk-text-ml"
+            href="http://www.google.com.tw"
             target="_blank"
             rel="noopener">
             立即搶購
@@ -47,7 +47,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'MarkerCustomizedTagStopWatch',
+  name: 'CustomizedTagStopWatch',
   computed: {
     ...mapGetters([
       'markerInfoData'

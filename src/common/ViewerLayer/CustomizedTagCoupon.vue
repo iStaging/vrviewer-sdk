@@ -1,7 +1,7 @@
 <template>
   <div class="vrsdk-customized-tag-coupon">
     <h2 class="coupon-title">
-      Name
+      折價卷
     </h2>
     <hr>
     <div class="coupon-content">
@@ -29,7 +29,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'MarkerCustomizedTagStopWatch',
+  name: 'CustomizedTagCoupon',
   computed: {
     ...mapGetters([
       'markerInfoData'
