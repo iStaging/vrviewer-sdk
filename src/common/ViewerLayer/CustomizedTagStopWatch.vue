@@ -1,5 +1,5 @@
 <template>
-  <div class="vrsdk-marker-info-customized-tag-stop-watch">
+  <div class="vrsdk-customized-tag-stop-watch">
     <div class="vrsdk-stop-watch-layout">
       <div class="vrsdk-stop-watch-area-1">
         <div class="vrsdk-stop-watch-image-container">
@@ -134,5 +134,25 @@ a.vrsdk-stop-watch-button {
   background-color: $red2
   color: $white
   border-radius: 5px
+}
+
+@media screen and (min-width: $response) {
+  .vrsdk-stop-watch-layout {
+    @extend .vrsdk-clear
+    display: block
+
+    .vrsdk-stop-watch-area-1 {
+      width: 322px
+      float: left
+    }
+    .vrsdk-stop-watch-area-2 {
+      width: 298px
+      float: right
+    }
+    .vrsdk-stop-watch-area-3 {
+      width: 298px
+      float: right
+    }
+  }
 }
 </style>
