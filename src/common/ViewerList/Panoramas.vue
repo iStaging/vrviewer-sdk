@@ -144,8 +144,8 @@ export default {
         baseRotation = 0.333 // 120 / 360 // same to stylus variable: $w
         positionOffset = -85
       }
-      const panoramaRotation = panorama.panoramaRotation ? panorama.panoramaRotation.y : 0
-      const calcPosition = (panoramaRotation * baseRotation) - positionOffset
+      const defaultViewAngleY = panorama.defaultViewAngle ? panorama.defaultViewAngle.y : 0
+      const calcPosition = (defaultViewAngleY * baseRotation) - positionOffset
       return `${calcPosition}px 0px`
     }
   }

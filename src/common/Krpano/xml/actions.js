@@ -38,7 +38,7 @@ if (view.vlookat LT -80 OR view.vlookat GT +80, tween(view.vlookat, 0.0, 1.0, ea
 
 <action name="planet_view">
 <!-- start planet view -->
-  lookat(${(panoramas[startIndex].panoramaRotation ? -panoramas[startIndex].panoramaRotation.y : 0) + krpanoXOffset}, 90, 150);
+  lookat(${(panoramas[startIndex].defaultViewAngle ? -panoramas[startIndex].defaultViewAngle.y : 0) + krpanoXOffset}, 90, 150);
   set(view.architectural, 0.0);
   set(view.pannini, 0.0);
   set(view.fisheye, 1.0);
