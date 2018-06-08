@@ -29,7 +29,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'CustomizedTagCoupon',
+  name: 'Coupon',
   computed: {
     ...mapGetters([
       'markerInfoData'

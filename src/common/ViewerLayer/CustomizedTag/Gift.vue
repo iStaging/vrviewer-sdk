@@ -47,11 +47,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import userImage from './img/user.svg'
-import emailImage from './img/email.svg'
+import userImage from '../img/user.svg'
+import emailImage from '../img/email.svg'
 
 export default {
-  name: 'CustomizedTagGift',
+  name: 'Gift',
   data () {
     return {
       userImage,

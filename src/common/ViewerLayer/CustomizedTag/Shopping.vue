@@ -47,7 +47,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'CustomizedTagShopping',
+  name: 'Shopping',
   computed: {
     ...mapGetters([
       'markerInfoData'

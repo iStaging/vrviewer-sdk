@@ -11,6 +11,9 @@
       @mouseover="htmlMarkerMousein"
       @mouseleave="htmlMarkerMouseout">
       <point v-show="currentMarker.type === 'point'"></point>
+      <shopping
+        v-show="currentMarker.type === 'customizedTag' && currentMarker.iconType === 'shopping'">
+      </shopping>
       <stop-watch
         v-show="currentMarker.type === 'customizedTag' && currentMarker.iconType === 'stopwatch'">
       </stop-watch>
@@ -25,12 +28,14 @@ import {
   isMobile
 } from '@/api/utils'
 import Point from './Point'
-import StopWatch from './StopWatch'
+import Shopping from './CustomizedTag/Shopping'
+import StopWatch from './CustomizedTag/StopWatch'
 
 export default {
   name: 'ViewerMarkersHover',
   components: {
     Point,
+    Shopping,
     StopWatch
   },
 

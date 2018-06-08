@@ -1,20 +1,20 @@
 <template>
   <div class="vrsdk-marker-info">
-    <customized-tag-gift
+    <gift
       v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'gift'">
-    </customized-tag-gift>
-    <customized-tag-coupon
+    </gift>
+    <coupon
       v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'coupon'">
-    </customized-tag-coupon>
-    <customized-tag-shopping
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'shopping'">
-    </customized-tag-shopping>
-    <customized-tag-stop-watch
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'stopwatch'">
-    </customized-tag-stop-watch>
+    </coupon>
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
+    <shopping
+      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'shopping'">
+    </shopping>
+    <stop-watch
+      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'stopwatch'">
+    </stop-watch>
     <tag
       v-show="markerInfoData.type === 'tag'">
     </tag>
@@ -23,21 +23,21 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import CustomizedTagCoupon from './CustomizedTagCoupon'
-import CustomizedTagGift from './CustomizedTagGift'
-import CustomizedTagShopping from './CustomizedTagShopping'
-import CustomizedTagStopWatch from './CustomizedTagStopWatch'
+import Coupon from './CustomizedTag/Coupon'
+import Gift from './CustomizedTag/Gift'
+import Shopping from './CustomizedTag/Shopping'
+import StopWatch from './CustomizedTag/StopWatch'
 import Memo from './Memo'
 import Tag from './Tag'
 
 export default {
   name: 'MarkerInfo',
   components: {
-    CustomizedTagCoupon,
-    CustomizedTagGift,
-    CustomizedTagShopping,
-    CustomizedTagStopWatch,
+    Coupon,
+    Gift,
     Memo,
+    Shopping,
+    StopWatch,
     Tag
   },
   computed: {

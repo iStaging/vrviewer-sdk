@@ -47,7 +47,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'CustomizedTagStopWatch',
+  name: 'StopWatch',
   computed: {
     ...mapGetters([
       'markerInfoData'
