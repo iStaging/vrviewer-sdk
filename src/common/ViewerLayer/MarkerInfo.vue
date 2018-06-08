@@ -6,6 +6,9 @@
     <customized-tag-coupon
       v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'coupon'">
     </customized-tag-coupon>
+    <customized-tag-shopping
+      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'shopping'">
+    </customized-tag-shopping>
     <customized-tag-stop-watch
       v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'stopwatch'">
     </customized-tag-stop-watch>
@@ -22,6 +25,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import CustomizedTagCoupon from './CustomizedTagCoupon'
 import CustomizedTagGift from './CustomizedTagGift'
+import CustomizedTagShopping from './CustomizedTagShopping'
 import CustomizedTagStopWatch from './CustomizedTagStopWatch'
 import Memo from './Memo'
 import Tag from './Tag'
@@ -31,6 +35,7 @@ export default {
   components: {
     CustomizedTagCoupon,
     CustomizedTagGift,
+    CustomizedTagShopping,
     CustomizedTagStopWatch,
     Memo,
     Tag

@@ -20,11 +20,11 @@
         <h4 class="vrsdk-stop-watch-title">
           一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
         </h4>
-        <div class="vrsdk-stop-watch-text vrsdk-stop-watch-price vrsdk-text-center">
+        <div class="vrsdk-stop-watch-text vrsdk-stop-watch-price">
           <del>$ 4000</del>
           <strong class="vrsdk-text-ml">$ 3200</strong>
         </div>
-        <div class="vrsdk-stop-watch-button-container vrsdk-stop-watch-action vrsdk-text-center">
+        <div class="vrsdk-stop-watch-button-container vrsdk-stop-watch-action">
           <a
             class="vrsdk-stop-watch-button vrsdk-text-ml"
             href="http://www.google.com.tw"
@@ -123,6 +123,14 @@ strong {
   margin-bottom: 10px
 }
 
+.vrsdk-stop-watch-price {
+  text-align: center
+}
+
+.vrsdk-stop-watch-action {
+  text-align: center
+}
+
 .vrsdk-stop-watch-button-container {
   margin-top: 15px
   margin-bottom: 15px
@@ -153,6 +161,14 @@ a.vrsdk-stop-watch-button {
       width: 298px
       float: right
     }
+  }
+
+  .vrsdk-stop-watch-price {
+    text-align: initial
+  }
+
+  .vrsdk-stop-watch-action {
+    text-align: initial
   }
 }
 </style>

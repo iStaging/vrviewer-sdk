@@ -176,20 +176,6 @@ hr {
   &:focus {
     outline: none
   }
-
-  &:disabled {
-    cursor: default
-    opacity: .6
-  }
-
-  &:active {
-    opacity: .8
-  }
-
-  &.success {
-    background-color: $pink-color
-    border-color: $pink-color
-  }
 }
 
 .vrsdk-gift-footer {
