@@ -44,7 +44,9 @@ export default {
 
 a,
 span,
-h4 {
+h2,
+h4,
+p {
   text-shadow: none
 }
 
