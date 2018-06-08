@@ -12,8 +12,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'StopWatch'
+  name: 'Shopping',
+  computed: {
+    ...mapGetters([
+      'currentMarker'
+    ])
+  }
 }
 </script>
 
