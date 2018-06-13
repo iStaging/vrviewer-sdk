@@ -36,6 +36,11 @@ export const fakePanoramas = [{
   'cubemapReady': false,
   'cubemapLink': '',
   'ownerId': 't_b2953f3d-3ed6-48c1-bd8d-73c72734a09e',
+  'floorplanPosition': {
+    x: 150,
+    y: 250
+  },
+  'floorplanRotation': 45,
   'cubemapLinkPreview': '',
   'resizeUrl': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_11cfc54c-818f-4745-9900-e6a443667932.jpg',
   'thumbnail': 'https://evs-dev.oss-cn-hangzhou.aliyuncs.com/pa_5413d4ba-b6e6-46df-a73d-a6ac9e84fcfd/t_b2953f3d-3ed6-48c1-bd8d-73c72734a09e/panoramas/p_11cfc54c-818f-4745-9900-e6a443667932.jpg'
