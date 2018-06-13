@@ -9,14 +9,14 @@ export const getters = {
 }
 
 export const actions = {
-  enterFullscreen ({ commit, state, rootState }) {
+  enterFullscreen ({ commit, state }) {
     if (state.isFullscreen === false) {
       enterFullscreen()
       commit('SET_FULL_SCREEN', true)
     }
   },
 
-  exitFullscreen ({ commit, state, rootState }) {
+  exitFullscreen ({ commit, state }) {
     if (state.isFullscreen === true) {
       exitFullscreen()
       commit('SET_FULL_SCREEN', false)

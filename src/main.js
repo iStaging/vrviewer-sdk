@@ -67,8 +67,24 @@ class VRViewer {
     store.dispatch('importSetting', config.setting)
   }
 
+  onToggleFloorplan () {
+    store.dispatch('toggleFloorplan')
+  }
+
+  onEnterFullscreen () {
+    store.dispatch('enterFullscreen')
+  }
+
+  onExitFullscreen () {
+    store.dispatch('exitFullscreen')
+  }
+
   onTogglePanoramasList () {
     store.dispatch('togglePanoramasList')
+  }
+
+  onToggleShare () {
+    store.dispatch('toggleShare')
   }
 }
 
