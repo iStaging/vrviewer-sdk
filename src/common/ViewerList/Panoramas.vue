@@ -98,7 +98,7 @@ export default {
         const schema = {
           key: `panorama_${index}`,
           caption: panorama.name,
-          image: panorama.resizeUrl,
+          image: panorama.thumbnail,
           disabled: this.currentPanorama.id === panorama.id,
           isActive: this.currentPanorama.id === panorama.id,
           method: () => {
@@ -144,8 +144,8 @@ export default {
         baseRotation = 0.333 // 120 / 360 // same to stylus variable: $w
         positionOffset = -85
       }
-      const panoramaRotation = panorama.panoramaRotation ? panorama.panoramaRotation.y : 0
-      const calcPosition = (panoramaRotation * baseRotation) - positionOffset
+      const defaultViewAngleY = panorama.defaultViewAngle ? panorama.defaultViewAngle.y : 0
+      const calcPosition = (defaultViewAngleY * baseRotation) - positionOffset
       return `${calcPosition}px 0px`
     }
   }

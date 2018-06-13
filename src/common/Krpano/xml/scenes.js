@@ -52,7 +52,7 @@ visible="true" scale="1" zorder="1" ath="${ath}" atv="${atv}" />`
     if (index === startIndex) {
       // for planet view init look at
       startupScene = `<scene name="first_panorama_${panorama.id}" isTopLogo="${panorama.isTopLogo}">
-    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoXOffset}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${defaultFov}"
+    <view hlookat="${(panorama.defaultViewAngle ? -panorama.defaultViewAngle.y : 0) + krpanoXOffset}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${defaultFov}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
   ${(() => {
     if (panorama.cubemapReady) {
@@ -73,7 +73,7 @@ ${hotspot}</scene>`
 const getSceneXml = function (panorama, hotspot, defaultFov, krpanoXOffset) {
   let sceneXml = ''
   sceneXml += `<scene name="panorama_${panorama.id}" title="${xmlString(panorama.name)}" panoramId="${panorama.id}" isTopLogo="${panorama.isTopLogo}">
-    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoXOffset}" vlookat="0" fovtype="MFOV" fov="${defaultFov}" fovmin="30" fovmax="${defaultFov}"
+    <view hlookat="${(panorama.defaultViewAngle ? -panorama.defaultViewAngle.y : 0) + krpanoXOffset}" vlookat="0" fovtype="MFOV" fov="${defaultFov}" fovmin="30" fovmax="${defaultFov}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
     ${(() => {
     if (panorama.cubemapReady) {

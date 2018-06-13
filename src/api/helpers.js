@@ -80,9 +80,9 @@ export const krpanoHelpers = {
     THREE.ImageUtils.crossOrigin = ''
     window.threeThumbnails = new Array(allPanoramas.length)
     allPanoramas.forEach((panorama, index) => {
-      if (panorama.resizeUrl) {
-        window.threeThumbnails[index] = panorama.resizeUrl
-        THREE.ImageUtils.loadTexture(panorama.resizeUrl)
+      if (panorama.thumbnail) {
+        window.threeThumbnails[index] = panorama.thumbnail
+        THREE.ImageUtils.loadTexture(panorama.thumbnail)
       }
     })
     /* eslint-enable */

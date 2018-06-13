@@ -61,19 +61,19 @@ export default {
     ]),
 
     floorplanPosition () {
-      if (this.currentPanorama.position) {
-        const x = this.currentPanorama.position.x * this.ratioW * this.floorplanRatioX + this.xOffset
-        const y = this.currentPanorama.position.y * this.ratioH * this.floorplanRatioY + this.yOffset
+      if (this.currentPanorama.floorplanPosition) {
+        const x = this.currentPanorama.floorplanPosition.x * this.ratioW * this.floorplanRatioX + this.xOffset
+        const y = this.currentPanorama.floorplanPosition.y * this.ratioH * this.floorplanRatioY + this.yOffset
         return `translate(${x}px, ${y}px)`
       }
       return ''
     },
 
     floorplanRotation () {
-      if (this.currentPanorama.panoramaRotation) {
+      if (this.currentPanorama.defaultViewAngle) {
         const rotation = this.currentPanorama.floorplanRotation || 0
-        const panoramaRotationY = this.currentPanorama.panoramaRotation.y || 0
-        const cameraMoving = this.krpanoLookAtH - this.krpanoXOffset + panoramaRotationY
+        const defaultViewAngleY = this.currentPanorama.defaultViewAngle.y || 0
+        const cameraMoving = this.krpanoLookAtH - this.krpanoXOffset + defaultViewAngleY
         return `rotateZ(${rotation + cameraMoving}deg)`
       }
       return ''

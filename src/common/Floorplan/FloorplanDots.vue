@@ -14,7 +14,7 @@
       @click="selectPanorama(panorama)">
     </span>
     <span
-      v-if="currentPanorama.position"
+      v-if="currentPanorama.floorplanPosition"
       class="vrsdk-floorplan-activated-point"
       :style="{
         'webkit-transform': pointPosition(currentPanorama),
@@ -95,8 +95,8 @@ export default {
     },
 
     pointPosition (panorama) {
-      const x = (panorama.position ? panorama.position.x : 0) * this.ratioW * this.floorplanRatioX + this.xOffset
-      const y = (panorama.position ? panorama.position.y : 0) * this.ratioH * this.floorplanRatioY + this.yOffset
+      const x = (panorama.floorplanPosition ? panorama.floorplanPosition.x : 0) * this.ratioW * this.floorplanRatioX + this.xOffset
+      const y = (panorama.floorplanPosition ? panorama.floorplanPosition.y : 0) * this.ratioH * this.floorplanRatioY + this.yOffset
       return `translate(${x}px, ${y}px)`
     }
   }
