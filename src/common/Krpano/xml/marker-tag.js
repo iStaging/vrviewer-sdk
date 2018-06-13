@@ -13,16 +13,16 @@ import {
 const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj) {
   let tag = ''
   tag += `<hotspot
-    name="marker_${marker.objectId}"
+    name="marker_${marker.id}"
     style="${hotspotIcon(marker, useCustomIcon)}"
     scale="1"
     ath="${ath}"
     atv="${atv}"
     zorder="1"
     ondown="set_marker_info(${index});"
-    onover="marker_mousein(${marker.objectId}, ${index}, tag);"
-    onhover="marker_mousein(${marker.objectId}, ${index}, tag);"
-    onout="marker_mouseout(${marker.objectId}, ${index}, tag);" />`
+    onover="marker_mousein(${marker.id}, ${index}, tag);"
+    onhover="marker_mousein(${marker.id}, ${index}, tag);"
+    onout="marker_mouseout(${marker.id}, ${index}, tag);" />`
   const tagInfoPosition = {
     photo: {
       ox: -100,
@@ -82,10 +82,10 @@ const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, 
       tagInfoPosition.description.oy = 80
       tagInfoPosition.descriptionWithoutPrice.oy = 60
     }
-    krpanoVrModeObj.vrModeShouldShow.push(`markerInfoPhoto_${marker.objectId}`)
+    krpanoVrModeObj.vrModeShouldShow.push(`markerInfoPhoto_${marker.id}`)
     tag += `<hotspot
-      name="markerInfoPhoto_${marker.objectId}"
-      style="markerInfoTagPhoto_${marker.objectId}"
+      name="markerInfoPhoto_${marker.id}"
+      style="markerInfoTagPhoto_${marker.id}"
       scale="0"
       visible="false"
       width="140"
@@ -123,12 +123,12 @@ const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, 
       tagInfoPosition.descriptionWithoutPrice.oy = 60
     }
   }
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoBg_${marker.objectId}`)
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoTitle_${marker.objectId}`)
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoPrice_${marker.objectId}`)
-  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoDescription_${marker.objectId}`)
+  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoBg_${marker.id}`)
+  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoTitle_${marker.id}`)
+  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoPrice_${marker.id}`)
+  krpanoVrModeObj.vrModeShouldShow.push(`markerInfoDescription_${marker.id}`)
   tag += `<hotspot
-    name="markerInfoBg_${marker.objectId}"
+    name="markerInfoBg_${marker.id}"
     style="markerInfoTagBg"
     scale="0"
     visible="false"
@@ -142,7 +142,7 @@ const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, 
     enabled="false"
     type="text" />
   <hotspot
-    name="markerInfoTitle_${marker.objectId}"
+    name="markerInfoTitle_${marker.id}"
     style="markerInfoTag"
     css="font-family:Arial; font-size:22px; color:#fff;"
     scale="0"
@@ -158,7 +158,7 @@ const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, 
     type="text"
     html="${xmlString(krpanoAutoBlank(marker.name, 12, true))}" />
   <hotspot
-    name="markerInfoPrice_${marker.objectId}"
+    name="markerInfoPrice_${marker.id}"
     style="markerInfoTag"
     css="font-family:Arial; font-size:20px; color:#fff;"
     scale="0"
@@ -175,7 +175,7 @@ const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, 
     html="${xmlString(krpanoAutoBlank(marker.price, 12, true))}" />`
   if (marker.description && (lengthInUtf8Bytes(marker.description) >= 300 || countText(krpanoAutoBlank(krpanoEnterString(marker.description), 18), /\[br\]/) >= 7)) {
     tag += `<hotspot
-      name="markerInfoDescription_${marker.objectId}"
+      name="markerInfoDescription_${marker.id}"
       style="markerInfoTag"
       scale="0"
       visible="false"
@@ -191,7 +191,7 @@ const getMarkerTagXml = function (marker, ath, atv, name, useCustomIcon, index, 
       html="${xmlString(krpanoAutoBlank(krpanoEnterString(marker.description), 17))}" />`
   } else if (marker.description) {
     tag += `<hotspot
-      name="markerInfoDescription_${marker.objectId}"
+      name="markerInfoDescription_${marker.id}"
       style="markerInfoTag"
       scale="0"
       visible="false"

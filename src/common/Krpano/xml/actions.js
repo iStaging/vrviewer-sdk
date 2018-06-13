@@ -184,7 +184,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
     if(newsceneindex GT lastsceneindex, set(newsceneindex, 1));
     def(selectedMethod, string, 'VrModePrev');
     if(%1 == 1, set(selectedMethod, 'VrModeNext'));
-    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].objectId), get(selectedMethod), 0);
+    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].id), get(selectedMethod), 0);
   );
 </action>
 
@@ -197,7 +197,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
     set(hotspot[markerInfoDescription_%1].scale, 1);
     set(hotspot[markerInfoPrice_%1].scale, 1);,
     set(hotspot[markerInfo_%1].scale, 1););,
-    spheretoscreen(hotspot[markerInfo_%1].ath, hotspot[markerInfo_%1].atv, mouseX, mouseY);
+    spheretoscreen(hotspot[marker_%1].ath, hotspot[marker_%1].atv, mouseX, mouseY);
     jscall(calc('krpano.hooks.markerMousein(%2, ' + mouseX + ', ' + mouseY + ')')););
 </action>
 

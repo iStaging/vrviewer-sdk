@@ -144,21 +144,21 @@ const hooks = vm => {
       // if (vm.currentPanorama.markers) {
       //   const points = vm.currentPanorama.markers.filter(marker => marker.type === 'point')
       //   if (points) {
-      //     if (vm.currentMarker && vm.currentMarker.objectId && vm.currentMarker.type !== 'point') {
+      //     if (vm.currentMarker && vm.currentMarker.id && vm.currentMarker.type !== 'point') {
       //       // has already hovered in a tag/memo/popup marker, so un-hover all point markers
       //       points.forEach(marker => {
-      //         vm.krpanoEl.call(`marker_fadeout(${marker.objectId})`)
+      //         vm.krpanoEl.call(`marker_fadeout(${marker.id})`)
       //       })
       //     } else {
       //       // hover focused point marker and un-hover other point markers
-      //       const otherPoints = points.filter(marker => marker.objectId !== closestPoint.objectId)
+      //       const otherPoints = points.filter(marker => marker.id !== closestPoint.id)
       //       if (otherPoints) {
       //         otherPoints.forEach(marker => {
-      //           vm.krpanoEl.call(`marker_fadeout(${marker.objectId})`)
+      //           vm.krpanoEl.call(`marker_fadeout(${marker.id})`)
       //         })
       //       }
       //       if (closestPoint) {
-      //         vm.krpanoEl.call(`marker_fadein(${closestPoint.objectId})`)
+      //         vm.krpanoEl.call(`marker_fadein(${closestPoint.id})`)
       //       }
       //     }
       //   }

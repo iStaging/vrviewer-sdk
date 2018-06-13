@@ -119,7 +119,8 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 
 .vrsdk-viewer-layer-container {
   position: relative
-  height: "calc(100% - %s)" % $tabs-height
+  // height: "calc(100% - %s)" % $tabs-height
+  height: 100%
   overflow: auto
 }
 

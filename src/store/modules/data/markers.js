@@ -16,9 +16,9 @@ export const actions = {
       //   return
       // }
       // const markerIds = Object.keys(resp)
-      // let markers = markerIds.map(objectId => {
-      //   const marker = resp[objectId].data
-      //   marker.objectId = objectId
+      // let markers = markerIds.map(id => {
+      //   const marker = resp[id].data
+      //   marker.id = id
       //   return marker
       // }) || []
       //
@@ -26,10 +26,50 @@ export const actions = {
       //   markers = markers.filter(marker => marker.type !== 'tag')
       // }
       // console.log('markers', markers)
+      const markers = [{
+        id: '123',
+        position: {
+          'x': 0,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'coupon',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }, {
+        id: '124',
+        position: {
+          'x': 20,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'gift',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }, {
+        id: '125',
+        position: {
+          'x': 40,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'shopping',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }, {
+        id: '126',
+        position: {
+          'x': 60,
+          'y': 0,
+          'z': -90
+        },
+        iconType: 'stopwatch',
+        type: 'customizedTag',
+        useCustomIcon: false
+      }]
       commit('SET_MARKER', {})
       dispatch('addProgressCount', 1)
-      // resolve(markers)
-      resolve([])
+      resolve(markers)
     })
   },
 

@@ -5,10 +5,10 @@ import { isEqual, isMobile } from '../../../../../src/api/utils'
 
 const Constructor = Vue.extend(ViewerMarkersHover)
 const panoramas = [{
-  objectId: '1',
+  id: '1',
   customCategory: 'test'
 }, {
-  objectId: '2',
+  id: '2',
   category: 'livingroom'
 }]
 const marker = {
@@ -66,8 +66,8 @@ describe('common/ViewerMarkersHover/index.vue', () => {
       .not.toEqual(shouldShowMarkerInfo)
   })
 
-  it('nextPanorama 的 objectId 應該要等於站點的 nextPanoramaId', () => {
-    const nextPanorama = vm.panoramas.find(panorama => panorama.objectId === vm.currentMarker.nextPanoramaId)
+  it('nextPanorama 的 id 應該要等於站點的 nextPanoramaId', () => {
+    const nextPanorama = vm.panoramas.find(panorama => panorama.id === vm.currentMarker.nextPanoramaId)
     expect(vm.nextPanorama)
       .toEqual(nextPanorama)
   })

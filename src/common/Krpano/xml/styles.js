@@ -10,6 +10,10 @@ import memoImage from '../img/markers/memo.png'
 import pointImage from '../img/markers/point.png'
 import tagImage from '../img/markers/tag.png'
 import videoImage from '../img/markers/video.png'
+import couponImage from '../img/markers/customized/coupon.png'
+import giftImage from '../img/markers/customized/gift.png'
+import shoppingImage from '../img/markers/customized/shopping.png'
+import stopwatchImage from '../img/markers/customized/stopwatch.png'
 import leftArrowImage from '../img/markers/arrows/left-arrow.png'
 import rightArrowImage from '../img/markers/arrows/right-arrow.png'
 import frontArrowImage from '../img/markers/arrows/front-arrow.png'
@@ -33,6 +37,10 @@ const getStylesXml = (panoramas, vrThumbAth, vrThumbWidth) => {
 <style name="point" url="${pointImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="tag" url="${tagImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="video" url="${videoImage}" ${markerIconCommonAttribute} ${markerIconSize} />
+<style name="coupon" url="${couponImage}" ${markerIconCommonAttribute} />
+<style name="gift" url="${giftImage}" ${markerIconCommonAttribute} />
+<style name="shopping" url="${shoppingImage}" ${markerIconCommonAttribute} />
+<style name="stopwatch" url="${stopwatchImage}" ${markerIconCommonAttribute} />
 <style name="leftArrow" url="${leftArrowImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="rightArrow" url="${rightArrowImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="frontArrow" url="${frontArrowImage}" ${markerIconCommonAttribute} ${markerIconSize} />
@@ -71,11 +79,11 @@ width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${pan
       panorama.markers.forEach(marker => {
         if (marker.useCustomIcon && marker.iconUrl) {
           // add custom icon image
-          styles += `<style name="markerCustomIcon_${marker.objectId}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
+          styles += `<style name="markerCustomIcon_${marker.id}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
         }
         if (marker.type === 'tag' && marker.photo) {
           // add tag photo
-          styles += `<style name="markerInfoTagPhoto_${marker.objectId}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
+          styles += `<style name="markerInfoTagPhoto_${marker.id}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
         }
       })
     }

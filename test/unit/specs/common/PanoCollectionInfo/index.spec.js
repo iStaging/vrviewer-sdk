@@ -46,7 +46,7 @@ describe('common/PanoCollectionInfo/index.vue', () => {
     const imgEl = vm.$el.querySelector('.vrsdk-pano-collection-avatar')
     const fakeLogoSrc = 'https://www.istaging.com/sdk/logo-tripod.png'
     const fakePanoCollection = {
-      objectId: '123',
+      id: '123',
       logoUrl: fakeLogoSrc
     }
     store.commit('SET_PANO_COLLECTION', fakePanoCollection)

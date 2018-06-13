@@ -277,7 +277,7 @@ export const getCorrectRotation = (value) => {
 
 export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
   if (useCustomIcon) {
-    return `markerCustomIcon_${marker.objectId}`
+    return `markerCustomIcon_${marker.id}`
   } else {
     switch (marker.type) {
       case 'point':
@@ -307,6 +307,18 @@ export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
           case 'tag':
           default:
             return 'tag'
+        }
+      case 'customizedTag':
+        switch (marker.iconType) {
+          case 'coupon':
+            return 'coupon'
+          case 'gift':
+            return 'gift'
+          case 'shopping':
+            return 'shopping'
+          case 'stopwatch':
+          default:
+            return 'stopwatch'
         }
       case 'popup':
         switch (marker.iconType) {
