@@ -15,7 +15,7 @@
         <div class="vrsdk-viewer-markers-hover-thumbnail">
           <icon
             class="vrsdk-viewer-markers-hover-thumbnail-inner"
-            :image="nextPanorama.resizeUrl"
+            :image="nextPanorama.thumbnail"
             :style="{ backgroundPosition: nextThumbnailPosition }"
             :hasLazyload="true">
           </icon>
