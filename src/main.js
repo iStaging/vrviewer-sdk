@@ -4,7 +4,6 @@ import VueI18n from 'vue-i18n'
 import messages from '@/messages'
 import store from '@/store'
 import App from '@/App.vue'
-import { fakePanoCollection, fakePanoramas } from '@/api/resources'
 import { DEFAULT_SETTING } from '@/api/constants'
 import { clone } from '@/api/utils'
 
@@ -54,8 +53,8 @@ class VRViewer {
     if (typeof store.resetState === 'function') {
       store.resetState()
     }
-    store.dispatch('importPanoCollection', config.panoCollection)
-    store.dispatch('importPanoramas', config.panoramas)
+    store.dispatch('importPanoCollection', clone(config.panoCollection))
+    store.dispatch('importPanoramas', clone(config.panoCollection.panoramas))
   }
 
   initConfig (config) {
@@ -89,54 +88,22 @@ class VRViewer {
 // Vue.config.silent = true
 
 if (process.env.NODE_ENV === 'development') {
-  // const tenant = {
-  //   username: 'benson@test1',
-  //   password: '000000'
-  // }
-  // axios({
-  //   method: 'post',
-  //   url: `${url}/api/v1/tenant/login`,
-  //   data: tenant
-  // }).then(resp => {
-  //   // don't know why not work
-  //   // axios.defaults.headers.common['tenant-token'] = resp.data.tenantToken
-  //   console.log('axios: ', axios.defaults)
-  // }).catch(error => {
-  //   console.log(error)
-  // })
-  axios.defaults.headers.common['tenant-token'] = 'S6nfuaEGytl0GIVopHjbCxv4KFaEq07r'
-  let panoramaMarkersReadyCounter = 0
-  fakePanoramas.forEach(async panorama => {
-    panorama.markers = await fetchMarkers(panorama)
-    panoramaMarkersReadyCounter += 1
-    if (panoramaMarkersReadyCounter >= fakePanoramas.length) { // when all image thumbnail loaded, do action here
-      const vrViewer = new VRViewer()
-      let config = {
-        el: '#vrviewer-sdk',
-        lang: 'zh-cn',
-        setting: DEFAULT_SETTING,
-        panoCollection: clone(fakePanoCollection),
-        panoramas: clone(fakePanoramas)
-      }
-      vrViewer.init(config)
+  const url = 'http://evs.c6bfd9b3f17f94cb18b5f72740b1bc300.cn-hangzhou.alicontainer.com'
+  axios({
+    method: 'get',
+    url: `${url}/api/v1/openlink/pc_63739fd9-3290-4230-9462-d4973e072cbc`
+  }).then(resp => {
+    const panoCollection = resp.data
+    const vrViewer = new VRViewer()
+    let config = {
+      el: '#vrviewer-sdk',
+      lang: 'zh-cn',
+      setting: DEFAULT_SETTING,
+      panoCollection
     }
-  })
-}
-
-async function fetchMarkers (panorama) {
-  return new Promise((resolve, reject) => {
-    const url = 'http://evs.c6bfd9b3f17f94cb18b5f72740b1bc300.cn-hangzhou.alicontainer.com'
-    axios({
-      method: 'get',
-      url: `${url}/api/v1/marker?panoramaId=${panorama.id}`
-    }).then(resp => {
-      const markers = resp.data
-      console.log('markers', markers)
-      resolve(markers)
-    }).catch(err => {
-      console.error('fetchMarkers failed', err)
-      resolve([])
-    })
+    vrViewer.init(config)
+  }).catch(error => {
+    console.log(error)
   })
 }
 
