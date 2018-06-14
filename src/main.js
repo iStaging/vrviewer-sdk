@@ -89,9 +89,10 @@ class VRViewer {
 
 if (process.env.NODE_ENV === 'development') {
   const url = 'http://evs.c6bfd9b3f17f94cb18b5f72740b1bc300.cn-hangzhou.alicontainer.com'
+  const collectionId = 'pc_63739fd9-3290-4230-9462-d4973e072cbc'
   axios({
     method: 'get',
-    url: `${url}/api/v1/openlink/pc_63739fd9-3290-4230-9462-d4973e072cbc`
+    url: `${url}/api/v1/openlink/${collectionId}`
   }).then(resp => {
     const panoCollection = resp.data
     const vrViewer = new VRViewer()
