@@ -14,7 +14,7 @@ const {
 } = mutations
 const buildingId = 'nnn'
 const buildingData = {
-  objectId: buildingId,
+  id: buildingId,
   thumbnail: 'https://www.istaging.com/sdk/logo-tripod.png',
   logo: 'https://www.istaging.com/sdk/logo-tripod.png',
   floorplan: 'https://www.istaging.com/sdk/logo-tripod.png'
@@ -88,7 +88,7 @@ describe('store/modules/data/pano-collection', () => {
     const state = {
       currentPanoCollection: {}
     }
-    SET_PANO_COLLECTION(state, { objectId: 'qwe' })
-    expect(isEqual(state.currentPanoCollection, { objectId: 'qwe' })).toBe(true)
+    SET_PANO_COLLECTION(state, { id: 'qwe' })
+    expect(isEqual(state.currentPanoCollection, { id: 'qwe' })).toBe(true)
   })
 })

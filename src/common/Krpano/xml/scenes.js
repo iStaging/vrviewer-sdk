@@ -5,6 +5,7 @@ import {
   xmlString,
   xmlUrlString
 } from '@/api/helpers'
+import getMarkerCustomizedTagXml from './marker-customized-tag'
 import getMarkerMemoXml from './marker-memo'
 import getMarkerPointXml from './marker-point'
 import getMarkerTagXml from './marker-tag'
@@ -22,22 +23,25 @@ const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nex
 
         switch (marker.type) {
           case 'point':
-            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
+            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.id}`)
             const name = nextPanoramaNameName(marker)
             const isMarkerPoint = true
             hotspot += getMarkerPointXml(marker, ath, atv, name, useCustomIcon, index, isMarkerPoint, krpanoXOffset)
             break
           case 'memo':
-            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.objectId}`)
+            krpanoVrModeObj.vrModeShouldShow.push(`markerInfo_${marker.id}`)
             hotspot += getMarkerMemoXml(marker, ath, atv, name, useCustomIcon, index)
+            break
+          case 'customizedTag':
+            hotspot += getMarkerCustomizedTagXml(marker, ath, atv, name, useCustomIcon, index)
             break
           case 'tag':
             hotspot += getMarkerTagXml(marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj)
             break
           case 'popup':
-            krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.objectId}`)
-            hotspot += `<hotspot name="marker_${marker.objectId}" style="${hotspotIcon(marker, useCustomIcon)}"
-onclick="handle_show_popup(${index});" onover="marker_mousein(${marker.objectId}, ${index});" onout="marker_mouseout(${marker.objectId}, ${index});"
+            krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.id}`)
+            hotspot += `<hotspot name="marker_${marker.id}" style="${hotspotIcon(marker, useCustomIcon)}"
+onclick="handle_show_popup(${index});" onover="marker_mousein(${marker.id}, ${index});" onout="marker_mouseout(${marker.id}, ${index});"
 visible="true" scale="1" zorder="1" ath="${ath}" atv="${atv}" />`
             break
           default:
@@ -48,7 +52,7 @@ visible="true" scale="1" zorder="1" ath="${ath}" atv="${atv}" />`
     if (index === startIndex) {
       // for planet view init look at
       startupScene = `<scene name="first_panorama_${panorama.id}" isTopLogo="${panorama.isTopLogo}">
-    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoXOffset}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${defaultFov}"
+    <view hlookat="${(panorama.defaultViewAngle ? -panorama.defaultViewAngle.y : 0) + krpanoXOffset}" vlookat="90" fovtype="MFOV" fov="140" fovmin="30" fovmax="${defaultFov}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
   ${(() => {
     if (panorama.cubemapReady) {
@@ -69,7 +73,7 @@ ${hotspot}</scene>`
 const getSceneXml = function (panorama, hotspot, defaultFov, krpanoXOffset) {
   let sceneXml = ''
   sceneXml += `<scene name="panorama_${panorama.id}" title="${xmlString(panorama.name)}" panoramId="${panorama.id}" isTopLogo="${panorama.isTopLogo}">
-    <view hlookat="${(panorama.panoramaRotation ? -panorama.panoramaRotation.y : 0) + krpanoXOffset}" vlookat="0" fovtype="MFOV" fov="${defaultFov}" fovmin="30" fovmax="${defaultFov}"
+    <view hlookat="${(panorama.defaultViewAngle ? -panorama.defaultViewAngle.y : 0) + krpanoXOffset}" vlookat="0" fovtype="MFOV" fov="${defaultFov}" fovmin="30" fovmax="${defaultFov}"
     limitview="fullrange" vlookatmin="-90" vlookatmax="90" />
     ${(() => {
     if (panorama.cubemapReady) {

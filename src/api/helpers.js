@@ -80,9 +80,9 @@ export const krpanoHelpers = {
     THREE.ImageUtils.crossOrigin = ''
     window.threeThumbnails = new Array(allPanoramas.length)
     allPanoramas.forEach((panorama, index) => {
-      if (panorama.resizeUrl) {
-        window.threeThumbnails[index] = panorama.resizeUrl
-        THREE.ImageUtils.loadTexture(panorama.resizeUrl)
+      if (panorama.thumbnail) {
+        window.threeThumbnails[index] = panorama.thumbnail
+        THREE.ImageUtils.loadTexture(panorama.thumbnail)
       }
     })
     /* eslint-enable */
@@ -307,6 +307,18 @@ export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
           case 'tag':
           default:
             return 'tag'
+        }
+      case 'customizedTag':
+        switch (marker.iconType) {
+          case 'coupon':
+            return 'coupon'
+          case 'gift':
+            return 'gift'
+          case 'shopping':
+            return 'shopping'
+          case 'stopwatch':
+          default:
+            return 'stopwatch'
         }
       case 'popup':
         switch (marker.iconType) {

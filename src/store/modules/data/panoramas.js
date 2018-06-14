@@ -36,10 +36,17 @@ export const actions = {
       return
     }
     let panoramas = resp.map(panorama => {
-      if (!panorama.position) { // should have default position
-        panorama.position = {
+      if (!panorama.floorplanPosition) {
+        panorama.floorplanPosition = {
           x: 0,
           y: 0
+        }
+      }
+      if (!panorama.defaultViewAngle) {
+        panorama.defaultViewAngle = {
+          x: 0,
+          y: 0,
+          z: 0
         }
       }
       return panorama

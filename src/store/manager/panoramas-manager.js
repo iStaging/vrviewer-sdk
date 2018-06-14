@@ -56,7 +56,7 @@ export default class PanoramasManager {
         const initPanorama = panoramas[startIndex]
         panoramas.forEach(panorama => {
           console.log('cubemapReady:', panorama.cubemapReady)
-          loadImage([panorama.cubemapLinkPreview, panorama.resizeUrl], () => {
+          loadImage([panorama.cubemapLinkPreview, panorama.thumbnail], () => {
             this.previewImageLoadFinished(panoramas, initPanorama)
           }, undefined, () => {
             this.previewImageLoadFinished(panoramas, initPanorama)
@@ -73,7 +73,7 @@ export default class PanoramasManager {
         this.completeCallback()
       } else {
         this.dispatch('setProgressMax', this.rootState.progress.progressMax + 1)
-        loadImage(initPanorama.resizeUrl, () => {
+        loadImage(initPanorama.thumbnail, () => {
           this.dispatch('addProgressCount', 1)
           this.completeCallback()
         }, undefined, () => {

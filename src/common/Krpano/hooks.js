@@ -17,14 +17,14 @@ const hooks = vm => {
         shouldAutoStartRotate: bool
       })
     },
-    prepareChangeScene (nextName = '', nextPanoramaId = '', nextPanoramaRotation = 0, isMarkerPoint = false, markerAth = 0) {
+    prepareChangeScene (nextName = '', nextPanoramaId = '', nextDefaultViewAngle = 0, isMarkerPoint = false, markerAth = 0) {
       const oldIndex = vm.panoramas.findIndex(panorama => panorama.id === vm.currentPanorama.id)
       const newIndex = vm.panoramas.findIndex(panorama => panorama.id === nextPanoramaId)
       if (newIndex > -1) {
         const foundPanorama = vm.panoramas[newIndex]
         const oldHLookat = vm.krpanoLookAtH
         if (foundPanorama.cubemapReady) {
-          vm.krpanoEl.call(`change_scene(${nextName}, ${nextPanoramaId}, ${nextPanoramaRotation},
+          vm.krpanoEl.call(`change_scene(${nextName}, ${nextPanoramaId}, ${nextDefaultViewAngle},
            ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
         } else {
           vm.setProgressCount(0)
@@ -32,7 +32,7 @@ const hooks = vm => {
           vm.showProgress()
           loadImage(foundPanorama.resizeUrl, () => {
             vm.closeProgress()
-            vm.krpanoEl.call(`change_scene(${nextName}, ${nextPanoramaId}, ${nextPanoramaRotation},
+            vm.krpanoEl.call(`change_scene(${nextName}, ${nextPanoramaId}, ${nextDefaultViewAngle},
              ${isMarkerPoint}, ${markerAth}, ${newIndex}, ${oldIndex}, ${oldHLookat}, ${vm.isGyroEnabled});`)
           }, (e) => {
             vm.setProgressCount(e * 2)
@@ -45,10 +45,10 @@ const hooks = vm => {
     changeImage (nextPanoramaId) {
       vm.selectPanorama(nextPanoramaId)
     },
-    threeJsMoving (nextPanoramaRotation = 0, markerAth = 0, newIndex, oldIndex, oldHLookat = 0) {
-      // console.log('threeJsMoving', nextPanoramaRotation, markerAth, newIndex, oldIndex, oldHLookat)
+    threeJsMoving (nextDefaultViewAngle = 0, markerAth = 0, newIndex, oldIndex, oldHLookat = 0) {
+      // console.log('threeJsMoving', nextDefaultViewAngle, markerAth, newIndex, oldIndex, oldHLookat)
       window.animationStart = true
-      window.build_scene(nextPanoramaRotation, markerAth, newIndex, oldIndex, oldHLookat)
+      window.build_scene(nextDefaultViewAngle, markerAth, newIndex, oldIndex, oldHLookat)
     },
     threeJsMovingStop () {
       // console.log('threeJsMovingStop')
@@ -144,21 +144,21 @@ const hooks = vm => {
       // if (vm.currentPanorama.markers) {
       //   const points = vm.currentPanorama.markers.filter(marker => marker.type === 'point')
       //   if (points) {
-      //     if (vm.currentMarker && vm.currentMarker.objectId && vm.currentMarker.type !== 'point') {
+      //     if (vm.currentMarker && vm.currentMarker.id && vm.currentMarker.type !== 'point') {
       //       // has already hovered in a tag/memo/popup marker, so un-hover all point markers
       //       points.forEach(marker => {
-      //         vm.krpanoEl.call(`marker_fadeout(${marker.objectId})`)
+      //         vm.krpanoEl.call(`marker_fadeout(${marker.id})`)
       //       })
       //     } else {
       //       // hover focused point marker and un-hover other point markers
-      //       const otherPoints = points.filter(marker => marker.objectId !== closestPoint.objectId)
+      //       const otherPoints = points.filter(marker => marker.id !== closestPoint.id)
       //       if (otherPoints) {
       //         otherPoints.forEach(marker => {
-      //           vm.krpanoEl.call(`marker_fadeout(${marker.objectId})`)
+      //           vm.krpanoEl.call(`marker_fadeout(${marker.id})`)
       //         })
       //       }
       //       if (closestPoint) {
-      //         vm.krpanoEl.call(`marker_fadein(${closestPoint.objectId})`)
+      //         vm.krpanoEl.call(`marker_fadein(${closestPoint.id})`)
       //       }
       //     }
       //   }
