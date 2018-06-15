@@ -12,10 +12,10 @@
       @mouseleave="htmlMarkerMouseout">
       <point v-show="currentMarker.type === 'point'"></point>
       <shopping
-        v-show="currentMarker.type === 'customizedTag' && currentMarker.iconType === 'shopping'">
+        v-show="currentMarker.type === 'custom' && currentMarker.iconType === 'shopping'">
       </shopping>
       <stop-watch
-        v-show="currentMarker.type === 'customizedTag' && currentMarker.iconType === 'stopwatch'">
+        v-show="currentMarker.type === 'custom' && currentMarker.iconType === 'stopwatch'">
       </stop-watch>
     </div>
   </div>
@@ -86,7 +86,7 @@ export default {
 
     shouldShowMarkerInfo () {
       return !isMobile() &&
-        includes(['point', 'customizedTag'], this.currentMarker.type)
+        includes(['point', 'customi'], this.currentMarker.type)
     },
 
     markerInfoPosition () {

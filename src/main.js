@@ -89,7 +89,7 @@ class VRViewer {
 
 if (process.env.NODE_ENV === 'development') {
   const url = 'http://evs.c6bfd9b3f17f94cb18b5f72740b1bc300.cn-hangzhou.alicontainer.com'
-  const collectionId = 'pc_63739fd9-3290-4230-9462-d4973e072cbc'
+  const collectionId = 'pc_1148162f-0585-4650-bf6b-864461c72d31'
   axios({
     method: 'get',
     url: `${url}/api/v1/openlink/${collectionId}`
