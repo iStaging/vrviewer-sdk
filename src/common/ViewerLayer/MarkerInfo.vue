@@ -1,6 +1,12 @@
 <template>
   <div class="vrsdk-marker-info">
     <gift
+      v-show="markerInfoData.type === 'custom' && markerInfoData.customTagInfo.type === 'testCustom1'">
+    </gift>
+    <coupon
+      v-show="markerInfoData.type === 'custom' && markerInfoData.customTagInfo.type === 'testCustom2'">
+    </coupon>
+    <gift
       v-show="markerInfoData.type === 'custom' && markerInfoData.iconType === 'gift'">
     </gift>
     <coupon
