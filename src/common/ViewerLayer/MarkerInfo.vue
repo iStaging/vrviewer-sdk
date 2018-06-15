@@ -1,25 +1,25 @@
 <template>
   <div class="vrsdk-marker-info">
     <gift
-      v-show="markerInfoData.type === 'custom' && markerInfoData.customTagInfo.type === 'testCustom1'">
+      v-show="checkCustomTag('testCustom1')"><!--real data binding-->
     </gift>
     <coupon
-      v-show="markerInfoData.type === 'custom' && markerInfoData.customTagInfo.type === 'testCustom2'">
+      v-show="checkCustomTag('testCustom2')"><!--real data binding-->
     </coupon>
     <gift
-      v-show="markerInfoData.type === 'custom' && markerInfoData.iconType === 'gift'">
+      v-show="checkCustomTag('gift')">
     </gift>
     <coupon
-      v-show="markerInfoData.type === 'custom' && markerInfoData.iconType === 'coupon'">
+      v-show="checkCustomTag('coupon')">
     </coupon>
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
     <shopping
-      v-show="markerInfoData.type === 'custom' && markerInfoData.iconType === 'shopping'">
+      v-show="checkCustomTag('shopping')">
     </shopping>
     <stop-watch
-      v-show="markerInfoData.type === 'custom' && markerInfoData.iconType === 'stopwatch'">
+      v-show="checkCustomTag('stopwatch')">
     </stop-watch>
     <tag
       v-show="markerInfoData.type === 'tag'">
@@ -57,7 +57,13 @@ export default {
     ...mapActions([
       'closeMarkerInfo',
       'setMarkerInfoData'
-    ])
+    ]),
+
+    checkCustomTag (type) {
+      return this.markerInfoData.type === 'custom' &&
+        this.markerInfoData.customTagInfo &&
+        this.markerInfoData.customTagInfo.type === type
+    }
   },
 
   watch: {
