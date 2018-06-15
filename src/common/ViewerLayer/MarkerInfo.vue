@@ -1,25 +1,19 @@
 <template>
   <div class="vrsdk-marker-info">
     <gift
-      v-show="checkCustomTag('testCustom1')"><!--real data binding-->
+      v-show="checkCustomTag('CashGift')">
     </gift>
     <coupon
-      v-show="checkCustomTag('testCustom2')"><!--real data binding-->
-    </coupon>
-    <gift
-      v-show="checkCustomTag('gift')">
-    </gift>
-    <coupon
-      v-show="checkCustomTag('coupon')">
+      v-show="checkCustomTag('DiscountCoupon')">
     </coupon>
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
     <shopping
-      v-show="checkCustomTag('shopping')">
+      v-show="checkCustomTag('GroupBuy')">
     </shopping>
     <stop-watch
-      v-show="checkCustomTag('stopwatch')">
+      v-show="checkCustomTag('FlashSale')">
     </stop-watch>
     <tag
       v-show="markerInfoData.type === 'tag'">
