@@ -50,57 +50,108 @@ app.get('/', function (req, res) {
 
 // fetchPanoCollection
 app.get('/api/v1/panoCollection', function (req, res) {
- const panoCollection = [{
-    "ID": "01",
-    "Name": "panoCollection01" ,
-    "OwnerID": "tenant_01"
-  }]
-  res.status(HTTPStatus.OK).json(panoCollection)
-})
-
-// createPanoCollection
-app.post('/api/v1/panoCollection', function (req, res) {
-  const panoCollection = req.body
+ const panoCollection = {
+   'createdAt': 1526283327000,
+   'description': 'aegbrew',
+   'hasPin': false,
+   'logoSize': 50,
+   'name': 'awerg43',
+   'objectId': '7e548395-f720-49c4-95ce-e31217bd5ae2',
+   'requireVisitorData': false,
+   'showComment': true,
+   'showContactInfo': true,
+   'showPoweredBy': true,
+   'themeColor': 'pink',
+   'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail',
+   'unavailable': false,
+   'updatedAt': 1526283355000
+ }
   res.status(HTTPStatus.OK).json(panoCollection)
 })
 
 // fetchPanoramas
 app.get('/api/v1/panorama', function (req, res) {
   const panoramas = [{
-    'Name': 'name01',
-    'DownloadUrl': 'https://storage.googleapis.com/vr-cam-161603.appspot.com/0b76c6f2-7f66-4454-9fb3-3e05bf98f7e7/0013be6e-c70c-42f1-8ccd-7f51b7b82204/panoramas/4f26b89d-4383-4723-be9d-d12fd2c2cef0.jpg',
-    'ID': '0f62e098-b8aa-4a4a-a635-f2243788471f',
-    'panoramaIndex': 0,
-    'cubemapReady': true,
-    'cubemapLinks': [
-      'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg',
-      'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_0f62e098-b8aa-4a4a-a635-f2243788471f.jpg'
-    ],
-    // not ready props
+    'adjustedRawUrl': '',
     'panoramaName': 'others',
-    'createdAt': 1522136180000,
-    'updatedAt': 1522136180000
+    'createdAt': 1526283353000,
+    'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/24fb9231-873d-4fbb-85f6-db2bb81b01cb.jpg',
+    'cubemapReady': true,
+    'desktopUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/xQa3ielE-desktop',
+    'floorplanRotation': 0,
+    'index': 3,
+    'is720': false,
+    'isTopLogo': false,
+    'mobileUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/xQa3ielE-mobile',
+    'name': 'b7e548395-f720-49c4-95ce-e31217bd5ae2_p0',
+    'panoramaId': '24fb9231-873d-4fbb-85f6-db2bb81b01cb',
+    'panoramaRotation': { 'x': 0, 'y': 0, 'z': 0 },
+    'position': { 'x': 0, 'y': 0 },
+    'rawUrl': 'https://storage.googleapis.com/vrcam-dev-5a815-images/e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/24fb9231-873d-4fbb-85f6-db2bb81b01cb.jpg',
+    'stereoUrl': '',
+    'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/xQa3ielE-thumbnail',
+    'updatedAt': 1526283355000
   }, {
-    'Name': 'name02',
-    'DownloadUrl': 'https://storage.googleapis.com/vr-cam-161603.appspot.com/b6a1ba85-cb52-4abb-be50-419f9c329d6b/8ffa7a7f-4d90-41c0-b9c3-7b995d213109/panoramas/00b27bcb-0143-435d-8180-37d1766f5671.jpg',
-    'ID': '782949e8-c37a-4171-a004-54c76937135c',
-    'panoramaIndex': 1,
-    'cubemapReady': true,
-    'cubemapLinks': [
-      'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_preview_782949e8-c37a-4171-a004-54c76937135c.jpg',
-      'https://vrcam-test-cdn.istaging.com/d76d488e-0349-42c3-8f9d-99ae33cab2bf/aaa9a22a-7da1-4d97-9ef2-1ecc653e512c/panoramas/cubemap_%s_782949e8-c37a-4171-a004-54c76937135c.jpg'
-    ],
-    // not ready props
+    'adjustedRawUrl': '',
     'panoramaName': 'others',
-    'updatedAt': 1522136180000,
-    'createdAt': 1522136180000
+    'createdAt': 1526283353000,
+    'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/47bbd8d6-75b2-4f15-91c0-cfdbb8c7f970.jpg',
+    'cubemapReady': true,
+    'desktopUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/JvTaielE-desktop',
+    'floorplanRotation': 0,
+    'index': 1,
+    'is720': false,
+    'isTopLogo': false,
+    'mobileUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/JvTaielE-mobile',
+    'name': 'b7e548395-f720-49c4-95ce-e31217bd5ae2_p2',
+    'panoramaId': '47bbd8d6-75b2-4f15-91c0-cfdbb8c7f970',
+    'panoramaRotation': { 'x': 0, 'y': 0, 'z': 0 },
+    'position': { 'x': 0, 'y': 0 },
+    'rawUrl': 'https://storage.googleapis.com/vrcam-dev-5a815-images/e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/47bbd8d6-75b2-4f15-91c0-cfdbb8c7f970.jpg',
+    'stereoUrl': '',
+    'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/JvTaielE-thumbnail',
+    'updatedAt': 1526283355000
+  }, {
+    'adjustedRawUrl': '',
+    'panoramaName': 'others',
+    'createdAt': 1526283353000,
+    'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/5cf21b3e-ae20-49e1-9fef-0a4c9cba4564.jpg',
+    'cubemapReady': true,
+    'desktopUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/rnU6ielE-desktop',
+    'floorplanRotation': 0,
+    'index': 2,
+    'is720': false,
+    'isTopLogo': false,
+    'mobileUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/rnU6ielE-mobile',
+    'name': 'b7e548395-f720-49c4-95ce-e31217bd5ae2_p1',
+    'panoramaId': '5cf21b3e-ae20-49e1-9fef-0a4c9cba4564',
+    'panoramaRotation': { 'x': 0, 'y': 0, 'z': 0 },
+    'position': { 'x': 0, 'y': 0 },
+    'rawUrl': 'https://storage.googleapis.com/vrcam-dev-5a815-images/e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/5cf21b3e-ae20-49e1-9fef-0a4c9cba4564.jpg',
+    'stereoUrl': '',
+    'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/rnU6ielE-thumbnail',
+    'updatedAt': 1526283355000
+  }, {
+    'adjustedRawUrl': '',
+    'panoramaName': 'others',
+    'createdAt': 1526283353000,
+    'cubemapFilePath': 'e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/b4530a6b-de01-4dba-9795-ab430556ff98.jpg',
+    'cubemapReady': true,
+    'desktopUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-desktop',
+    'floorplanRotation': 0,
+    'index': 0,
+    'is720': false,
+    'isTopLogo': false,
+    'mobileUrl': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-mobile',
+    'name': 'b7e548395-f720-49c4-95ce-e31217bd5ae2_p3',
+    'panoramaId': 'b4530a6b-de01-4dba-9795-ab430556ff98',
+    'panoramaRotation': { 'x': 0, 'y': 0, 'z': 0 },
+    'position': { 'x': 0, 'y': 0 },
+    'rawUrl': 'https://storage.googleapis.com/vrcam-dev-5a815-images/e88fa7c1-c5ad-453f-9a97-d4d4ad2cfc56/7e548395-f720-49c4-95ce-e31217bd5ae2/panoramas/b4530a6b-de01-4dba-9795-ab430556ff98.jpg',
+    'stereoUrl': '',
+    'thumbnail': 'https://vrcam-dev-api.istaging.com/api/v1/getresizemapping/fn77ielE-thumbnail',
+    'updatedAt': 1526283355000
   }]
-  res.status(HTTPStatus.OK).json(panoramas)
-})
-
-// createPanoramas
-app.post('/api/v1/panorama', function (req, res) {
-  const panoramas = req.body
   res.status(HTTPStatus.OK).json(panoramas)
 })
 

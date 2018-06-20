@@ -2,7 +2,7 @@
   <div
     class="vrsdk-default-container"
     :class="{
-      'vrsdk-theme-rtl vrsdk-theme-rtl-overlap': isRtl
+      'theme-rtl theme-rtl-overlap': isRtl
     }">
     <!--not found liveTour in url-->
     <div
@@ -34,15 +34,11 @@ import { mapActions, mapGetters } from 'vuex'
 import {
   isRtl
 } from '@/api/helpers'
-import {
-  fakePanoCollection
-} from '@/api/resources'
 import IHeader from './IHeader.vue'
 import IMain from './IMain.vue'
 import IAside from './IAside.vue'
 import IFooter from './IFooter.vue'
 import Loading from '../common/Loading.vue'
-import noPanoramasImage from '../images/trash-can.png'
 
 export default {
   name: 'Default',
@@ -57,13 +53,12 @@ export default {
   data () {
     return {
       isRtl: isRtl(),
-      noPanoramasImage
+      noPanoramasImage: require('img/trash-can.png')
     }
   },
 
   beforeMount () {
-    const panoCollectionId = fakePanoCollection.id
-    this.fetchPanoCollection(panoCollectionId)
+    this.fetchPanoCollection()
   },
 
   computed: {

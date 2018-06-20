@@ -85,6 +85,11 @@ width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${pan
           // add tag photo
           styles += `<style name="markerInfoTagPhoto_${marker.id}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
         }
+        if (marker.type === 'custom' &&
+          marker.customTagInfo &&
+          marker.customTagInfo.icon) {
+          styles += `<style name="markerCustomTagIcon_${marker.id}" url="${xmlUrlString(marker.customTagInfo.icon)}" ${markerIconCommonAttribute} ${markerIconSize} />`
+        }
       })
     }
   })

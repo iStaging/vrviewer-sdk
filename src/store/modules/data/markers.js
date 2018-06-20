@@ -34,7 +34,7 @@ export const actions = {
           'z': -90
         },
         iconType: 'coupon',
-        type: 'customizedTag',
+        type: 'custom',
         useCustomIcon: false
       }, {
         id: '124',
@@ -44,7 +44,7 @@ export const actions = {
           'z': -90
         },
         iconType: 'gift',
-        type: 'customizedTag',
+        type: 'custom',
         useCustomIcon: false
       }, {
         id: '125',
@@ -54,7 +54,7 @@ export const actions = {
           'z': -90
         },
         iconType: 'shopping',
-        type: 'customizedTag',
+        type: 'custom',
         useCustomIcon: false
       }, {
         id: '126',
@@ -64,7 +64,7 @@ export const actions = {
           'z': -90
         },
         iconType: 'stopwatch',
-        type: 'customizedTag',
+        type: 'custom',
         useCustomIcon: false
       }]
       commit('SET_MARKER', {})

@@ -10,7 +10,7 @@
       <default-view></default-view>
     </template>
     <template v-else>
-      <div class="full-center error-wrapper">
+      <div class="full-center vrsdk-error-wrapper">
         <div v-if="!isBrowserSupport">
           <figure class="vrsdk-error-wrapper-container">
             <img

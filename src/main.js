@@ -1,17 +1,11 @@
 import Vue from 'vue'
-// import VueAxios from 'vue-axios'
+import axios from 'axios'
 import VueI18n from 'vue-i18n'
 import messages from '@/messages'
 import store from '@/store'
-// import api from '@/api/index'
-// import server from '@/api/server'
 import App from '@/App.vue'
-// import Tooltip from 'hsy-vue-tooltip'
-// import {
-//   includes
-// } from '@/assets/js/utils'
-import { fakePanoCollection, fakePanoramas } from '@/api/resources'
 import { DEFAULT_SETTING } from '@/api/constants'
+import { clone } from '@/api/utils'
 
 // Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
@@ -59,8 +53,8 @@ class VRViewer {
     if (typeof store.resetState === 'function') {
       store.resetState()
     }
-    store.dispatch('importPanoCollection', config.panoCollection)
-    store.dispatch('importPanoramas', config.panoramas)
+    store.dispatch('importPanoCollection', clone(config.panoCollection))
+    store.dispatch('importPanoramas', clone(config.panoCollection.panoramas))
   }
 
   initConfig (config) {
@@ -94,15 +88,27 @@ class VRViewer {
 // Vue.config.silent = true
 
 if (process.env.NODE_ENV === 'development') {
-  const vrViewer = new VRViewer()
-  let config = {
-    el: '#vrviewer-sdk',
-    lang: 'zh-cn',
-    setting: DEFAULT_SETTING,
-    panoCollection: fakePanoCollection,
-    panoramas: fakePanoramas
-  }
-  vrViewer.init(config)
+  // url : 'https://evs-dev-api.istaging.com.cn',
+  // url : 'https://evs-test-api.istaging.com.cn',
+  // url : 'https://evs-prod-api.istaging.com.cn',
+  const url = 'https://evs-dev-api.istaging.com.cn'
+  const collectionId = 'pc_8db3528f-c375-4733-81b1-d410b7cd4631'
+  axios({
+    method: 'get',
+    url: `${url}/api/v1/openlink/${collectionId}`
+  }).then(resp => {
+    const panoCollection = resp.data
+    const vrViewer = new VRViewer()
+    let config = {
+      el: '#vrviewer-sdk',
+      lang: 'zh-cn',
+      setting: DEFAULT_SETTING,
+      panoCollection
+    }
+    vrViewer.init(config)
+  }).catch(error => {
+    console.log(error)
+  })
 }
 
 window.VRViewer = new VRViewer()

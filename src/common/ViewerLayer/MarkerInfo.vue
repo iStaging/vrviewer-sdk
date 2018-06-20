@@ -1,19 +1,19 @@
 <template>
   <div class="vrsdk-marker-info">
     <gift
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'gift'">
+      v-show="checkCustomTag('CashGift')">
     </gift>
     <coupon
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'coupon'">
+      v-show="checkCustomTag('DiscountCoupon')">
     </coupon>
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
     <shopping
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'shopping'">
+      v-show="checkCustomTag('GroupBuy')">
     </shopping>
     <stop-watch
-      v-show="markerInfoData.type === 'customizedTag' && markerInfoData.iconType === 'stopwatch'">
+      v-show="checkCustomTag('FlashSale')">
     </stop-watch>
     <tag
       v-show="markerInfoData.type === 'tag'">
@@ -23,10 +23,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Coupon from './CustomizedTag/Coupon'
-import Gift from './CustomizedTag/Gift'
-import Shopping from './CustomizedTag/Shopping'
-import StopWatch from './CustomizedTag/StopWatch'
+import Coupon from './Custom/Coupon'
+import Gift from './Custom/Gift'
+import Shopping from './Custom/Shopping'
+import StopWatch from './Custom/StopWatch'
 import Memo from './Memo'
 import Tag from './Tag'
 
@@ -51,7 +51,13 @@ export default {
     ...mapActions([
       'closeMarkerInfo',
       'setMarkerInfoData'
-    ])
+    ]),
+
+    checkCustomTag (type) {
+      return this.markerInfoData.type === 'custom' &&
+        this.markerInfoData.customTagInfo &&
+        this.markerInfoData.customTagInfo.type === type
+    }
   },
 
   watch: {

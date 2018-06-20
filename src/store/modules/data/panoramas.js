@@ -36,7 +36,6 @@ export const actions = {
       return
     }
     let panoramas = resp.map(panorama => {
-      panorama.name = 'custom'
       if (!panorama.floorplanPosition) {
         panorama.floorplanPosition = {
           x: 0,
@@ -61,7 +60,8 @@ export const actions = {
     dispatch('setProgressMax', panoramas.length + 12)
     panoramas.forEach(async panorama => {
       // const cubemap = new Cubemap(panorama, rootState.user.userId)
-      panorama.markers = await dispatch('fetchMarkers', panorama)
+      // panorama.markers = await dispatch('fetchMarkers', panorama)
+      dispatch('addProgressCount', 1) // remove if fetchMarkers is used
       if (getIEVersion() === 11) {
         const keys = ['thumbnail', 'resizeUrl', 'mobileUrl']
         await imageIEHack(panorama, keys)

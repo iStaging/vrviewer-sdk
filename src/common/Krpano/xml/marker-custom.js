@@ -2,7 +2,7 @@ import {
   hotspotIcon
 } from '@/api/helpers'
 
-const getMarkerCustomizedTagXml = function (marker, ath, atv, name, useCustomIcon, index) {
+const getMarkerCustomXml = function (marker, ath, atv, name, useCustomIcon, index) {
   let tag = `<hotspot
     name="marker_${marker.id}"
     style="${hotspotIcon(marker, useCustomIcon)}"
@@ -17,4 +17,4 @@ const getMarkerCustomizedTagXml = function (marker, ath, atv, name, useCustomIco
   return tag
 }
 
-export default getMarkerCustomizedTagXml
+export default getMarkerCustomXml

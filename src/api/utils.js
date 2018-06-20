@@ -236,3 +236,7 @@ export const text2html = (text) => {
   htmlObject.innerHTML = text
   return htmlObject
 }
+
+export const clone = (...args) => {
+  return JSON.parse(JSON.stringify.apply(null, args))
+}

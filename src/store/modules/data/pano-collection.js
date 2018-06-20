@@ -22,7 +22,8 @@ export const actions = {
     storedPanoCollection = panoCollection
   },
 
-  async fetchPanoCollection ({ dispatch, commit, state, rootState }, panoCollectionId = '') {
+  async fetchPanoCollection ({ dispatch, commit, state, rootState }) {
+    const panoCollectionId = storedPanoCollection.id
     if (panoCollectionId) {
       if (panoCollectionId === state.currentPanoCollection.id) {
         // It's the same panoCollection, no need to fetch it again
@@ -58,7 +59,7 @@ export const actions = {
       // console.log('ids:', ids)
       console.log('panoCollection:', panoCollection)
       commit('SET_PANO_COLLECTION', panoCollection)
-      PanoCollectionManager.afterFetchPanoCollectionHandler({ dispatch, panoCollection, panoCollectionId })
+      PanoCollectionManager.afterFetchPanoCollectionHandler({ dispatch, panoCollectionId })
       dispatch('setPanoCollectionNotFound', false)
     } else {
       PanoCollectionManager.noPanoCollectionCallback({ dispatch, commit, state, rootState })

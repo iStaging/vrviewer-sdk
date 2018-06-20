@@ -3,3 +3,4 @@ config/*.js
 routes/*.js
 app.js
 dev/*.js
+examples/**
