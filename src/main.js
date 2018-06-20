@@ -88,8 +88,11 @@ class VRViewer {
 // Vue.config.silent = true
 
 if (process.env.NODE_ENV === 'development') {
-  const url = 'http://evs.c6bfd9b3f17f94cb18b5f72740b1bc300.cn-hangzhou.alicontainer.com'
-  const collectionId = 'pc_1148162f-0585-4650-bf6b-864461c72d31'
+  // url : 'https://evs-dev-api.istaging.com.cn',
+  // url : 'https://evs-test-api.istaging.com.cn',
+  // url : 'https://evs-prod-api.istaging.com.cn',
+  const url = 'https://evs-dev-api.istaging.com.cn'
+  const collectionId = 'pc_8db3528f-c375-4733-81b1-d410b7cd4631'
   axios({
     method: 'get',
     url: `${url}/api/v1/openlink/${collectionId}`
