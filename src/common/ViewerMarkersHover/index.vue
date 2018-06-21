@@ -86,7 +86,7 @@ export default {
 
     shouldShowMarkerInfo () {
       return !isMobile() &&
-        includes(['point', 'customi'], this.currentMarker.type)
+        includes(['point', 'custom'], this.currentMarker.type)
     },
 
     markerInfoPosition () {
