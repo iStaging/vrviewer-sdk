@@ -30,6 +30,7 @@ class VRViewer {
     })
     this.initData(config)
     this.initConfig(config)
+    this.updateEvents()
     this.app = new Vue({
       el: config.el,
       store,
@@ -61,25 +62,36 @@ class VRViewer {
     store.dispatch('importSetting', config.setting)
   }
 
-  onToggleFloorplan () {
+  updateEvents () {
+    store.customEvents = {}
+    store.customEvents.onMarkerClick = this.onMarkerClick
+  }
+
+  onMarkerClick (data) {
+    console.log('onMarkerClick', data)
+  }
+
+  toggleFloorplan () {
     store.dispatch('toggleFloorplan')
   }
 
-  onEnterFullscreen () {
+  enterFullscreen () {
     store.dispatch('enterFullscreen')
   }
 
-  onExitFullscreen () {
+  exitFullscreen () {
     store.dispatch('exitFullscreen')
   }
 
-  onTogglePanoramasList () {
+  togglePanoramasList () {
     store.dispatch('togglePanoramasList')
   }
 
-  onToggleShare () {
+  toggleShare () {
     store.dispatch('toggleShare')
   }
+
+  // start / stop auto rotation trigger !?
 }
 
 // Vue.config.productionTip = false
@@ -88,9 +100,6 @@ class VRViewer {
 // Vue.config.silent = true
 
 if (process.env.NODE_ENV === 'development') {
-  // url : 'https://evs-dev-api.istaging.com.cn',
-  // url : 'https://evs-test-api.istaging.com.cn',
-  // url : 'https://evs-prod-api.istaging.com.cn',
   const url = 'https://evs-dev-api.istaging.com.cn'
   const collectionId = 'pc_8db3528f-c375-4733-81b1-d410b7cd4631'
   axios({

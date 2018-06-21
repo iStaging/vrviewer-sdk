@@ -1,0 +1,148 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  font-family: 'Helvetica', '\5FAE\8EDF\6B63\9ED1\9AD4', 'Microsoft JhengHei', '\5FAE\8EDF\96C5\9ED1\9AD4', 'Microsoft YaHei', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+}
+
+.desc {
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  width: 900px;
+  height: 700px;
+}
+
+/* custom popup */
+.custom-popup-section {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+}
+
+.custom-popup-section-inner {
+  position: relative;
+  width: 700px;
+  height: 450px;
+  margin: auto;
+  padding: 50px 30px 30px;
+  border-radius: 8px;
+  background-color: rgba(88,88,90,.9);
+  box-shadow: 0 1px 1px hsla(0,0%,8%,.6);
+  box-sizing: border-box;
+}
+
+.custom-popup-section-inner i {
+  color: #fff;
+  cursor: pointer;
+}
+
+.custom-popup-section-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+/* customized-tag-gift */
+.cash-gift-section h2, .cash-gift-section h3, .cash-gift-section input {
+  color: #fff;
+}
+
+.cash-gift-section {
+  position: relative;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.cash-gift-title {
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.cash-gift-input-control {
+  position: relative;
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-color: #fff;
+  border-bottom-style: solid;
+}
+
+.cash-gift-input-control:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.cash-gift-input-control.vrsdk-disabled {
+  opacity: .6;
+  border-bottom-color: alpha(#fff, 60%);
+}
+
+.cash-gift-input-control-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.cash-gift-input {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+.cash-gift-input::placeholder {
+  color: #fff;
+}
+
+.cash-gift-input:-ms-input-placeholder {
+  color: #fff;
+}
+
+.cash-gift-input::-ms-input-placeholder {
+  color: #fff;
+}
+
+.cash-gift-input:focus {
+  outline: none;
+}
+
+.cash-gift-input:-webkit-autofill {
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.cash-gift-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.cash-gift-footer-btn {
+  color: #fff;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 8px 30px;
+  cursor: pointer;
+}
+
+.cash-gift-footer-btn:focus {
+  outline: none;
+}
+
+.hide {
+  display: none;
+}

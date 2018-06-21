@@ -61,7 +61,6 @@ const hooks = vm => {
       vm.krpanoMarkerMouseout(index)
     },
     setMarkerInfo (index) {
-      console.log('in hooks setMarkerInfo')
       vm.setMarkerInfo(index)
     },
     changeCamera (h, v) {

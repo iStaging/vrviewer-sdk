@@ -3,9 +3,6 @@
 // New and init vrviewer with the element you give and the data(panoramas) which come from vrmaker backend service.
 
 var fetchPanoCollectionPromise = new Promise((resolve, reject) => {
-  // url : 'https://evs-dev-api.istaging.com.cn',
-  // url : 'https://evs-test-api.istaging.com.cn',
-  // url : 'https://evs-prod-api.istaging.com.cn',
   const url = 'https://evs-dev-api.istaging.com.cn'
   const collectionId = 'pc_8db3528f-c375-4733-81b1-d410b7cd4631'
   window.axios({
@@ -24,7 +21,7 @@ var fetchPanoCollectionPromise = new Promise((resolve, reject) => {
 
 Promise.all([fetchPanoCollectionPromise]).then((resp) => {
   var panoCollection = resp[0]
-  window.VRViewer.init({
+  VRViewer.init({
     el: '#vrviewer-sdk',
     lang: 'zh-cn',
     panoCollection: panoCollection,
@@ -50,4 +47,31 @@ Promise.all([fetchPanoCollectionPromise]).then((resp) => {
   })
 })
 
-document.getElementById('switch-panorama-list').onclick = window.VRViewer.onTogglePanoramasList
+var customPopupSection = document.querySelector('.custom-popup-section');
+customPopupSection.classList.add('hide');
+var customPopupContentSection = document.querySelector('.custom-popup-content-section');
+customPopupContentSection.classList.add('hide');
+
+VRViewer.onMarkerClick = (marker) => {
+  console.log('onMarkerClick callback: ', marker)
+
+  // handle your custom tag in marker click callback function
+  if (marker.type ==='custom') {
+    switch (marker.customTagInfo.type) {
+      case 'CashGift':
+        var CashGiftSection = document.querySelector('.cash-gift-section');
+        CashGiftSection.classList.remove('hide')
+        break
+      default:
+        break
+    }
+    customPopupSection.classList.remove('hide')
+    VRViewer.togglePanoramasList()
+  }
+}
+
+var customPopupClose = document.querySelector('.custom-popup-section-close');
+customPopupClose.addEventListener('click', function() {
+  customPopupSection.classList.add('hide');
+  VRViewer.togglePanoramasList()
+});
