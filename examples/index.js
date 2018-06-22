@@ -47,22 +47,44 @@ Promise.all([fetchPanoCollectionPromise]).then((resp) => {
   })
 })
 
-var customPopupSection = document.querySelector('.custom-popup-section');
-customPopupSection.classList.add('hide');
-var customPopupContentSection = document.querySelector('.custom-popup-content-section');
-customPopupContentSection.classList.add('hide');
+var customPopupSection = document.querySelector('.custom-popup-section')
+customPopupSection.classList.add('hide')
+// var customPopupContentSection = document.querySelector('.custom-popup-content-section');
+// customPopupContentSection.classList.add('hide');
+var customPopupContentSections = document.querySelectorAll('.custom-popup-content-section')
+customPopupContentSections.forEach(function (contentSection) {
+  contentSection.classList.add('hide')
+})
 
 VRViewer.onMarkerClick = (marker) => {
   console.log('onMarkerClick callback: ', marker)
 
   // handle your custom tag in marker click callback function
   if (marker.type ==='custom') {
+    console.log('custom marker type: ', marker.customTagInfo.type)
     switch (marker.customTagInfo.type) {
       case 'CashGift':
-        var CashGiftSection = document.querySelector('.cash-gift-section');
-        CashGiftSection.classList.remove('hide')
+        console.log('in CashGift')
+        var cashGiftSection = document.querySelector('.cash-gift-section');
+        cashGiftSection.classList.remove('hide')
+        break
+      case 'FlashSale':
+        console.log('in FlashSale')
+        var falshSaleSection = document.querySelector('.flash-sale-section');
+        falshSaleSection.classList.remove('hide')
+        break
+      case 'GroupBuy':
+        console.log('in GroupBuy')
+        var groupBuySection = document.querySelector('.group-buy-section');
+        groupBuySection.classList.remove('hide')
+        break
+      case 'DiscountCoupon':
+        console.log('in DiscountCoupon')
+        var discountCouponSection = document.querySelector('.discount-coupon-section');
+        discountCouponSection.classList.remove('hide')
         break
       default:
+        console.log('in default')
         break
     }
     customPopupSection.classList.remove('hide')
@@ -72,6 +94,12 @@ VRViewer.onMarkerClick = (marker) => {
 
 var customPopupClose = document.querySelector('.custom-popup-section-close');
 customPopupClose.addEventListener('click', function() {
-  customPopupSection.classList.add('hide');
+  customPopupSection.classList.add('hide')
+  customPopupContentSections.forEach(function (contentSection) {
+    if (!contentSection.classList.contains('hide')) {
+      contentSection.classList.add('hide')
+    }
+  })
+  // customPopupContentSection.classList.add('hide');
   VRViewer.togglePanoramasList()
 });
