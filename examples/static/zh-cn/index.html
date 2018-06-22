@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8>
+  <title>iStaging vrviewer-sdk example</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link href="../dist/vrviewer-sdk.css" rel="stylesheet">
+  <link href="./index.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="../dist/favicon.ico">
+</head>
+
+<body>
+  <div class="text-container">
+    <p>
+      <a href="/zh-cn/index.html">zh-cn</a>
+      /
+      <a href="/en/index.html">en</a>
+    </p>
+    <p class="title">
+      欢迎使用VR Viewer-SDK
+    </p>
+    <p class="desc">
+      在这里为您示范，如何使用js、css档案结合后端nodejs服务建立一个VR Viewer。
+      在index.js中带入您的 panoCollection id 并且初始化其资料，Viewer-SDK即可运行在您希望的网页中。
+      提醒您，您需要先行购买并安装Krpano license，范例使用的是krapno免费demo版本，并且SDK container 的长宽至少需要700px。
+    </p>
+  </div>
+  <div class="container">
+    <!-- sdk -->
+    <div id="vrviewer-sdk"></div>
+    <!-- custom-popup-section -->
+    <div class="custom-popup-section hide">
+      <div class="custom-popup-section-inner">
+        <div class="custom-popup-section-close">
+          <i class="fas fa-times fa-2x"></i>
+        </div>
+        <!-- cash-gift-section -->
+        <div class="custom-popup-content-section cash-gift-section">
+          <h2 class="cash-gift-title">
+            现金礼券
+          </h2>
+          <hr>
+          <h3>
+            输入信箱即可得到 ＄100 现金礼卷
+          </h3>
+          <div class="cash-gift-input-control">
+            <div class="cash-gift-input-control-inner">
+              <label for="name">
+                <i class="far fa-user"></i>
+              </label>
+              <input
+                id="name"
+                class="cash-gift-input"
+                type="text"
+                placeholder="名字">
+            </div>
+          </div>
+          <div class="cash-gift-input-control">
+            <div class="cash-gift-input-control-inner">
+              <label for="email">
+                <i class="far fa-envelope"></i>
+              </label>
+              <input
+                id="email"
+                class="cash-gift-input"
+                type="email"
+                placeholder="Email">
+            </div>
+          </div>
+          <div class="cash-gift-footer">
+            <button
+              type="button"
+              class="cash-gift-footer-btn">
+              发送
+            </button>
+          </div>
+        </div>
+        <!-- flash-sale-section -->
+        <div class="custom-popup-content-section flash-sale-section">
+          <div class="flase-sale-layout">
+            <div class="flash-sale-layout-area1">
+              <div class="flash-sale-image-container">
+                <span class="flash-sale-bookmark-yellow custom-popup-section-text-ml">
+                  7.5 折
+                </span>
+                <img
+                  class="flash-sale-image"
+                  src="http://fs1.shop123.com.tw/300123/upload/product/3001233246pic_big_137732.jpg"
+                  alt="">
+              </div>
+            </div>
+            <div class="flash-sale-layout-area2">
+              <div class="flash-sale-countdown">
+                <span>倒数 1 天 23:00:58</span>
+                <span>剩余 5 件</span>
+              </div>
+              <h4 class="flash-sale-title">
+                一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+              </h4>
+              <div class="flash-sale-price">
+                <del>$ 4000</del>
+                <strong class="custom-popup-section-text-ml">$ 3200</strong>
+              </div>
+              <div class="flash-sale-button-container flash-sale-action">
+                <a
+                  class="flash-sale-button custom-popup-section-text-ml"
+                  href="http://www.google.com.tw"
+                  target="_blank"
+                  rel="noopener">
+                  立即抢购
+                </a>
+              </div>
+            </div>
+            <div class="flash-sale-layout-area3">
+              <!-- <div> -->
+              <pre class="flash-sale-pre-custom">一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十</pre>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- group-buy-section -->
+        <div class="custom-popup-content-section group-buy-section">
+          <div class="group-buy-layout">
+            <div class="group-buy-layout-area1">
+              <div class="group-buy-image-container">
+                <img
+                  class="group-buy-image"
+                  src="http://fs1.shop123.com.tw/300123/upload/product/3001233246pic_big_137732.jpg"
+                  alt="">
+              </div>
+            </div>
+            <div class="group-buy-layout-area2">
+              <div class="group-buy-information">
+                <span>累绩 1650元／ 目标 2000 元</span>
+              </div>
+              <h4 class="group-buy-title">
+                漂亮的枋山爱文芒果，好吃再回购
+              </h4>
+              <div class="vrsdk-shopping-text group-buy-price">
+                <del>$ 4000</del>
+                <strong class="vrsdk-text-ml">$ 2200</strong>
+              </div>
+              <div class="group-buy-button-container group-buy-action">
+                <a
+                  class="group-buy-button vrsdk-text-ml"
+                  href="http://www.google.com.tw"
+                  target="_blank"
+                  rel="noopener">
+                  参与合购
+                </a>
+              </div>
+            </div>
+            <div class="group-buy-layout-area3">
+              <div class="vrsdk-shopping-description">
+                <pre class="group-buy-pre-custom">
+面交地点：
+  [新北市][板桥区] 中山路二段318巷20弄41号
+
+注意事项：
+  请准时取货，若无法当日取货请先告知没有告知的一律不负保管责任若当日没准时取货的一天收10元寄放费，超过三天就直接帮你做公关
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- discount-coupon-section -->
+        <div class="custom-popup-content-section discount-coupon-section">
+          <h2 class="discount-coupon-title">
+            折价卷
+          </h2>
+          <hr>
+          <div class="discount-coupon-content">
+            <div class="discount-coupon-item">
+              <p>满$1,000 折 100</p>
+              <p>折扣代码: <span class="vrsdk-color-yellow">HAPPY99</span></p>
+            </div>
+            <div class="discount-coupon-item">
+              <p>满$10,000 折 1,300</p>
+              <p>折扣代码: <span class="vrsdk-color-yellow">HAPPY996</span></p>
+            </div>
+            <div class="discount-coupon-item">
+              <p>满$15,000 折 2,000</p>
+              <p>折扣代码: <span class="vrsdk-color-yellow">HAPPY998</span></p>
+            </div>
+            <div class="discount-coupon-item">
+              <p>满$20,000 折 3,000</p>
+              <p>折扣代码: <span class="vrsdk-color-yellow">HAPPY999</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://www.istaging.com/sdk/three.min.js"></script>
+  <script type="text/javascript" src="https://www.istaging.com/sdk/krpano-demo.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="../dist/vrviewer-sdk.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+</body>
+
+</html>
