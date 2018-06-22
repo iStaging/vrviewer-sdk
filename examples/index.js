@@ -48,7 +48,7 @@ Promise.all([fetchPanoCollectionPromise]).then((resp) => {
 })
 
 var customPopupSection = document.querySelector('.custom-popup-section')
-customPopupSection.classList.add('hide')
+// customPopupSection.classList.add('hide')
 // var customPopupContentSection = document.querySelector('.custom-popup-content-section');
 // customPopupContentSection.classList.add('hide');
 var customPopupContentSections = document.querySelectorAll('.custom-popup-content-section')
@@ -64,27 +64,27 @@ VRViewer.onMarkerClick = (marker) => {
     console.log('custom marker type: ', marker.customTagInfo.type)
     switch (marker.customTagInfo.type) {
       case 'CashGift':
-        console.log('in CashGift')
+        // console.log('in CashGift handle')
         var cashGiftSection = document.querySelector('.cash-gift-section');
         cashGiftSection.classList.remove('hide')
         break
       case 'FlashSale':
-        console.log('in FlashSale')
+        // console.log('in FlashSale handle')
         var falshSaleSection = document.querySelector('.flash-sale-section');
         falshSaleSection.classList.remove('hide')
         break
       case 'GroupBuy':
-        console.log('in GroupBuy')
+        // console.log('in GroupBuy handle')
         var groupBuySection = document.querySelector('.group-buy-section');
         groupBuySection.classList.remove('hide')
         break
       case 'DiscountCoupon':
-        console.log('in DiscountCoupon')
+        // console.log('in DiscountCoupon handle')
         var discountCouponSection = document.querySelector('.discount-coupon-section');
         discountCouponSection.classList.remove('hide')
         break
       default:
-        console.log('in default')
+        // console.log('in default handle')
         break
     }
     customPopupSection.classList.remove('hide')
