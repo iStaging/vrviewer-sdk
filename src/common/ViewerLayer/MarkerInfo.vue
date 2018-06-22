@@ -1,20 +1,8 @@
 <template>
   <div class="vrsdk-marker-info">
-    <gift
-      v-show="checkCustomTag('CashGift')">
-    </gift>
-    <coupon
-      v-show="checkCustomTag('DiscountCoupon')">
-    </coupon>
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
-    <shopping
-      v-show="checkCustomTag('GroupBuy')">
-    </shopping>
-    <stop-watch
-      v-show="checkCustomTag('FlashSale')">
-    </stop-watch>
     <tag
       v-show="markerInfoData.type === 'tag'">
     </tag>
@@ -23,21 +11,13 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Coupon from './Custom/Coupon'
-import Gift from './Custom/Gift'
-import Shopping from './Custom/Shopping'
-import StopWatch from './Custom/StopWatch'
 import Memo from './Memo'
 import Tag from './Tag'
 
 export default {
   name: 'MarkerInfo',
   components: {
-    Coupon,
-    Gift,
     Memo,
-    Shopping,
-    StopWatch,
     Tag
   },
   computed: {

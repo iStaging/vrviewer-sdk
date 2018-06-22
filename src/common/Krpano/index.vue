@@ -255,6 +255,13 @@ export default {
 
     setMarkerInfo (index = 0) {
       const marker = this.currentPanorama.markers[index]
+      if (typeof this.$store.customEvents.onMarkerClick === 'function') {
+        this.$store.customEvents.onMarkerClick(marker)
+      }
+      if (marker.type === 'custom') {
+        return
+      }
+
       this.showMarkerInfo()
       this.setMarkerInfoData(marker)
     },
