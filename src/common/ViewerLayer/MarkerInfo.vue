@@ -3,6 +3,9 @@
     <memo
       v-show="markerInfoData.type === 'memo'">
     </memo>
+    <product
+      v-show="markerInfoData.type === 'product'">
+    </product>
     <tag
       v-show="markerInfoData.type === 'tag'">
     </tag>
@@ -12,12 +15,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Memo from './Memo'
+import Product from './Product'
 import Tag from './Tag'
 
 export default {
   name: 'MarkerInfo',
   components: {
     Memo,
+    Product,
     Tag
   },
   computed: {

@@ -308,6 +308,12 @@ export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
           default:
             return 'tag'
         }
+      case 'product':
+        switch (marker.iconType) {
+          case 'product':
+          default:
+            return 'product'
+        }
       case 'custom':
         return `markerCustomTagIcon_${marker.id}`
       case 'popup':

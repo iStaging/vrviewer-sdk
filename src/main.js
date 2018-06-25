@@ -115,8 +115,8 @@ class VRViewer {
 // Vue.config.silent = true
 
 if (process.env.NODE_ENV === 'development') {
-  const url = 'https://evs-dev-api.istaging.com.cn'
-  const collectionId = 'pc_8db3528f-c375-4733-81b1-d410b7cd4631'
+  const url = 'https://evs-test-api.istaging.com.cn'
+  const collectionId = 'pc_e99fd45d-8efc-4289-9f5d-c230ac2ac98f'
   axios({
     method: 'get',
     url: `${url}/api/v1/openlink/${collectionId}`
