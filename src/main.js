@@ -22,6 +22,9 @@ class VRViewer {
 
   init (config) {
     // console.log('config:', config)
+    this.checkBrowser()
+    // need krpano first
+    this.checkKrpano()
     i18n = new VueI18n({
       locale: config.lang,
       fallbackLocale: 'en',
@@ -38,6 +41,18 @@ class VRViewer {
       render: h => h(App)
     }).$mount()
     // console.log('vrviewer app:', this.app)
+  }
+
+  checkBrowser () {
+    // if (getBrowserType() === 'ie' && getIEVersion() !== 0 && getIEVersion() <= 12) {
+    // throw new Error('Your browser is not supported. Please use the modern browser.')
+    // }
+  }
+
+  checkKrpano () {
+    if (typeof window === 'undefined' || !window.krpanoJS) {
+      throw new Error('You need to include krpano script or import it first. Use it before vreditor sdk.')
+    }
   }
 
   destroy () {

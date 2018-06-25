@@ -55,7 +55,7 @@ export const actions = {
       panoramasManager.noPanoramasHandler()
       return
     }
-    console.log('panoramas', panoramas)
+    // console.log('panoramas', panoramas)
     sort(panoramas, 'index')
     dispatch('setProgressMax', panoramas.length + 12)
     panoramas.forEach(async panorama => {

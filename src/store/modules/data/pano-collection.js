@@ -57,7 +57,7 @@ export const actions = {
       dispatch('setProgressMax', 100)
       // const ids = Object.keys(resp.Panoramas)
       // console.log('ids:', ids)
-      console.log('panoCollection:', panoCollection)
+      // console.log('panoCollection:', panoCollection)
       commit('SET_PANO_COLLECTION', panoCollection)
       PanoCollectionManager.afterFetchPanoCollectionHandler({ dispatch, panoCollectionId })
       dispatch('setPanoCollectionNotFound', false)
