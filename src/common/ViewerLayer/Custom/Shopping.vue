@@ -153,11 +153,11 @@ a.vrsdk-shopping-button {
       width: 322px
       float: left
     }
-    .vrsdk-shopping-area-2 {
+    .vrsdk-shopping-area-1 + .vrsdk-shopping-area-2 {
       width: 298px
       float: right
     }
-    .vrsdk-shopping-area-3 {
+    .vrsdk-shopping-area-1 + .vrsdk-shopping-area-2 + .vrsdk-shopping-area-3 {
       width: 298px
       float: right
     }

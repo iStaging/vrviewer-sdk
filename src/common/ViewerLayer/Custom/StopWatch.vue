@@ -8,7 +8,7 @@
           </span>
           <img
             class="vrsdk-stop-watch-image"
-            src="http://fs1.shop123.com.tw/300123/upload/product/3001233246pic_big_137732.jpg"
+            src="http://fs1.shop123.com.tw/300123/upload/stop-watch/3001233246pic_big_137732.jpg"
             alt="假圖">
         </div>
       </div>
@@ -153,11 +153,11 @@ a.vrsdk-stop-watch-button {
       width: 322px
       float: left
     }
-    .vrsdk-stop-watch-area-2 {
+    .vrsdk-stop-watch-area-1 + .vrsdk-stop-watch-area-2 {
       width: 298px
       float: right
     }
-    .vrsdk-stop-watch-area-3 {
+    .vrsdk-stop-watch-area-1 + .vrsdk-stop-watch-area-2 + .vrsdk-stop-watch-area-3 {
       width: 298px
       float: right
     }
