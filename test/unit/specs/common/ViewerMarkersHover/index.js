@@ -12,7 +12,7 @@ const panoramas = [{
   category: 'livingroom'
 }]
 const marker = {
-  nextPanoramaId: '2',
+  nextPanoId: '2',
   type: 'point'
 }
 describe('common/ViewerMarkersHover/index.vue', () => {
@@ -66,8 +66,8 @@ describe('common/ViewerMarkersHover/index.vue', () => {
       .not.toEqual(shouldShowMarkerInfo)
   })
 
-  it('nextPanorama 的 id 應該要等於站點的 nextPanoramaId', () => {
-    const nextPanorama = vm.panoramas.find(panorama => panorama.id === vm.currentMarker.nextPanoramaId)
+  it('nextPanorama 的 id 應該要等於站點的 nextPanoId', () => {
+    const nextPanorama = vm.panoramas.find(panorama => panorama.id === vm.currentMarker.nextPanoId)
     expect(vm.nextPanorama)
       .toEqual(nextPanorama)
   })

@@ -211,7 +211,7 @@ export default {
         return
       }
       const foundPanorama = this.panoramas.find(panorama =>
-        panorama.id === marker.nextPanoramaId
+        panorama.id === marker.nextPanoId
       )
       if (isEmpty(foundPanorama)) {
         return
@@ -219,9 +219,9 @@ export default {
       return xmlString(foundPanorama.name)
     },
 
-    selectPanorama (nextPanoramaId = '', selectedMethod = '', isMarkerPoint = false, isWebVr = false) {
+    selectPanorama (nextPanoId = '', selectedMethod = '', isMarkerPoint = false, isWebVr = false) {
       let index = this.panoramas.findIndex(panorama =>
-        panorama.id === nextPanoramaId
+        panorama.id === nextPanoId
       )
       const panorama = this.panoramas[index]
       index = convertIndexFromArrayToUrl(index, this.panoramas.length)
