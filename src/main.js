@@ -109,12 +109,23 @@ class VRViewer {
   // start / stop auto rotation trigger !?
 }
 
-// Vue.config.productionTip = false
-// Vue.config.debug = false
-// Vue.config.devtools = false
-// Vue.config.silent = true
+const isProductionMode = process.env.NODE_ENV === 'production'
+if (isProductionMode) {
+  Vue.config.productionTip = false
+  Vue.config.debug = false
+  Vue.config.devtools = false
+  Vue.config.silent = true
+  // remove all console in production
+  console.log = function () {}
+  console.warn(`You are using iStaging vreditor sdk ${process.env.VERSION}`)
+} else {
+  Vue.config.productionTip = true
+  Vue.config.debug = true
+  Vue.config.devtools = true
+  Vue.config.silent = false
+}
 
-if (process.env.NODE_ENV === 'development') {
+if (!isProductionMode) {
   const url = 'https://evs-test-api.istaging.com.cn'
   const collectionId = 'pc_e99fd45d-8efc-4289-9f5d-c230ac2ac98f'
   axios({
