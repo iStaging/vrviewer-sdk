@@ -88,7 +88,6 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
 <action name="change_scene">
 <!--
 change scene in krpano, and callback to javascript (auto call it from prepare_change_scene)
-// todo: remove %3
 %1 ~ %5 is all same with prepare_change_scene
 %6 = newIndex
 %7 = oldIndex
@@ -103,13 +102,13 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   def(prevVlookat, number, calc(view.vlookat)); <!-- 儲存當前仰角 -->
   def(prevHlookat, number, calc(view.hlookat)); <!-- 儲存當前視角 -->
 
-  if (%5,
+  if (%4,
   ${(() => {
     if (getIEVersion()) {
       return 'loadscene(%1, null, MERGE, BLEND(1));'
     } else {
       // non-IE do 3.js moving
-      return `jscall(calc('krpano.hooks.threeJsMoving(%4, %5, %6, %7, %8)'));
+      return `jscall(calc('krpano.hooks.threeJsMoving(%3, %5, %6, %7, %8)'));
     loadscene(%1, null, MERGE, BLEND(0.3));`
     }
   })()},
@@ -128,8 +127,8 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
   })()}
   );
   set(view.vlookat, calc(prevVlookat)); <!-- 使用前一個 camera 仰角 -->
-  if (%4, set(view.hlookat, calc(%4 - (%5 - prevHlookat))));
-  if (%10, set(plugin[gyro].enabled, true);); <!-- 若有啟動 Gyro，在這裡要重新打開 -->
+  if (%3, set(view.hlookat, calc(%3 - (%5 - prevHlookat))));
+  if (%9, set(plugin[gyro].enabled, true);); <!-- 若有啟動 Gyro，在這裡要重新打開 -->
   if (webvr.isenabled AND webvr.headtracking == false, set(webvr.headtracking, true););
 
   <!-- 判斷下一個場景是否是 isTopLogo，要切換顯示 -->
@@ -139,7 +138,7 @@ change scene in krpano, and callback to javascript (auto call it from prepare_ch
 
 ${(() => {
     if (!getIEVersion()) {
-      return `if (%5,
+      return `if (%4,
       jscall(calc('krpano.hooks.threeJsMovingStop()')); wait(LOAD);,
       wait(LOAD););`
     } else {
@@ -184,7 +183,7 @@ set(hotspot[vr_panorama_text_${i}].ath, calc(view.hlookat ${calc} ${vrThumbAth *
     if(newsceneindex GT lastsceneindex, set(newsceneindex, 1));
     def(selectedMethod, string, 'VrModePrev');
     if(%1 == 1, set(selectedMethod, 'VrModeNext'));
-    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].id), get(selectedMethod), 0);
+    prepare_change_scene(get(scene[get(newsceneindex)].name), get(scene[get(newsceneindex)].id), 0);
   );
 </action>
 

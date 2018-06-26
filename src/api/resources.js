@@ -19,3 +19,4 @@ export const threeKrpanopluginMinJs = `${rootUrl}three.krpanoplugin.min.js`
 export const videoImage = `${rootUrl}video.png`
 export const webvrMinJs = `${rootUrl}webvr.min.js`
 export const webvrCursorImage = `${rootUrl}webvr_cursor_80x80_17f.png`
+export const defaultAvatarImage = `${rootUrl}default-avatar.png`

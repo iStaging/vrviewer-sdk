@@ -4,7 +4,7 @@
 
 var fetchPanoCollectionPromise = new Promise((resolve, reject) => {
   const url = 'https://evs-test-api.istaging.com.cn'
-  const collectionId = 'pc_85f8893c-26a6-4c4a-9ef2-baa343116ecb'
+  const collectionId = 'pc_f34fdc10-1aff-4dd7-b7b3-fc5601a5fbd1'
   window.axios({
     method: 'get',
     url: `${url}/api/v1/openlink/${collectionId}`

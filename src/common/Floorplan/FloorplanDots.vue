@@ -90,7 +90,7 @@ export default {
 
     selectPanorama (panorama = {}) {
       if (panorama.id !== this.currentPanorama.id) {
-        this.krpanoEl.call(`prepare_change_scene(panorama_${panorama.id}, ${panorama.id}, 'FloorplanDots');`)
+        this.krpanoEl.call(`prepare_change_scene(panorama_${panorama.id}, ${panorama.id});`)
       }
     },
 

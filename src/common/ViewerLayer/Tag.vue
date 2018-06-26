@@ -142,6 +142,7 @@ $image-w = 160px
   .vrsdk-marker-info-action {
     text-align: $marker-info-text-align
     order: 4
+    margin-top: 20px
   }
 
   .vrsdk-marker-info-description {

@@ -75,7 +75,7 @@ export const actions = {
       rootState.progress.isProgressActive) {
       return
     }
-    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.id || ''}, ${panorama.id || ''}, 'PanoramaList');`)
+    rootState.krpano.krpanoEl.call(`prepare_change_scene(panorama_${panorama.id || ''}, ${panorama.id || ''});`)
   },
 
   setPanorama ({ commit }, panorama = {}) {
