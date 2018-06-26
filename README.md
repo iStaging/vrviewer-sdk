@@ -17,8 +17,8 @@ Run sample nodejs server, change the panoCollection id you have and start it, th
 ### ES6:
 
 ```bash
-// Before use vreditor-sdk, you need to have krpano first.
-// go to https://krpano.com/ to purchase krpano license.
+// Before use vreditor-sdk, you need to have threejs and krpano first.
+// go to https://threejs.org/ and https://krpano.com/ to purchase krpano license.
 
 // import vrviewer-sdk js, css.
 import 'vrviewer-sdk'
@@ -73,7 +73,8 @@ VRViewer.init({
 
 <body>
   <div id="vrviewer-sdk"></div>
-  <!-- make sure you have KRPano first. -->
+  <!-- make sure you have threejs and krpano first. -->
+  <script src="https://www.istaging.com/sdk/three.min.js"></script>
   <script src="https://www.istaging.com/sdk/vrviewer-sdk.js"></script>
 
 </body>
