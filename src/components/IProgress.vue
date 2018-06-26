@@ -76,8 +76,8 @@ export default {
   box-shadow: inset 0 -1px 1px alpha($white, 30%)
   overflow: hidden
 
-  &.vrsdk-top-fixed {
-    position: fixed
+  &.vrsdk-progress-top {
+    position: absolute
     width: 100%
     height: 8px
     top: 0

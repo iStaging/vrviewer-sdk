@@ -93,7 +93,7 @@ $tabs-height = $tabs-text-lh + $tabs-text-pd * 2
 .vrsdk-viewer-layer-close {
   @extend .vrsdk-flex-center
   @extend .vrsdk-btn-no-default
-  position: fixed
+  position: absolute
   right: $vrsdk-viewer-layer-vrsdk-viewer-layer-close
   top: 7px
   padding: 10px
