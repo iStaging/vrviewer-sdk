@@ -3,8 +3,8 @@
 // New and init vrviewer with the element you give and the data(panoramas) which come from vrmaker backend service.
 
 var fetchPanoCollectionPromise = new Promise((resolve, reject) => {
-  const url = 'https://evs-dev-api.istaging.com.cn'
-  const collectionId = 'pc_8db3528f-c375-4733-81b1-d410b7cd4631'
+  const url = 'https://evs-test-api.istaging.com.cn'
+  const collectionId = 'pc_f34fdc10-1aff-4dd7-b7b3-fc5601a5fbd1'
   window.axios({
     method: 'get',
     url: `${url}/api/v1/openlink/${collectionId}`

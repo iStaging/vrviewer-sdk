@@ -116,7 +116,7 @@ class VRViewer {
 
 if (process.env.NODE_ENV === 'development') {
   const url = 'https://evs-test-api.istaging.com.cn'
-  const collectionId = 'pc_e99fd45d-8efc-4289-9f5d-c230ac2ac98f'
+  const collectionId = 'pc_f34fdc10-1aff-4dd7-b7b3-fc5601a5fbd1'
   axios({
     method: 'get',
     url: `${url}/api/v1/openlink/${collectionId}`
