@@ -28,8 +28,8 @@ import {
   isMobile
 } from '@/api/utils'
 import Point from './Point'
-import Shopping from './CustomizedTag/Shopping'
-import StopWatch from './CustomizedTag/StopWatch'
+import Shopping from './Custom/Shopping'
+import StopWatch from './Custom/StopWatch'
 
 export default {
   name: 'ViewerMarkersHover',

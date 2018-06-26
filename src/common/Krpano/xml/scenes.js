@@ -8,6 +8,7 @@ import {
 import getMarkerCustomXml from './marker-custom'
 import getMarkerMemoXml from './marker-memo'
 import getMarkerPointXml from './marker-point'
+import getMarkerProductXml from './marker-product'
 import getMarkerTagXml from './marker-tag'
 
 const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nextPanoramaNameName, defaultFov) => {
@@ -37,6 +38,9 @@ const getScenesXml = (panoramas, startIndex, krpanoXOffset, krpanoVrModeObj, nex
             break
           case 'tag':
             hotspot += getMarkerTagXml(marker, ath, atv, name, useCustomIcon, index, krpanoVrModeObj)
+            break
+          case 'product':
+            hotspot += getMarkerProductXml(marker, ath, atv, name, useCustomIcon, index)
             break
           case 'popup':
             krpanoVrModeObj.vrModeShouldHide.push(`marker_${marker.id}`)

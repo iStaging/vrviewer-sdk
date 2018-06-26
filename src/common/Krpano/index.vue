@@ -261,7 +261,6 @@ export default {
       if (marker.type === 'custom') {
         return
       }
-
       this.showMarkerInfo()
       this.setMarkerInfoData(marker)
     },

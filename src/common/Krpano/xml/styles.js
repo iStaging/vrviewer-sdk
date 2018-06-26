@@ -5,6 +5,9 @@ import {
   xmlString,
   xmlUrlString
 } from '@/api/helpers'
+import {
+  includes
+} from '@/api/utils'
 import linkImage from '../img/markers/link.png'
 import memoImage from '../img/markers/memo.png'
 import pointImage from '../img/markers/point.png'
@@ -36,6 +39,7 @@ const getStylesXml = (panoramas, vrThumbAth, vrThumbWidth) => {
 <style name="memo" url="${memoImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="point" url="${pointImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="tag" url="${tagImage}" ${markerIconCommonAttribute} ${markerIconSize} />
+<style name="product" url="${tagImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="video" url="${videoImage}" ${markerIconCommonAttribute} ${markerIconSize} />
 <style name="coupon" url="${couponImage}" ${markerIconCommonAttribute} />
 <style name="gift" url="${giftImage}" ${markerIconCommonAttribute} />
@@ -81,7 +85,7 @@ width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${pan
           // add custom icon image
           styles += `<style name="markerCustomIcon_${marker.id}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
         }
-        if (marker.type === 'tag' && marker.photo) {
+        if (includes(['tag', 'product'], marker.type) && marker.photo) {
           // add tag photo
           styles += `<style name="markerInfoTagPhoto_${marker.id}" url="${xmlUrlString(marker.photo)}" ${markerIconCommonAttribute} />`
         }
