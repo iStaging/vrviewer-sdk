@@ -115,11 +115,7 @@ export default {
 @import '~css/extends.styl'
 
 .vrsdk-popup {
-  @extend .vrsdk-position-fixed
-  top: 0
-  right: 0
-  bottom: 0
-  left: 0
+  @extend .vrsdk-absolute-full
   z-index: $popup-z
   background-color: alpha($black, 70%)
 }

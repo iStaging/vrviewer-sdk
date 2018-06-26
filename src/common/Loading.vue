@@ -14,7 +14,7 @@
     <!--.top-fixed = put the progress bar to top, not in center-->
     <i-progress
       v-show="isProgressActive"
-      :class="{ 'vrsdk-top-fixed': isAppReady }"
+      :class="{ 'vrsdk-progress-top': isAppReady }"
       :value="progressValue"
       :max="progressMax"
       :color="color"
