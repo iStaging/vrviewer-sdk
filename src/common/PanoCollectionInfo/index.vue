@@ -29,6 +29,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { iStagingUrl } from '@/api/helpers'
+import { defaultAvatarImage } from '@/api/resources'
 import Icon from '../../components/Icon/index.vue'
 
 export default {
@@ -52,7 +53,7 @@ export default {
     ]),
 
     panoCollectionLogo () {
-      return this.currentPanoCollection.logo
+      return this.currentPanoCollection.logo || defaultAvatarImage
     }
   },
 
