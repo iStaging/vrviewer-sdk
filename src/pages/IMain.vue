@@ -307,9 +307,9 @@ export default {
 
     mouseenterMarker (marker, e) {
       this.setMarker(marker)
-      if (marker.type === 'point' && marker.nextPanoramaId) {
+      if (marker.type === 'point' && marker.nextPanoId) {
         const foundPanorama = this.panoramas.find(panorama =>
-          panorama.id === marker.nextPanoramaId
+          panorama.id === marker.nextPanoId
         ) || {}
         this.setHoveredPanorama(foundPanorama)
       }

@@ -176,7 +176,7 @@ export default {
   }
 
   .vrsdk-panoramas-list-a-active {
-    .panoramas-list-icon-wrapper {
+    .vrsdk-panoramas-list-icon-wrapper {
       border-color: $main-color
     }
   }
@@ -225,7 +225,7 @@ $w = 120px
 
     .vrsdk-panoramas-list-a {
       &.vrsdk-active, &:hover {
-        &:not(.panoramas-list-a-active) {
+        &:not(.vrsdk-panoramas-list-a-active) {
           .vrsdk-panoramas-list-icon-wrapper {
             border-color: $light-gray-color
           }
