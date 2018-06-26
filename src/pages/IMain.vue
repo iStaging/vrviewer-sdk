@@ -74,7 +74,7 @@
           <qr-code
             :height="200"
             :width="200"
-            :url="shareUrl.qrcode">
+            :url="shareSetting.shareUrl">
           </qr-code>
         </div>
         <div class="vrsdk-share-text">
