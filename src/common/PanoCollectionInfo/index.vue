@@ -52,7 +52,7 @@ export default {
     ]),
 
     panoCollectionLogo () {
-      return this.currentPanoCollection.logoUrl
+      return this.currentPanoCollection.logo
     }
   },
 
