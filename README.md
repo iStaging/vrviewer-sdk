@@ -115,143 +115,113 @@ Check out the src folder.
 npm run dev
 ```
 
-## If you want to fork VR Viewer, go ahead!
+## If you want to fork VR Viewer, please go ahead!
 
-VR Viewer is a RWD website, it's split up layout by 768px.
-
+VR Viewer is a RWD website, it's split up layout by 768px.<br><br>
 
 ### Structure of VR Viewer SDK
-src is our source code, you can modify anything you like.
-src/api put some useful js
-src/common is put some vue files, like components but it's specific for the project
-src/components is vue components, it can use not only vr viewer sdk project
-src/images put some images
-src/messages is for vue i18n
-src/mixins is for vue mixins
-src/pages is for vue router, but it's only index page with multiple split vue files
-src/store is vuex structure
-src/stylesheets is global stylus css
+Src is our source code, you can modify anything you like.<br>
+src/api put some useful js<br>
+src/common is put some vue files, like components but it's specific for the project<br>
+src/components is vue components, it can use not only vr viewer sdk project<br>
+src/images put some images<br>
+src/messages is for vue i18n<br>
+src/mixins is for vue mixins<br>
+src/pages is for vue router, but it's only index page with multiple split vue files<br>
+src/store is vuex structure<br>
+src/stylesheets is global stylus css<br>
 
-#### api
+### api
 
 ##### src/api/constants.js
-Some default value are put over here
-
+Some default value are put over here<br><br>
 
 ##### src/api/helpers.js
-Some functions for this project
-
+Some functions for this project<br><br>
 
 ##### src/api/prototype.js
-Just prevent IE break in some functions
-
+Just prevent IE break in some functions<br><br>
 
 ##### src/api/resources.js
-Online resources hosted in iStaging website
-
+Online resources hosted in iStaging website<br><br>
 
 ##### src/api/utils.js
-Some functions for global use
+Some functions for global use<br><br>
 
-
-#### common
-
+### common
 
 ##### src/common/Floorplan
-Floorplan component here
-
+Floorplan component here<br><br>
 
 ##### src/common/Instructions
-For blocking portrait iOS in VR mode
-
+For blocking portrait iOS in VR mode<br><br>
 
 ##### src/common/Krpano
-The core of VR
-
+The core of VR<br><br>
 
 ##### src/common/PanoCollectionInfo
-Collection avatar and name
-
+Collection avatar and name<br><br>
 
 ##### src/common/ViewerLayer
-It will show up in the center of the VR Viewer SDK, it is used by marker info, share, information
-
+It will show up in the center of the VR Viewer SDK, it is used by marker info, share, information<br><br>
 
 ##### src/common/ViewerList
-Panoramas list
-
+Panoramas list<br><br>
 
 ##### src/common/ViewerMarkersHover
-Hovered markers use this component
+Hovered markers use this component<br><br>
 
-
-#### components
-
+### components
 
 ##### src/components/Icon/index.vue
-All icon use this component, but you need to add image by yourself
-
+All icon use this component, but you need to add image by yourself<br><br>
 
 ##### src/components/Popup/index.vue
-This is used for clicked marker popup
-
+This is used for clicked marker popup<br><br>
 
 ##### src/components/SvgIcon/index.vue
-This is used for icons, but can change its color
-
+This is used for icons, but can change its color<br><br>
 
 ##### src/components/IProgress.vue
-While loading each panorama, it will appear
-
+While loading each panorama, it will appear<br><br>
 
 ##### src/components/IRepeat.vue
-Just a repeater
-
+Just a repeater<br><br>
 
 ##### src/components/QrCode.vue
-QR code
+QR code<br><br>
 
+### mixins
+Component IRepeat use filterBy<br><br>
 
+### store
+Get/set some state in the vuex framework<br><br>
 
-#### mixins
-component IRepeat use filterBy
-
-
-#### store
-Get/set some state in the vuex framework
-
-
-#### Pages
+### Pages
 
 ##### src/pages/IHeader.vue
-Collection info is placed here.
-
+Collection info is placed here.<br><br>
 
 ##### src/pages/IFooter.vue
-Powered by iStaging
-
+Powered by iStaging<br><br>
 
 ##### src/pages/IAside.vue
-Including INav component and close full screen or VR mode button
-
+Including INav component and close full screen or VR mode button<br><br>
 
 ##### src/pages/IMain.vue
 Most of the important components are put here. There has the core of VR display area - krpano.
 And yet, there has hovered marker info, clicked marker info, share layer, panoramas list,
-floor plan, instructions (for iOS) and popup.
-
+floor plan, instructions (for iOS) and popup.<br><br>
 
 ##### src/pages/INav.vue
 You can depends on what button you want to add, in small layout menu and in large
 layout menu. Find it out in the file, there's three menu list in
 computed object: navMobileOuterList, navMobileInnerList and navPcList.
-Apparently the naming of these menu list is 2 for mobile view, 1 for desktop view, just add some code like this before the value return:
-
-
+Apparently the naming of these menu list is 2 for mobile view, 1 for desktop view,
+just add some code like this before the value return:<br><br>
 
 After you finished modifying, you can run ```npm run build```, then your result will built in dist files!
 Examples folder is for building your site, but maybe you have no idea how to import the VR viewer SDK.
-Now you have a great build example in examples folder.
+Now you have a great build example in examples folder.<br><br>
 
-
-## Enjoy it!
+## Enjoy it!<br>
