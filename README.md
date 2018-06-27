@@ -4,7 +4,13 @@ VR Viewer SDK helps you creating a panorama easily on website.
 
 ## Documents
 
-[https://istaging.gitbook.io/vr-maker-sdk](https://istaging.gitbook.io/vr-maker-sdk)
+[https://evs-doc-test.istaging.com.cn](https://evs-doc-test.istaging.com.cn)
+
+## Getting Started
+
+* First, you need to sign up VR Maker SDK account by contact iStaging mailto:benjamin@staging.com.tw.
+
+* Then check your nodejs version, we recommend you use the version upper 8.5.0.
 
 ## How to use
 
@@ -68,14 +74,15 @@ VRViewer.init({
 
 ```html
 <head>
-  <link href="https://www.istaging.com/sdk/dist/vrviewer-sdk.css" rel="stylesheet"></link>
+  <link href="https://github.com/iStaging/vrviewer-sdk/blob/master/dist/vrviewer-sdk.css" rel="stylesheet"></link>
 </head>
 
 <body>
   <div id="vrviewer-sdk"></div>
   <!-- make sure you have threejs and krpano first. -->
-  <script src="https://www.istaging.com/sdk/three.min.js"></script>
-  <script src="https://www.istaging.com/sdk/vrviewer-sdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/71/three.js"></script>
+  <script src="krpano.min.js"></script>
+  <script src="https://github.com/iStaging/vrviewer-sdk/blob/master/dist/vrviewer-sdk.js"></script>
 
 </body>
 ```
