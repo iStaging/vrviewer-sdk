@@ -116,8 +116,8 @@ npm run dev
 ```
 
 ## If you want to fork VR Viewer, please go ahead!
-
 VR Viewer is a RWD website, it's split up layout by 768px.<br><br>
+
 
 ### Structure of VR Viewer SDK
 Src is our source code, you can modify anything you like.<br>
@@ -131,82 +131,128 @@ src/pages is for vue router, but it's only index page with multiple split vue fi
 src/store is vuex structure<br>
 src/stylesheets is global stylus css<br>
 
-### api
+<h4>api</h4>
 
 ##### src/api/constants.js
-Some default value are put over here<br><br>
+<ul>
+  <li>Some default value are put over here</li>
+</ul>
 
 ##### src/api/helpers.js
-Some functions for this project<br><br>
+<ul>
+  <li>Some functions for this project</li>
+</ul>
 
 ##### src/api/prototype.js
-Just prevent IE break in some functions<br><br>
+<ul>
+  <li>Just prevent IE break in some functions</li>
+</ul>
 
 ##### src/api/resources.js
-Online resources hosted in iStaging website<br><br>
+<ul>
+  <li>Online resources hosted in iStaging website</li>
+</ul>
 
 ##### src/api/utils.js
-Some functions for global use<br><br>
+<ul>
+  <li>Some functions for global use</li>
+</ul>
 
-### common
+<h4>common</h4>
 
 ##### src/common/Floorplan
-Floorplan component here<br><br>
+<ul>
+  <li>Floorplan component here</li>
+</ul>
 
 ##### src/common/Instructions
-For blocking portrait iOS in VR mode<br><br>
+<ul>
+  <li>For blocking portrait iOS in VR mode</li>
+</ul>
 
 ##### src/common/Krpano
-The core of VR<br><br>
+<ul>
+  <li>The core of VR</li>
+</ul>
 
 ##### src/common/PanoCollectionInfo
-Collection avatar and name<br><br>
+<ul>
+  <li>Collection avatar and name</li>
+</ul>
 
 ##### src/common/ViewerLayer
-It will show up in the center of the VR Viewer SDK, it is used by marker info, share, information<br><br>
+<ul>
+  <li>It will show up in the center of the VR Viewer SDK, it is used by marker info, share, information</li>
+</ul>
 
 ##### src/common/ViewerList
-Panoramas list<br><br>
+<ul>
+  <li>Panoramas list</li>
+</ul>
 
 ##### src/common/ViewerMarkersHover
-Hovered markers use this component<br><br>
+<ul>
+  <li>Hovered markers use this component</li>
+</ul>
 
-### components
+<h4>components</h4>
 
 ##### src/components/Icon/index.vue
-All icon use this component, but you need to add image by yourself<br><br>
+<ul>
+  <li>All icon use this component, but you need to add image by yourself</li>
+</ul>
 
 ##### src/components/Popup/index.vue
-This is used for clicked marker popup<br><br>
+<ul>
+  <li>This is used for clicked marker popup</li>
+</ul>
 
 ##### src/components/SvgIcon/index.vue
-This is used for icons, but can change its color<br><br>
+<ul>
+  <li>This is used for icons, but can change its color</li>
+</ul>
 
 ##### src/components/IProgress.vue
-While loading each panorama, it will appear<br><br>
+<ul>
+  <li>While loading each panorama, it will appear</li>
+</ul>
 
 ##### src/components/IRepeat.vue
-Just a repeater<br><br>
+<ul>
+  <li>Just a repeater</li>
+</ul>
 
 ##### src/components/QrCode.vue
-QR code<br><br>
+<ul>
+  <li>QR code</li>
+</ul>
 
-### mixins
-Component IRepeat use filterBy<br><br>
+<h4>mixins:</h4>
+<ul>
+  <li>Component IRepeat use filterBy</li>
+</ul>
 
-### store
-Get/set some state in the vuex framework<br><br>
+<h4>store</h4>
+<ul>
+  <li>Get/set some state in the vuex framework</li>
+</ul>
 
-### Pages
+<h4>Pages</h4>
 
 ##### src/pages/IHeader.vue
-Collection info is placed here.<br><br>
+<ul>
+  <li>Collection info is placed here.</li>
+</ul>
 
 ##### src/pages/IFooter.vue
-Powered by iStaging<br><br>
+<ul>
+  <li>Powered by iStaging</li>
+</ul>
 
 ##### src/pages/IAside.vue
-Including INav component and close full screen or VR mode button<br><br>
+<ul>
+  <li>Including INav component and close full screen or VR mode button</li>
+</ul>
 
 ##### src/pages/IMain.vue
 Most of the important components are put here. There has the core of VR display area - krpano.
