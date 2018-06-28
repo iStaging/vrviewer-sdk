@@ -1,58 +1,48 @@
 // Make sure you have already using vrviewer-sdk js first.
 
 // New and init vrviewer with the element you give and the data(panoramas) which come from vrmaker backend service.
-
-var fetchPanoCollectionPromise = new Promise((resolve, reject) => {
-  const url = 'https://evs-test-api.istaging.com.cn'
-  const collectionId = 'pc_f34fdc10-1aff-4dd7-b7b3-fc5601a5fbd1'
-  window.axios({
-    method: 'get',
-    url: `${url}/api/v1/openlink/${collectionId}`
-  }).then(function (response) {
-    if (response.status === 200) {
-      var panoCollection = response.data
-      resolve(panoCollection)
-      console.log('panoCollection', panoCollection)
-    }
-  }).catch(function (error) {
-    reject(error)
-  })
-})
-
-Promise.all([fetchPanoCollectionPromise]).then((resp) => {
-  var panoCollection = resp[0]
-  VRViewer.init({
-    el: '#vrviewer-sdk',
-    lang: 'en',
-    panoCollection: panoCollection,
-    setting: {
-      autoRotateSetting: {
-        active: true,
-        revert: false,
-        rotateDuration: 200000,
-        restartTime: 20000
-      },
-      gyroSetting: {
-        active: false
-      },
-      krpanoSetting: {
-        mwheel: true,
-        focus: false
-      },
-      tripodSetting: {
-        image: 'https://www.istaging.com/sdk/logo-tripod.png',
-        size: 60
+const apiServerUrl = 'https://evs-test-api.istaging.com.cn'
+const pathnameArray = location.pathname.split('/')
+const collectionId = pathnameArray[pathnameArray.length - 1]
+axios({
+  method: 'get',
+  url: `${apiServerUrl}/api/v1/openlink/${collectionId}`
+}).then((response) => {
+  if (response.status === 200) {
+    console.log('panoCollection', panoCollection)
+    const panoCollection = response.data
+    VRViewer.init({
+      el: '#vrviewer-sdk',
+      lang: 'en',
+      panoCollection: panoCollection,
+      setting: {
+        autoRotateSetting: {
+          active: true,
+          revert: false,
+          rotateDuration: 200000,
+          restartTime: 20000
+        },
+        gyroSetting: {
+          active: false
+        },
+        krpanoSetting: {
+          mwheel: true,
+          focus: false
+        },
+        tripodSetting: {
+          image: 'https://www.istaging.com/sdk/logo-tripod.png',
+          size: 60
+        }
       }
-    }
-  })
+    })
+  }
+}).catch((error) => {
+  reject(error)
 })
 
-var customPopupSection = document.querySelector('.custom-popup-section')
-// customPopupSection.classList.add('hide')
-// var customPopupContentSection = document.querySelector('.custom-popup-content-section');
-// customPopupContentSection.classList.add('hide');
-var customPopupContentSections = document.querySelectorAll('.custom-popup-content-section')
-customPopupContentSections.forEach(function (contentSection) {
+const customPopupSection = document.querySelector('.custom-popup-section')
+const customPopupContentSections = document.querySelectorAll('.custom-popup-content-section')
+customPopupContentSections.forEach((contentSection) => {
   contentSection.classList.add('hide')
 })
 
@@ -65,22 +55,22 @@ VRViewer.onMarkerClick = (marker) => {
     switch (marker.customTagInfo.type) {
       case 'CashGift':
         // console.log('in CashGift handle')
-        var cashGiftSection = document.querySelector('.cash-gift-section');
+        const cashGiftSection = document.querySelector('.cash-gift-section');
         cashGiftSection.classList.remove('hide')
         break
       case 'FlashSale':
         // console.log('in FlashSale handle')
-        var falshSaleSection = document.querySelector('.flash-sale-section');
+        const falshSaleSection = document.querySelector('.flash-sale-section');
         falshSaleSection.classList.remove('hide')
         break
       case 'GroupBuy':
         // console.log('in GroupBuy handle')
-        var groupBuySection = document.querySelector('.group-buy-section');
+        const groupBuySection = document.querySelector('.group-buy-section');
         groupBuySection.classList.remove('hide')
         break
       case 'DiscountCoupon':
         // console.log('in DiscountCoupon handle')
-        var discountCouponSection = document.querySelector('.discount-coupon-section');
+        const discountCouponSection = document.querySelector('.discount-coupon-section');
         discountCouponSection.classList.remove('hide')
         break
       default:
@@ -92,14 +82,19 @@ VRViewer.onMarkerClick = (marker) => {
   }
 }
 
-var customPopupClose = document.querySelector('.custom-popup-section-close');
-customPopupClose.addEventListener('click', function() {
+const customPopupClose = document.querySelector('.custom-popup-section-close');
+customPopupClose.addEventListener('click', () => {
   customPopupSection.classList.add('hide')
   customPopupContentSections.forEach(function (contentSection) {
     if (!contentSection.classList.contains('hide')) {
       contentSection.classList.add('hide')
     }
   })
-  // customPopupContentSection.classList.add('hide');
   VRViewer.togglePanoramasList()
 });
+
+const chanageLanguage = (language) => {
+  const pathnameArray = location.pathname.split('/')
+  const collectionId = pathnameArray[pathnameArray.length - 1]
+  location.href = `/${language}/${collectionId}`
+}
