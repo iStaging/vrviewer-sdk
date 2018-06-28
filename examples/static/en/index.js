@@ -9,8 +9,9 @@ axios({
   url: `${apiServerUrl}/api/v1/openlink/${collectionId}`
 }).then((response) => {
   if (response.status === 200) {
-    console.log('panoCollection', panoCollection)
     const panoCollection = response.data
+    console.log('panoCollection: ', panoCollection)
+
     VRViewer.init({
       el: '#vrviewer-sdk',
       lang: 'en',
@@ -32,12 +33,15 @@ axios({
         tripodSetting: {
           image: 'https://www.istaging.com/sdk/logo-tripod.png',
           size: 60
+        },
+        shareSetting: {
+          shareUrl: `http://localhost:3001/en/${collectionId}`
         }
       }
     })
   }
 }).catch((error) => {
-  reject(error)
+  console.log(error)
 })
 
 const customPopupSection = document.querySelector('.custom-popup-section')

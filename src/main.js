@@ -34,6 +34,7 @@ class VRViewer {
     this.initData(config)
     this.initConfig(config)
     this.updateEvents()
+    this.version = process.env.VERSION
     this.app = new Vue({
       el: config.el,
       store,
@@ -115,9 +116,6 @@ if (isProductionMode) {
   Vue.config.debug = false
   Vue.config.devtools = false
   Vue.config.silent = true
-  // remove all console in production
-  console.log = function () {}
-  console.warn(`You are using iStaging vreditor sdk ${process.env.VERSION}`)
 } else {
   Vue.config.productionTip = true
   Vue.config.debug = true
