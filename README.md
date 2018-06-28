@@ -2,9 +2,13 @@
 
 VR Viewer SDK helps you creating a panorama easily on website.
 
-## Documents
+## Resource
 
-[https://evs-doc-test.istaging.com.cn](https://evs-doc-test.istaging.com.cn)
+Tutorial: https://medium.com/@istaging_RD/vrmaker-sdk-create-your-virtual-tour-c6b4d796da29
+Document: https://evs-doc-test.istaging.com.cn
+
+vreditor-sdk github: https://github.com/iStaging/vreditor-sdk
+vrviewer-sdk github: https://github.com/iStaging/vrviewer-sdk
 
 ## Getting Started
 
