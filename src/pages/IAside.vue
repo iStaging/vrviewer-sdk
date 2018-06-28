@@ -15,7 +15,7 @@
       @click="handleExitFullscreen()">
       <svg-icon
         name="close"
-        class="vrsdk-vrsdk-icon-close">
+        class="vrsdk-icon-close">
       </svg-icon>
     </button>
   </aside>
