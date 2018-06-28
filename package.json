@@ -1,6 +1,6 @@
 {
   "name": "vrviewer-sdk",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "VRViewer sdk help you to create and edit your VR content more easily.",
   "author": "kevin.hu <kevin.hu@staging.com.tw>, jason.tseng <jason@staging.com.tw>, alex <alex@staging.com.tw>",
   "scripts": {
