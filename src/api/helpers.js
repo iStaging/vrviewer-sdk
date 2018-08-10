@@ -327,5 +327,5 @@ export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
   //       }
   //     default:
   //   }
-  }
+  // }
 }
