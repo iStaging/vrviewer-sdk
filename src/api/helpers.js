@@ -276,55 +276,56 @@ export const getCorrectRotation = (value) => {
 }
 
 export const hotspotIcon = (marker = {}, useCustomIcon = false) => {
-  if (useCustomIcon) {
-    return `markerCustomIcon_${marker.id}`
-  } else {
-    switch (marker.type) {
-      case 'point':
-        switch (marker.iconType) {
-          case 'leftArrow':
-            return 'leftArrow'
-          case 'leftFrontArrow':
-            return 'leftFrontArrow'
-          case 'rightFrontArrow':
-            return 'rightFrontArrow'
-          case 'rightArrow':
-            return 'rightArrow'
-          case 'frontArrow':
-            return 'frontArrow'
-          case 'point':
-          default:
-            return 'point'
-        }
-      case 'memo':
-        switch (marker.iconType) {
-          case 'memo':
-          default:
-            return 'memo'
-        }
-      case 'tag':
-        switch (marker.iconType) {
-          case 'tag':
-          default:
-            return 'tag'
-        }
-      case 'product':
-        switch (marker.iconType) {
-          case 'product':
-          default:
-            return 'product'
-        }
-      case 'custom':
-        return `markerCustomTagIcon_${marker.id}`
-      case 'popup':
-        switch (marker.iconType) {
-          case 'link':
-            return 'link'
-          case 'video':
-          default:
-            return 'video'
-        }
-      default:
-    }
+  return `markerCustomIcon_${marker.id}`
+  // if (useCustomIcon) {
+  //   return `markerCustomIcon_${marker.id}`
+  // } else {
+  //   switch (marker.type) {
+  //     case 'point':
+  //       switch (marker.iconType) {
+  //         case 'leftArrow':
+  //           return 'leftArrow'
+  //         case 'leftFrontArrow':
+  //           return 'leftFrontArrow'
+  //         case 'rightFrontArrow':
+  //           return 'rightFrontArrow'
+  //         case 'rightArrow':
+  //           return 'rightArrow'
+  //         case 'frontArrow':
+  //           return 'frontArrow'
+  //         case 'point':
+  //         default:
+  //           return 'point'
+  //       }
+  //     case 'memo':
+  //       switch (marker.iconType) {
+  //         case 'memo':
+  //         default:
+  //           return 'memo'
+  //       }
+  //     case 'tag':
+  //       switch (marker.iconType) {
+  //         case 'tag':
+  //         default:
+  //           return 'tag'
+  //       }
+  //     case 'product':
+  //       switch (marker.iconType) {
+  //         case 'product':
+  //         default:
+  //           return 'product'
+  //       }
+  //     case 'custom':
+  //       return `markerCustomTagIcon_${marker.id}`
+  //     case 'popup':
+  //       switch (marker.iconType) {
+  //         case 'link':
+  //           return 'link'
+  //         case 'video':
+  //         default:
+  //           return 'video'
+  //       }
+  //     default:
+  //   }
   }
 }

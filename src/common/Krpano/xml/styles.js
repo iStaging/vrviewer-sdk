@@ -81,7 +81,8 @@ width="${vrThumbWidth}" height="20" onclick="prepare_change_scene(panorama_${pan
     // load all images from markers
     if (panorama.markers && panorama.markers.length) {
       panorama.markers.forEach(marker => {
-        if (marker.useCustomIcon && marker.iconUrl) {
+        if (marker.iconUrl) {
+        // if (marker.useCustomIcon && marker.iconUrl) {
           // add custom icon image
           styles += `<style name="markerCustomIcon_${marker.id}" url="${xmlUrlString(marker.iconUrl)}" ${markerIconCommonAttribute} ${markerIconSize} />`
         }
