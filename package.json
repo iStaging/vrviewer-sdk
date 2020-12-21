@@ -71,7 +71,7 @@
     "jest-static-stubs": "^0.0.1",
     "jest-transform-stub": "^1.0.0",
     "nightwatch": "^0.9.21",
-    "node-notifier": "^5.2.1",
+    "node-notifier": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "3.2.0",
     "ora": "^2.1.0",
     "path": "^0.12.7",
